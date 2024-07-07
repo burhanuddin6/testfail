@@ -1,0 +1,5 @@
+# python django
+*.pyc
+*.pyo
+__pycache__
+venv
