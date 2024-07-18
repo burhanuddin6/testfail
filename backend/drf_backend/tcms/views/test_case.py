@@ -43,3 +43,20 @@ class TestCaseViewSet(viewsets.ModelViewSet):
 
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+    
+
+class StatusForTestCaseViewSet(viewsets.ModelViewSet):
+    queryset = StatusForTestCase.objects.all()
+    serializer_class = StatusForTestCaseSerializer
+
+class TestCaseResultsViewSet(viewsets.ModelViewSet):
+    queryset = TestCaseResults.objects.all()
+    serializer_class = TestCaseResultsSerializer
+
+class TestCaseResultFilesViewSet(viewsets.ModelViewSet):
+    queryset = TestCaseResultFiles.objects.all()
+    serializer_class = TestCaseResultFilesSerializer
+
+class BugTrackerTicketsViewSet(viewsets.ModelViewSet):
+    queryset = BugTrackerTickets.objects.all()
+    serializer_class = BugTrackerTicketsSerializer

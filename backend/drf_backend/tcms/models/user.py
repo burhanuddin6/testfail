@@ -1,4 +1,6 @@
+from django.db import models
 from authemail.models import EmailUserManager, EmailAbstractUser
+
 
 class MyUser(EmailAbstractUser):
 	# Custom fields
@@ -6,3 +8,13 @@ class MyUser(EmailAbstractUser):
 
 	# Required
 	objects = EmailUserManager()
+
+class UserApiKey(models.Model):
+    key_id = models.AutoField(primary_key=True)
+    api_key = models.CharField(max_length=255, unique=True)
+    user = models.ForeignKey(MyUser, on_delete=models.CASCADE)
+
+class UserAccountIntegration(models.Model):
+    integration_id = models.AutoField(primary_key=True)
+    platform = models.CharField(max_length=255)
+    user = models.ForeignKey(MyUser, on_delete=models.CASCADE)

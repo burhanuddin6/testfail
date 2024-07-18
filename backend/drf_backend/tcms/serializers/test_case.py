@@ -41,3 +41,56 @@ class TestCaseSerializer(serializers.ModelSerializer):
 #     class Meta:
 #         model = TestCase
 #         fields = '__all__'
+
+
+
+# added  by mariam
+
+class StatusForTestCaseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = StatusForTestCase
+        fields = '__all__'
+
+class TestCaseResultFilesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TestCaseResultFiles
+        fields = '__all__'
+
+class BugTrackerTicketsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BugTrackerTickets
+        fields = '__all__'
+
+class TestCaseResultsSerializer(serializers.ModelSerializer):
+    files = TestCaseResultFilesSerializer(many=True, read_only=True)
+    tickets = BugTrackerTicketsSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = TestCaseResults
+        fields = '__all__'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

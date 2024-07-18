@@ -42,4 +42,54 @@ class TestCaseTickets(models.Model):
     ticket = models.CharField(max_length=255)
     test_case = models.ForeignKey(TestCase, related_name='tickets', on_delete=models.CASCADE)
 
-    
+
+class StatusForTestCase(models.Model):
+    status_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=255, unique=True)
+    color = models.IntegerField()
+
+class TestCaseResults(models.Model):
+    test_case_result_id = models.AutoField(primary_key=True)
+    test_case_id = models.ForeignKey(TestCase, on_delete=models.CASCADE) # verify on_delete
+    status = models.ForeignKey(StatusForTestCase, on_delete=models.CASCADE) # verify on_delete
+    creator_id = models.IntegerField() # change to foreign key
+    result_blob = models.TextField()
+    version = models.CharField(max_length=255, null=True, blank=True)
+    comment = models.TextField(null=True, blank=True)
+    created_on = models.DateTimeField(auto_now_add=True)
+    result_time = models.TimeField()
+
+
+class TestCaseResultFiles(models.Model):
+    file_id = models.AutoField(primary_key=True)
+    file_path = models.CharField(max_length=255) # change to file = models.FileField(upload_to='test_case_files/')
+    test_case_result = models.ForeignKey(TestCaseResults, on_delete=models.CASCADE) # verify on_delete
+
+class BugTrackerTickets(models.Model):
+    bug_tracker_id = models.AutoField(primary_key=True)
+    bug_tracker = models.CharField(max_length=255)
+    test_case_result = models.ForeignKey(TestCaseResults, on_delete=models.CASCADE) # verify on_delete
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
