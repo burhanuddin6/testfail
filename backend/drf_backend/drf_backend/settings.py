@@ -152,7 +152,7 @@ EMAIL_BCC = os.environ.get('AUTHEMAIL_DEFAULT_EMAIL_BCC') or '<YOUR DEFAULT_EMAI
 EMAIL_HOST = os.environ.get('AUTHEMAIL_EMAIL_HOST') or 'smtp.gmail.com'
 EMAIL_PORT = os.environ.get('AUTHEMAIL_EMAIL_PORT') or 587
 EMAIL_HOST_USER = os.environ.get('AUTHEMAIL_EMAIL_HOST_USER') or 'ba09ae@gmail.com'
-EMAIL_HOST_PASSWORD = 'fcsu geug cjet wimd' #os.environ.get('AUTHEMAIL_EMAIL_HOST_PASSWORD') or 'fcsugeugcjetwimd'
+EMAIL_HOST_PASSWORD = os.environ.get('AUTHEMAIL_EMAIL_HOST_PASSWORD') or ''
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
