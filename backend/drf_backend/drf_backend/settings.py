@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -54,7 +54,9 @@ ROOT_URLCONF = 'drf_backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'tcms/templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -137,19 +139,20 @@ REST_FRAMEWORK = {
 	)
 }
 
+
 # Email settings
 # https://docs.djangoproject.com/en/3.1/topics/email/
 # https://docs.djangoproject.com/en/3.1/ref/settings/#email-host
 
 import os
 
-EMAIL_FROM = os.environ.get('AUTHEMAIL_DEFAULT_EMAIL_FROM') or 'be07724@st.habib.edu.pk'
+EMAIL_FROM = os.environ.get('AUTHEMAIL_DEFAULT_EMAIL_FROM') or 'burhanuddin.ezzi@foundri.net'
 EMAIL_BCC = os.environ.get('AUTHEMAIL_DEFAULT_EMAIL_BCC') or '<YOUR DEFAULT_EMAIL_BCC HERE>'
 
 EMAIL_HOST = os.environ.get('AUTHEMAIL_EMAIL_HOST') or 'smtp.gmail.com'
 EMAIL_PORT = os.environ.get('AUTHEMAIL_EMAIL_PORT') or 587
-EMAIL_HOST_USER = os.environ.get('AUTHEMAIL_EMAIL_HOST_USER') or 'mariam.shahzad@foundri.net'
-EMAIL_HOST_PASSWORD = os.environ.get('AUTHEMAIL_EMAIL_HOST_PASSWORD') or ''
+EMAIL_HOST_USER = os.environ.get('AUTHEMAIL_EMAIL_HOST_USER') or 'ba09ae@gmail.com'
+EMAIL_HOST_PASSWORD = 'fcsu geug cjet wimd' #os.environ.get('AUTHEMAIL_EMAIL_HOST_PASSWORD') or 'fcsugeugcjetwimd'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
