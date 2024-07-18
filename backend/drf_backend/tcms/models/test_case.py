@@ -1,17 +1,6 @@
 from django.db import models
 
 # Create your models here.
-
-
-from django.db import models
-from authemail.models import EmailUserManager, EmailAbstractUser
-
-class MyUser(EmailAbstractUser):
-	# Custom fields
-	# date_of_birth = models.DateField('Date of birth', null=True, blank=True)
-
-	# Required
-	objects = EmailUserManager()
 	
 
 class TypesForTestCase(models.Model):
@@ -53,8 +42,6 @@ class TestCaseTickets(models.Model):
     ticket = models.CharField(max_length=255)
     test_case = models.ForeignKey(TestCase, related_name='tickets', on_delete=models.CASCADE)
 
-
-# added by mariam
 
 class StatusForTestCase(models.Model):
     status_id = models.AutoField(primary_key=True)
