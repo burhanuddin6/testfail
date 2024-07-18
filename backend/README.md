@@ -1,7 +1,7 @@
 # BACKEND README
 
 ## Authentication and Authorization
-We will use django [authemail](https://github.com/celiao/django-rest-authemail).
+We will use django [authemail](https://gitpip install django-rest-authemailhub.com/celiao/django-rest-authemail).
 Read the github readme fully. It covers everything we will be using.
 Some points to note:
 - Please change the password in settings.py for email notifications (and do not expose it in your commits). To generate password for your gmail, go to google > manage my account and search app passwords. Generate the key and copy and paste (remove spaces, should be 16 characters) it there (better to use it as env variable)
