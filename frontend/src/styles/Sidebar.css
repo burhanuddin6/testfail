@@ -1,0 +1,12 @@
+/* Sidebar.css */
+.sidebar {
+  background-color: #5DA9E9;
+  padding: 20px;
+  width: 20%;
+}
+
+.sidebar .content {
+  background-color: white;
+  padding: 10px;
+  color: black;
+}

@@ -1,4 +1,8 @@
-.App {
+/* --------------- */
+/* Batool App.css */
+/* ---------------- */
+
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +39,67 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+/* ---------------- */
+/* Farhan App.css */
+/* ----------------- */
+
+/* App.css */
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #e6f3ff; /* same background color for the entire page */
+}
+
+.main-content {
+  display: flex;
+  flex: 1;
+}
+
+.bottom-content {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #5DA9E9;
+}
+
+header {
+  background-color: #003366;
+  color: white;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav a {
+  color: white;
+  margin-right: 1rem;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+/* App.css */
+body, html, .app {
+  background-color: #e6f3ff;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
+.main-content, .bottom-content {
+  background-color: inherit;
+}
+
+.bottom-content {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #5DA9E9;
 }
