@@ -1,0 +1,13 @@
+.overview {
+    flex: 1;
+    padding: 20px;
+    
+  }
+  
+  .summary {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    background-color: white;
+  }
+  
