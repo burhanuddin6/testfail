@@ -55,7 +55,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-             os.path.join(BASE_DIR, 'tcms/templates'),
+            os.path.join(BASE_DIR, 'tcms/templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -160,11 +160,12 @@ CORS_ALLOW_CREDENTIALS = True
 
 import os
 
-EMAIL_FROM = os.environ.get('AUTHEMAIL_DEFAULT_EMAIL_FROM') or 'be07724@st.habib.edu.pk'
+EMAIL_FROM = os.environ.get('AUTHEMAIL_DEFAULT_EMAIL_FROM') or 'burhanuddin.ezzi@foundri.net'
 EMAIL_BCC = os.environ.get('AUTHEMAIL_DEFAULT_EMAIL_BCC') or '<YOUR DEFAULT_EMAIL_BCC HERE>'
 
 EMAIL_HOST = os.environ.get('AUTHEMAIL_EMAIL_HOST') or 'smtp.gmail.com'
 EMAIL_PORT = os.environ.get('AUTHEMAIL_EMAIL_PORT') or 587
+
 EMAIL_HOST_USER = os.environ.get('AUTHEMAIL_EMAIL_HOST_USER') or 'mariam.shahzad@foundri.net'
 EMAIL_HOST_PASSWORD = os.environ.get('AUTHEMAIL_EMAIL_HOST_PASSWORD') or 'ozmovwaxnmmwvypz'
 EMAIL_USE_TLS = True

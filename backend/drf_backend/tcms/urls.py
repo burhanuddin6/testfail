@@ -29,7 +29,6 @@ router.register(r'user_api_keys', UserApiKeyViewSet)
 router.register(r'user_account_integrations', UserAccountIntegrationViewSet)
 
 
-
 urlpatterns = [
     path('', include(router.urls)),
     path('verify-email/', verify_email, name='verify_email'),

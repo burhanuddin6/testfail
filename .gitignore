@@ -1,14 +1,15 @@
 # python django
 *.pyc
 *.pyo
-__pycache__
 venv
 db.sqlite3
 test_case_files
+*__pycache__
 
 # dependencies
 frontend/node_modules/
 /node_modules
+frontend/node_modules/
 /.pnp
 .pnp.js
 
@@ -28,4 +29,3 @@ frontend/node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
