@@ -8,6 +8,7 @@ test_case_files
 
 # dependencies
 /node_modules
+frontend/node_modules/
 /.pnp
 .pnp.js
 
