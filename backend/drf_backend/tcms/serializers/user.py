@@ -3,7 +3,7 @@ from ..models.user import *
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
+        model = MyUser
         fields = '__all__'
 
 class UserApiKeySerializer(serializers.ModelSerializer):

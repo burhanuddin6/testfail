@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import '../styles/Login.css'; // Adjusted the import path
 import logo from '../images/Securiti_Logo.jpg';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios'; // Import Axios for making HTTP requests
+
+
 
 const Login = () => {
   const navigate = useNavigate();
@@ -19,18 +22,34 @@ const Login = () => {
     });
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
     // Basic form validation
     if (!formData.email || !formData.password) {
       setMessage('Please fill in both fields.');
-    } else {
+      return;
+    }
+
+    try {
+      const response = await axios.post('http://localhost:8000/api/accounts/login/', {
+        email: formData.email,
+        password: formData.password
+      });
+
+      // Assuming your backend returns a token in the response
+      const token = response.data.token; // Adjust this according to your API response structure
+
+      // Store the token in localStorage or sessionStorage for future use
+      localStorage.setItem('token', token); // Example: using localStorage
+
       setMessage('');
-      navigate('/Dashboard');
+      navigate('/Dashboard'); // Redirect to Dashboard or any other route upon successful login
+    } catch (error) {
+      setMessage('Invalid credentials. Please try again.'); // Handle login error
     }
   };
-
+  
   const handleSignUp = (e) => {
     e.preventDefault();
     navigate('/SignUp');

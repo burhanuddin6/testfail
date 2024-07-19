@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -54,7 +54,9 @@ ROOT_URLCONF = 'drf_backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+             os.path.join(BASE_DIR, 'tcms/templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -129,6 +131,7 @@ INSTALLED_APPS += [
     'rest_framework.authtoken',
     'authemail',
     'tcms',
+    'corsheaders',
 ]
 
 REST_FRAMEWORK = {
@@ -136,6 +139,20 @@ REST_FRAMEWORK = {
 		'rest_framework.authentication.TokenAuthentication',
 	)
 }
+
+MIDDLEWARE += [
+    'corsheaders.middleware.CorsMiddleware',  # Add this before CommonMiddleware
+    'django.middleware.common.CommonMiddleware',    
+]
+
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',  # Add your React frontend URL here
+    # Add more origins if needed
+]
+
+# Optional: Allow credentials (cookies, authorization headers, etc.)
+CORS_ALLOW_CREDENTIALS = True
 
 # Email settings
 # https://docs.djangoproject.com/en/3.1/topics/email/
@@ -149,7 +166,7 @@ EMAIL_BCC = os.environ.get('AUTHEMAIL_DEFAULT_EMAIL_BCC') or '<YOUR DEFAULT_EMAI
 EMAIL_HOST = os.environ.get('AUTHEMAIL_EMAIL_HOST') or 'smtp.gmail.com'
 EMAIL_PORT = os.environ.get('AUTHEMAIL_EMAIL_PORT') or 587
 EMAIL_HOST_USER = os.environ.get('AUTHEMAIL_EMAIL_HOST_USER') or 'mariam.shahzad@foundri.net'
-EMAIL_HOST_PASSWORD = os.environ.get('AUTHEMAIL_EMAIL_HOST_PASSWORD') or ''
+EMAIL_HOST_PASSWORD = os.environ.get('AUTHEMAIL_EMAIL_HOST_PASSWORD') or 'ozmovwaxnmmwvypz'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 

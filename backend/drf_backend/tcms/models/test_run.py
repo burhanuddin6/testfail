@@ -1,5 +1,7 @@
 from django.db import models
 
+from .test_suite import TestSuite
+
 class TestRun(models.Model):
     test_run_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255, unique=True)

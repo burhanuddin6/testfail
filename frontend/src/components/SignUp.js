@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import '../styles/SignUp.css'; // Adjusted the import path
 import { useNavigate } from 'react-router-dom';
 import logo from '../images/Securiti_Logo.jpg';
+import axios from 'axios'; // Import Axios for making HTTP requests
+
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -24,7 +26,7 @@ const SignUp = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Basic form validation
@@ -35,11 +37,46 @@ const SignUp = () => {
       formData.password &&
       formData.terms
     ) {
-      setMessage('Account has been created successfully!');
+      try {
+        // Make POST request to Django backend endpoint
+        const response = await axios.post('http://localhost:8000/api/accounts/signup/', {
+          email: formData.workEmail,
+          password: formData.password,
+          first_name: formData.firstName,
+          last_name: formData.lastName,
+        });
+        console.log('Response from backend:', response.data);
+        console.log('User created:', response.data);
+        
+        console.log("Sign up successful! Check your email for a verification link.")
+        setMessage('Sign up successful! Check your email for a verification link.');
+      
+        // Optionally, redirect to login page or handle success scenario
+      } catch (error) {
+        console.error('Error creating user:', error);
+        setMessage('Failed to create account. Please try again later.');
+      }
     } else {
       setMessage('Please fill in all required fields.');
     }
   };
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+
+  //   // Basic form validation
+  //   if (
+  //     formData.firstName &&
+  //     formData.lastName &&
+  //     formData.workEmail &&
+  //     formData.password &&
+  //     formData.terms
+  //   ) {
+  //     setMessage('Account has been created successfully!');
+  //   } else {
+  //     setMessage('Please fill in all required fields.');
+  //   }
+  // };
 
   const handleBackToLogin = (e) => {
     e.preventDefault();
