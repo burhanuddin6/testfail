@@ -39,7 +39,7 @@ class TestCaseViewSet(viewsets.ModelViewSet):
         # Check if files are in the request and create TestCaseFile objects
         files = request.FILES.getlist('files')
         for file in files:
-            TestCaseFile.objects.create(test_case=test_case, file=file)
+            TestCaseFile.objects.create(test_case_id=test_case, file=file)
 
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)

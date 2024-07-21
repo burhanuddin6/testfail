@@ -31,5 +31,6 @@ router.register(r'user_account_integrations', UserAccountIntegrationViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('users/<int:user_id>/soft_delete/', UserSoftDeleteView.as_view(), name='user-soft-delete'),
     path('verify-email/', verify_email, name='verify_email'),
 ]
