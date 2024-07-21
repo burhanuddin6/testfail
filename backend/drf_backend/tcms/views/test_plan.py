@@ -9,9 +9,9 @@ class TestPlanViewSet(viewsets.ModelViewSet):
     queryset = TestPlan.objects.all()
     serializer_class = TestPlanSerializer
 
-class TestPlanFilesViewSet(viewsets.ModelViewSet):
-    queryset = TestPlanFiles.objects.all()
-    serializer_class = TestPlanFilesSerializer
+class TestPlanFileViewSet(viewsets.ModelViewSet):
+    queryset = TestPlanFile.objects.all()
+    serializer_class = TestPlanFileSerializer
 
 class TestPlanTicketViewSet(viewsets.ModelViewSet):
     queryset = TestPlanTicket.objects.all()

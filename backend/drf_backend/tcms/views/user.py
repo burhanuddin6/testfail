@@ -1,6 +1,7 @@
 from django.shortcuts import render
-
 from rest_framework import viewsets
+from rest_framework.views import APIView
+from rest_framework.response import Response
 from ..models.user import *
 from ..serializers.user import *
 
@@ -9,7 +10,19 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = MyUser.objects.all()
     serializer_class = UserSerializer
     
-
+class UserSoftDeleteView(APIView):
+    def post(self, request, *args, **kwargs):
+        user_id = request.data.get('user_id')
+        if not user_id:
+            return Response({'error': 'User ID is required.'}, status=400)
+        
+        user = MyUser.objects.filter(id=user_id).first()
+        if not user:
+            return Response({'error': 'User not found.'}, status=404)
+        
+        user.soft_delete()
+        return Response({'message': 'User soft deleted successfully.'}, status=200)
+    
 class UserApiKeyViewSet(viewsets.ModelViewSet):
     queryset = UserApiKey.objects.all()
     serializer_class = UserApiKeySerializer

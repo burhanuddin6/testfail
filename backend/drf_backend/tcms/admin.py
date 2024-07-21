@@ -6,8 +6,7 @@ from django.contrib import admin
 from django.contrib.auth import get_user_model
 from authemail.admin import EmailUserAdmin
 # import user
-from django.contrib.auth.models import User
-from .models.test_case import *
+from .models import *
 
 class MyUserAdmin(EmailUserAdmin):
 	fieldsets = (
@@ -22,4 +21,32 @@ class MyUserAdmin(EmailUserAdmin):
 
 admin.site.unregister(get_user_model())
 admin.site.register(get_user_model(), MyUserAdmin)
+admin.site.register(UserApiKey)
+admin.site.register(UserAccountIntegration)
+
+admin.site.register(TypesForTestCase)
+admin.site.register(PriorityForTestCase)
+admin.site.register(TemplateForTestCase)
 admin.site.register(TestCase)
+admin.site.register(TestCaseFile)
+admin.site.register(TestCaseTicket)
+
+admin.site.register(StatusForTestCase)
+admin.site.register(TestCaseResult)
+admin.site.register(TestCaseResultFile)
+admin.site.register(BugTrackerTicket)
+
+admin.site.register(TestPlan)
+admin.site.register(TestPlanFile)
+admin.site.register(TestPlanTicket)
+admin.site.register(TestPlanTestCase)
+admin.site.register(TestPlanTestSuite)
+
+admin.site.register(TestRun)
+admin.site.register(TestRunFile)
+admin.site.register(TestRunTicket)
+admin.site.register(TestRunTestCase)
+
+admin.site.register(TestSuite)
+admin.site.register(TestSuiteFile)
+admin.site.register(Section)
