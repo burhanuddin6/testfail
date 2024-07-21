@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from ..models.test_suite import *
+from ..models import TestSuite, Section, TestSuiteFiles
 
 
 class TestSuiteSerializer(serializers.ModelSerializer):

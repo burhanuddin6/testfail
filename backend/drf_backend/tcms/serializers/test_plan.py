@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from ..models.test_plan import *
+from ..models import TestPlan, TestPlanFiles, TestPlanTicket, TestPlanTestCase, TestPlanTestSuite
 
 class TestPlanSerializer(serializers.ModelSerializer):
     class Meta:

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from ..models.test_run import *
+from ..models import TestRun, TestRunFiles, TestRunTicket, TestRunTestCase
 
 class TestRunSerializer(serializers.ModelSerializer):
     class Meta:

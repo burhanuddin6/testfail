@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from ..models.test_case import *
+from ..models import TestCase, TypesForTestCase, PriorityForTestCase, TemplateForTestCase, TestCaseFiles, TestCaseTickets, \
+StatusForTestCase, TestCaseResultFiles, BugTrackerTickets, TestCaseResults
 
 class TypesForTestCaseSerializer(serializers.ModelSerializer):
     class Meta:
@@ -33,18 +34,6 @@ class TestCaseSerializer(serializers.ModelSerializer):
     class Meta:
         model = TestCase
         fields = '__all__'
-
-# class TestCaseCreateUpdateSerializer(serializers.ModelSerializer):
-#     files = TestCaseFilesSerializer(many=True, write_only=True)
-#     tickets = TestCaseTicketsSerializer(many=True, write_only=True)
-
-#     class Meta:
-#         model = TestCase
-#         fields = '__all__'
-
-
-
-# added  by mariam
 
 class StatusForTestCaseSerializer(serializers.ModelSerializer):
     class Meta:
