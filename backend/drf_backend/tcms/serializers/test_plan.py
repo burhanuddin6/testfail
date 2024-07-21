@@ -1,14 +1,14 @@
 from rest_framework import serializers
-from ..models import TestPlan, TestPlanFiles, TestPlanTicket, TestPlanTestCase, TestPlanTestSuite
+from ..models import TestPlan, TestPlanFile, TestPlanTicket, TestPlanTestCase, TestPlanTestSuite
 
 class TestPlanSerializer(serializers.ModelSerializer):
     class Meta:
         model = TestPlan
         fields = '__all__'
 
-class TestPlanFilesSerializer(serializers.ModelSerializer):
+class TestPlanFileSerializer(serializers.ModelSerializer):
     class Meta:
-        model = TestPlanFiles
+        model = TestPlanFile
         fields = '__all__'
 
 class TestPlanTicketSerializer(serializers.ModelSerializer):

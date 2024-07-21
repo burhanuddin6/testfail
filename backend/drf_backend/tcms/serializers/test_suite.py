@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from ..models import TestSuite, Section, TestSuiteFiles
+from ..models import TestSuite, Section, TestSuiteFile
 
 
 class TestSuiteSerializer(serializers.ModelSerializer):
@@ -12,7 +12,7 @@ class SectionSerializer(serializers.ModelSerializer):
         model = Section
         fields = '__all__'
 
-class TestSuiteFilesSerializer(serializers.ModelSerializer):
+class TestSuiteFileSerializer(serializers.ModelSerializer):
     class Meta:
-        model = TestSuiteFiles
+        model = TestSuiteFile
         fields = '__all__'

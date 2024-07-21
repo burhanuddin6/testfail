@@ -9,7 +9,7 @@ class TestPlan(models.Model):
     description = models.TextField(null=True, blank=True)
     test_case_filter = models.TextField(null=True, blank=True)
 
-class TestPlanFiles(models.Model):
+class TestPlanFile(models.Model):
     file_id = models.AutoField(primary_key=True)
     file = models.FileField(upload_to='test_plan_files/')
     test_plan_id = models.ForeignKey(TestPlan, on_delete=models.CASCADE)

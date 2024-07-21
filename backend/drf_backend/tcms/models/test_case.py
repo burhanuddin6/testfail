@@ -20,7 +20,7 @@ class TemplateForTestCase(models.Model):
 class TestCase(models.Model):
     test_case_id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=255)
-    latest_result_id = models.ForeignKey('TestCaseResults', on_delete=models.SET_NULL, null=True)
+    latest_result_id = models.ForeignKey('TestCaseResult', on_delete=models.SET_NULL, null=True)
     type_id = models.ForeignKey(TypesForTestCase, on_delete=models.SET_NULL, null=True)
     priority_id = models.ForeignKey(PriorityForTestCase, on_delete=models.SET_NULL, null=True)
     created_on = models.DateTimeField(auto_now_add=True)
@@ -33,12 +33,12 @@ class TestCase(models.Model):
     obsolete = models.BooleanField(default=False)
     creator_id = models.ForeignKey(MyUser, on_delete=models.CASCADE)
 
-class TestCaseFiles(models.Model):
+class TestCaseFile(models.Model):
     file_id = models.AutoField(primary_key=True)
     file = models.FileField(upload_to='test_case_files/')
     test_case_id = models.ForeignKey(TestCase, related_name='files', on_delete=models.CASCADE)
 
-class TestCaseTickets(models.Model):
+class TestCaseTicket(models.Model):
     test_case_ticket_id = models.AutoField(primary_key=True)
     ticket = models.CharField(max_length=255)
     test_case_id = models.ForeignKey(TestCase, related_name='tickets', on_delete=models.CASCADE)

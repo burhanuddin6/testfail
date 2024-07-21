@@ -1,6 +1,6 @@
 from rest_framework import serializers
-from ..models import TestCase, TypesForTestCase, PriorityForTestCase, TemplateForTestCase, TestCaseFiles, TestCaseTickets, \
-StatusForTestCase, TestCaseResultFiles, BugTrackerTickets, TestCaseResults
+from ..models import TestCase, TypesForTestCase, PriorityForTestCase, TemplateForTestCase, TestCaseFile, TestCaseTicket, \
+StatusForTestCase, TestCaseResultFile, BugTrackerTicket, TestCaseResult
 
 class TypesForTestCaseSerializer(serializers.ModelSerializer):
     class Meta:
@@ -17,19 +17,19 @@ class TemplateForTestCaseSerializer(serializers.ModelSerializer):
         model = TemplateForTestCase
         fields = '__all__'
 
-class TestCaseFilesSerializer(serializers.ModelSerializer):
+class TestCaseFileSerializer(serializers.ModelSerializer):
     class Meta:
-        model = TestCaseFiles
+        model = TestCaseFile
         fields = '__all__'
 
-class TestCaseTicketsSerializer(serializers.ModelSerializer):
+class TestCaseTicketSerializer(serializers.ModelSerializer):
     class Meta:
-        model = TestCaseTickets
+        model = TestCaseTicket
         fields = '__all__'
 
 class TestCaseSerializer(serializers.ModelSerializer):
-    files = TestCaseFilesSerializer(many=True, read_only=True)
-    tickets = TestCaseTicketsSerializer(many=True, read_only=True)
+    files = TestCaseFileSerializer(many=True, read_only=True)
+    tickets = TestCaseTicketSerializer(many=True, read_only=True)
 
     class Meta:
         model = TestCase
@@ -40,22 +40,22 @@ class StatusForTestCaseSerializer(serializers.ModelSerializer):
         model = StatusForTestCase
         fields = '__all__'
 
-class TestCaseResultFilesSerializer(serializers.ModelSerializer):
+class TestCaseResultFileSerializer(serializers.ModelSerializer):
     class Meta:
-        model = TestCaseResultFiles
+        model = TestCaseResultFile
         fields = '__all__'
 
-class BugTrackerTicketsSerializer(serializers.ModelSerializer):
+class BugTrackerTicketSerializer(serializers.ModelSerializer):
     class Meta:
-        model = BugTrackerTickets
+        model = BugTrackerTicket
         fields = '__all__'
 
-class TestCaseResultsSerializer(serializers.ModelSerializer):
-    files = TestCaseResultFilesSerializer(many=True, read_only=True)
-    tickets = BugTrackerTicketsSerializer(many=True, read_only=True)
+class TestCaseResultSerializer(serializers.ModelSerializer):
+    files = TestCaseResultFileSerializer(many=True, read_only=True)
+    tickets = BugTrackerTicketSerializer(many=True, read_only=True)
 
     class Meta:
-        model = TestCaseResults
+        model = TestCaseResult
         fields = '__all__'
 
 
