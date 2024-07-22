@@ -35,7 +35,7 @@ const Login = () => {
     }
 
     try {
-      const response = await axios.post('${GIT_URL}api/accounts/login/', {
+      const response = await axios.post( `${GIT_URL}api/accounts/login/`, {
         email: formData.email,
         password: formData.password
       });
