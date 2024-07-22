@@ -184,15 +184,15 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
-import Overview from './components/Overview';
-import TodoPage from './components/TodoPage';
+import Overview from './Pages/Overview';
+import TodoPage from './Pages/TodoPage';
 import Milestones from './components/Milestones';
 import TestRuns from './components/TestRuns';
-import SignUp from './components/SignUp';
-import Login from './components/Login';
-import Forgot from './components/Forgot';
-import EmailVerification from './components/EmailVerification';
-// import Dashboard from './components/Dashboard';
+import SignUp from './Pages/SignUp';
+import Login from './Pages/Login';
+import Forgot from './Pages/Forgot';
+import EmailVerification from './Pages/EmailVerification';
+import Dashboard from './Pages/Dashboard';
 import './App.css';
 
 const App = () => {
@@ -205,7 +205,7 @@ const App = () => {
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/Forgot" element={<Forgot />} />
         <Route path="/verify-email" element={<EmailVerification />} />
-        {/* <Route path="/Dashboard" element={<Dashboard />} /> */}
+        <Route path="/Dashboard" element={<Dashboard userName={userName} />} />
         <Route
           path="/overview"
           element={
