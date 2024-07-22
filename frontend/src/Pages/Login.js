@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
-import '../styles/Login.css'; // Adjusted the import path
+import '../styles/Login.css';
 import logo from '../images/Securiti_Logo.jpg';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios'; // Import Axios for making HTTP requests
-
-const GIT_URL = "https://organic-orbit-p47g4pqqrqj36rvv-8000.app.github.dev/";
-const LOCAL_URL = "http://localhost:8000/";
-
-
+import { login } from '../api/Auth'; // Import the login function
 
 const Login = () => {
   const navigate = useNavigate();
@@ -35,21 +30,24 @@ const Login = () => {
     }
 
     try {
-      const response = await axios.post(`${GIT_URL}api/accounts/login/`, {
-        email: formData.email,
-        password: formData.password
-      });
+      const response = await login(formData);
 
       // Assuming your backend returns a token in the response
-      const token = response.data.token; // Adjust this according to your API response structure
+      const token = response.token; 
 
       // Store the token in localStorage or sessionStorage for future use
-      localStorage.setItem('token', token); // Example: using localStorage
-
+      localStorage.setItem('token', token); 
       setMessage('');
-      navigate('/Dashboard'); // Redirect to Dashboard or any other route upon successful login
+      navigate('/Dashboard'); 
     } catch (error) {
-      setMessage('Invalid credentials. Please try again.'); // Handle login error
+      console.log(error.status)
+      if (error.status === 404) {
+        setMessage('User does not exist. Please sign up.');
+      } else if (error.status === 401) {
+        setMessage('Invalid credentials. Please try again.');
+      } else {
+        setMessage('Something went wrong. Please try again later.');
+      }
     }
   };
   
@@ -99,7 +97,7 @@ const Login = () => {
           </div>
           <a href="#" onClick={handleForgot}>Forgot your password?</a>
         </form>
-        {message && <div className="message">{message}</div>}
+        {message && <div className={`message ${message.includes('successfully') ? 'message-success' : 'message-error'}`}>{message}</div>}
       </div>
     </div>
   );

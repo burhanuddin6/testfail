@@ -1,0 +1,21 @@
+.email-verification-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .verification-alert {
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  .success {
+    color: black;
+  }
+  
+  .failure {
+    color: #d9534f;
+  }
+
+  
