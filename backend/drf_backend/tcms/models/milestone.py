@@ -12,10 +12,10 @@ class Milestone(models.Model):
 
 class MilestoneTicket(models.Model):
 	ticket_id = models.AutoField(primary_key=True)
-	ticket_string = models.CharField(max_length=255, null=False)
-	milestone_id = models.ForeignKey(Milestone, on_delete=models.CASCADE)
+	ticket = models.CharField(max_length=255, null=False)
+	milestone_id = models.ForeignKey(Milestone, on_delete=models.CASCADE, related_name='tickets')
 
 class MilestoneFile(models.Model):
 	file_id = models.AutoField(primary_key=True)    
-	file_path = models.CharField(max_length=255, null=False)
-	milestone_id = models.ForeignKey(Milestone, on_delete=models.CASCADE)
+	file = models.FileField(upload_to='milestone_files/')
+	milestone_id = models.ForeignKey(Milestone, on_delete=models.CASCADE, related_name='files')

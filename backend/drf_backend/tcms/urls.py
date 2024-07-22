@@ -12,6 +12,12 @@ router.register(r'testcase_files', TestCaseFileViewSet)
 router.register(r'testcase_tickets', TestCaseTicketViewSet)
 router.register(r'testcases', TestCaseViewSet)
 
+#test case result
+router.register(r'status_for_testcase', StatusForTestCaseViewSet)
+router.register(r'testcase_results', TestCaseResultViewSet)
+router.register(r'testcase_result_files', TestCaseResultFileViewSet)
+
+
 #test plan
 router.register(r'test_plans', TestPlanViewSet)
 router.register(r'test_plan_files', TestPlanFileViewSet)

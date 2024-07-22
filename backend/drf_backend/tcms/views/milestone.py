@@ -27,5 +27,10 @@ class MilestoneViewSet(viewsets.ModelViewSet):
         for file in files:
             MilestoneFile.objects.create(milestone_id=milestone, file=file)
 
+        tickets = request.data.get('tickets')
+        if tickets:
+            for ticket in tickets:
+                MilestoneTicket.objects.create(milestone_id=milestone, ticket=ticket)
+
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)

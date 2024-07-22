@@ -14,7 +14,7 @@ class TestRunTicketSerializer(serializers.ModelSerializer):
 
 class TestRunSerializer(serializers.ModelSerializer):
     files = TestRunFileSerializer(many=True, read_only=True)
-    tickets = TestRunTicketSerializer(many=True)
+    tickets = TestRunTicketSerializer(many=True, read_only=True)
     class Meta:
         model = TestRun
         fields = '__all__'

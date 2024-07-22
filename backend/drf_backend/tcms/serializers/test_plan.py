@@ -14,7 +14,7 @@ class TestPlanTicketSerializer(serializers.ModelSerializer):
 
 class TestPlanSerializer(serializers.ModelSerializer):
     files = TestPlanFileSerializer(many=True, read_only=True)
-    tickets = TestPlanTicketSerializer(many=True)
+    tickets = TestPlanTicketSerializer(many=True, read_only=True)
     class Meta:
         model = TestPlan
         fields = '__all__'

@@ -3,7 +3,7 @@
 *.pyo
 venv
 db.sqlite3
-test_case_files
+media/
 *__pycache__
 
 # dependencies
