@@ -43,7 +43,7 @@ const SignUp = () => {
     ) {
       try {
         // Make POST request to Django backend endpoint
-        const response = await axios.post('${GIT_URL}api/accounts/signup/', {
+        const response = await axios.post(`${GIT_URL}api/accounts/signup/`, {
           email: formData.workEmail,
           password: formData.password,
           first_name: formData.firstName,

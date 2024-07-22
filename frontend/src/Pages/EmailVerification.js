@@ -5,8 +5,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Alert } from 'react-bootstrap';
 import axios from 'axios';
 
-const LOCAL_VERIFY_EMAIL_URL = "https://organic-orbit-p47g4pqqrqj36rvv-8000.app.github.dev/api/tcms/verify-email/";
-const GIT_VERIFY_EMAIL_URL = "http://127.0.0.1:8000/api/tcms/verify-email/";
+const GIT_VERIFY_EMAIL_URL = "https://organic-orbit-p47g4pqqrqj36rvv-8000.app.github.dev/api/tcms/verify-email/";
+const LOCAL_VERIFY_EMAIL_URL = "http://127.0.0.1:8000/api/tcms/verify-email/";
 
 
 function EmailVerification() {
