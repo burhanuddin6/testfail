@@ -24,6 +24,11 @@ router.register(r'test_suites', TestSuiteViewSet)
 router.register(r'sections', SectionViewSet)
 router.register(r'test_suite_files', TestSuiteFileViewSet)
 
+#milestone
+router.register(r'milestones', MilestoneViewSet)
+router.register(r'milestone_files', MilestoneFileViewSet)
+router.register(r'milestone_tickets', MilestoneTicketViewSet)
+
 #user
 router.register(r'user_api_keys', UserApiKeyViewSet)
 router.register(r'user_account_integrations', UserAccountIntegrationViewSet)

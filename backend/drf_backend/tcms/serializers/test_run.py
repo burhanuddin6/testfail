@@ -1,10 +1,6 @@
 from rest_framework import serializers
 from ..models import TestRun, TestRunFile, TestRunTicket, TestRunTestCase
 
-class TestRunSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = TestRun
-        fields = '__all__'
 
 class TestRunFileSerializer(serializers.ModelSerializer):
     class Meta:
@@ -14,6 +10,13 @@ class TestRunFileSerializer(serializers.ModelSerializer):
 class TestRunTicketSerializer(serializers.ModelSerializer):
     class Meta:
         model = TestRunTicket
+        fields = '__all__'
+
+class TestRunSerializer(serializers.ModelSerializer):
+    files = TestRunFileSerializer(many=True, read_only=True)
+    tickets = TestRunTicketSerializer(many=True)
+    class Meta:
+        model = TestRun
         fields = '__all__'
 
 class TestRunTestCaseSerializer(serializers.ModelSerializer):

@@ -29,7 +29,7 @@ class TestCaseTicketSerializer(serializers.ModelSerializer):
 
 class TestCaseSerializer(serializers.ModelSerializer):
     files = TestCaseFileSerializer(many=True, read_only=True)
-    tickets = TestCaseTicketSerializer(many=True, read_only=True)
+    tickets = TestCaseTicketSerializer(many=True)
 
     class Meta:
         model = TestCase
@@ -52,7 +52,7 @@ class BugTrackerTicketSerializer(serializers.ModelSerializer):
 
 class TestCaseResultSerializer(serializers.ModelSerializer):
     files = TestCaseResultFileSerializer(many=True, read_only=True)
-    tickets = BugTrackerTicketSerializer(many=True, read_only=True)
+    tickets = BugTrackerTicketSerializer(many=True)
 
     class Meta:
         model = TestCaseResult
