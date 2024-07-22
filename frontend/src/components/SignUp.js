@@ -4,6 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import logo from '../images/Securiti_Logo.jpg';
 import axios from 'axios'; // Import Axios for making HTTP requests
 
+const GIT_URL = "https://organic-orbit-p47g4pqqrqj36rvv-8000.app.github.dev/";
+const LOCAL_URL = "http://localhost:8000/";
+
+
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -39,7 +43,7 @@ const SignUp = () => {
     ) {
       try {
         // Make POST request to Django backend endpoint
-        const response = await axios.post('http://localhost:8000/api/accounts/signup/', {
+        const response = await axios.post(`${GIT_URL}api/accounts/signup/`, {
           email: formData.workEmail,
           password: formData.password,
           first_name: formData.firstName,

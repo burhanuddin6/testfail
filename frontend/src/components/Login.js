@@ -4,6 +4,9 @@ import logo from '../images/Securiti_Logo.jpg';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'; // Import Axios for making HTTP requests
 
+const GIT_URL = "https://organic-orbit-p47g4pqqrqj36rvv-8000.app.github.dev/";
+const LOCAL_URL = "http://localhost:8000/";
+
 
 
 const Login = () => {
@@ -32,7 +35,7 @@ const Login = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:8000/api/accounts/login/', {
+      const response = await axios.post(`${GIT_URL}api/accounts/login/`, {
         email: formData.email,
         password: formData.password
       });
