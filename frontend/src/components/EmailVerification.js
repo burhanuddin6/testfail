@@ -5,7 +5,9 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Alert } from 'react-bootstrap';
 import axios from 'axios';
 
-const VERIFY_EMAIL_URL = "http://127.0.0.1:8000/api/tcms/verify-email/";
+const LOCAL_VERIFY_EMAIL_URL = "https://organic-orbit-p47g4pqqrqj36rvv-8000.app.github.dev/api/tcms/verify-email/";
+const GIT_VERIFY_EMAIL_URL = "http://127.0.0.1:8000/api/tcms/verify-email/";
+
 
 function EmailVerification() {
     const navigate = useNavigate();
@@ -25,7 +27,7 @@ function EmailVerification() {
             }
 
             try {
-                const response = await axios.get(`${VERIFY_EMAIL_URL}?code=${code}`);
+                const response = await axios.get(`${GIT_VERIFY_EMAIL_URL}?code=${code}`);
                 
                 if (response.status === 200) {
                     setAlertVariant('success');
