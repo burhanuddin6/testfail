@@ -194,6 +194,8 @@ import Login from './Pages/Login';
 import Forgot from './Pages/Forgot';
 import EmailVerification from './Pages/EmailVerification';
 import Dashboard from './Pages/Dashboard';
+import AddMilestone from './Pages/AddMilestones';
+
 import './App.css';
 
 const App = () => {
@@ -240,7 +242,16 @@ const App = () => {
           element={
             <>
               <Header userName={userName} />
-              <MilestonesPage userName={userName}/>
+              <MilestonesPage />
+            </>
+          }
+        />
+        <Route 
+          path="/AddMilestone" 
+          element={
+            <>
+              <Header userName={userName} />
+              <AddMilestone  />
             </>
           }
         />

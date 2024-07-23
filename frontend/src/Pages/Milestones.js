@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import '../styles/Milestones.css';
 import { useNavigate } from 'react-router-dom';
 
-const Milestones = ({userName}) => {
+const Milestones = () => {
 
   const navigate = useNavigate();
   const [showButtons, setShowButtons] = useState(false);
-  const [showProfileMenu, setShowProfileMenu] = useState(false);
-  const [showWorkingOnMenu, setShowWorkingOnMenu] = useState(false);
+
   const [openMilestones, setOpenMilestones] = useState([
     { id: 1, name: 'milestone', checked: false },
     { id: 2, name: 'milestone', checked: false },
