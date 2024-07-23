@@ -47,9 +47,9 @@ const AddMilestone = () => {
     <div className="milestone-form">
        
       
-      <form onSubmit={handleSubmit}>
+      <form className='add_f' onSubmit={handleSubmit}>
         <h2>Add Milestone</h2>
-        <div className="form-group">
+        <div className="add-form-group">
           <label htmlFor="name">Name<span className='required'>*</span></label> 
           <input
             type="text"
@@ -60,7 +60,7 @@ const AddMilestone = () => {
             required
           />
         </div>
-        <div className="form-group">
+        <div className="add-form-group">
           <label htmlFor="references">References</label>
           <input
             type="text"
@@ -69,7 +69,7 @@ const AddMilestone = () => {
             onChange={(e) => setReferences(e.target.value)}
           />
         </div>
-        <div className="form-group">
+        <div className="add-form-group">
           <label htmlFor="parent">Parent</label>
           <select
             id="parent"
@@ -82,7 +82,7 @@ const AddMilestone = () => {
             <option value="">parent milestone 3</option>
           </select>
         </div>
-        <div className="form-group">
+        <div className="add-form-group">
           <label htmlFor="description">Description</label>
           <textarea
             id="description"
@@ -95,7 +95,7 @@ const AddMilestone = () => {
           <input type="file" id="file-upload" name="file-upload" onChange={handleFileChange}/>
           
         </div>
-        <div className="form-group">
+        <div className="add-form-group">
           <label htmlFor="startDate">Start Date</label>
           <input
             type="date"
@@ -105,7 +105,7 @@ const AddMilestone = () => {
             placeholder="The expected or scheduled start date of this milestone (for upcoming and not yet active milestones)."
           />
         </div>
-        <div className="form-group">
+        <div className="add-form-group">
           <label htmlFor="endDate">End Date</label>
           <input
             type="date"
@@ -116,7 +116,7 @@ const AddMilestone = () => {
           />
         </div>
      
-        <div className='form-check'>
+        <div className='add-form-check'>
             <input
                 type="checkbox"
                 id="isCompleted"
