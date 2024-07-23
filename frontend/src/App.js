@@ -317,103 +317,26 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-<<<<<<< HEAD
         {!isLoggedIn ? (
           <>
             <Route path="/" element={<Login />} />
-            <Route path="/SignUp" element={<SignUp />} />
-            <Route path="/Forgot" element={<Forgot />} />
+            <Route path="/signUp" element={<SignUp />} />
+            <Route path="/forgot" element={<Forgot />} />
             <Route path="/verify-email" element={<EmailVerification />} />
             <Route path="*" element={<NotFound />} />
           </>
         ) : (
           <>
-            <Route path="/Dashboard" element={<Dashboard userName={userName} />} />
+            <Route path="/dashboard" element={<Dashboard userName={userName} />} />
             <Route path="/overview" element={<OverviewPage userName={userName} />} />
-            <Route path="/todo" element={<TodoPage />} />
+            <Route path="/todos" element={<TodoPage />} />
             <Route path="/milestones" element={<Milestones />} />
+            <Route path="/milestones/add" element={<TestRunDetail />} />
             <Route path="/testruns" element={<TestRuns />} />
             <Route path="/testruns/:id" element={<TestRunDetail />} />
             <Route path="*" element={<NotFound />} />
           </>
         )}
-=======
-        <Route path="/" element={<Login />} />
-        <Route path="/SignUp" element={<SignUp />} />
-        <Route path="/Forgot" element={<Forgot />} />
-        <Route path="/verify-email" element={<EmailVerification />} />
-        <Route path="/Dashboard" element={<Dashboard userName={userName} />} />
-        <Route
-          path="/overview"
-          element={
-            <>
-              <Header userName={userName} />
-              <div className="main-content">
-                <Sidebar />
-                <Overview />
-              </div>
-              <div className="bottom-content">
-                <Milestones />
-                <TestRuns />
-              </div>
-            </>
-          }
-        />
-        <Route
-          path="/todo"
-          element={
-            <>
-              <Header userName={userName} />
-              <div className="main-content">
-                <Sidebar />
-                <TodoPage />
-              </div>
-            </>
-          }
-        />
-        <Route
-          path="/milestones"
-          element={
-            <>
-              <Header userName={userName} />
-              <MilestonesPage />
-            </>
-          }
-        />
-        <Route 
-          path="/AddMilestone" 
-          element={
-            <>
-              <Header userName={userName} />
-              <AddMilestone  />
-            </>
-          }
-        />
-        <Route
-          path="/testruns"
-          element={
-            <>
-              <Header userName={userName} />
-              <div className="main-content">
-                <Sidebar />
-                <TestRuns />
-              </div>
-            </>
-          }
-        />
-        <Route
-          path="/testruns/:id"
-          element={
-            <>
-              <Header userName={userName} />
-              <div className="main-content">
-                <Sidebar />
-                <TestRuns />
-              </div>
-            </>
-          }
-        />
->>>>>>> main
       </Routes>
     </BrowserRouter>
   );
