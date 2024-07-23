@@ -1,15 +1,117 @@
-/* Milestones.css */
-.milestones {
-    background-color: #5DA9E9;
-    padding: 20px;
-    width: 48%;
+@import '../utilities/variables.css';
+
+body {
+    background-color: var(--bg-color);
+    margin: 0;
+    padding: 0;
   }
   
-  .milestones .content {
-    background-color: white;
-    padding: 10px;
+  .Milestones-container {
+    font-family: Arial, sans-serif;
+    width: 1680px;
+  }
+  
+  
+  
+  .heading {
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    top: 100px;
+    left: 30px;
+    margin-bottom: 0;
     color: black;
-    width: 90%;
-    margin: 0 auto;
+    display: flex;
+  }
+
+  .button-class {
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 50px;
+  }
+
+  .heading button {
+    color: black;
+    width: auto;
+    height: auto;
+  }
+
+  .open{
+    color: black;
+    position: relative;
+    width: 97%;
+    margin-right: 30px;
+    /* top: 150px; */
+    top:0;
+    left: 30px;
+    margin-bottom: 0;
+    gap: 50px;
+  }
+
+  .completed{
+    color: black;
+    position: relative;
+    width: 97%;
+    margin-right: 30px;
+    /* top: 400px; */
+    left: 30px;
+    margin-bottom: 0;
+    gap: 50px;
+    top: 0;
+  }
+
+  .milestoneName {
+    background-color:transparent;
+    color: black;
+    width: 100px;
+    font-size: 17px;
+  }
+
+  .details {
+    background-color: white;
+    border-radius: 7px;
+    padding: 10px;
+    margin-bottom: 5px;
+    right: 30px;
+    display: flex;
+    gap: 15px;
+  }
+
+  .details h3, p {
+    margin-left: 15px;
+  }
+
+  .details a {
+    margin-top: 0.5px;
+  }
+
+  .status-bar {
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 10px;
+    width: 10%;
+    height: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    padding: 2px;
   }
   
+  .status-bar-inner {
+    height: 100%;
+    background-color: #4CAF50;
+    border-radius: 10px;
+  }
+  
+  .status-52 {
+    width: 52%;
+  }
+  
+  .status-6 {
+    width: 6%;
+  }
+
+ 

@@ -186,6 +186,7 @@ import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Overview from './Pages/Overview';
 import TodoPage from './Pages/TodoPage';
+import MilestonesPage from './Pages/Milestones';
 import Milestones from './components/Milestones';
 import TestRuns from './components/TestRuns';
 import SignUp from './Pages/SignUp';
@@ -239,10 +240,7 @@ const App = () => {
           element={
             <>
               <Header userName={userName} />
-              <div className="main-content">
-                <Sidebar />
-                <Milestones />
-              </div>
+              <MilestonesPage userName={userName}/>
             </>
           }
         />
