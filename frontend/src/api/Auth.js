@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const GIT_URL = "https://organic-orbit-p47g4pqqrqj36rvv-8000.app.github.dev/";
 const LOCAL_URL = "http://localhost:8000/";
+
 const GIT_VERIFY_EMAIL_URL = "https://organic-orbit-p47g4pqqrqj36rvv-8000.app.github.dev/api/tcms/verify-email/";
 const LOCAL_VERIFY_EMAIL_URL = "http://127.0.0.1:8000/api/tcms/verify-email/";
 
@@ -14,6 +15,7 @@ const login = async (formData) => {
     
     console.log(error); //debug statement, remove before deployment
     console.log(error.response.data); //debug statement, remove before deployment
+    console.log(error.response.data.detail); //debug statement, remove before deployment
     throw error.response; 
   }
 };
@@ -48,4 +50,18 @@ const verifyEmail = async (code) => {
   }
 };
 
-export { login, signUp, verifyEmail };
+const getUserDetails = async (token) => {
+  try {
+    const response = await axios.get(`${LOCAL_URL}/api/accounts/users/me`, {
+      headers: {
+        Authorization: `Token ${token}`
+      }
+    });
+
+    return response.data; 
+  } catch (error) {
+    throw error; 
+  }
+};
+
+export { login, signUp, verifyEmail, getUserDetails };

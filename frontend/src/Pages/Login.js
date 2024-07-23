@@ -31,24 +31,30 @@ const Login = () => {
 
     try {
       const response = await login(formData);
-
+    
       // Assuming your backend returns a token in the response
       const token = response.token; 
-
+    
       // Store the token in localStorage or sessionStorage for future use
-      localStorage.setItem('token', token); 
+      sessionStorage.setItem('token', token); 
       setMessage('');
-      navigate('/Dashboard'); 
+      window.location.assign("/Dashboard");
     } catch (error) {
-      console.log(error.status)
+      console.log(error.status);
+    
       if (error.status === 404) {
         setMessage('User does not exist. Please sign up.');
       } else if (error.status === 401) {
-        setMessage('Invalid credentials. Please try again.');
+        if (error.data && error.data.detail === 'User account not verified.') {
+          setMessage('Please verify your account to continue.');
+        } else {
+          setMessage('Invalid credentials. Please try again.');
+        }
       } else {
         setMessage('Something went wrong. Please try again later.');
       }
     }
+    
   };
   
   const handleSignUp = (e) => {

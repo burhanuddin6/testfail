@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/Dashboard.css';
 import logo from '../images/logo_02.png';
 import linechart from '../images/linechart.png';
@@ -10,6 +10,8 @@ import line from '../images/line.png';
 import grouped from '../images/groupedbar.png';
 import horizontal from '../images/horizontal.png';
 import stacked from '../images/stacked.png';
+import { SOFTWARE_TITLE } from '../utilities/globals';
+
 
 const Dashboard = ({userName}) => {
 
@@ -22,12 +24,11 @@ const Dashboard = ({userName}) => {
     setShowButtons(!showButtons);
   };
 
-  
   return (
     <div className="dashboard-container">
       <header className="dashboard-header">
         <img src={logo} alt="Securiti.ai" />
-        <h2>Product Name</h2>
+        <h2>{SOFTWARE_TITLE}</h2>
         <div className='options'>
           <input type="text" className="search-bar" placeholder="Search..." />
           <div className="dropdown" onClick={() => setShowWorkingOnMenu(!showWorkingOnMenu)}>
