@@ -1,98 +1,210 @@
-import React, { useState }  from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import SignUp from './components/SignUp';
-import Login from './components/Login';
-import Forgot from './components/Forgot';
-import EmailVerification from './components/EmailVerification'; 
-// import Dashboard from './components/Dashboard';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import './App.css';
+import { getUserDetails } from './api/Auth';
 
-// -------------
-// Batool App.js
-// --------------
-
-// import React, { useState }  from 'react';
-// import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-// import SignUp from './components/SignUp';
-// import Login from './components/Login';
-// import Forgot from './components/Forgot';
-// import Dashboard from './components/Dashboard';
-
-
-// const App = () => {
-//   return (
-//     <Router>
-//       <Routes>
-//         <Route path="/" element={<Login />} />
-//         <Route path="/SignUp" element={<SignUp />} />
-//         <Route path="/Forgot" element={<Forgot />} />
-//         <Route path="/Dashboard" element={<Dashboard />} />
-//       </Routes>
-//     </Router>
-//   );
-// };
-
-// export default App;
-
-// -------------
-// Farhan App.js
-// --------------
-
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+// components 
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
-import Overview from './components/Overview';
-// import TodoPage from './components/TodoPage';
 import Milestones from './components/Milestones';
 import TestRuns from './components/TestRuns';
-import './App.css';
+
+// pages
+import Overview from './Pages/Overview';
+import TodoPage from './Pages/TodoPage';
+import MilestonesPage from './Pages/Milestones';
+import SignUp from './Pages/SignUp';
+import Login from './Pages/Login';
+import Forgot from './Pages/Forgot';
+import EmailVerification from './Pages/EmailVerification';
+import Dashboard from './Pages/Dashboard';
+import AddMilestone from './Pages/AddMilestones';
+import NotFound from './Pages/NotFound';
+
 
 const App = () => {
-  const userName = 'Zainab Turabi';
+  const [userName, setUserName] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const getDetails = async () => {
+      const token = sessionStorage.getItem("token");
+      if (token) {
+        setIsLoggedIn(true);
+        const details = await getUserDetails(token);
+        setUserName(details.first_name + " " + details.last_name);
+      }
+    }
+    getDetails();
+  }, []); // Runs once when the component mounts
+
 
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
+
+        {!isLoggedIn ? (
+          <>
+            <Route path="/" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/forgot" element={<Forgot />} />
+            <Route path="/verify-email" element={<EmailVerification />} />
+            <Route path="*" element={<NotFound />} />
+          </>
+        ) : (
+          <>
+            <Route path="/dashboard" element={<Dashboard userName={userName} />} />
+            <Route
+              path="/overview/:projectId"
+              element={
+                <>
+                  <Header userName={userName} />
+                  <div className="main-content">
+                    <Sidebar />
+                    <Overview />
+                  </div>
+                  <div className="bottom-content">
+                    <Milestones />
+                    <TestRuns />
+                  </div>
+                </>
+              }
+            />
+            <Route path="/todo" element={<TodoPage />} /> 
+            <Route
+              path="/todo/:projectId"
+              element={
+                <>
+                  <Header userName={userName} />
+                  <div className="main-content">
+                    <TodoPage />
+                  </div>
+                </>
+              }
+            />
+            <Route
+              path="/milestones"
+              element={
+                <>
+                  <Header userName={userName} />
+                  <MilestonesPage />
+                </>
+              }
+            />
+            <Route 
+              path="AddMilestone" 
+              element={
+                <>
+                  <Header userName={userName} />
+                  <AddMilestone  />
+                </>
+              }
+            />
+            <Route
+              path="/testruns"
+              element={
+                <>
+                  <Header userName={userName} />
+                  <div className="main-content">
+                    <Sidebar />
+                    <TestRuns />
+                  </div>
+                </>
+              }
+            />
+            <Route
+              path="/testruns/:id"
+              element={
+                <>
+                  <Header userName={userName} />
+                  <div className="main-content">
+                    <Sidebar />
+                    <TestRuns />
+                  </div>
+                </>
+              }
+            />
+            <Route path="*" element={<NotFound />} />
+          </>
+        )}
+
         <Route path="/" element={<Login />} />
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/Forgot" element={<Forgot />} />
         <Route path="/verify-email" element={<EmailVerification />} />
-        {/* <Route path="/Dashboard" element={<Dashboard />} /> */}
+        <Route path="/Dashboard" element={<Dashboard userName={userName} />} />
+        <Route
+          path="/overview/:projectId"
+          element={
+            <>
+              <Header userName={userName} />
+              <div className="main-content">
+                <Sidebar />
+                <Overview />
+              </div>
+              <div className="bottom-content">
+                <Milestones />
+                <TestRuns />
+              </div>
+            </>
+          }
+        />
+        <Route
+          path="/todo/:projectId"
+          element={
+            <>
+              <Header userName={userName} />
+              <div className="main-content">
+                <TodoPage />
+              </div>
+            </>
+          }
+        />
+        <Route
+          path="/milestones"
+          element={
+            <>
+              <Header userName={userName} />
+              <MilestonesPage />
+            </>
+          }
+        />
+        <Route 
+          path="/AddMilestone" 
+          element={
+            <>
+              <Header userName={userName} />
+              <AddMilestone  />
+            </>
+          }
+        />
+        <Route
+          path="/testruns"
+          element={
+            <>
+              <Header userName={userName} />
+              <div className="main-content">
+                <Sidebar />
+                <TestRuns />
+              </div>
+            </>
+          }
+        />
+        <Route
+          path="/testruns/:id"
+          element={
+            <>
+              <Header userName={userName} />
+              <div className="main-content">
+                <Sidebar />
+                <TestRuns />
+              </div>
+            </>
+          }
+        />
+
       </Routes>
-      <div className="app">
-        <Header userName={userName} />
-        <Routes>
-          <Route path="/overview" element={
-            <>
-              <div className="main-content">
-                <Sidebar />
-                <Overview />
-              </div>
-              <div className="bottom-content">
-                <Milestones />
-                <TestRuns />
-              </div>
-            </>
-          } />
-          {/* <Route path="/todo" element={<TodoPage />} /> */}
-          <Route path="/milestones" element={<Milestones />} />
-          <Route path="/testruns" element={<TestRuns />} />
-          <Route path="/testruns/:id" element={<TestRuns />} />
-          <Route path="/" element={
-            <>
-              <div className="main-content">
-                <Sidebar />
-                <Overview />
-              </div>
-              <div className="bottom-content">
-                <Milestones />
-                <TestRuns />
-              </div>
-            </>
-          } />
-        </Routes>
-      </div>
-    </Router>
+    </BrowserRouter>
   );
 };
 

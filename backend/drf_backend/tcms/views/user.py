@@ -39,6 +39,7 @@ from django.http import JsonResponse
 from django.core.cache import cache
 import requests
 
+# debug purpose, remove function before production
 def verify_email(request):
     code = request.GET.get('code')
 
@@ -50,7 +51,7 @@ def verify_email(request):
         return JsonResponse({'message': 'Verification code already processed.'}, status=200)
 
     # Cache the code for a short duration (e.g., 30 seconds)
-    cache.set(code, True, timeout=50)
+    cache.set(code, True, timeout=30)
 
     verify_url = f"http://localhost:8000/api/accounts/signup/verify/?code={code}"
 

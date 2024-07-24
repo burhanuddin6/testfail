@@ -1,0 +1,67 @@
+@import '../utilities/variables.css';
+
+body {
+    background-color: var(--bg-color);
+    margin: 0;
+    padding: 0;
+  }
+  
+
+  .add_f {
+    margin-top: 100px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-left: 400px;
+    margin-right: 400px;
+    
+  }
+
+  .add_f h2 {
+    color: black;
+    align-self: center;
+  }
+  
+  .add-form-group {
+    margin-bottom: 20px;
+  }
+
+  .add-form-group select, .add-form-group input[type="text"], .add-form-group textarea, .add-form-group input[type="date"]{
+    width: 100%;
+    height: 30px;
+  }
+
+  .add-form-group label {
+    display: block;
+    margin-bottom: 7px;
+    color: black;
+  }
+
+  .required {
+    color: red;
+  }
+
+
+.add-form-check {
+    display: flex;
+    gap: 10px;
+    justify-content: left;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+.add-form-check label {
+    color: black;
+}
+
+.form-buttons {
+    gap: 40px;
+    justify-content: center;
+    display: flex;
+   
+}
+
+.form-buttons button {
+    width: 150px;
+    height: auto;
+}
