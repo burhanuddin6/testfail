@@ -3,6 +3,7 @@ import '../styles/Login.css';
 import logo from '../images/Securiti_Logo.jpg';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../api/Auth'; 
+import { SOFTWARE_TITLE } from '../utilities/globals';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -69,7 +70,7 @@ const Login = () => {
     <div className="login-container">
       <div className="login-box">
         <img src={logo} alt="Securiti.ai" />
-        <h2>Product Name</h2>
+        <h2>{SOFTWARE_TITLE}</h2>
         <form onSubmit={handleLogin}>
           <div className="form-group">
             <input

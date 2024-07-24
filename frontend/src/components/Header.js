@@ -7,7 +7,7 @@ const Header = ({userName}) => {
 
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showWorkingOnMenu, setShowWorkingOnMenu] = useState(false);
-  console.log("username in header" + userName)
+  
 
   return (
     <div className="header-container">

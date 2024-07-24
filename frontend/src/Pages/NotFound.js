@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import SimpleBackdrop from "../components/Loader";
 import '../styles/NotFound.css';
+
 function NotFound() {
   const [render, setRender] = useState(false);
   const [link, setLink] = useState("http://localhost:3000/")
@@ -9,7 +10,7 @@ function NotFound() {
       const token = sessionStorage.getItem("token");
       if (!token) setRender(true);
       else {
-        setLink("http://localhost:3000/Dashboard");
+        setLink("http://localhost:3000/dashboard");
         setRender(true);
       }
     };
