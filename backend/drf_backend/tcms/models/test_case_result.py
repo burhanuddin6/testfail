@@ -36,11 +36,11 @@ class TestCaseResult(models.Model):
 class TestCaseResultFile(models.Model):
     file_id = models.AutoField(primary_key=True)
     file = models.FileField(upload_to='test_case_result_files/')
-    test_case_result_id = models.ForeignKey(TestCaseResult, on_delete=models.CASCADE) # verify on_delete
+    test_case_result_id = models.ForeignKey(TestCaseResult, on_delete=models.CASCADE, related_name='files')
 
 class BugTrackerTicket(models.Model):
     bug_tracker_id = models.AutoField(primary_key=True)
     bug_tracker = models.CharField(max_length=255)
-    test_case_result_id = models.ForeignKey(TestCaseResult, on_delete=models.CASCADE) # verify on_delete
+    test_case_result_id = models.ForeignKey(TestCaseResult, on_delete=models.CASCADE, related_name='tickets')   
 
 
