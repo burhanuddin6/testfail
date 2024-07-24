@@ -195,6 +195,7 @@ import Forgot from './Pages/Forgot';
 import EmailVerification from './Pages/EmailVerification';
 import Dashboard from './Pages/Dashboard';
 import AddMilestone from './Pages/AddMilestones';
+import TestSuitesCases from './Pages/TestSuitsCases';
 
 import './App.css';
 
@@ -251,6 +252,15 @@ const App = () => {
             <>
               <Header userName={userName} />
               <AddMilestone  />
+            </>
+          }
+        />
+        <Route
+          path="/testsuitscases"
+          element={
+            <>
+              <Header userName={userName} />
+              <TestSuitesCases />
             </>
           }
         />
