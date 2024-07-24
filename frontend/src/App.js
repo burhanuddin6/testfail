@@ -210,7 +210,7 @@ const App = () => {
         <Route path="/verify-email" element={<EmailVerification />} />
         <Route path="/Dashboard" element={<Dashboard userName={userName} />} />
         <Route
-          path="/overview"
+          path="/overview/:projectId"
           element={
             <>
               <Header userName={userName} />
@@ -226,12 +226,11 @@ const App = () => {
           }
         />
         <Route
-          path="/todo"
+          path="/todo/:projectId"
           element={
             <>
               <Header userName={userName} />
               <div className="main-content">
-                <Sidebar />
                 <TodoPage />
               </div>
             </>
