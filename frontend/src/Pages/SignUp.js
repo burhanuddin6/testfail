@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import logo from '../images/Securiti_Logo.jpg';
 import { signUp } from '../api/Auth'; // Import the signUp function
 import '../styles/SignUp.css'; // Adjusted the import path
+import { SOFTWARE_TITLE } from '../utilities/globals';
+
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -64,7 +66,7 @@ const SignUp = () => {
     <div className="signup-container">
       <div className="signup-box">
         <img src={logo} alt="Securiti.ai" />
-        <h2>Product Name</h2>
+        <h2> {SOFTWARE_TITLE} </h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label className="form-label">First Name<span className="required">*</span></label>
