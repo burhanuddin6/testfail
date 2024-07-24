@@ -20,6 +20,7 @@ import EmailVerification from './Pages/EmailVerification';
 import Dashboard from './Pages/Dashboard';
 import AddMilestone from './Pages/AddMilestones';
 import TestSuitesCases from './Pages/TestSuitsCases';
+import AddTestRun from './Pages/AddTestRun';
 import NotFound from './Pages/NotFound';
 
 
@@ -185,6 +186,15 @@ const App = () => {
             <>
               <Header userName={userName} />
               <TestSuitesCases />
+            </>
+          }
+        />
+        <Route 
+          path="/AddTestRun" 
+          element={
+            <>
+              <Header userName={userName} />
+              <AddTestRun  />
             </>
           }
         />

@@ -28,7 +28,7 @@ const TestSuitesCases = () => {
             <div className="suite-header">
               <a href="#" className="suite-title">{suite.title}</a>
               <div className="suite-options">
-                <a href="#">Run Test</a>
+                <a href="/AddTestRun">Run Test</a>
                 <span>|</span>
                 <a href="#">Test Runs</a>
                 <span>|</span>
