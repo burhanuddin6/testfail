@@ -5,6 +5,7 @@ import { signUp } from '../api/Auth'; // Import the signUp function
 import '../styles/SignUp.css'; // Adjusted the import path
 import { SOFTWARE_TITLE } from '../utilities/globals';
 
+
 const SignUp = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -65,7 +66,7 @@ const SignUp = () => {
     <div className="signup-container">
       <div className="signup-box">
         <img src={logo} alt="Securiti.ai" />
-        <h2>{SOFTWARE_TITLE}</h2>
+        <h2> {SOFTWARE_TITLE} </h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label className="form-label">First Name<span className="required">*</span></label>

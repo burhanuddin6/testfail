@@ -3,8 +3,9 @@
 *.pyo
 venv
 db.sqlite3
-test_case_files
+media/
 *__pycache__
+migrations
 
 # dependencies
 frontend/node_modules/

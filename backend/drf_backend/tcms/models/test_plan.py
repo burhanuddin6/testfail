@@ -1,11 +1,12 @@
 from django.db import models
 from .user import MyUser
+from .milestone import Milestone
 
 class TestPlan(models.Model):
     test_plan_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255, unique=True)
     creator_id = models.ForeignKey(MyUser, on_delete=models.CASCADE)
-    milestone_id = models.IntegerField(null=True, blank=True)
+    milestone_id = models.ForeignKey(Milestone, on_delete=models.CASCADE, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     test_case_filter = models.TextField(null=True, blank=True)
 

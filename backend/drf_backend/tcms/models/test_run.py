@@ -7,7 +7,7 @@ class TestRun(models.Model):
     name = models.CharField(max_length=255, unique=True)
     test_suite_id = models.ForeignKey(TestSuite, on_delete=models.CASCADE)
     creator_id = models.IntegerField()
-    milestone_id = models.IntegerField(null=True, blank=True)
+    milestone_id = models.ForeignKey('Milestone', on_delete=models.CASCADE, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     test_case_filter = models.TextField(null=True, blank=True)
 
