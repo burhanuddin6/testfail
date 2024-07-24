@@ -1,5 +1,3 @@
-from django.shortcuts import render
-
 # Create your views here.
 from rest_framework import viewsets
 from rest_framework import status
@@ -36,6 +34,10 @@ class TestCaseViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
         test_case = serializer.save()
 
+        tickets = request.data.get('tickets', [])
+        for ticket in tickets:
+            TestCaseTicket.objects.create(test_case_id=test_case, ticket=ticket)
+
         # Check if files are in the request and create TestCaseFile objects
         files = request.FILES.getlist('files')
         for file in files:
@@ -44,19 +46,3 @@ class TestCaseViewSet(viewsets.ModelViewSet):
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
     
-
-class StatusForTestCaseViewSet(viewsets.ModelViewSet):
-    queryset = StatusForTestCase.objects.all()
-    serializer_class = StatusForTestCaseSerializer
-
-class TestCaseResultViewSet(viewsets.ModelViewSet):
-    queryset = TestCaseResult.objects.all()
-    serializer_class = TestCaseResultSerializer
-
-class TestCaseResultFileViewSet(viewsets.ModelViewSet):
-    queryset = TestCaseResultFile.objects.all()
-    serializer_class = TestCaseResultFileSerializer
-
-class BugTrackerTicketViewSet(viewsets.ModelViewSet):
-    queryset = BugTrackerTicket.objects.all()
-    serializer_class = BugTrackerTicketSerializer
