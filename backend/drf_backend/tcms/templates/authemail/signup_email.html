@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en-US">
 <head>
     <meta charset="UTF-8" />
@@ -10,4 +10,88 @@ Verify your email address by clicking on this link:<br>
 <a href="http://localhost:8000/api/accounts/signup/verify/?code={{ code }}">Verification Link</a>
 </p>
 </body>
-</html> 
+</html>  -->
+
+<!-- <!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8" />
+    <title>Thank you for signing up!</title>
+</head>
+<body>
+<p>
+Verify your email address by clicking on this link:<br>
+<a href="http://localhost:3000/verify-email/?code={{ code }}">Verification Link</a>
+</p>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto; /* Added margin here */
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .content {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-top: 20px;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #486a8e;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="margin-top: 0;">Verify Your Email Address</h1> <!-- Added margin-top: 0; to reset default margin -->
+        <div class="content">
+            <p>Dear User,</p>
+            <p>Thank you for signing up for TCMS, the Test Case Management System by Securiti.ai.</p>
+            <p>Please verify your email address by clicking on the button below:</p>
+        </div>
+        <div class="button-container">
+            <a class="button" href="http://localhost:3000/verify-email/?code={{ code }}">Verify Email</a>
+        </div>
+        <div class="content">
+            <p>If you did not sign up for TCMS, please ignore this email.</p>
+        </div>
+        <div class="footer">
+            <p>This email was sent by TCMS, a product of Securiti.ai.</p>
+            <p>&copy; 2024 Securiti.ai. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

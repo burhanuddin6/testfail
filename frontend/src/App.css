@@ -46,14 +46,14 @@
 /* ----------------- */
 
 /* App.css */
-.app {
+/* .app {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: #e6f3ff; /* same background color for the entire page */
-}
+  background-color: #e6f3ff; same background color for the entire page
+} */
 
-.main-content {
+/* .main-content {
   display: flex;
   flex: 1;
 }
@@ -82,10 +82,10 @@ header {
 .user-info {
   display: flex;
   align-items: center;
-}
+} */
 
 /* App.css */
-body, html, .app {
+/* body, html, .app {
   background-color: #e6f3ff;
   margin: 0;
   padding: 0;
@@ -102,4 +102,4 @@ body, html, .app {
   justify-content: space-between;
   padding: 20px;
   background-color: #5DA9E9;
-}
+} */

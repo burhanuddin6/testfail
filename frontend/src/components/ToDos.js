@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/ToDos.css';
+import '../styles/components/ToDos.css';
 
 const Todos = () => {
   return (

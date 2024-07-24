@@ -1,0 +1,134 @@
+.todo-page {
+    padding: 20px;
+    background-color: #5DA9E9;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .chart-container {
+    width: 50%;
+    margin: 20px auto;
+    background-color: white;
+  }
+  
+  .test-runs-filter {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .test-runs-filter-label {
+    margin-right: 10px;
+  }
+  
+  .test-runs-filter-value {
+    font-weight: bold;
+  }
+  
+  .test-runs-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .test-runs-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    margin-bottom: 10px;
+  }
+  
+  .test-runs-item-icon {
+    margin-right: 10px;
+  }
+  
+  .test-runs-item-title {
+    font-weight: bold;
+    flex: 1;
+  }
+  
+  .test-runs-item-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .test-runs-item-progress {
+    display: flex;
+    align-items: center;
+  }
+  
+  .test-runs-item-progress-bar {
+    height: 10px;
+    background-color: #007bff;
+    border-radius: 5px;
+    margin-right: 5px;
+    width: 50px;
+  }
+  
+  .test-runs-item-progress-value {
+    font-weight: bold;
+  }
+  
+  .test-runs-item-unassigned {
+    font-weight: bold;
+  }
+  
+  .test-runs-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .test-runs-item > .test-runs-item-title {
+    flex: 1;
+  }
+  
+  .test-runs-item > .test-runs-item-status {
+    flex-shrink: 0;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  .dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+  }
+  
+  .dropbtn {
+    background-color: #003366;
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    padding: 4px 10px;
+  }

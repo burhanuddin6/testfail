@@ -1,20 +1,20 @@
 from django.db import models
+from .user import MyUser
 
 class TestSuite(models.Model):
     test_suite_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255, unique=True)
-    creator_id = models.IntegerField()
+    creator_id = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     description = models.TextField(null=True, blank=True)
 
 class Section(models.Model):
     section_id = models.AutoField(primary_key=True)
-    test_suite = models.ForeignKey(TestSuite, on_delete=models.CASCADE)
+    parent_id = models.ForeignKey('self', on_delete=models.CASCADE)
+    test_suite_id = models.ForeignKey(TestSuite, on_delete=models.CASCADE)
     name = models.CharField(max_length=255, unique=True)
-    creator_id = models.IntegerField()
-    subsection_id = models.IntegerField(null=True, blank=True)
+    creator_id = models.ForeignKey(MyUser, on_delete=models.CASCADE)
 
-class TestSuiteFiles(models.Model):
+class TestSuiteFile(models.Model):
     file_id = models.AutoField(primary_key=True)
-    file_path = models.CharField(max_length=255)
-    test_suite = models.ForeignKey(TestSuite, on_delete=models.CASCADE)
-
+    file = models.FileField(upload_to='test_suite_files/')
+    test_suite_id = models.ForeignKey(TestSuite, on_delete=models.CASCADE)

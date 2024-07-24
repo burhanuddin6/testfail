@@ -1,21 +1,14 @@
 @import '../utilities/variables.css';
 
 body {
-  margin: 0;
   font-family: Arial, sans-serif;
   background-color: var(--bg-color);
-  color: #fff;
+  margin: 0;
+  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; 
-}
-
-
-.login-box img {
-  width: 200px;
-  height: auto;
-  margin-bottom: 20px; /* Space between the image and the login box */
+  height: 100vh;
 }
 
 .login-container {
@@ -23,6 +16,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%; /* Ensure the container spans the full width */
 }
 
 .login-box {
@@ -35,61 +29,59 @@ body {
   width: 300px;
 }
 
-.login-box h2 {
-  margin: 0 0 10px;
-  font-size: 24px;
+.login-box img {
+  width: 200px;
+  height: auto;
+  margin-bottom: 20px; /* Space between the image and the login box */
 }
 
-.login-box h3 {
-  margin: 0 0 20px;
-  font-size: 18px;
-  color: #666;
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 }
 
 .form-group {
   margin-bottom: 10px;
   text-align: left;
-  width: 100%; /* Ensure input fields take full width of the form-group */
 }
 
-.form-group input[type="email"],
-.form-group input[type="password"] {
-  width: 100%; /* Adjust width to accommodate padding */
+.form-group input[type='email'],
+.form-group input[type='password'] {
+  width: 100%;
   padding: 10px;
   margin: 5px 0;
   border: 1px solid #ccc;
   border-radius: 4px;
-  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  box-sizing: border-box;
 }
 
-.form-check {
+.button-group {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  margin: 10px 0;
+  justify-content: space-between;
 }
 
-button {
+.button-group button {
   width: calc(50% - 10px); /* Adjust button width */
   padding: 10px;
   border: none;
   border-radius: 4px;
-  background-color: #1E7E34;
+  background-color: #5DA9E9;
   color: white;
   font-size: 16px;
   cursor: pointer;
   margin: 5px; /* Margin between buttons */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
 }
 
-button:hover {
-  background-color: #155724;
+.button-group button:hover {
+  background-color: #a9c9e2; /* Lighter shade of green for hover effect */
 }
 
 a {
   display: block;
   margin-top: 10px;
-  color: #007BFF;
+  color: #007bff;
   text-decoration: none;
 }
 
@@ -98,5 +90,18 @@ a:hover {
 }
 
 .message {
-  color: red;
+  font-weight: bold;
+  padding: 6px;
+  border-radius: 4px;
+  margin-top: 8px;
+}
+
+.message-success {
+  background-color: #d4edda; /* Green background for success message */
+  color: #155724; /* Dark green text color */
+}
+
+.message-error {
+  background-color: #f8d7da; /* Red background for error message */
+  color: #721c24; /* Dark red text color */
 }

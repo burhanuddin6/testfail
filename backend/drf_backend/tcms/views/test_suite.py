@@ -13,6 +13,6 @@ class SectionViewSet(viewsets.ModelViewSet):
     queryset = Section.objects.all()
     serializer_class = SectionSerializer
 
-class TestSuiteFilesViewSet(viewsets.ModelViewSet):
-    queryset = TestSuiteFiles.objects.all()
-    serializer_class = TestSuiteFilesSerializer
+class TestSuiteFileViewSet(viewsets.ModelViewSet):
+    queryset = TestSuiteFile.objects.all()
+    serializer_class = TestSuiteFileSerializer

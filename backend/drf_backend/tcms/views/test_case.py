@@ -4,8 +4,8 @@ from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework import status
 from rest_framework.response import Response
-from ..models.test_case import *
-from ..serializers.test_case import *
+from ..models import *
+from ..serializers import *
 
 class TypesForTestCaseViewSet(viewsets.ModelViewSet):
     queryset = TypesForTestCase.objects.all()
@@ -19,13 +19,13 @@ class TemplateForTestCaseViewSet(viewsets.ModelViewSet):
     queryset = TemplateForTestCase.objects.all()
     serializer_class = TemplateForTestCaseSerializer
 
-class TestCaseFilesViewSet(viewsets.ModelViewSet):
-    queryset = TestCaseFiles.objects.all()
-    serializer_class = TestCaseFilesSerializer
+class TestCaseFileViewSet(viewsets.ModelViewSet):
+    queryset = TestCaseFile.objects.all()
+    serializer_class = TestCaseFileSerializer
 
-class TestCaseTicketsViewSet(viewsets.ModelViewSet):
-    queryset = TestCaseTickets.objects.all()
-    serializer_class = TestCaseTicketsSerializer
+class TestCaseTicketViewSet(viewsets.ModelViewSet):
+    queryset = TestCaseTicket.objects.all()
+    serializer_class = TestCaseTicketSerializer
 
 class TestCaseViewSet(viewsets.ModelViewSet):
     queryset = TestCase.objects.all()
@@ -36,10 +36,10 @@ class TestCaseViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
         test_case = serializer.save()
 
-        # Check if files are in the request and create TestCaseFiles objects
+        # Check if files are in the request and create TestCaseFile objects
         files = request.FILES.getlist('files')
         for file in files:
-            TestCaseFiles.objects.create(test_case=test_case, file=file)
+            TestCaseFile.objects.create(test_case_id=test_case, file=file)
 
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
@@ -49,14 +49,14 @@ class StatusForTestCaseViewSet(viewsets.ModelViewSet):
     queryset = StatusForTestCase.objects.all()
     serializer_class = StatusForTestCaseSerializer
 
-class TestCaseResultsViewSet(viewsets.ModelViewSet):
-    queryset = TestCaseResults.objects.all()
-    serializer_class = TestCaseResultsSerializer
+class TestCaseResultViewSet(viewsets.ModelViewSet):
+    queryset = TestCaseResult.objects.all()
+    serializer_class = TestCaseResultSerializer
 
-class TestCaseResultFilesViewSet(viewsets.ModelViewSet):
-    queryset = TestCaseResultFiles.objects.all()
-    serializer_class = TestCaseResultFilesSerializer
+class TestCaseResultFileViewSet(viewsets.ModelViewSet):
+    queryset = TestCaseResultFile.objects.all()
+    serializer_class = TestCaseResultFileSerializer
 
-class BugTrackerTicketsViewSet(viewsets.ModelViewSet):
-    queryset = BugTrackerTickets.objects.all()
-    serializer_class = BugTrackerTicketsSerializer
+class BugTrackerTicketViewSet(viewsets.ModelViewSet):
+    queryset = BugTrackerTicket.objects.all()
+    serializer_class = BugTrackerTicketSerializer
