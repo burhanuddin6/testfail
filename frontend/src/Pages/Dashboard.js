@@ -10,12 +10,8 @@ import line from '../images/line.png';
 import grouped from '../images/groupedbar.png';
 import horizontal from '../images/horizontal.png';
 import stacked from '../images/stacked.png';
-<<<<<<< HEAD
 import { Link } from 'react-router-dom';
 import { SOFTWARE_TITLE } from '../utilities/globals';
-=======
-import { useNavigate } from 'react-router-dom';
->>>>>>> 5951774c (updated dashboard)
 
 const Dashboard = ({userName}) => {
 
@@ -29,15 +25,6 @@ const Dashboard = ({userName}) => {
     setShowButtons(!showButtons);
   };
 
-<<<<<<< HEAD
-=======
-  const handleopenProject = (e) => {
-    e.preventDefault();
-    navigate('/overview');
-  };
-
-  
->>>>>>> 5951774c (updated dashboard)
   return (
     <div className="dashboard-container">
       <header className="dashboard-header">
@@ -131,21 +118,12 @@ const Dashboard = ({userName}) => {
 
       <div className='projects'>
         <h2>Projects</h2>
-<<<<<<< HEAD
         <div className='details'>
           <Link to="/overview/project01" className='projectName'>Project 01</Link>
           <p>Contains 33 test suites, 143 active test runs and 10 active milestones</p>
         </div> 
         <div className='details'>
           <Link to="/overview/project02" className='projectName'>Project 02</Link>
-=======
-        <div className='dashboard-details' onClick={handleopenProject}>
-          <button className='projectName'>Project 01</button>
-          <p>Contains 33 test suites, 143 active test runs and 10 active milestones</p>
-        </div> 
-        <div className='dashboard-details' onClick={handleopenProject}>
-          <button className='projectName'>Project 02</button>
->>>>>>> 5951774c (updated dashboard)
           <p>Contains 33 test suites, 143 active test runs and 10 active milestones</p>
         </div>
         {/* <div className='dashboard-details'>
@@ -164,19 +142,11 @@ const Dashboard = ({userName}) => {
 
       <div className='todo'>
         <h2>To-dos</h2>
-<<<<<<< HEAD
         <div className='details'>
           <Link to="/todo/project01" className='projectName'>Project 01</Link>
         </div> 
         <div className='details'>
          <Link to="/todo/project02" className='projectName'>Project 02</Link>
-=======
-        <div className='dashboard-details' >
-          <button className='projectName'>Project 01</button>
-        </div> 
-        <div className='dashboard-details'>
-         <button className='projectName'>Project 02</button>
->>>>>>> 5951774c (updated dashboard)
         </div>
         {/* <div className='dashboard-details'>
           <h3>Project 03</h3>
