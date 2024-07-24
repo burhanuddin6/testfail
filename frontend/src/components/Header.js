@@ -7,6 +7,7 @@ const Header = ({userName}) => {
 
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showWorkingOnMenu, setShowWorkingOnMenu] = useState(false);
+  console.log("username in header" + userName)
 
   return (
     <div className="header-container">
@@ -40,9 +41,9 @@ const Header = ({userName}) => {
         </div>
        
         <div className='nav'>
-            <a href='/Dashboard'>Dashboard</a>
+            <a href='/dashboard'>Dashboard</a>
             <a href='/overview'>Overview</a>
-            <a href='/todo'>To-do</a>
+            <a href='/todos'>To-do</a>
             <a href='/milestones'>Milestones</a>
             <a href='/testruns'>Test Runs & Results</a>
             <a href='/testsuitscases'>Test Suits & Cases</a>
