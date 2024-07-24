@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../styles/Login.css';
 import logo from '../images/Securiti_Logo.jpg';
 import { useNavigate } from 'react-router-dom';
-import { login } from '../api/Auth'; // Import the login function
+import { login } from '../api/Auth'; 
 
 const Login = () => {
   const navigate = useNavigate();
@@ -23,7 +23,6 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    // Basic form validation
     if (!formData.email || !formData.password) {
       setMessage('Please fill in both fields.');
       return;
@@ -31,24 +30,29 @@ const Login = () => {
 
     try {
       const response = await login(formData);
-
-      // Assuming your backend returns a token in the response
+    
       const token = response.token; 
+      sessionStorage.setItem('token', token); 
 
-      // Store the token in localStorage or sessionStorage for future use
-      localStorage.setItem('token', token); 
       setMessage('');
-      navigate('/Dashboard'); 
+
+      window.location.assign("/dashboard");
     } catch (error) {
-      console.log(error.status)
+      console.log(error.status);
+    
       if (error.status === 404) {
         setMessage('User does not exist. Please sign up.');
       } else if (error.status === 401) {
-        setMessage('Invalid credentials. Please try again.');
+        if (error.data && error.data.detail === 'User account not verified.') {
+          setMessage('Please verify your account to continue.');
+        } else {
+          setMessage('Invalid credentials. Please try again.');
+        }
       } else {
         setMessage('Something went wrong. Please try again later.');
       }
     }
+    
   };
   
   const handleSignUp = (e) => {
