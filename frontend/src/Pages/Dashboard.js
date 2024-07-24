@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import '../styles/Dashboard.css';
 import logo from '../images/logo_02.png';
 import linechart from '../images/linechart.png';
@@ -10,6 +10,7 @@ import line from '../images/line.png';
 import grouped from '../images/groupedbar.png';
 import horizontal from '../images/horizontal.png';
 import stacked from '../images/stacked.png';
+import { Link } from 'react-router-dom';
 import { SOFTWARE_TITLE } from '../utilities/globals';
 
 
@@ -60,21 +61,21 @@ const Dashboard = ({userName}) => {
         
         <button className="controlButtons">
            {/* <a href='chart.png' download={chart}> */}
-              <span class="tooltip">Download</span>
+              <span className="tooltip">Download</span>
               <img src={download} alt="Download" className="controlsIcon"></img>
             {/* </a> */}
         </button>
         
         <button className="controlButtons">
-            <span class="tooltip">Copy</span>
+            <span className="tooltip">Copy</span>
             <img src={copy} alt="Copy" className="controlsIcon"></img>
         </button>
         <button className="controlButtons">
-            <span class="tooltip">Reset</span>
+            <span className="tooltip">Reset</span>
             <img src={reset} alt="Reset" className="controlsIcon"></img>
         </button>
         <button className="controlButtons">
-            <span class="tooltip">Line (Click to Change)</span>
+            <span className="tooltip">Line (Click to Change)</span>
             <img src={line} alt="Line Format" className="controlsIcon" onClick={handleFormat}></img>
         </button>
         <button className="controlButtons">
@@ -84,19 +85,19 @@ const Dashboard = ({userName}) => {
         {showButtons && (
           <div className="formatChange">
             <button className="controlButtons">
-              <span class="tooltip">Line</span>
+              <span className="tooltip">Line</span>
               <img src={line} alt="Line" className="controlsIcon"></img>
             </button>
             <button className="controlButtons">
-                <span class="tooltip">Horizontal</span>
+                <span className="tooltip">Horizontal</span>
                 <img src={horizontal} alt="Horizontal" className="controlsIcon" ></img>
             </button>
             <button className="controlButtons">
-              <span class="tooltip">Stacked</span>
+              <span className="tooltip">Stacked</span>
               <img src={stacked} alt="Stacked" className="controlsIcon"></img>
             </button>
             <button className="controlButtons">
-                <span class="tooltip">Grouped</span>
+                <span className="tooltip">Grouped</span>
                 <img src={grouped} alt="Grouped" className="controlsIcon" ></img>
             </button>
           </div>
@@ -118,11 +119,11 @@ const Dashboard = ({userName}) => {
       <div className='projects'>
         <h2>Projects</h2>
         <div className='details'>
-          <button className='projectName'>Project 01</button>
+          <Link to="/overview/project01" className='projectName'>Project 01</Link>
           <p>Contains 33 test suites, 143 active test runs and 10 active milestones</p>
         </div> 
         <div className='details'>
-          <button className='projectName'>Project 02</button>
+          <Link to="/overview/project02" className='projectName'>Project 02</Link>
           <p>Contains 33 test suites, 143 active test runs and 10 active milestones</p>
         </div>
         {/* <div className='details'>
@@ -142,10 +143,10 @@ const Dashboard = ({userName}) => {
       <div className='todo'>
         <h2>To-dos</h2>
         <div className='details'>
-          <button className='projectName'>Project 01</button>
+          <Link to="/todo/project01" className='projectName'>Project 01</Link>
         </div> 
         <div className='details'>
-         <button className='projectName'>Project 02</button>
+         <Link to="/todo/project02" className='projectName'>Project 02</Link>
         </div>
         {/* <div className='details'>
           <h3>Project 03</h3>
