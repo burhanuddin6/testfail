@@ -5,6 +5,7 @@ venv
 db.sqlite3
 media/
 *__pycache__
+migrations
 
 # dependencies
 frontend/node_modules/
