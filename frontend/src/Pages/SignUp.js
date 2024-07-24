@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import '../styles/SignUp.css'; // Adjusted the import path
 import { useNavigate } from 'react-router-dom';
 import logo from '../images/Securiti_Logo.jpg';
-import axios from 'axios'; // Import Axios for making HTTP requests
+import { signUp } from '../api/Auth'; // Import the signUp function
+import '../styles/SignUp.css'; // Adjusted the import path
+import { SOFTWARE_TITLE } from '../utilities/globals';
 
 
 const SignUp = () => {
@@ -38,56 +39,34 @@ const SignUp = () => {
       formData.terms
     ) {
       try {
-        // Make POST request to Django backend endpoint
-        const response = await axios.post('http://localhost:8000/api/accounts/signup/', {
-          email: formData.workEmail,
+        await signUp({
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          workEmail: formData.workEmail,
           password: formData.password,
-          first_name: formData.firstName,
-          last_name: formData.lastName,
         });
-        console.log('Response from backend:', response.data);
-        console.log('User created:', response.data);
-        
-        console.log("Sign up successful! Check your email for a verification link.")
+
+        // Handle success scenario
         setMessage('Sign up successful! Check your email for a verification link.');
-      
         // Optionally, redirect to login page or handle success scenario
       } catch (error) {
-        console.error('Error creating user:', error);
-        setMessage('Failed to create account. Please try again later.');
+        setMessage(error.message || 'Failed to create account. Please try again later.');
       }
     } else {
       setMessage('Please fill in all required fields.');
     }
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   // Basic form validation
-  //   if (
-  //     formData.firstName &&
-  //     formData.lastName &&
-  //     formData.workEmail &&
-  //     formData.password &&
-  //     formData.terms
-  //   ) {
-  //     setMessage('Account has been created successfully!');
-  //   } else {
-  //     setMessage('Please fill in all required fields.');
-  //   }
-  // };
-
   const handleBackToLogin = (e) => {
     e.preventDefault();
     navigate('/');
   };
 
-  return ( 
+  return (
     <div className="signup-container">
       <div className="signup-box">
         <img src={logo} alt="Securiti.ai" />
-        <h2>Product Name</h2>
+        <h2> {SOFTWARE_TITLE} </h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label className="form-label">First Name<span className="required">*</span></label>
@@ -112,11 +91,12 @@ const SignUp = () => {
           <div className="form-check">
             <input type="checkbox" id="terms" name="terms" checked={formData.terms} onChange={handleChange} required />
             <label htmlFor="terms">
-                I agree to the Terms of Service and Privacy Policy<span className="required">*</span>
+              I agree to the Terms of Service and Privacy Policy<span className="required">*</span>
             </label>
           </div>
 
-          {/* <div className="form-check">
+          {/* Additional Checkbox for Newsletter
+          <div className="form-check">
             <input type="checkbox" id="newsletter" name="newsletter" checked={formData.newsletter} onChange={handleChange} />
             <label htmlFor="newsletter">
               I'd like to learn about testing best practices, what's new in the industry, and how to use TestRail more effectively. Please send me a weekly newsletter!
@@ -128,7 +108,7 @@ const SignUp = () => {
             <button type="button" onClick={handleBackToLogin}>Login</button>
           </div>
         </form>
-        {message && <div className="message">{message}</div>}
+        {message && <div className={`message ${message.includes('successful') ? 'success' : 'failure'}`}>{message}</div>}
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import React from 'react';
-import Graph from './Graph';
+import Graph from '../components/Graph';
 import '../styles/Overview.css';
 
 const Overview = () => {
