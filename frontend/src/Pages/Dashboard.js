@@ -13,7 +13,6 @@ import stacked from '../images/stacked.png';
 import { Link } from 'react-router-dom';
 import { SOFTWARE_TITLE } from '../utilities/globals';
 
-
 const Dashboard = ({userName}) => {
 
   const [showButtons, setShowButtons] = useState(false);

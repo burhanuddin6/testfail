@@ -42,6 +42,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
+
         {!isLoggedIn ? (
           <>
             <Route path="/" element={<Login />} />
@@ -126,10 +127,85 @@ const App = () => {
             <Route path="*" element={<NotFound />} />
           </>
         )}
+
+        <Route path="/" element={<Login />} />
+        <Route path="/SignUp" element={<SignUp />} />
+        <Route path="/Forgot" element={<Forgot />} />
+        <Route path="/verify-email" element={<EmailVerification />} />
+        <Route path="/Dashboard" element={<Dashboard userName={userName} />} />
+        <Route
+          path="/overview/:projectId"
+          element={
+            <>
+              <Header userName={userName} />
+              <div className="main-content">
+                <Sidebar />
+                <Overview />
+              </div>
+              <div className="bottom-content">
+                <Milestones />
+                <TestRuns />
+              </div>
+            </>
+          }
+        />
+        <Route
+          path="/todo/:projectId"
+          element={
+            <>
+              <Header userName={userName} />
+              <div className="main-content">
+                <TodoPage />
+              </div>
+            </>
+          }
+        />
+        <Route
+          path="/milestones"
+          element={
+            <>
+              <Header userName={userName} />
+              <MilestonesPage />
+            </>
+          }
+        />
+        <Route 
+          path="/AddMilestone" 
+          element={
+            <>
+              <Header userName={userName} />
+              <AddMilestone  />
+            </>
+          }
+        />
+        <Route
+          path="/testruns"
+          element={
+            <>
+              <Header userName={userName} />
+              <div className="main-content">
+                <Sidebar />
+                <TestRuns />
+              </div>
+            </>
+          }
+        />
+        <Route
+          path="/testruns/:id"
+          element={
+            <>
+              <Header userName={userName} />
+              <div className="main-content">
+                <Sidebar />
+                <TestRuns />
+              </div>
+            </>
+          }
+        />
+
       </Routes>
     </BrowserRouter>
   );
 };
-
 
 export default App;
