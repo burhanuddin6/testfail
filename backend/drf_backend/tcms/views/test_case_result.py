@@ -3,14 +3,17 @@ from rest_framework import status
 from rest_framework.response import Response
 from ..models import *
 from ..serializers import *
+from ..permissions import HasModelPermissions
 
 class StatusForTestCaseViewSet(viewsets.ModelViewSet):
     queryset = StatusForTestCase.objects.all()
     serializer_class = StatusForTestCaseSerializer
+    permission_classes = [HasModelPermissions]
 
 class TestCaseResultViewSet(viewsets.ModelViewSet):
     queryset = TestCaseResult.objects.all()
     serializer_class = TestCaseResultSerializer
+    permission_classes = [HasModelPermissions]
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -32,7 +35,10 @@ class TestCaseResultViewSet(viewsets.ModelViewSet):
 class TestCaseResultFileViewSet(viewsets.ModelViewSet):
     queryset = TestCaseResultFile.objects.all()
     serializer_class = TestCaseResultFileSerializer
+    permission_classes = [HasModelPermissions]
 
 class BugTrackerTicketViewSet(viewsets.ModelViewSet):
     queryset = BugTrackerTicket.objects.all()
     serializer_class = BugTrackerTicketSerializer
+    permission_classes = [HasModelPermissions]
+    

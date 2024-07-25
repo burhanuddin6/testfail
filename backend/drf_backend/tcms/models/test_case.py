@@ -32,6 +32,7 @@ class TestCase(models.Model):
     update_id = models.IntegerField(null=True, blank=True)
     obsolete = models.BooleanField(default=False)
     creator_id = models.ForeignKey(MyUser, on_delete=models.CASCADE)
+    project_id = models.ForeignKey('Project', on_delete=models.CASCADE, related_name='test_cases')
 
 class TestCaseFile(models.Model):
     file_id = models.AutoField(primary_key=True)

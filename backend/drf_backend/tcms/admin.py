@@ -50,3 +50,5 @@ admin.site.register(TestRunTestCase)
 admin.site.register(TestSuite)
 admin.site.register(TestSuiteFile)
 admin.site.register(Section)
+
+admin.site.register(Milestone)

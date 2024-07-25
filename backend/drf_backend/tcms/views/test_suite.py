@@ -5,21 +5,24 @@ from rest_framework import status
 from rest_framework.response import Response
 from ..models.test_suite import *
 from ..serializers.test_suite import *
-
+from ..permissions import HasModelPermissions
 
 
 class SectionViewSet(viewsets.ModelViewSet):
     queryset = Section.objects.all()
     serializer_class = SectionSerializer
+    permission_classes = [HasModelPermissions]
 
 class TestSuiteFileViewSet(viewsets.ModelViewSet):
     queryset = TestSuiteFile.objects.all()
     serializer_class = TestSuiteFileSerializer
+    permission_classes = [HasModelPermissions]
 
 class TestSuiteViewSet(viewsets.ModelViewSet):
     queryset = TestSuite.objects.all()
     serializer_class = TestSuiteSerializer
-
+    permission_classes = [HasModelPermissions]
+    
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)

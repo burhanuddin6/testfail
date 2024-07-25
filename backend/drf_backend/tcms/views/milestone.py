@@ -3,19 +3,22 @@ from rest_framework import status
 from rest_framework.response import Response
 from ..models import Milestone, MilestoneTicket, MilestoneFile
 from ..serializers import MilestoneSerializer, MilestoneTicketSerializer, MilestoneFileSerializer
-
+from ..permissions import HasModelPermissions
 
 class MilestoneTicketViewSet(viewsets.ModelViewSet):
     queryset = MilestoneTicket.objects.all()
     serializer_class = MilestoneTicketSerializer
+    permission_classes = [HasModelPermissions]
 
 class MilestoneFileViewSet(viewsets.ModelViewSet):
     queryset = MilestoneFile.objects.all()
     serializer_class = MilestoneFileSerializer
+    permission_classes = [HasModelPermissions]
 
 class MilestoneViewSet(viewsets.ModelViewSet):
     queryset = Milestone.objects.all()
     serializer_class = MilestoneSerializer
+    permission_classes = [HasModelPermissions]
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
