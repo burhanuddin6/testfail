@@ -1,0 +1,25 @@
+.chartControls { 
+    display: flex; 
+    align-items: center; 
+    background-color: white; 
+    position: absolute; 
+    width: 97%; 
+    margin-right: 30px; 
+    top: 100px; 
+    left: 30px; 
+    margin-bottom: 0; 
+    gap: 15px; }
+
+.controlButtons { display: flex; align-items: center; justify-content: center; width: 30px; height: auto; background-color: transparent; border: none; cursor: pointer; outline: none; }
+
+.controlButtons:hover{ background-color: transparent; }
+
+.controlsIcon { width: 40px; height: auto; margin-left: 20px; }
+
+.refineIcon { width: 60px; height: auto; margin-left: 50px; }
+
+.tooltip { visibility: hidden; width: 120px; background-color: white; color: black; text-align: center; padding: 5px 0; margin-top: 80px; margin-left: 120px; border-radius: 6px; position: absolute; z-index: 1; }
+
+.controlButtons:hover .tooltip { visibility: visible; }
+
+.formatChange { display: flex; flex-direction: row; justify-content: center; margin-top: 100px; position: absolute; margin-left: 150px; z-index: 1; background-color: white; width: 150px; }

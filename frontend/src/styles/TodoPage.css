@@ -1,16 +1,27 @@
+@import '../utilities/variables.css';
+
 .todo-page {
     padding: 20px;
-    background-color: #5DA9E9;
+    background-color: var(--bg-color);
     border-radius: 5px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    color: black;
   }
   
-  .chart-container {
+  .todo-chart-container {
+    position: absolute;
+    top: 100px;
     width: 50%;
     margin: 20px auto;
+    margin-left: 400px;
     background-color: white;
   }
   
+  .todo-testruns {
+    position: absolute;
+    top: 600px;
+    gap: 30px;
+  }
+
   .test-runs-filter {
     display: flex;
     align-items: center;
@@ -28,6 +39,7 @@
   .test-runs-list {
     list-style: none;
     padding: 0;
+    color: black;
   }
   
   .test-runs-item {
@@ -48,6 +60,7 @@
   .test-runs-item-title {
     font-weight: bold;
     flex: 1;
+    color: black;
   }
   
   .test-runs-item-status {
@@ -101,7 +114,7 @@
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); */
     z-index: 1;
   }
   
@@ -109,7 +122,7 @@
     color: black;
     padding: 12px 16px;
     text-decoration: none;
-    display: block;
+    /* display: block; */
   }
   
   .dropdown-content a:hover {
@@ -131,4 +144,5 @@
     border: none;
     cursor: pointer;
     padding: 4px 10px;
+    width: auto;
   }

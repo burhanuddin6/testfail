@@ -1,14 +1,20 @@
-@import '../utilities/variables.css';
+
+/* to-do adjusts itself but css is out */
+/* @import '../utilities/variables.css';
 
 body {
     background-color: var(--bg-color);
     margin: 0;
     padding: 0;
+    
   }
   
+  
   .dashboard-container {
-    font-family: Arial, sans-serif;
-    width: 1680px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    
   }
   
   .dashboard-header {
@@ -20,6 +26,7 @@ body {
     top: 0;
     left: 0;
     margin-bottom: 0;
+    justify-content: space-between;
   }
   
   .dashboard-header img {
@@ -83,83 +90,7 @@ body {
     margin-right: 1rem;
     cursor: pointer;
     font-weight: bold;
-  }
-  
-  .mail-icon {
-    width: 1rem;
-    height: 1rem;
-  }
-
-  .chartControls {
-    display: flex;
-    align-items: center;
-    background-color: white;
-    position: absolute;
-    width: 97%;
-    margin-right: 30px;
-    top: 90px;
-    left: 30px;
-    margin-bottom: 0;
-    gap: 7px;
   } 
-
-  .controlButtons {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: auto;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    outline: none;
-  }
-
-  .controlButtons:hover{
-    background-color: transparent; /* removed hover effect */
-  }
-
-  .controlsIcon {
-    width: 40px;
-    height: auto;
-    margin-left: 20px;
-  }
-
-  .refineIcon {
-    width: 60px;
-    height: auto;
-    margin-left: 50px;
-  }
-
-  .tooltip {
-    visibility: hidden;
-    width: 120px;
-    background-color: white;
-    color: black;
-    text-align: center;
-    padding: 5px 0;
-    margin-top: 80px;
-    margin-left: 120px;
-    border-radius: 6px;
-    position: absolute;
-    z-index: 1;
-  }
-
-  .controlButtons:hover .tooltip {
-    visibility: visible;
-  }
-
-  .formatChange {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-top: 100px;
-    position: absolute;
-    margin-left: 150px;
-    z-index: 1;
-    background-color: white;
-    width: 150px;
-  }
 
   .chart-container {
     display: flex;
@@ -180,7 +111,7 @@ body {
     margin-left: 30px;
   }
   
-  .legend {
+  .dashboard-legend {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -188,67 +119,126 @@ body {
     font-size: 14px;
   }
   
-  .legend-item {
+  .dashboard-legend-item {
     display: flex;
     align-items: center;
     margin-bottom: 5px;
   }
   
-  .legend-color {
+  .dashboard-legend-color {
     width: 15px;
     height: 15px;
     margin-right: 10px;
     border-radius: 50%;
   }
   
-  .legend-text {
+  .dashboard-legend-text {
     margin-left: 5px;
     color: black;
   }
 
   .projects {
     color: black;
-    position: absolute;
     width: 97%;
-    margin-right: 30px;
-    top: 400px;
-    left: 30px;
-    margin-bottom: 0;
+    margin-bottom: 20px;
     gap: 50px;
+    flex: 1;
+    padding: 10px;
   }
 
   .projectName {
     background-color:transparent;
     color: black;
     width: 100px;
-    font-size: 17px;
+    font-size: 17px; 
   }
 
   .projectName:hover {
-    background-color: grey;
+    background-color: transparent;
   }
 
-  .details {
+  .dashboard-details {
     background-color: white;
     border-radius: 7px;
     padding: 10px;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     right: 30px;
   }
 
-  .details h3, p {
+  .dashboard-details h3, p {
     margin-left: 15px;
   }
 
-  .todo {
+  .dashboard-todo {
     color: black;
-    position: absolute;
     width: 100%;
-    top: 730px;
     left: 30px;
-    margin-bottom: 0;
+    margin-bottom: 20px;
     gap: 50px;
     width: 97%;
     right: 30px;
+    padding: 10px;
   }
+  
+  .content {
+    display: flex;
+  flex-direction: column;
+  }
+  
+ */
+
+
+ /* ------------------------------------- */
+ /* todo doesnot adjust itself but css is fine */
+
+ body { background-color: var(--bg-color); margin: 0; padding: 0; }
+
+.dashboard-container { font-family: Arial, sans-serif; width: 1680px; }
+
+.dashboard-header { display: flex; align-items: center; background-color: #1d3557; position: absolute; width: 100%; top: 0; left: 0; margin-bottom: 0; }
+
+.dashboard-header img { height: 50px; margin-right: 20px; margin-left: 10px; }
+
+a { color: white; }
+
+.dashboard-header a { margin-top: 3px; }
+
+.search-bar { padding: 0.5rem; border-radius: 4px; margin-right: 1rem; }
+
+.options { gap: 10px; display: flex; align-items: center; margin-left: auto; }
+
+.dropdown { position: relative; margin-right: 1rem; cursor: pointer; font-weight: bold; }
+
+.dropdown-menu { position: absolute; top: 100%; left: 0; background: white; color: black; border: 1px solid #ccc; border-radius: 4px; padding: 0.5rem; min-width: 150px; z-index: 1; }
+
+.dropdown-menu div { padding: 0.5rem; cursor: pointer; }
+
+.dropdown-menu div:hover { background-color: #f1f1f1; }
+
+.nav-link.purple { position: relative; margin-right: 1rem; cursor: pointer; font-weight: bold; }
+
+.chart-container { display: flex; align-items: center; background-color: white; position: absolute; width: 97%; margin-right: 30px; top: 160px; left: 30px; margin-bottom: 0; gap: 50px; }
+
+.chart { width: 1000px; height: auto; margin-left: 30px; }
+
+.dashboard-legend { display: flex; flex-direction: column; align-items: flex-start; margin-top: 20px; font-size: 14px; }
+
+.dashboard-legend-item { display: flex; align-items: center; margin-bottom: 5px; }
+
+.dashboard-legend-color { width: 15px; height: 15px; margin-right: 10px; border-radius: 50%; }
+
+.dashboard-legend-text { margin-left: 5px; color: black; }
+
+.projects { color: black; position: absolute; width: 97%; margin-right: 30px; top: 400px; left: 30px; margin-bottom: 0; gap: 50px; }
+
+.projectName { background-color:transparent; color: black; width: 100px; font-size: 17px; }
+
+.projectName:hover { background-color: transparent; }
+
+.dashboard-details { background-color: white; border-radius: 7px; padding: 10px; margin-bottom: 10px; right: 30px; }
+
+.dashboard-details h3, p { margin-left: 15px; }
+
+.dashboard-todo { color: black; position: absolute; width: 100%; top: 730px; left: 30px; margin-bottom: 0; gap: 50px; width: 97%; right: 30px; }
+
 
