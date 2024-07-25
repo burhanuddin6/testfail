@@ -52,3 +52,7 @@ admin.site.register(TestSuiteFile)
 admin.site.register(Section)
 
 admin.site.register(Milestone)
+admin.site.register(MilestoneTicket)
+admin.site.register(MilestoneFile)
+
+admin.site.register(Project)
