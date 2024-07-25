@@ -10,6 +10,7 @@ class TestRun(models.Model):
     milestone_id = models.ForeignKey('Milestone', on_delete=models.CASCADE, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     test_case_filter = models.TextField(null=True, blank=True)
+    project_id = models.ForeignKey('Project', on_delete=models.CASCADE)
 
 class TestRunFile(models.Model):
     file_id = models.AutoField(primary_key=True)

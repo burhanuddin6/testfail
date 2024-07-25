@@ -6,6 +6,7 @@ class TestSuite(models.Model):
     name = models.CharField(max_length=255, unique=True)
     creator_id = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     description = models.TextField(null=True, blank=True)
+    project_id = models.ForeignKey('Project', on_delete=models.CASCADE)
 
 class Section(models.Model):
     section_id = models.AutoField(primary_key=True)

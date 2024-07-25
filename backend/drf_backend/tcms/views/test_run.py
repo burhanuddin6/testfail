@@ -5,11 +5,12 @@ from rest_framework import status
 from rest_framework.response import Response
 from ..models.test_run import *
 from ..serializers.test_run import *
-
+from ..permissions import HasModelPermissions
 
 class TestRunViewSet(viewsets.ModelViewSet):
     queryset = TestRun.objects.all()
     serializer_class = TestRunSerializer
+    permission_classes = [HasModelPermissions]
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -27,11 +28,14 @@ class TestRunViewSet(viewsets.ModelViewSet):
 class TestRunFileViewSet(viewsets.ModelViewSet):
     queryset = TestRunFile.objects.all()
     serializer_class = TestRunFileSerializer
+    permission_classes = [HasModelPermissions]
 
 class TestRunTicketViewSet(viewsets.ModelViewSet):
     queryset = TestRunTicket.objects.all()
     serializer_class = TestRunTicketSerializer
+    permission_classes = [HasModelPermissions]
 
 class TestRunTestCaseViewSet(viewsets.ModelViewSet):
     queryset = TestRunTestCase.objects.all()
     serializer_class = TestRunTestCaseSerializer
+    permission_classes = [HasModelPermissions]
