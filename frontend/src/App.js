@@ -45,7 +45,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
 
-        {!isLoggedIn ? (
+        {/* {!isLoggedIn ? (
           <>
             <Route path="/" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
@@ -61,14 +61,7 @@ const App = () => {
               element={
                 <>
                   <Header userName={userName} />
-                  <div className="main-content">
-                    <Sidebar />
-                    <Overview />
-                  </div>
-                  <div className="bottom-content">
-                    <Milestones />
-                    <TestRuns />
-                  </div>
+                  <Overview/>
                 </>
               }
             />
@@ -128,7 +121,7 @@ const App = () => {
             />
             <Route path="*" element={<NotFound />} />
           </>
-        )}
+        )} */}
 
         <Route path="/" element={<Login />} />
         <Route path="/SignUp" element={<SignUp />} />
@@ -140,14 +133,7 @@ const App = () => {
           element={
             <>
               <Header userName={userName} />
-              <div className="main-content">
-                <Sidebar />
-                <Overview />
-              </div>
-              <div className="bottom-content">
-                <Milestones />
-                <TestRuns />
-              </div>
+              <Overview/>
             </>
           }
         />
@@ -156,9 +142,7 @@ const App = () => {
           element={
             <>
               <Header userName={userName} />
-              <div className="main-content">
-                <TodoPage />
-              </div>
+              <TodoPage />
             </>
           }
         />
