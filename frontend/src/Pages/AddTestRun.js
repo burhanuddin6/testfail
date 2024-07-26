@@ -1,6 +1,7 @@
+
 import React, { useState } from 'react';
 import '../styles/AddTestRun.css'; // Import the CSS file
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom'; // Import useLocation for reading query parameters
 
 const AddTestRun = () => {
   const [name, setName] = useState('');
@@ -11,6 +12,12 @@ const AddTestRun = () => {
   const [testCaseSelection, setTestCaseSelection] = useState('all');
 
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Retrieve the source page and suite name from URL query parameters
+  const searchParams = new URLSearchParams(location.search);
+  const sourcePage = searchParams.get('source'); // Will be either 'TestSuitesCases' or 'TestRuns'
+  const suiteName = searchParams.get('suite'); // Retrieve the suite name
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -23,18 +30,32 @@ const AddTestRun = () => {
       description,
       testCaseSelection,
     });
-    navigate('/TestSuitsCases'); // Navigate to the desired page after submission
+
+    // Navigate based on the source page
+    if (sourcePage === 'TestRuns') {
+      // Redirect to the specific TestRuns page for the suite
+      navigate(`/TestRuns?suite=${encodeURIComponent(suiteName)}`);
+    } else {
+      navigate('/TestSuitsCases'); // Default to Test Suites & Cases
+    }
   };
 
   const handleCancel = (e) => {
     e.preventDefault();
-    navigate('/TestSuitsCases'); // Navigate to the previous page when canceled
+
+    // Navigate based on the source page
+    if (sourcePage === 'TestRuns') {
+      // Redirect to the specific TestRuns page for the suite
+      navigate(`/TestRuns?suite=${encodeURIComponent(suiteName)}`);
+    } else {
+      navigate('/TestSuitsCases'); // Default to Test Suites & Cases
+    }
   };
 
   return (
     <div className="test-run-container">
       <form className="test-run-form" onSubmit={handleSubmit}>
-        <h2 className="test-run-title">Add Test Run</h2>
+        <h2 className="add-test-run-title">Add Test Run</h2>
 
         <div className="test-run-form-group">
           <label htmlFor="name" className="test-run-label">
@@ -177,4 +198,3 @@ const AddTestRun = () => {
 };
 
 export default AddTestRun;
-

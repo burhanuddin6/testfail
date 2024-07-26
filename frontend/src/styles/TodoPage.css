@@ -134,11 +134,11 @@
   }
   
   .dropdown:hover .dropbtn {
-    background-color: #3e8e41;
+    background-color: #5DA9E9;
   }
   
   .dropbtn {
-    background-color: #003366;
+    background-color: #0056b3;
     color: white;
     font-size: 16px;
     border: none;
