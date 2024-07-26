@@ -7,7 +7,6 @@ router = DefaultRouter()
 #test case 
 router.register(r'types_for_testcase', TypesForTestCaseViewSet)
 router.register(r'priority_for_testcase', PriorityForTestCaseViewSet)
-router.register(r'template_for_testcase', TemplateForTestCaseViewSet)
 router.register(r'testcase_files', TestCaseFileViewSet)
 router.register(r'testcase_tickets', TestCaseTicketViewSet)
 router.register(r'testcases', TestCaseViewSet)

@@ -26,7 +26,6 @@ admin.site.register(UserAccountIntegration)
 
 admin.site.register(TypesForTestCase)
 admin.site.register(PriorityForTestCase)
-admin.site.register(TemplateForTestCase)
 admin.site.register(TestCase)
 admin.site.register(TestCaseFile)
 admin.site.register(TestCaseTicket)
