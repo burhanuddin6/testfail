@@ -16,11 +16,6 @@ class PriorityForTestCaseViewSet(viewsets.ModelViewSet):
     serializer_class = PriorityForTestCaseSerializer
     permission_classes = [HasModelPermissions]
 
-class TemplateForTestCaseViewSet(viewsets.ModelViewSet):
-    queryset = TemplateForTestCase.objects.all()
-    serializer_class = TemplateForTestCaseSerializer
-    permission_classes = [HasModelPermissions]
-
 class TestCaseFileViewSet(viewsets.ModelViewSet):
     queryset = TestCaseFile.objects.all()
     serializer_class = TestCaseFileSerializer

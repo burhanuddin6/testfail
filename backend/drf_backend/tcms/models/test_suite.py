@@ -10,7 +10,7 @@ class TestSuite(models.Model):
 
 class Section(models.Model):
     section_id = models.AutoField(primary_key=True)
-    parent_id = models.ForeignKey('self', on_delete=models.CASCADE)
+    parent_id = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)
     test_suite_id = models.ForeignKey(TestSuite, on_delete=models.CASCADE)
     name = models.CharField(max_length=255, unique=True)
     creator_id = models.ForeignKey(MyUser, on_delete=models.CASCADE)
