@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import '../styles/AddMilestones.css'; // Import the CSS file
 import { useNavigate } from 'react-router-dom';
+import {createMilestone} from '../api/Milestone';
 
-const AddMilestone = () => {
+const AddMilestone = ({userID}) => {
   const [name, setName] = useState('');
   const [references, setReferences] = useState('');
   const [parent, setParent] = useState('');
@@ -15,21 +16,26 @@ const AddMilestone = () => {
 
   const navigate = useNavigate();
 
-
-
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted with:', {
+    console.log("userID in AddMilestone page " + userID); //debug statement, remove before deployment
+    const milestoneData = {
       name,
-      references,
-      parent,
+      creator_id: userID, 
+      parent_id: parent || null,
       description,
-      startDate,
-      endDate,
-      isCompleted,
-    });
-    navigate('/Milestones');
+      start_date: startDate || null,
+      end_date: endDate || null,
+      is_complete: isCompleted,
+    };
+
+    try {
+      const createdMilestone = await createMilestone(milestoneData);
+      console.log('Milestone created:', createdMilestone);
+      navigate('/Milestones');
+    } catch (error) {
+      console.error('Failed to create milestone:', error);
+    }
   };
 
   const handleCancel = (e) => {

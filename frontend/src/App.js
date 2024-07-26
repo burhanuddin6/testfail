@@ -24,6 +24,7 @@ import NotFound from './Pages/NotFound';
 
 const App = () => {
   const [userName, setUserName] = useState("");
+  const [userID, setUserID] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -33,6 +34,7 @@ const App = () => {
         setIsLoggedIn(true);
         const details = await getUserDetails(token);
         setUserName(details.first_name + " " + details.last_name);
+        setUserID(details.id);
       }
     }
     getDetails();
@@ -96,7 +98,7 @@ const App = () => {
               element={
                 <>
                   <Header userName={userName} />
-                  <AddMilestone  />
+                  <AddMilestone userID={userID} />
                 </>
               }
             />

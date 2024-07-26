@@ -1,11 +1,5 @@
-//src/api/Auth.js
 import axios from 'axios';
-
-const GIT_URL = "https://organic-orbit-p47g4pqqrqj36rvv-8000.app.github.dev/";
-const LOCAL_URL = "http://localhost:8000/";
-
-const GIT_VERIFY_EMAIL_URL = "https://organic-orbit-p47g4pqqrqj36rvv-8000.app.github.dev/api/tcms/verify-email/";
-const LOCAL_VERIFY_EMAIL_URL = "http://127.0.0.1:8000/api/tcms/verify-email/";
+import { LOCAL_URL, LOCAL_VERIFY_EMAIL_URL } from '../utilities/globals';
 
 
 const login = async (formData) => {
