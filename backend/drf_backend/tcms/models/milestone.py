@@ -1,5 +1,6 @@
 from django.db import models
 from .user import MyUser
+from .project import Project
 
 class Milestone(models.Model):
 	name = models.CharField(max_length=255, null=False)
@@ -9,6 +10,7 @@ class Milestone(models.Model):
 	start_date = models.DateField(null=True, blank=True)
 	end_date = models.DateField(null=True, blank=True)
 	is_complete = models.BooleanField(default=False)
+	project_id = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='milestones')
 
 class MilestoneTicket(models.Model):
 	ticket_id = models.AutoField(primary_key=True)

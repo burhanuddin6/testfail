@@ -26,7 +26,6 @@ admin.site.register(UserAccountIntegration)
 
 admin.site.register(TypesForTestCase)
 admin.site.register(PriorityForTestCase)
-admin.site.register(TemplateForTestCase)
 admin.site.register(TestCase)
 admin.site.register(TestCaseFile)
 admin.site.register(TestCaseTicket)
@@ -52,6 +51,7 @@ admin.site.register(TestSuiteFile)
 admin.site.register(Section)
 
 admin.site.register(Milestone)
-admin.site.register(MilestoneFile)
 admin.site.register(MilestoneTicket)
+admin.site.register(MilestoneFile)
 
+admin.site.register(Project)

@@ -42,8 +42,8 @@ const Header = ({userName}) => {
        
         <div className='nav'>
             <a href='/dashboard'>Dashboard</a>
-            <a href='/overview'>Overview</a>
-            <a href='/todos'>To-do</a>
+            <a href='/overview/:projectId'>Overview</a>
+            <a href='/todo/:projectId'>To-do</a>
             <a href='/milestones'>Milestones</a>
             <a href='/testruns'>Test Runs & Results</a>
             <a href='/testsuitscases'>Test Suits & Cases</a>

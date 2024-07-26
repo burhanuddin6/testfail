@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from ..models import TestCase, TypesForTestCase, PriorityForTestCase, TemplateForTestCase, TestCaseFile, TestCaseTicket
+from ..models import TestCase, TypesForTestCase, PriorityForTestCase, TestCaseFile, TestCaseTicket
 
 class TypesForTestCaseSerializer(serializers.ModelSerializer):
     class Meta:
@@ -9,11 +9,6 @@ class TypesForTestCaseSerializer(serializers.ModelSerializer):
 class PriorityForTestCaseSerializer(serializers.ModelSerializer):
     class Meta:
         model = PriorityForTestCase
-        fields = '__all__'
-
-class TemplateForTestCaseSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = TemplateForTestCase
         fields = '__all__'
 
 class TestCaseFileSerializer(serializers.ModelSerializer):

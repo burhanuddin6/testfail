@@ -5,11 +5,12 @@ from rest_framework import status
 from rest_framework.response import Response
 from ..models.test_plan import *
 from ..serializers.test_plan import *
-
+from ..permissions import HasModelPermissions
 
 class TestPlanViewSet(viewsets.ModelViewSet):
     queryset = TestPlan.objects.all()
     serializer_class = TestPlanSerializer
+    permission_classes = [HasModelPermissions]
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -27,18 +28,21 @@ class TestPlanViewSet(viewsets.ModelViewSet):
 class TestPlanFileViewSet(viewsets.ModelViewSet):
     queryset = TestPlanFile.objects.all()
     serializer_class = TestPlanFileSerializer
+    permission_classes = [HasModelPermissions]
 
 class TestPlanTicketViewSet(viewsets.ModelViewSet):
     queryset = TestPlanTicket.objects.all()
     serializer_class = TestPlanTicketSerializer
-
-
+    permission_classes = [HasModelPermissions]
+    
 class TestPlanTestCaseViewSet(viewsets.ModelViewSet):
     queryset = TestPlanTestCase.objects.all()
     serializer_class = TestPlanTestCaseSerializer
+    permission_classes = [HasModelPermissions]
 
 class TestPlanTestSuiteViewSet(viewsets.ModelViewSet):
     queryset = TestPlanTestSuite.objects.all()
     serializer_class = TestPlanTestSuiteSerializer
+    permission_classes = [HasModelPermissions]
 
 

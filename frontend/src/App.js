@@ -5,8 +5,6 @@ import { getUserDetails } from './api/Auth';
 
 // components 
 import Header from './components/Header';
-import Sidebar from './components/Sidebar';
-import Milestones from './components/Milestones';
 import TestRuns from './components/TestRuns';
 
 // pages
@@ -19,8 +17,10 @@ import Forgot from './Pages/Forgot';
 import EmailVerification from './Pages/EmailVerification';
 import Dashboard from './Pages/Dashboard';
 import AddMilestone from './Pages/AddMilestones';
+import TestSuitesCases from './Pages/TestSuitsCases';
+import AddTestRun from './Pages/AddTestRun';
 import NotFound from './Pages/NotFound';
-
+import TestRunsPage from './Pages/TestRuns';
 
 const App = () => {
   const [userName, setUserName] = useState("");
@@ -45,7 +45,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
 
-        {!isLoggedIn ? (
+        {/* {!isLoggedIn ? (
           <>
             <Route path="/" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
@@ -61,14 +61,7 @@ const App = () => {
               element={
                 <>
                   <Header userName={userName} />
-                  <div className="main-content">
-                    <Sidebar />
-                    <Overview />
-                  </div>
-                  <div className="bottom-content">
-                    <Milestones />
-                    <TestRuns />
-                  </div>
+                  <Overview/>
                 </>
               }
             />
@@ -128,7 +121,7 @@ const App = () => {
             />
             <Route path="*" element={<NotFound />} />
           </>
-        )}
+        )} */}
 
         <Route path="/" element={<Login />} />
         <Route path="/SignUp" element={<SignUp />} />
@@ -140,14 +133,7 @@ const App = () => {
           element={
             <>
               <Header userName={userName} />
-              <div className="main-content">
-                <Sidebar />
-                <Overview />
-              </div>
-              <div className="bottom-content">
-                <Milestones />
-                <TestRuns />
-              </div>
+              <Overview/>
             </>
           }
         />
@@ -156,9 +142,7 @@ const App = () => {
           element={
             <>
               <Header userName={userName} />
-              <div className="main-content">
-                <TodoPage />
-              </div>
+              <TodoPage />
             </>
           }
         />
@@ -181,6 +165,33 @@ const App = () => {
           }
         />
         <Route
+          path="/testsuitscases"
+          element={
+            <>
+              <Header userName={userName} />
+              <TestSuitesCases />
+            </>
+          }
+        />
+        <Route 
+          path="/AddTestRun" 
+          element={
+            <>
+              <Header userName={userName} />
+              <AddTestRun  />
+            </>
+          }
+        />
+        <Route
+          path="/TestRuns"
+          element={
+            <>
+              <Header userName={userName} />
+              <TestRunsPage />
+            </>
+          }
+        />
+        {/* <Route
           path="/testruns"
           element={
             <>
@@ -191,20 +202,19 @@ const App = () => {
               </div>
             </>
           }
-        />
+        /> */}
         <Route
           path="/testruns/:id"
           element={
             <>
               <Header userName={userName} />
               <div className="main-content">
-                <Sidebar />
                 <TestRuns />
               </div>
             </>
           }
         />
-
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

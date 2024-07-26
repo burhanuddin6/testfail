@@ -1,11 +1,11 @@
 .todos {
-    background-color: #f4f4f4;
+    background-color: white;
     padding: 20px;
     margin-top: 20px;
     border-radius: 5px;
+    color: black;
+    width: 45%;
   }
   
-  .todo {
-    margin-bottom: 10px;
-  }
+ 
   
