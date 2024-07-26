@@ -1,13 +1,79 @@
-.overview {
-    flex: 1;
-    padding: 20px;
-    
-  }
+
   
-  .summary {
+  .overview-graph {
+    width: 1000px;
     display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
+    flex-direction: column;
+  }
+
+  .overview-chart-container {
+    display: flex;
+    align-items: center;
     background-color: white;
+    position: absolute;
+    width: 50%;
+    height: auto;
+    margin-right: 30px;
+    top: 160px;
+    left: 30px;
+    margin-bottom: 0;
+    gap: 50px;
+    margin-left: 300px;
+  } 
+  
+  .overview-legend {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 20px;
+    font-size: 14px;
   }
   
+  .overview-legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  
+  .overview-legend-color {
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+    border-radius: 50%;
+  }
+  
+  .overview-legend-text {
+    margin-left: 5px;
+    color: black;
+    width: 100px;
+  }
+
+  .overview-content {
+    margin-left: 30px;
+    display: flex;
+    position: absolute;
+    margin-top: 200px;
+    gap: 30px;
+    margin-bottom: 30px;
+    width: 97%;
+    margin-right: 30px;
+  }
+
+  .overview-activitylog {
+    margin-left: 30px;
+    color: black;
+    position: absolute;
+    margin-top: 450px;
+  }
+
+  .activity-details {
+    background-color: white;
+    border-radius: 7px;
+    padding: 10px;
+    margin-bottom: 10px;
+    right: 30px;
+    width: 97%;
+    display: flex;
+  }
+
+ 
