@@ -5,8 +5,6 @@ import { getUserDetails } from './api/Auth';
 
 // components 
 import Header from './components/Header';
-import Sidebar from './components/Sidebar';
-import Milestones from './components/Milestones';
 import TestRuns from './components/TestRuns';
 
 // pages
@@ -22,7 +20,7 @@ import AddMilestone from './Pages/AddMilestones';
 import TestSuitesCases from './Pages/TestSuitsCases';
 import AddTestRun from './Pages/AddTestRun';
 import NotFound from './Pages/NotFound';
-
+import TestRunsPage from './Pages/TestRuns';
 
 const App = () => {
   const [userName, setUserName] = useState("");
@@ -183,6 +181,15 @@ const App = () => {
           }
         />
         <Route
+          path="/TestRuns"
+          element={
+            <>
+              <Header userName={userName} />
+              <TestRunsPage />
+            </>
+          }
+        />
+        {/* <Route
           path="/testruns"
           element={
             <>
@@ -193,20 +200,19 @@ const App = () => {
               </div>
             </>
           }
-        />
+        /> */}
         <Route
           path="/testruns/:id"
           element={
             <>
               <Header userName={userName} />
               <div className="main-content">
-                <Sidebar />
                 <TestRuns />
               </div>
             </>
           }
         />
-
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,4 +1,6 @@
+
 import React from 'react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import '../styles/TestSuitsCases.css';
 
 const testSuites = [
@@ -15,7 +17,7 @@ const testSuites = [
 const TestSuitesCases = () => {
   return (
     <div className="test-suites-cases">
-      <div className="header">
+      <div className="test-suites-header">
         <h1>Test Suites & Cases</h1>
         <button className="add-test-suite">+ Add New Test Suite</button>
       </div>
@@ -28,11 +30,11 @@ const TestSuitesCases = () => {
             <div className="suite-header">
               <a href="#" className="suite-title">{suite.title}</a>
               <div className="suite-options">
-                <a href="/AddTestRun">Run Test</a>
+                <Link to={`/AddTestRun?suite=${encodeURIComponent(suite.title)}&source=TestSuitsCases`}>Run Test</Link>
                 <span>|</span>
-                <a href="#">Test Runs</a>
+                <Link to={`/TestRuns?suite=${encodeURIComponent(suite.title)}`}>Test Runs</Link>
                 <span>|</span>
-                <a href="#">Edit</a>
+                <Link to={`/edit-suite?suite=${encodeURIComponent(suite.title)}`}>Edit</Link>
               </div>
             </div>
             <div className="suite-details">
