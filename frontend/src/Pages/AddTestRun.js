@@ -181,14 +181,14 @@ const AddTestRun = () => {
 
         <div className="test-run-buttons">
           <button type="submit" className="test-run-button test-run-submit">
-            Add Test Run
+            ✓ Add Test Run
           </button>
           <button
             type="button"
             className="test-run-button test-run-cancel"
             onClick={handleCancel}
           >
-            Cancel
+            ✗ Cancel
           </button>
         </div>
       </form>

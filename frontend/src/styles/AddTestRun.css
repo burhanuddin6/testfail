@@ -97,7 +97,7 @@ body {
 .test-run-button {
   width: 150px;
   height: 40px;
-  background-color: #0056b3;
+  background-color: #4CAF50;
   color: white;
   border: none;
   border-radius: 4px;
@@ -107,7 +107,7 @@ body {
 
 /* Button hover effect */
 .test-run-button:hover {
-  background-color: #5DA9E9;
+  background-color: #90ee90;
 }
 
 /* Cancel button styling */
