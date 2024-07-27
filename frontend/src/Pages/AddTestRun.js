@@ -1,7 +1,6 @@
-
 import React, { useState } from 'react';
-import '../styles/AddTestRun.css'; // Import the CSS file
-import { useNavigate, useLocation } from 'react-router-dom'; // Import useLocation for reading query parameters
+import '../styles/AddTestRun.css';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const AddTestRun = () => {
   const [name, setName] = useState('');
@@ -14,13 +13,15 @@ const AddTestRun = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Retrieve the source page and suite name from URL query parameters
+  // Retrieve suite ID, source page, and suite name from URL query parameters
   const searchParams = new URLSearchParams(location.search);
+  const suiteId = searchParams.get('suiteId') || '0'; // Default to '0' if no suiteId is provided
   const sourcePage = searchParams.get('source'); // Will be either 'TestSuitesCases' or 'TestRuns'
-  const suiteName = searchParams.get('suite'); // Retrieve the suite name
+  const suiteName = searchParams.get('suite') || 'Test Suite'; // Default to 'Test Suite' if no suiteName is provided
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
     // Handle form submission here
     console.log('Form submitted with:', {
       name,
@@ -31,24 +32,22 @@ const AddTestRun = () => {
       testCaseSelection,
     });
 
-    // Navigate based on the source page
+    // Navigate based on the source page and include suite ID in URL
     if (sourcePage === 'TestRuns') {
-      // Redirect to the specific TestRuns page for the suite
-      navigate(`/TestRuns?suite=${encodeURIComponent(suiteName)}`);
+      navigate(`/TestRuns?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}`);
     } else {
-      navigate('/TestSuitsCases'); // Default to Test Suites & Cases
+      navigate('/TestSuitsCases');
     }
   };
 
   const handleCancel = (e) => {
     e.preventDefault();
 
-    // Navigate based on the source page
+    // Navigate based on the source page and include suite ID in URL
     if (sourcePage === 'TestRuns') {
-      // Redirect to the specific TestRuns page for the suite
-      navigate(`/TestRuns?suite=${encodeURIComponent(suiteName)}`);
+      navigate(`/TestRuns?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}`);
     } else {
-      navigate('/TestSuitsCases'); // Default to Test Suites & Cases
+      navigate('/TestSuitsCases');
     }
   };
 
