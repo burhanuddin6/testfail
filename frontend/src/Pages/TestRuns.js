@@ -43,7 +43,7 @@ const TestRuns = () => {
         <div className="test-runs-actions">
           <Link to={`/AddTestRun?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}&source=TestRuns`} className="run-test-link">Run Test</Link>
           <span></span>
-          <Link to={`/edit-suite?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}`} className="edit-suite-link">Edit</Link>
+          <Link to={`/EditTestSuite?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}&source=TestRuns`} className="edit-suite-link">Edit</Link>
         </div>
       </div>
 

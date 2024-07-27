@@ -17,30 +17,44 @@ const testSuites = [
 const TestSuitesCases = () => {
   const navigate = useNavigate();
 
+  // Handle Add Test Suite button click
   const handleAddTestSuite = () => {
     navigate('/AddTestSuite'); // Redirect to Add Test Suite page
   };
 
   return (
     <div className="test-suites-cases">
+      {/* Header Section */}
       <div className="test-suites-header">
         <h1>Test Suites & Cases</h1>
         <button className="add-test-suite" onClick={handleAddTestSuite}>+ Add New Test Suite</button>
       </div>
+
+      {/* Suite Summary */}
       <div className="suite-summary">
-        <span>33 test suites and 115466 cases in this project.</span>
+        <span>33 test suites and 115,466 cases in this project.</span>
       </div>
+
+      {/* List of Test Suites */}
       <div className="suite-list">
-        {testSuites.map((suite, index) => (
-          <div key={index} className="suite">
+        {testSuites.map((suite) => (
+          <div key={suite.id} className="suite">
             <div className="suite-header">
-              <a href="#" className="suite-title">{suite.title}</a>
+              <Link to={`/TestCases?suiteId=${suite.id}`} className="suite-title">
+                {suite.title}
+              </Link>
               <div className="suite-options">
-                <Link to={`/AddTestRun?suiteId=${suite.id}&suite=${encodeURIComponent(suite.title)}&source=TestSuitsCases`}>Run Test</Link>
+                <Link to={`/AddTestRun?suiteId=${suite.id}&suite=${encodeURIComponent(suite.title)}&source=TestSuitsCases`}>
+                  Run Test
+                </Link>
                 <span>|</span>
-                <Link to={`/TestRuns?suiteId=${suite.id}&suite=${encodeURIComponent(suite.title)}`}>Test Runs</Link>
+                <Link to={`/TestRuns?suiteId=${suite.id}&suite=${encodeURIComponent(suite.title)}`}>
+                  Test Runs
+                </Link>
                 <span>|</span>
-                <Link to={`/edit-suite?suiteId=${suite.id}&suite=${encodeURIComponent(suite.title)}`}>Edit</Link>
+                <Link to={`/EditTestSuite?suiteId=${suite.id}&suite=${encodeURIComponent(suite.title)}&source=TestSuitsCases`}>
+                  Edit
+                </Link>
               </div>
             </div>
             <div className="suite-details">
