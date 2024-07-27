@@ -183,14 +183,14 @@ const AddTestSuite = () => {
 
         <div className="test-suite-buttons">
           <button type="submit" className="test-suite-button test-suite-submit">
-            Add Test Suite
+          ✓ Add Test Suite
           </button>
           <button
             type="button"
             className="test-suite-button test-suite-cancel"
             onClick={handleCancel}
           >
-            Cancel
+            ✗ Cancel
           </button>
         </div>
       </form>
