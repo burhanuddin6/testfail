@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { Link, useNavigate } from 'react-router-dom'; // Import Link and useNavigate
 import '../styles/TestSuitsCases.css';
 
 const testSuites = [
@@ -15,11 +14,17 @@ const testSuites = [
 ];
 
 const TestSuitesCases = () => {
+  const navigate = useNavigate();
+
+  const handleAddTestSuite = () => {
+    navigate('/AddTestSuite'); // Redirect to Add Test Suite page
+  };
+
   return (
     <div className="test-suites-cases">
       <div className="test-suites-header">
         <h1>Test Suites & Cases</h1>
-        <button className="add-test-suite">+ Add New Test Suite</button>
+        <button className="add-test-suite" onClick={handleAddTestSuite}>+ Add New Test Suite</button>
       </div>
       <div className="suite-summary">
         <span>33 test suites and 115466 cases in this project.</span>

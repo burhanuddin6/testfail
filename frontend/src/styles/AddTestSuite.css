@@ -1,0 +1,101 @@
+@import '../utilities/variables.css'; /* Use your predefined variables if any */
+
+/* Background color for the form page */
+body {
+  background-color: var(--bg-color);
+  margin: 0;
+  padding: 0;
+}
+
+/* Container for the test suite form */
+.test-suite-container {
+  padding: 20px;
+  /* background-color: #f5f5f5; */
+}
+
+/* Main form styling */
+.test-suite-form {
+  margin-top: 60px;
+  background-color: white;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 10px;
+  margin-left: 400px;
+  margin-right: 400px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Title of the form */
+.add-test-suite-title {
+  color: black;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Form group styling for inputs and labels */
+.test-suite-form-group {
+  margin-bottom: 20px;
+}
+
+/* Input fields styling */
+.test-suite-input,
+.test-suite-textarea {
+  width: 100%;
+  padding: 8px;
+  height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Textarea styling */
+.test-suite-textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+/* Label styling */
+.test-suite-label {
+  display: block;
+  margin-bottom: 5px;
+  color: black;
+}
+
+/* Required field asterisk */
+.test-suite-required {
+  color: red;
+}
+
+/* Form buttons container */
+.test-suite-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Button styling */
+.test-suite-button {
+  width: 150px;
+  height: 40px;
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Button hover effect */
+.test-suite-button:hover {
+  background-color: #5DA9E9;
+}
+
+/* Cancel button styling */
+.test-suite-cancel {
+  background-color: #dc3545;
+}
+
+.test-suite-cancel:hover {
+  background-color: #FAA0A0;
+}

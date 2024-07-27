@@ -21,6 +21,7 @@ import TestSuitesCases from './Pages/TestSuitsCases';
 import AddTestRun from './Pages/AddTestRun';
 import NotFound from './Pages/NotFound';
 import TestRunsPage from './Pages/TestRuns';
+import AddTestSuite from './Pages/AddTestSuite';
 
 const App = () => {
   const [userName, setUserName] = useState("");
@@ -186,6 +187,15 @@ const App = () => {
             <>
               <Header userName={userName} />
               <TestRunsPage />
+            </>
+          }
+        />
+        <Route 
+          path="/AddTestSuite" 
+          element={
+            <>
+              <Header userName={userName} />
+              <AddTestSuite />
             </>
           }
         />
