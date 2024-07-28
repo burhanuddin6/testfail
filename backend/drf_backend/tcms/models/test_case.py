@@ -10,28 +10,49 @@ class TypesForTestCase(models.Model):
 class PriorityForTestCase(models.Model):
     priority_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255, unique=True)
-    weight = models.IntegerField()
-
-class TemplateForTestCase(models.Model):
-    template_id = models.AutoField(primary_key=True)
-    template_name = models.CharField(max_length=255)
-    template_text = models.TextField()
+    
 
 class TestCase(models.Model):
     test_case_id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=255)
+    expected_results = models.TextField(null=True, blank=True)
     latest_result_id = models.ForeignKey('TestCaseResult', on_delete=models.SET_NULL, null=True)
     type_id = models.ForeignKey(TypesForTestCase, on_delete=models.SET_NULL, null=True)
+    AUTOMATION_TYPE_CHOICES = (
+        ('None', 'None'),
+        ('Need to Triage', 'Need to Triage'),
+        ('BE', 'BE'),
+        ('UI', 'UI'),
+        ('BE & UI', 'BE & UI'),
+        ("Can't Automate", "Can't Automate"),
+        ('Automatable', 'Automatable'),
+        ('Other', 'Other'),
+    )
+    automation_type = models.CharField(max_length=255, choices=AUTOMATION_TYPE_CHOICES, default='Need to Triage')
     priority_id = models.ForeignKey(PriorityForTestCase, on_delete=models.SET_NULL, null=True)
     created_on = models.DateTimeField(auto_now_add=True)
     estimate = models.IntegerField(null=True, blank=True)
-    section_id = models.IntegerField(null=True, blank=True)
+    section_id = models.ForeignKey('Section', on_delete=models.CASCADE, related_name='test_cases')
     # the template helps to lay out the data
-    template_id = models.ForeignKey(TemplateForTestCase, on_delete=models.CASCADE)
-    template_blob = models.TextField()
-    update_id = models.IntegerField(null=True, blank=True)
+    STEPS = 'Test Case (Steps)'
+    TEXT = 'Test Case (Text)'
+    EXPLORATORY = 'Exploratory Session'
+    BDD = 'Behavior Driven Development'
+    TEMPLATE_TYPE_CHOICES = {
+        STEPS: 'Test Case (Steps)',
+        TEXT: 'Test Case (Text)',
+        EXPLORATORY: 'Exploratory Session',
+        BDD: 'Behavior Driven Development',
+    }
+    template_type = models.CharField(max_length=255, choices=TEMPLATE_TYPE_CHOICES, default='Test Case (Text)')
+    template_frame = models.TextField(default='')
+    expected_result = models.TextField(null=True, blank=True)
+    updated_on = models.DateTimeField(auto_now=True)
+    updated_by = models.ForeignKey(MyUser, on_delete=models.SET_NULL, null=True, related_name='updated_test_cases')
     obsolete = models.BooleanField(default=False)
     creator_id = models.ForeignKey(MyUser, on_delete=models.CASCADE)
+    project_id = models.ForeignKey('Project', on_delete=models.CASCADE, related_name='test_cases')
+    assigned_to = models.ForeignKey(MyUser, on_delete=models.SET_NULL, null=True, related_name='assigned_test_cases')
 
 class TestCaseFile(models.Model):
     file_id = models.AutoField(primary_key=True)

@@ -1,0 +1,21 @@
+"ID","Title","Assigned To","Automation Type","Created By","Created On","Estimate","Expected Result","Forecast","Goals","Mission","Preconditions","Priority","References","Section","Section Depth","Section Description","Section Hierarchy","Steps","Steps (Multi)","Steps (Additional Info)","Steps (Expected Result)","Steps (References)","Steps (Shared step ID)","Steps (Step)","Suite","Suite ID","Template","Type","Updated By","Updated On"
+"C4","Test Suite 1 Case 1","Farhan Ahmed"," None","Burhanuddin Ezzi","7/4/2024 1:07 PM","","Expect Nothing","","","","Say hello","Medium","","Test Cases I","0","","Test Cases I","Do nothing","","","","","","","Suite 1","S2","Test Case (Text)","Other","Burhanuddin Ezzi","7/4/2024 2:12 PM"
+"C5","Test Suite 1 Case 2","Farhan Ahmed"," None","Burhanuddin Ezzi","7/4/2024 1:08 PM","","Expect Something","","","","Say Bye","Medium","","Test Cases I","0","","Test Cases I","Do Something","","","","","","","Suite 1","S2","Test Case (Text)","Other","Burhanuddin Ezzi","7/4/2024 2:12 PM"
+"C6","Test Case 2","Farhan Ahmed"," None","Burhanuddin Ezzi","7/4/2024 1:59 PM","","","","","","","Medium","","Test Cases I","0","","Test Cases I","","","","","","","","Suite 1","S2","Test Case (Text)","Other","Burhanuddin Ezzi","7/4/2024 2:12 PM"
+"C7","Stepwise Test Case","Burhanuddin Ezzi"," None","Burhanuddin Ezzi","7/25/2024 1:55 PM","1440000s","","","","","Some Nice Preconditions go here","Medium","Hello","Test Cases I","0","","Test Cases I","","First Step
+Expected Result:
+First Expected ResultSecond Step
+Expected Result:
+Second Expected ResultThird Step
+Expected Result:
+Third Expected Result","1. 
+2. 
+3.","1. First Expected Result
+2. Second Expected Result
+3. Third Expected Result","1. 
+2. 
+3.","1. 
+2. 
+3.","1. First Step
+2. Second Step
+3. Third Step","Suite 1","S2","Test Case (Steps)","Other","Burhanuddin Ezzi","7/25/2024 1:55 PM"

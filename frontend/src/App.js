@@ -17,12 +17,16 @@ import Forgot from './Pages/Forgot';
 import EmailVerification from './Pages/EmailVerification';
 import Dashboard from './Pages/Dashboard';
 import AddMilestone from './Pages/AddMilestones';
+import MilestonesStatus from './Pages/MilestonesStatus';
+import MilestonesActivity from './Pages/MilestonesActivity';
+import MilestonesProgress from './Pages/MilestonesProgress';
+import MilestonesDefect from './Pages/MilestonesDefect';
 import TestSuitesCases from './Pages/TestSuitsCases';
 import AddTestRun from './Pages/AddTestRun';
-import NotFound from './Pages/NotFound';
 import TestRunsPage from './Pages/TestRuns';
 import AddTestSuite from './Pages/AddTestSuite';
 import EditTestSuite from './Pages/EditTestSuite';
+import NotFound from './Pages/NotFound';
 
 const App = () => {
   const [userName, setUserName] = useState("");
@@ -156,11 +160,47 @@ const App = () => {
           }
         />
         <Route 
-          path="/AddMilestone" 
+          path="/add-milestone" 
           element={
             <>
               <Header userName={userName} />
               <AddMilestone  />
+            </>
+          }
+        />
+        <Route
+          path="/milestone-status" 
+          element={
+            <>
+              <Header userName={userName} />
+              <MilestonesStatus  />
+            </>
+          }
+        />
+        <Route
+          path="/milestone-activity" 
+          element={
+            <>
+              <Header userName={userName} />
+              <MilestonesActivity  />
+            </>
+          }
+        />
+        <Route
+          path="/milestone-progress" 
+          element={
+            <>
+              <Header userName={userName} />
+              <MilestonesProgress />
+            </>
+          }
+        />
+        <Route
+          path="/milestone-defect" 
+          element={
+            <>
+              <Header userName={userName} />
+              <MilestonesDefect />
             </>
           }
         />

@@ -1,0 +1,87 @@
+.activity-mainclass {
+    display: flex;
+    flex-direction: column;
+    color: black;
+    margin-left: 30px;
+}
+
+.activity-header {
+    display: flex;
+    flex-direction: column;
+}
+
+.activity-options {
+    display: flex;
+    gap: 30px;
+}
+
+.activity-options a {
+    color: black;
+}
+
+.activity-control-button button{
+    width: 100px;
+    height: 40px;
+}
+
+.activity-controls {
+    display: flex;
+    gap: 30px;
+}
+
+.activity-control-button {
+   margin-left: auto;
+   display: flex;
+   gap: 30px;
+   margin-right: 30px;
+}
+
+.activity-details {
+    display: flex;
+    gap: 30px;
+    width: auto;
+    margin-right: 30px; 
+    background-color: white;
+}
+
+.activity-details-chart, .activity-details-label {
+    height: auto;
+    width: 50%;
+    padding: 20px;
+}
+
+
+.activity-details-individual {
+    background-color: white;
+    display: flex;
+    gap: 0px;
+    margin-right: 30px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+}
+
+.activity-testrun-activitybar {
+    display: flex;
+    gap: 30px;
+    margin-left: auto;
+    margin-right: 30px;
+}
+
+.activity-doneby {
+    margin-left: auto;
+    margin-right: 30px;
+}
+
+.activity-status-bar-passed {
+    background-color: green;
+    border-radius: 8px;
+    width: 60px;
+    height: 30px;
+}
+
+.activity-status-bar-failed {
+    background-color: red;
+    border-radius: 8px;
+    width: 60px;
+    height: 30px;
+}

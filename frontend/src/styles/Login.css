@@ -8,7 +8,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100vh; 
 }
 
 .login-container {
@@ -32,7 +32,7 @@ body {
 .login-box img {
   width: 200px;
   height: auto;
-  margin-bottom: 20px; /* Space between the image and the login box */
+  margin-bottom: 0px; /* Space between the image and the login box */
 }
 
 form {
@@ -104,4 +104,12 @@ a:hover {
 .message-error {
   background-color: #f8d7da; /* Red background for error message */
   color: #721c24; /* Dark red text color */
+}
+
+.form-check {
+  text-align: center;
+}
+
+.forgot-password a {
+  color: #007bff;
 }
