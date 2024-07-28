@@ -56,6 +56,9 @@ const Overview = () => {
         <h2>Activity</h2>
         <div className='activity-details'>
           <p>details</p>
+          <div className='activity-change-by'>
+            <p>change by</p>
+          </div>
         </div> 
         <div className='activity-details'>
           <p>details</p>

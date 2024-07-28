@@ -205,7 +205,7 @@ const Milestones = () => {
 
   const handleAdd = (e) => {
     e.preventDefault();
-    navigate('/AddMilestone');
+    navigate('/add-milestone');
   };
 
   return (
@@ -231,7 +231,7 @@ const Milestones = () => {
               checked={milestone.checked || false}
               onChange={() => handleCheckboxChange(milestone.id, 'open')}
             />
-            <a href='' className='milestoneName'>{milestone.name}</a>
+            <a href='/milestone-status' className='milestoneName'>{milestone.name}</a>
             <div className="status-bar">
               <div className="status-bar-inner status-52"></div>
             </div>
