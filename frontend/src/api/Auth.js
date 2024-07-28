@@ -5,6 +5,7 @@ import { LOCAL_URL, LOCAL_VERIFY_EMAIL_URL } from '../utilities/globals';
 const login = async (formData) => {
   try {
     const response = await axios.post(`${LOCAL_URL}api/accounts/login/`, formData);
+    console.log(response.data);
     return response.data; 
   } catch (error) {
     

@@ -21,17 +21,22 @@ import TestSuitesCases from './Pages/TestSuitsCases';
 import AddTestRun from './Pages/AddTestRun';
 import NotFound from './Pages/NotFound';
 import TestRunsPage from './Pages/TestRuns';
+import { setToken } from './utilities/globals';
 
 const App = () => {
   const [userName, setUserName] = useState("");
   const [userID, setUserID] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  console.log("heheh");
 
   useEffect(() => {
+    console.log("inside");
     const getDetails = async () => {
       const token = sessionStorage.getItem("token");
       if (token) {
         setIsLoggedIn(true);
+        console.log(isLoggedIn);
+        setToken(token); // Update the global token
         const details = await getUserDetails(token);
         setUserName(details.first_name + " " + details.last_name);
         setUserID(details.id);

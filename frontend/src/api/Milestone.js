@@ -1,16 +1,20 @@
 import axios from 'axios';
-import { LOCAL_URL } from '../utilities/globals';
+import { LOCAL_URL, getToken } from '../utilities/globals';
 
 
 // api endpoint for milestone creation
 const createMilestone = async (milestoneData) => {
   const API_URL = `${LOCAL_URL}api/tcms/milestones/`;
+  const token = getToken(); // Retrieve the global token
 
   try {
     const response = await axios.post(API_URL, milestoneData, {
+      // headers: {
+      //   'Content-Type': 'application/json',
+      // },
       headers: {
-        'Content-Type': 'application/json',
-      },
+        'Authorization': `Token ${token}` // Include the token in the request header
+      }
     });
 
     console.log(response.data); // debug statement, remove before production
@@ -25,9 +29,12 @@ const createMilestone = async (milestoneData) => {
 const fetchMilestones = async () => {
 
     const API_URL = `${LOCAL_URL}api/tcms/milestones/`;
-  
+    const token = getToken(); 
+    
     try {
-      const response = await axios.get(API_URL);
+      const response = await axios.get(API_URL, {headers: {
+        'Authorization': `Token ${token}` // Include the token in the request header
+      }});
       console.log(response.data); // debug statement, remove before production
       return response.data;  
     } catch (error) {
