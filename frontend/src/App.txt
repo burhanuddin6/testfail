@@ -19,23 +19,23 @@ import Forgot from './Pages/Forgot';
 import EmailVerification from './Pages/EmailVerification';
 import Dashboard from './Pages/Dashboard';
 import AddMilestone from './Pages/AddMilestones';
-import TestSuitesCases from './Pages/TestSuitsCases';
-import AddTestRun from './Pages/AddTestRun';
-import NotFound from './Pages/NotFound';
-import TestRunsPage from './Pages/TestRuns';
 import MilestonesStatus from './Pages/MilestonesStatus';
 import MilestonesActivity from './Pages/MilestonesActivity';
 import MilestonesProgress from './Pages/MilestonesProgress';
 import MilestonesDefect from './Pages/MilestonesDefect';
+import TestSuitesCases from './Pages/TestSuitsCases';
+import AddTestRun from './Pages/AddTestRun';
+import TestRunsPage from './Pages/TestRuns';
+import AddTestSuite from './Pages/AddTestSuite';
+import EditTestSuite from './Pages/EditTestSuite';
+import NotFound from './Pages/NotFound';
 
 const App = () => {
   const [userName, setUserName] = useState("");
   const [userID, setUserID] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  console.log("heheh");
 
   useEffect(() => {
-    console.log("inside");
     const getDetails = async () => {
       const token = sessionStorage.getItem("token");
       if (token) {
@@ -55,7 +55,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
 
-        {/* {!isLoggedIn ? (
+        {!isLoggedIn ? (
           <>
             <Route path="/" element={<Login />} />
             <Route path="/Signup" element={<SignUp />} />
@@ -75,15 +75,12 @@ const App = () => {
                 </>
               }
             />
-            <Route path="/todo" element={<TodoPage />} /> 
             <Route
               path="/todo/:projectId"
               element={
                 <>
                   <Header userName={userName} />
-                  <div className="main-content">
-                    <TodoPage />
-                  </div>
+                  <TodoPage />
                 </>
               }
             />
@@ -97,7 +94,7 @@ const App = () => {
               }
             />
             <Route 
-              path="AddMilestone" 
+              path="/add-milestone" 
               element={
                 <>
                   <Header userName={userName} />
@@ -106,14 +103,65 @@ const App = () => {
               }
             />
             <Route
-              path="/testruns"
+              path="/milestone-status" 
               element={
                 <>
                   <Header userName={userName} />
-                  <div className="main-content">
-                    <Sidebar />
-                    <TestRuns />
-                  </div>
+                  <MilestonesStatus  />
+                </>
+              }
+            />
+            <Route
+              path="/milestone-activity" 
+              element={
+                <>
+                  <Header userName={userName} />
+                  <MilestonesActivity  />
+                </>
+              }
+            />
+            <Route
+              path="/milestone-progress" 
+              element={
+                <>
+                  <Header userName={userName} />
+                  <MilestonesProgress />
+                </>
+              }
+            />
+            <Route
+              path="/milestone-defect" 
+              element={
+                <>
+                  <Header userName={userName} />
+                  <MilestonesDefect />
+                </>
+              }
+            />
+            <Route
+              path="/testsuitscases"
+              element={
+                <>
+                  <Header userName={userName} />
+                  <TestSuitesCases />
+                </>
+              }
+            />
+            <Route 
+              path="/AddTestRun" 
+              element={
+                <>
+                  <Header userName={userName} />
+                  <AddTestRun userID={userID} />
+                </>
+              }
+            />
+            <Route
+              path="/TestRuns"
+              element={
+                <>
+                  <Header userName={userName} />
+                  <TestRunsPage />
                 </>
               }
             />
@@ -123,7 +171,6 @@ const App = () => {
                 <>
                   <Header userName={userName} />
                   <div className="main-content">
-                    <Sidebar />
                     <TestRuns />
                   </div>
                 </>
@@ -131,6 +178,9 @@ const App = () => {
             />
             <Route path="*" element={<NotFound />} />
           </>
+<<<<<<< HEAD
+        )}
+=======
         )} */}
 
         <Route path="/" element={<Login />} />
@@ -237,6 +287,24 @@ const App = () => {
             </>
           }
         />
+        <Route 
+          path="/AddTestSuite" 
+          element={
+            <>
+              <Header userName={userName} />
+              <AddTestSuite />
+            </>
+          }
+        />
+        <Route 
+          path="/EditTestSuite" 
+          element={
+            <>
+              <Header userName={userName} />
+              <EditTestSuite />
+            </>
+          }
+        />
         {/* <Route
           path="/testruns"
           element={
@@ -261,6 +329,7 @@ const App = () => {
           }
         />
         <Route path="*" element={<NotFound />} />
+>>>>>>> origin/main
       </Routes>
     </BrowserRouter>
   );

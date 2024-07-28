@@ -1,10 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useNavigate  } from 'react';
 import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import {fetchTestSuites} from '../api/TestSuites'; // Import the API function (update the import path based on your file structure)
 import AlertBox from '../components/Alert'; // Import the AlertBox component
 import '../styles/TestSuitsCases.css';
 
 const TestSuitesCases = () => {
+  const navigate = useNavigate();
+
+  // Handle Add Test Suite button click
+  const handleAddTestSuite = () => {
+    navigate('/AddTestSuite'); // Redirect to Add Test Suite page
+  };
+
   const [testSuites, setTestSuites] = useState([]); // State to hold test suites data
   const [loading, setLoading] = useState(true); // Loading state
   const [error, setError] = useState(null); // Error state
@@ -47,22 +54,34 @@ const TestSuitesCases = () => {
 
       <div className="test-suites-header">
         <h1>Test Suites & Cases</h1>
-        <button className="add-test-suite">+ Add New Test Suite</button>
+        <button className="add-test-suite" onClick={handleAddTestSuite}>+ Add New Test Suite</button>
       </div>
+
+      {/* Suite Summary */}
       <div className="suite-summary">
         <span>{`${testSuites.length} test suites and ${testSuites.reduce((total, suite) => total + suite.cases, 0)} cases in this project.`}</span>
       </div>
+
+      {/* List of Test Suites */}
       <div className="suite-list">
         {testSuites.map((suite) => (
           <div key={suite.test_suite_id} className="suite">
             <div className="suite-header">
-              <a href="#" className="suite-title">{suite.name}</a>
+              <Link to={`/TestCases?suiteId=${suite.id}`} className="suite-title">
+                {suite.name}
+              </Link>
               <div className="suite-options">
-                <Link to={`/AddTestRun?suite=${encodeURIComponent(suite.name)}&source=TestSuitsCases`}>Run Test</Link>
+                <Link to={`/AddTestRun?suiteId=${suite.id}&suite=${encodeURIComponent(suite.name)}&source=TestSuitsCases`}>
+                  Run Test
+                </Link>
                 <span>|</span>
-                <Link to={`/TestRuns?suite=${encodeURIComponent(suite.name)}`}>Test Runs</Link>
+                <Link to={`/TestRuns?suiteId=${suite.id}&suite=${encodeURIComponent(suite.name)}`}>
+                  Test Runs
+                </Link>
                 <span>|</span>
-                <Link to={`/edit-suite?suite=${encodeURIComponent(suite.name)}`}>Edit</Link>
+                <Link to={`/EditTestSuite?suiteId=${suite.id}&suite=${encodeURIComponent(suite.name)}&source=TestSuitsCases`}>
+                  Edit
+                </Link>
               </div>
             </div>
             <div className="suite-details">

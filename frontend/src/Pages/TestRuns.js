@@ -11,9 +11,10 @@ const TestRuns = () => {
   const [error, setError] = useState(null);
   const [alertMessage, setAlertMessage] = useState(null); // State for alert messages
 
-  // Extracting test suite name from URL parameters
+  // Extracting test suite name and ID from URL parameters
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
+  const suiteId = searchParams.get('suiteId') || '0'; // Default to '0' if no suiteId is provided
   const suiteName = searchParams.get('suite') || 'Test Suite'; // Default to 'Test Suite' if no suiteName is provided
 
   // Fetch test runs data on component mount
@@ -133,11 +134,11 @@ const TestRuns = () => {
       )}
 
       <div className="test-runs-header">
-        <h2>{suiteName}</h2>
+        <h2>{`S${suiteId} - ${suiteName}`}</h2> {/* Display Suite ID and Name */}
         <div className="test-runs-actions">
-          <Link to={`/AddTestRun?suite=${encodeURIComponent(suiteName)}&source=TestRuns`} className="run-test-link">Run Test</Link>
+          <Link to={`/AddTestRun?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}&source=TestRuns`} className="run-test-link">Run Test</Link>
           <span></span>
-          <Link to={`/edit-suite?suite=${encodeURIComponent(suiteName)}`} className="edit-suite-link">Edit</Link>
+          <Link to={`/EditTestSuite?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}&source=TestRuns`} className="edit-suite-link">Edit</Link>
         </div>
       </div>
 

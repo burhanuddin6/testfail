@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import '../styles/AddTestRun.css'; // Import the CSS file
-import { useNavigate, useLocation } from 'react-router-dom'; // Import useLocation for reading query parameters
+import '../styles/AddTestRun.css';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { createTestRun } from '../api/TestRun'; // Import the createTestRun function
 
 const AddTestRun = ({userID}) => {
@@ -14,13 +14,15 @@ const AddTestRun = ({userID}) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Retrieve the source page and suite name from URL query parameters
+  // Retrieve suite ID, source page, and suite name from URL query parameters
   const searchParams = new URLSearchParams(location.search);
+  const suiteId = searchParams.get('suiteId') || '0'; // Default to '0' if no suiteId is provided
   const sourcePage = searchParams.get('source'); // Will be either 'TestSuitesCases' or 'TestRuns'
-  const suiteName = searchParams.get('suite'); // Retrieve the suite name
+  const suiteName = searchParams.get('suite') || 'Test Suite'; // Default to 'Test Suite' if no suiteName is provided
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     
     // Prepare the test run data
     const testRunData = {
@@ -40,7 +42,7 @@ const AddTestRun = ({userID}) => {
 
       // Navigate based on the source page
       if (sourcePage === 'TestRuns') {
-        navigate(`/TestRuns?suite=${encodeURIComponent(suiteName)}`);
+        navigate(`/TestRuns?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}`);
       } else {
         navigate('/TestSuitsCases'); // Default to Test Suites & Cases
       }
@@ -53,11 +55,11 @@ const AddTestRun = ({userID}) => {
   const handleCancel = (e) => {
     e.preventDefault();
 
-    // Navigate based on the source page
+    // Navigate based on the source page and include suite ID in URL
     if (sourcePage === 'TestRuns') {
-      navigate(`/TestRuns?suite=${encodeURIComponent(suiteName)}`);
+      navigate(`/TestRuns?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}`);
     } else {
-      navigate('/TestSuitsCases'); // Default to Test Suites & Cases
+      navigate('/TestSuitsCases');
     }
   };
 
@@ -191,14 +193,14 @@ const AddTestRun = ({userID}) => {
 
         <div className="test-run-buttons">
           <button type="submit" className="test-run-button test-run-submit">
-            Add Test Run
+            ✓ Add Test Run
           </button>
           <button
             type="button"
             className="test-run-button test-run-cancel"
             onClick={handleCancel}
           >
-            Cancel
+            ✗ Cancel
           </button>
         </div>
       </form>
