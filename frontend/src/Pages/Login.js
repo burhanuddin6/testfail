@@ -80,7 +80,7 @@ const Login = () => {
               placeholder="Email"
               value={formData.email}
               onChange={handleChange}
-              required
+              required 
             />
           </div>
           <div className="form-group">
@@ -101,7 +101,8 @@ const Login = () => {
             <input type="checkbox" id="keepLoggedIn" />
             <label htmlFor="keepLoggedIn">Keep me logged in</label>
           </div>
-          <a href="#" onClick={handleForgot}>Forgot your password?</a>
+          <div className='forgot-password'><a href="#" onClick={handleForgot}>Forgot your password?</a></div>
+          
         </form>
         {message && <div className={`message ${message.includes('successfully') ? 'message-success' : 'message-error'}`}>{message}</div>}
       </div>
