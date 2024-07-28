@@ -11,8 +11,10 @@ const AddMilestone = ({userID}) => {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [isCompleted, setIsCompleted] = useState(false);
+  // const [projectID, setProjectID] = useState(false);
+
   const [selectedFile, setSelectedFile] = useState(null);
-  const [newText, setNewText] = useState('');
+  // const [newText, setNewText] = useState('');
 
   const navigate = useNavigate();
 
@@ -27,6 +29,8 @@ const AddMilestone = ({userID}) => {
       start_date: startDate || null,
       end_date: endDate || null,
       is_complete: isCompleted,
+      project_id: 1,
+      
     };
 
     try {

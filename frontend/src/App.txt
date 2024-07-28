@@ -32,8 +32,10 @@ const App = () => {
   const [userName, setUserName] = useState("");
   const [userID, setUserID] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  console.log("heheh");
 
   useEffect(() => {
+    console.log("inside");
     const getDetails = async () => {
       const token = sessionStorage.getItem("token");
       if (token) {
@@ -53,7 +55,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
 
-        {!isLoggedIn ? (
+        {/* {!isLoggedIn ? (
           <>
             <Route path="/" element={<Login />} />
             <Route path="/Signup" element={<SignUp />} />
@@ -73,12 +75,15 @@ const App = () => {
                 </>
               }
             />
+            <Route path="/todo" element={<TodoPage />} /> 
             <Route
               path="/todo/:projectId"
               element={
                 <>
                   <Header userName={userName} />
-                  <TodoPage />
+                  <div className="main-content">
+                    <TodoPage />
+                  </div>
                 </>
               }
             />
@@ -92,7 +97,7 @@ const App = () => {
               }
             />
             <Route 
-              path="/add-milestone" 
+              path="AddMilestone" 
               element={
                 <>
                   <Header userName={userName} />
@@ -101,65 +106,14 @@ const App = () => {
               }
             />
             <Route
-              path="/milestone-status" 
+              path="/testruns"
               element={
                 <>
                   <Header userName={userName} />
-                  <MilestonesStatus  />
-                </>
-              }
-            />
-            <Route
-              path="/milestone-activity" 
-              element={
-                <>
-                  <Header userName={userName} />
-                  <MilestonesActivity  />
-                </>
-              }
-            />
-            <Route
-              path="/milestone-progress" 
-              element={
-                <>
-                  <Header userName={userName} />
-                  <MilestonesProgress />
-                </>
-              }
-            />
-            <Route
-              path="/milestone-defect" 
-              element={
-                <>
-                  <Header userName={userName} />
-                  <MilestonesDefect />
-                </>
-              }
-            />
-            <Route
-              path="/testsuitscases"
-              element={
-                <>
-                  <Header userName={userName} />
-                  <TestSuitesCases />
-                </>
-              }
-            />
-            <Route 
-              path="/AddTestRun" 
-              element={
-                <>
-                  <Header userName={userName} />
-                  <AddTestRun userID={userID} />
-                </>
-              }
-            />
-            <Route
-              path="/TestRuns"
-              element={
-                <>
-                  <Header userName={userName} />
-                  <TestRunsPage />
+                  <div className="main-content">
+                    <Sidebar />
+                    <TestRuns />
+                  </div>
                 </>
               }
             />
@@ -169,6 +123,7 @@ const App = () => {
                 <>
                   <Header userName={userName} />
                   <div className="main-content">
+                    <Sidebar />
                     <TestRuns />
                   </div>
                 </>
@@ -176,7 +131,136 @@ const App = () => {
             />
             <Route path="*" element={<NotFound />} />
           </>
-        )}
+        )} */}
+
+        <Route path="/" element={<Login />} />
+        <Route path="/SignUp" element={<SignUp />} />
+        <Route path="/Forgot" element={<Forgot />} />
+        <Route path="/verify-email" element={<EmailVerification />} />
+        <Route path="/Dashboard" element={<Dashboard userName={userName} />} />
+        <Route
+          path="/overview/:projectId"
+          element={
+            <>
+              <Header userName={userName} />
+              <Overview/>
+            </>
+          }
+        />
+        <Route
+          path="/todo/:projectId"
+          element={
+            <>
+              <Header userName={userName} />
+              <TodoPage />
+            </>
+          }
+        />
+        <Route
+          path="/milestones"
+          element={
+            <>
+              <Header userName={userName} />
+              <MilestonesPage />
+            </>
+          }
+        />
+        <Route 
+          path="/add-milestone" 
+          element={
+            <>
+              <Header userName={userName} />
+              <AddMilestone  />
+            </>
+          }
+        />
+        <Route
+          path="/milestone-status" 
+          element={
+            <>
+              <Header userName={userName} />
+              <MilestonesStatus  />
+            </>
+          }
+        />
+        <Route
+          path="/milestone-activity" 
+          element={
+            <>
+              <Header userName={userName} />
+              <MilestonesActivity  />
+            </>
+          }
+        />
+        <Route
+          path="/milestone-progress" 
+          element={
+            <>
+              <Header userName={userName} />
+              <MilestonesProgress />
+            </>
+          }
+        />
+        <Route
+          path="/milestone-defect" 
+          element={
+            <>
+              <Header userName={userName} />
+              <MilestonesDefect />
+            </>
+          }
+        />
+        <Route
+          path="/testsuitscases"
+          element={
+            <>
+              <Header userName={userName} />
+              <TestSuitesCases />
+            </>
+          }
+        />
+        <Route 
+          path="/AddTestRun" 
+          element={
+            <>
+              <Header userName={userName} />
+              <AddTestRun  />
+            </>
+          }
+        />
+        <Route
+          path="/TestRuns"
+          element={
+            <>
+              <Header userName={userName} />
+              <TestRunsPage />
+            </>
+          }
+        />
+        {/* <Route
+          path="/testruns"
+          element={
+            <>
+              <Header userName={userName} />
+              <div className="main-content">
+                <Sidebar />
+                <TestRuns />
+              </div>
+            </>
+          }
+        /> */}
+        <Route
+          path="/testruns/:id"
+          element={
+            <>
+              <Header userName={userName} />
+              <div className="main-content">
+                <TestRuns />
+              </div>
+            </>
+          }
+        />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

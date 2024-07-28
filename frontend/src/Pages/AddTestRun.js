@@ -1,9 +1,9 @@
-
 import React, { useState } from 'react';
 import '../styles/AddTestRun.css'; // Import the CSS file
 import { useNavigate, useLocation } from 'react-router-dom'; // Import useLocation for reading query parameters
+import { createTestRun } from '../api/TestRun'; // Import the createTestRun function
 
-const AddTestRun = () => {
+const AddTestRun = ({userID}) => {
   const [name, setName] = useState('');
   const [references, setReferences] = useState('');
   const [milestone, setMilestone] = useState('');
@@ -19,24 +19,34 @@ const AddTestRun = () => {
   const sourcePage = searchParams.get('source'); // Will be either 'TestSuitesCases' or 'TestRuns'
   const suiteName = searchParams.get('suite'); // Retrieve the suite name
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted with:', {
+    
+    // Prepare the test run data
+    const testRunData = {
       name,
-      references,
-      milestone,
-      assignTo,
+      test_suite_id: 1, 
+      creator_id: userID,   
+      milestone_id: 1,
       description,
-      testCaseSelection,
-    });
+      test_case_filter: testCaseSelection === 'specific' ? 'Specific Test Cases Filter' : '', 
+      project_id: 1,     
+    };
 
-    // Navigate based on the source page
-    if (sourcePage === 'TestRuns') {
-      // Redirect to the specific TestRuns page for the suite
-      navigate(`/TestRuns?suite=${encodeURIComponent(suiteName)}`);
-    } else {
-      navigate('/TestSuitsCases'); // Default to Test Suites & Cases
+    try {
+      // Call the API to create the test run
+      await createTestRun(testRunData);
+      console.log('Test run created successfully');
+
+      // Navigate based on the source page
+      if (sourcePage === 'TestRuns') {
+        navigate(`/TestRuns?suite=${encodeURIComponent(suiteName)}`);
+      } else {
+        navigate('/TestSuitsCases'); // Default to Test Suites & Cases
+      }
+    } catch (error) {
+      console.error('Failed to create Test Run:', error);
+      // Optionally, you could show an error message to the user here
     }
   };
 
@@ -45,7 +55,6 @@ const AddTestRun = () => {
 
     // Navigate based on the source page
     if (sourcePage === 'TestRuns') {
-      // Redirect to the specific TestRuns page for the suite
       navigate(`/TestRuns?suite=${encodeURIComponent(suiteName)}`);
     } else {
       navigate('/TestSuitsCases'); // Default to Test Suites & Cases

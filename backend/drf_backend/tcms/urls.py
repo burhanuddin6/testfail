@@ -29,6 +29,12 @@ router.register(r'test_suites', TestSuiteViewSet)
 router.register(r'sections', SectionViewSet)
 router.register(r'test_suite_files', TestSuiteFileViewSet)
 
+#test run --to get checked
+router.register(r'test_run', TestRunViewSet)
+router.register(r'test_run_files', TestRunFileViewSet)
+router.register(r'test_run_tickets', TestRunTicketViewSet)
+router.register(r'test_run_test_cases', TestRunTestCaseViewSet)
+
 #milestone
 router.register(r'milestones', MilestoneViewSet)
 router.register(r'milestone_files', MilestoneFileViewSet)
