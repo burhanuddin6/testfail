@@ -75,6 +75,7 @@ class ImportTestCases():
         # Handle Test Cases
         test_case, created = TestCase.objects.get_or_create(
             title = testcase_title,
+            project_id = self.project,
             defaults={
                 'priority_id': self.priority,
                 'type_id': self.type,
@@ -134,6 +135,7 @@ class ImportTestCases():
     def get_or_create_suite(self, suite_name, user, project):
         return TestSuite.objects.get_or_create(
             name=suite_name,
+            project_id=project,
             defaults={
                 'creator_id': user, 
                 'project_id': project,

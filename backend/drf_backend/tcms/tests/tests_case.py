@@ -4,7 +4,7 @@ from rest_framework.test import APITestCase
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.contrib.auth import get_user_model
 from rest_framework.permissions import AllowAny
-from ..models import TestCase, TestCaseFile, TemplateForTestCase, StatusForTestCase, TestCaseResult, TestCaseResultFile, Project
+from ..models import *
 from ..views import TestCaseViewSet, TestCaseResultViewSet
 
 class TestCaseAPITest(APITestCase):
@@ -15,8 +15,9 @@ class TestCaseAPITest(APITestCase):
         TestCaseViewSet.permission_classes = [AllowAny]
         self.user = get_user_model().objects.create_user(email='testuser@example.com', password='testpassword')
         self.project = Project.objects.create(name='Test Project', creator_id=self.user)
-        self.template = TemplateForTestCase.objects.create(template_name='Test Template', template_text='Test Template Text')
         self.test_case_url = reverse('testcase-list')  # Assuming you're using a DefaultRouter
+        self.test_suite = TestSuite.objects.create(name='Test Suite', creator_id=self.user, project_id=self.project)
+        self.section = Section.objects.create(name='Section', creator_id=self.user, test_suite_id=self.test_suite)
 
     def tearDown(self):
         # Revert the permission classes after tests
@@ -27,9 +28,9 @@ class TestCaseAPITest(APITestCase):
             'title': 'Test Case Title',
             'template_blob': '{%Step%}: "Do this"\n{%Step%}: "Do that"',
             'creator_id': self.user.pk,  # Add the creator field
-            'template_id': self.template.pk,  # Add the template field
             'project_id': self.project.pk,  # Add the project field
             'tickets': ['ticket1', 'ticket2'],  # Add the tickets field
+            'section_id': self.section.pk,  # Add the section field
         }
         response = self.client.post(self.test_case_url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -50,8 +51,8 @@ class TestCaseAPITest(APITestCase):
             'template_blob': '{%Step%}: "Do this"\n{%Step%}: "Do that"',
             'files': [file],  # Ensure you're using a format that includes files
             'creator_id': self.user.pk,  # Add the creator field
-            'template_id': self.template.pk,  # Add the template field
             'project_id': self.project.pk,  # Add the project field
+            'section_id': self.section.pk,  # Add the section field
             'tickets': ['ticket1'],  # Add the tickets field
             # Add other fields as needed
         }
@@ -66,7 +67,7 @@ class TestCaseAPITest(APITestCase):
         self.assertEqual(test_case.tickets.first().ticket, 'ticket1')
 
     def test_retrieve_test_case(self):
-        test_case = TestCase.objects.create(title='Test Case Title', creator_id=self.user, template_id=self.template, project_id=self.project)
+        test_case = TestCase.objects.create(title='Test Case Title', creator_id=self.user, project_id=self.project, section_id=self.section)
         url = reverse('testcase-detail', args=[test_case.pk])
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -75,15 +76,15 @@ class TestCaseAPITest(APITestCase):
         self.assertEqual(response.data['project_id'], self.project.pk)
 
     def test_update_test_case(self):
-        test_case = TestCase.objects.create(title='Old Title', creator_id=self.user, template_id=self.template, project_id=self.project)
+        test_case = TestCase.objects.create(title='Old Title', creator_id=self.user, project_id=self.project, section_id=self.section)
         url = reverse('testcase-detail', args=[test_case.pk])
         data = {
             'title': 'Updated Title',
             'template_blob': '{%Step%}: "Do this instead"\n{%Step%}: "Do that"',
             'creator_id': self.user.pk,  # Ensure creator remains the same
-            'template_id': self.template.pk,  
             'project_id': self.project.pk,  # Ensure project remains the same
             'tickets': ['ticket1', 'ticket3', 'ticket78'],  # Ensure tickets remain the same
+            'section_id': self.section.pk,  # Ensure section remains the same
         }
         response = self.client.put(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -95,7 +96,7 @@ class TestCaseAPITest(APITestCase):
         self.assertEqual(test_case.tickets.count(), 0)
 
     def test_delete_test_case(self):
-        test_case = TestCase.objects.create(title='Test Case Title', creator_id=self.user, template_id=self.template, project_id=self.project)
+        test_case = TestCase.objects.create(title='Test Case Title', creator_id=self.user, project_id=self.project, section_id=self.section)
         url = reverse('testcase-detail', args=[test_case.pk])
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
@@ -110,8 +111,9 @@ class TestCaseResultAPITest(APITestCase):
         TestCaseResultViewSet.permission_classes = [AllowAny]
         self.user = get_user_model().objects.create_user(email='testuser@example.com', password='testpassword')
         self.project = Project.objects.create(name='Test Project', creator_id=self.user)
-        self.template = TemplateForTestCase.objects.create(template_name='Test Template', template_text='Test Template Text')
-        self.test_case = TestCase.objects.create(title='Test Case Title', creator_id=self.user, template_id=self.template, project_id=self.project)
+        self.test_suite = TestSuite.objects.create(name='Test Suite', creator_id=self.user, project_id=self.project)
+        self.section = Section.objects.create(name='Section', creator_id=self.user, test_suite_id=self.test_suite)
+        self.test_case = TestCase.objects.create(title='Test Case Title', creator_id=self.user, project_id=self.project, section_id=self.section)
         self.status = StatusForTestCase.objects.create(name='Passed', color='green')
         self.test_case_result_url = reverse('testcaseresult-list')  # Assuming you're using a DefaultRouter
 
@@ -127,7 +129,7 @@ class TestCaseResultAPITest(APITestCase):
             'result_blob': 'This is the result blob',
             'version': '1.0',
             'comment': 'This is a comment',
-            'result_time': '12:00:00'
+            'result_time': '12:00:00',
         }
         response = self.client.post(self.test_case_result_url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -147,7 +149,7 @@ class TestCaseResultAPITest(APITestCase):
             'version': '1.0',
             'comment': 'This is a comment',
             'result_time': '12:00:00',
-            'files': [file]
+            'files': [file],
         }
         response = self.client.post(self.test_case_result_url, data, format='multipart')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)

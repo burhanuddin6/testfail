@@ -25,3 +25,10 @@ class TestRunTicket(models.Model):
 class TestRunTestCase(models.Model):
     test_run_test_case_id = models.AutoField(primary_key=True)
     test_run_id = models.ForeignKey('TestRun', on_delete=models.CASCADE)
+    test_case_id = models.ForeignKey('TestCase', on_delete=models.CASCADE)
+
+class TestRunTestCaseResults(models.Model):
+    test_run_test_case_result_id = models.AutoField(primary_key=True)
+    test_run_test_case_id = models.ForeignKey(TestRunTestCase, on_delete=models.CASCADE)
+    test_case_result_id = models.ForeignKey('TestCaseResult', on_delete=models.CASCADE)
+    test_run_id = models.ForeignKey(TestRun, on_delete=models.CASCADE)
