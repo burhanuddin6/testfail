@@ -45,3 +45,5 @@ class BugTrackerTicketViewSet(viewsets.ModelViewSet):
     serializer_class = BugTrackerTicketSerializer
     permission_classes = [HasModelPermissions]
     
+
+    
