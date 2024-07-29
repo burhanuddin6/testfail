@@ -22,6 +22,11 @@ const TestSuitesCases = () => {
     navigate('/AddTestSuite'); // Redirect to Add Test Suite page
   };
 
+  // Handle click on a suite to navigate to Sections & Cases page
+  const handleSuiteClick = (suiteId, suiteName) => {
+    navigate(`/SectionsCases?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}`);
+  };
+
   return (
     <div className="test-suites-cases">
       {/* Header Section */}
@@ -40,7 +45,11 @@ const TestSuitesCases = () => {
         {testSuites.map((suite) => (
           <div key={suite.id} className="suite">
             <div className="suite-header">
-              <Link to={`/TestCases?suiteId=${suite.id}`} className="suite-title">
+              <Link
+                to={`/SectionsCases?suiteId=${suite.id}&suite=${encodeURIComponent(suite.title)}`}
+                className="suite-title"
+                onClick={() => handleSuiteClick(suite.id, suite.title)}
+              >
                 {suite.title}
               </Link>
               <div className="suite-options">
