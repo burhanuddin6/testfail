@@ -24,10 +24,13 @@ class TestCaseResultViewSet(viewsets.ModelViewSet):
         files = request.FILES.getlist('files')
         for file in files:
             TestCaseResultFile.objects.create(test_case_result_id=test_case_result, file=file)
-
-        tickets = request.data.get('tickets', [])
-        for ticket in tickets:
-            BugTrackerTicket.objects.create(test_case_result_id=test_case_result, bug_tracker=ticket)
+        try:
+            tickets = request.data.getlist('tickets')
+        except:
+            tickets = request.data.get('tickets', [])
+        if tickets:
+            for ticket in tickets:
+                BugTrackerTicket.objects.create(test_case_result_id=test_case_result, bug_tracker=ticket)
 
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)

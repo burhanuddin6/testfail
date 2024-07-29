@@ -36,9 +36,13 @@ class TestCaseViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
         test_case = serializer.save()
 
-        tickets = request.data.get('tickets', [])
-        for ticket in tickets:
-            TestCaseTicket.objects.create(test_case_id=test_case, ticket=ticket)
+        try:
+            tickets = request.data.getlist('tickets')
+        except:
+            tickets = request.data.get('tickets', [])
+        if tickets:
+            for ticket in tickets:
+                TestCaseTicket.objects.create(test_case_id=test_case, ticket=ticket)
 
         # Check if files are in the request and create TestCaseFile objects
         files = request.FILES.getlist('files')
