@@ -46,7 +46,7 @@ const Milestones = () => {
 
   const handleAdd = (e) => {
     e.preventDefault();
-    navigate('/AddMilestone');
+    navigate('/add-milestone');
   };
 
 
@@ -67,7 +67,7 @@ const Milestones = () => {
             {openMilestones.map((milestone) => (
               <div className='details' key={milestone.id}>
                 <input type="checkbox" checked={milestone.checked} onChange={() => handleCheckboxChange(milestone.id, 'open')} />
-                <a href='' className='milestoneName'>milestone</a>
+                <a href='/milestone-status' className='milestoneName'>milestone</a>
                 <div class="status-bar">
                     <div class="status-bar-inner status-52"></div>
                 </div>

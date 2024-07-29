@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import '../styles/AddTestRun.css'; // Import the CSS file
-import { useNavigate } from 'react-router-dom';
+import '../styles/AddTestRun.css';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const AddTestRun = () => {
   const [name, setName] = useState('');
@@ -11,9 +11,17 @@ const AddTestRun = () => {
   const [testCaseSelection, setTestCaseSelection] = useState('all');
 
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Retrieve suite ID, source page, and suite name from URL query parameters
+  const searchParams = new URLSearchParams(location.search);
+  const suiteId = searchParams.get('suiteId') || '0'; // Default to '0' if no suiteId is provided
+  const sourcePage = searchParams.get('source'); // Will be either 'TestSuitesCases' or 'TestRuns'
+  const suiteName = searchParams.get('suite') || 'Test Suite'; // Default to 'Test Suite' if no suiteName is provided
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
     // Handle form submission here
     console.log('Form submitted with:', {
       name,
@@ -23,18 +31,30 @@ const AddTestRun = () => {
       description,
       testCaseSelection,
     });
-    navigate('/TestSuitsCases'); // Navigate to the desired page after submission
+
+    // Navigate based on the source page and include suite ID in URL
+    if (sourcePage === 'TestRuns') {
+      navigate(`/TestRuns?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}`);
+    } else {
+      navigate('/TestSuitsCases');
+    }
   };
 
   const handleCancel = (e) => {
     e.preventDefault();
-    navigate('/TestSuitsCases'); // Navigate to the previous page when canceled
+
+    // Navigate based on the source page and include suite ID in URL
+    if (sourcePage === 'TestRuns') {
+      navigate(`/TestRuns?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}`);
+    } else {
+      navigate('/TestSuitsCases');
+    }
   };
 
   return (
     <div className="test-run-container">
       <form className="test-run-form" onSubmit={handleSubmit}>
-        <h2 className="test-run-title">Add Test Run</h2>
+        <h2 className="add-test-run-title">Add Test Run</h2>
 
         <div className="test-run-form-group">
           <label htmlFor="name" className="test-run-label">
@@ -161,14 +181,14 @@ const AddTestRun = () => {
 
         <div className="test-run-buttons">
           <button type="submit" className="test-run-button test-run-submit">
-            Add Test Run
+            ✓ Add Test Run
           </button>
           <button
             type="button"
             className="test-run-button test-run-cancel"
             onClick={handleCancel}
           >
-            Cancel
+            ✗ Cancel
           </button>
         </div>
       </form>
@@ -177,4 +197,3 @@ const AddTestRun = () => {
 };
 
 export default AddTestRun;
-

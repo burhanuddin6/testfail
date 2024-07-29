@@ -1,0 +1,98 @@
+.progress-mainclass {
+    display: flex;
+    flex-direction: column;
+    color: black;
+    margin-left: 30px;
+}
+
+.progress-header {
+    display: flex;
+    flex-direction: column;
+}
+
+.progress-options {
+    display: flex;
+    gap: 30px;
+}
+
+.progress-options a {
+    color: black;
+}
+
+.progress-control-button button{
+    width: 100px;
+    height: 40px;
+}
+
+.progress-controls {
+    display: flex;
+    gap: 30px;
+}
+
+.progress-control-button {
+   margin-left: auto;
+   display: flex;
+   gap: 30px;
+   margin-right: 30px;
+}
+
+.progress-details {
+    display: flex;
+    gap: 30px;
+    width: auto;
+    margin-right: 30px; 
+    background-color: white;
+}
+
+.progress-details-chart, .progress-details-label {
+    height: auto;
+    width: 50%;
+    padding: 20px;
+}
+
+
+.progress-details-section {
+    display: flex;
+    gap: 800px;
+}
+
+.progress-expected-date {
+    margin-right: 30px;
+}
+
+.progress-expected-date-info {
+    width: 30%;
+}
+
+hr {
+    width: auto;
+    margin-right: 30px;
+}
+
+table {
+    width: 99%;
+    margin-right: 30px;
+    margin-bottom: 30px;
+}
+
+td {
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    border-bottom: 1px solid #ddd;
+    background-color: rgb(202, 202, 202);
+}
+
+.progress-testrun-details {
+    display: flex;
+    background-color: white;
+    margin-right: 30px;
+    margin-bottom: 10px;
+}
+
+.progress-testrun-forecast {
+    margin-left: auto;
+    margin-right: 30px;
+}
