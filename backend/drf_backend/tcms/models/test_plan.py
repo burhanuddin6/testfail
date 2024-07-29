@@ -22,12 +22,7 @@ class TestPlanTicket(models.Model):
     test_plan_id = models.ForeignKey(TestPlan, on_delete=models.CASCADE)
 
 
-class TestPlanTestCase(models.Model):
-    test_plan_test_case_id = models.AutoField(primary_key=True)
-    test_plan = models.ForeignKey('TestPlan', on_delete=models.CASCADE)
-    test_case = models.ForeignKey('TestCase', on_delete=models.CASCADE)
-
-class TestPlanTestSuite(models.Model):
-    test_plan_test_suite_id = models.AutoField(primary_key=True)
-    test_plan = models.ForeignKey('TestPlan', on_delete=models.CASCADE)
-    test_suite = models.ForeignKey('TestSuite', on_delete=models.CASCADE)
+class TestPlanTestRun(models.Model):
+    test_plan_test_run_id = models.AutoField(primary_key=True)
+    test_plan_id = models.ForeignKey(TestPlan, on_delete=models.CASCADE)
+    test_run_id = models.ForeignKey('TestRun', on_delete=models.CASCADE)

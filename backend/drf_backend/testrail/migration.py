@@ -2,8 +2,8 @@ import os
 import django
 from datetime import datetime
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'drf_backend.settings')
-django.setup()
+# os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'drf_backend.settings')
+# django.setup()
 
 import csv
 from django.core.management.base import BaseCommand
@@ -12,15 +12,17 @@ from tcms.models import (
     MyUser, TestSuite, Section, Project
 )
 
-class ImportTestCases(BaseCommand):
+class ImportTestCases():
     help = 'Import test cases from a CSV file'
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        project_name = 'Privaci'  # Adjust as needed
-        self.project = Project.objects.get(name=project_name)
+        project_id = kwargs.get('project_id')
+        if not project_id:
+            raise ValueError("Project ID is required")
+        print(project_id)
+        self.project = Project.objects.get(project_id=project_id)
         if not self.project:
-            raise ValueError(f"Project {project_name} not found")
+            raise ValueError(f"Project {project_id} not found")
 
     def add_arguments(self, parser):
         parser.add_argument('csv_file', type=str)
@@ -30,17 +32,18 @@ class ImportTestCases(BaseCommand):
         
         with open(csv_file_path, mode='r') as file:
             reader = csv.DictReader(file)
+            # check if all required columns are present: "ID","Title","Assigned To","Automation Type","Created By","Created On","Estimate","Expected Result","Forecast","Goals","Mission","Preconditions","Priority","References","Section","Section Depth","Section Description","Section Hierarchy","Steps","Steps (Multi)","Steps (Additional Info)","Steps (Expected Result)","Steps (References)","Steps (Shared step ID)","Steps (Step)","Suite","Suite ID","Template","Type","Updated By","Updated On"
+            required_columns = ["ID","Title","Assigned To","Automation Type","Created By","Created On","Estimate","Expected Result","Forecast","Goals","Mission","Preconditions","Priority","References","Section","Section Depth","Section Description","Section Hierarchy","Steps","Steps (Multi)","Steps (Additional Info)","Steps (Expected Result)","Steps (References)","Steps (Shared step ID)","Steps (Step)","Suite","Suite ID","Template","Type","Updated By","Updated On"]
+            if not all([col in reader.fieldnames for col in required_columns]):
+                raise ValueError(f"Missing required columns: {', '.join([col for col in required_columns if col not in reader.fieldnames])}")
             for row in reader:
                 self.import_row(row)
 
     def import_row(self, row):
         # Handle Sections and Test Suites
         self.user = self.get_or_create_user(row['Created By'])
-        
         self.priority = self.get_or_create_priority(row['Priority'])
-        
         self.type = self.get_or_create_type(row['Type'])
-
         self.test_suite = self.get_or_create_suite(f'{row['Suite ID']}::{row['Suite']}', user=self.user, project=self.project)
         self.section = self.get_or_create_section(section_name=row['Section'], section_heirarchy=row['Section Hierarchy'], test_suite=self.test_suite, user=self.user)
         
@@ -72,6 +75,7 @@ class ImportTestCases(BaseCommand):
         # Handle Test Cases
         test_case, created = TestCase.objects.get_or_create(
             title = testcase_title,
+            project_id = self.project,
             defaults={
                 'priority_id': self.priority,
                 'type_id': self.type,
@@ -131,6 +135,7 @@ class ImportTestCases(BaseCommand):
     def get_or_create_suite(self, suite_name, user, project):
         return TestSuite.objects.get_or_create(
             name=suite_name,
+            project_id=project,
             defaults={
                 'creator_id': user, 
                 'project_id': project,

@@ -49,15 +49,14 @@ class MilestoneAPITest(APITestCase):
             'end_date': '2024-12-31',
             'is_complete': False,
             'files': [file],
-            'tickets': [
-                {'ticket': 'ticket1'},
-                {'ticket': 'ticket2'}
-            ]
+            'tickets': ['ticket1', 'ticket2'],
         }
         response = self.client.post(self.milestone_url, data, format='multipart')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Milestone.objects.count(), 1)
         self.assertEqual(MilestoneFile.objects.count(), 1)
+        for ticket in MilestoneTicket.objects.all():
+            print(ticket.ticket)
         self.assertEqual(MilestoneTicket.objects.count(), 2)
         milestone = Milestone.objects.first()
         self.assertEqual(milestone.creator_id, self.user)
