@@ -28,6 +28,7 @@ import AddTestSuite from './Pages/AddTestSuite';
 import EditTestSuite from './Pages/EditTestSuite';
 import SectionsCases from './Pages/SectionsCases';
 import AddTestCase from './Pages/AddTestCase';
+import AddSection from './Pages/AddSection';
 import NotFound from './Pages/NotFound';
 
 const App = () => {
@@ -266,6 +267,15 @@ const App = () => {
             <>
               <Header userName={userName} />
               <AddTestCase />
+            </>
+          }
+        />
+        <Route 
+          path="/AddSection" 
+          element={
+            <>
+              <Header userName={userName} />
+              <AddSection />
             </>
           }
         />
