@@ -8,15 +8,14 @@ import Graphcontrol from '../components/Graphcontrol.js'
 
 const Dashboard = ({userName}) => {
  
-  const [showButtons, setShowButtons] = useState(false);
+  // const [showButtons, setShowButtons] = useState(false);
+
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showWorkingOnMenu, setShowWorkingOnMenu] = useState(false);
 
-  
-
-  const handleFormat = () => {
-    setShowButtons(!showButtons);
-  };
+  // const handleFormat = () => {
+  //   setShowButtons(!showButtons);
+  // };
 
   return (
     <div className="dashboard-container">
@@ -78,11 +77,14 @@ const Dashboard = ({userName}) => {
           <Link to="/overview/project03" className='projectName'>Project 03</Link>
           <p>Contains 33 test suites, 143 active test runs and 10 active milestones</p>
         </div> 
-        {/* <div className='dashboard-details'>
-          <Link to="/overview/project03" className='projectName'>Project 044</Link>
+        <div className='dashboard-details'>
+          <Link to="/overview/project04" className='projectName'>Project 04</Link>
           <p>Contains 33 test suites, 143 active test runs and 10 active milestones</p>
-        </div> */}
-       
+        </div> 
+        <div className='dashboard-details'>
+          <Link to="/overview/project05" className='projectName'>Project 05</Link>
+          <p>Contains 33 test suites, 143 active test runs and 10 active milestones</p>
+        </div>
       </div>
 
       <div className='dashboard-todo'>
@@ -92,6 +94,18 @@ const Dashboard = ({userName}) => {
         </div> 
         <div className='dashboard-details'>
          <Link to="/todo/project02" className='projectName'>Project 02</Link>
+        </div>
+        <div className='dashboard-details'>
+         <Link to="/todo/project03" className='projectName'>Project 03</Link>
+        </div>
+        <div className='dashboard-details'>
+         <Link to="/todo/project04" className='projectName'>Project 04</Link>
+        </div>
+        <div className='dashboard-details'>
+         <Link to="/todo/project05" className='projectName'>Project 05</Link>
+        </div>
+        <div className='dashboard-details'>
+         <Link to="/todo/project06" className='projectName'>Project 06</Link>
         </div>
         </div>
       </div>
