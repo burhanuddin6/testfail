@@ -52,19 +52,68 @@ const Overview = () => {
       </div>
   
       <div className='overview-activitylog'>
-        <h2>Activity</h2>
-        <div className='activity-details'>
-          <p>details</p>
-          <div className='activity-change-by'>
-            <p>change by</p>
-          </div>
-        </div> 
-        <div className='activity-details'>
-          <p>details</p>
-        </div> 
-        <div className='activity-details'>
-          <p>details</p>
-        </div> 
+        <h3>Activity</h3>
+        <div className='activity-datewise-details'>
+          <p className='activity-date'>20 July 2024</p>
+          <div className='activity-details'>
+            <button>Test Run</button>
+            <p>details</p>
+            <div className='activity-change-by'>
+              <p>change by</p>
+            </div>
+          </div> 
+          <div className='activity-details'>
+            <button>Test Run</button>
+            <p>details</p>
+            <div className='activity-change-by'>
+              <p>change by</p>
+            </div>
+          </div> 
+          <div className='activity-details'>
+            <button>Test Run</button>
+            <p>details</p>
+            <div className='activity-change-by'>
+              <p>change by</p>
+            </div>
+          </div> 
+        </div>
+        
+        <div className='activity-datewise-details'>
+          <p className='activity-date'>19 July 2024</p>
+          <div className='activity-details'>
+            <button>Test Run</button>
+            <p>details</p>
+            <div className='activity-change-by'>
+              <p>change by</p>
+            </div>
+          </div> 
+          <div className='activity-details'>
+            <button>Test Run</button>
+            <p>details</p>
+            <div className='activity-change-by'>
+              <p>change by</p>
+            </div>
+          </div> 
+        </div>
+
+        <div className='activity-datewise-details'>
+          <p className='activity-date'>18 July 2024</p>
+          <div className='activity-details'>
+            <button>Test Run</button>
+            <p>details</p>
+            <div className='activity-change-by'>
+              <p>change by</p>
+            </div>
+          </div> 
+          <div className='activity-details'>
+            <button>Test Run</button>
+            <p>details</p>
+            <div className='activity-change-by'>
+              <p>change by</p>
+            </div>
+          </div> 
+        </div>
+
       </div>
 
     </main>
