@@ -43,12 +43,7 @@ class TestRunTicketViewSet(viewsets.ModelViewSet):
     serializer_class = TestRunTicketSerializer
     permission_classes = [HasModelPermissions]
 
-class TestRunTestCaseViewSet(viewsets.ModelViewSet):
-    queryset = TestRunTestCase.objects.all()
-    serializer_class = TestRunTestCaseSerializer
-    permission_classes = [HasModelPermissions]
-
 class TestRunTestCaseResultViewSet(viewsets.ModelViewSet):
-    queryset = TestRunTestCaseResults.objects.all()
+    queryset = TestRunTestCaseResult.objects.all()
     serializer_class = TestRunTestCaseResultsSerializer
     permission_classes = [HasModelPermissions]

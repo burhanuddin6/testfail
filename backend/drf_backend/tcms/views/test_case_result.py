@@ -5,11 +5,6 @@ from ..models import *
 from ..serializers import *
 from ..permissions import HasModelPermissions
 
-class StatusForTestCaseViewSet(viewsets.ModelViewSet):
-    queryset = StatusForTestCase.objects.all()
-    serializer_class = StatusForTestCaseSerializer
-    permission_classes = [HasModelPermissions]
-
 class TestCaseResultViewSet(viewsets.ModelViewSet):
     queryset = TestCaseResult.objects.all()
     serializer_class = TestCaseResultSerializer
@@ -46,4 +41,3 @@ class BugTrackerTicketViewSet(viewsets.ModelViewSet):
     permission_classes = [HasModelPermissions]
     
 
-    

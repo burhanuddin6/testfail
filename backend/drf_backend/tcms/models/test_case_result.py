@@ -2,35 +2,36 @@ from django.db import models
 from .test_case import TestCase
 from .user import MyUser
 
-class StatusForTestCase(models.Model):
-    status_id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=255, unique=True)
-    # color choices
-    COLORCHOICES = (
-        ('red', 'red'),
-        ('green', 'green'),
-        ('yellow', 'yellow'),
-        ('blue', 'blue'),
-        ('purple', 'purple'),
-        ('orange', 'orange'),
-        ('black', 'black'),
-        ('white', 'white'),
-        ('gray', 'gray'),
-        ('brown', 'brown'),
-        ('pink', 'pink'),
-    )
-    color = models.CharField(max_length=255, choices=COLORCHOICES)
-
 class TestCaseResult(models.Model):
-    test_case_result_id_id = models.AutoField(primary_key=True)
+    test_case_result_id = models.AutoField(primary_key=True)
     test_case_id = models.ForeignKey(TestCase, on_delete=models.CASCADE) 
-    status_id = models.ForeignKey(StatusForTestCase, on_delete=models.CASCADE)
+    PASS = 'PASS'
+    FAIL = 'FAIL'
+    BLOCKED = 'BLOCKED'
+    ERROR = 'ERROR'
+    UNTESTED = 'UNTESTED'
+    PARTIAL = 'PARTIAL'
+    STATUS_CHOICES = [
+        (PASS, 'PASS'),
+        (FAIL, 'FAIL'),
+        (BLOCKED, 'BLOCKED'),
+        (ERROR, 'ERROR'),
+        (UNTESTED, 'UNTESTED'),
+        (PARTIAL, 'PARTIAL'),
+    ]
+    status = models.CharField(max_length=255, choices=STATUS_CHOICES, default=UNTESTED)
     creator_id = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     result_blob = models.TextField()
     version = models.CharField(max_length=255, null=True, blank=True)
     comment = models.CharField(max_length=255, null=True, blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
-    result_time = models.TimeField()
+    result_time = models.IntegerField(null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        testcase = self.test_case_id
+        testcase.latest_result_id = self
+        testcase.save()
 
 
 class TestCaseResultFile(models.Model):

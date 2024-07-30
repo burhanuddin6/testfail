@@ -12,7 +12,6 @@ router.register(r'testcase_tickets', TestCaseTicketViewSet)
 router.register(r'testcases', TestCaseViewSet)
 
 #test case result
-router.register(r'status_for_testcase', StatusForTestCaseViewSet)
 router.register(r'testcase_results', TestCaseResultViewSet)
 router.register(r'testcase_result_files', TestCaseResultFileViewSet)
 
@@ -27,7 +26,6 @@ router.register(r'test_plan_test_runs', TestPlanTestRunViewSet)
 router.register(r'test_runs', TestRunViewSet)
 router.register(r'test_run_files', TestRunFileViewSet)
 router.register(r'test_run_tickets', TestRunTicketViewSet)
-router.register(r'test_run_test_cases', TestRunTestCaseViewSet)
 router.register(r'test_run_test_case_results', TestRunTestCaseResultViewSet)
 
 #test suite
@@ -43,6 +41,9 @@ router.register(r'milestone_tickets', MilestoneTicketViewSet)
 #user
 router.register(r'user_api_keys', UserApiKeyViewSet)
 router.register(r'user_account_integrations', UserAccountIntegrationViewSet)
+
+#project
+router.register(r'projects', ProjectViewSet)
 
 
 urlpatterns = [
