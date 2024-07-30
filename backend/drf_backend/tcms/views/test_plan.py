@@ -22,6 +22,14 @@ class TestPlanViewSet(viewsets.ModelViewSet):
         for file in files:
             TestPlanFile.objects.create(test_plan_id=test_plan, file=file)
 
+        try:
+            tickets = request.data.getlist('tickets')
+        except:
+            tickets = request.data.get('tickets', [])
+        if tickets:
+            for ticket in tickets:
+                TestPlanTicket.objects.create(test_plan_id=test_plan, ticket=ticket)
+
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 

@@ -11,6 +11,12 @@ class Milestone(models.Model):
 	end_date = models.DateField(null=True, blank=True)
 	is_complete = models.BooleanField(default=False)
 	project_id = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='milestones')
+	number_of_passed_test_cases = models.IntegerField(blank=True, default=0)
+	number_of_failed_test_cases = models.IntegerField(blank=True, default=0)
+	# number_of_blocked_test_cases = models.IntegerField(blank=True, default=0)
+	# number_of_untested_test_cases = models.IntegerField(blank=True, default=0)
+	# number_of_partial_test_cases = models.IntegerField(blank=True, default=0)
+	number_of_test_cases = models.IntegerField(blank=True, default=0)
 
 class MilestoneTicket(models.Model):
 	ticket_id = models.AutoField(primary_key=True)

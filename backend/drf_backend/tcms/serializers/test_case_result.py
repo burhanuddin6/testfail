@@ -1,10 +1,5 @@
 from rest_framework import serializers
-from ..models import StatusForTestCase, TestCaseResultFile, BugTrackerTicket, TestCaseResult
-
-class StatusForTestCaseSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = StatusForTestCase
-        fields = '__all__'
+from ..models import TestCaseResultFile, BugTrackerTicket, TestCaseResult
 
 class TestCaseResultFileSerializer(serializers.ModelSerializer):
     class Meta:
