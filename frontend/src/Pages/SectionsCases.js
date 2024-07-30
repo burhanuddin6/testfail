@@ -97,7 +97,7 @@ const SectionsCases = () => {
                   <div key={testCase.id} className="case-item">
                     <div className="case-id">
                       <input type="checkbox" />
-                      <Link to={`/TestCase/${testCase.id}`} className="case-id-link">{testCase.id}</Link>
+                      <Link to={`/TestCaseDetails`} className="case-id-link">{testCase.id}</Link>
                     </div>
                     <div className="case-title">{testCase.title}</div>
                     <div className="case-automation">{testCase.automation}</div>

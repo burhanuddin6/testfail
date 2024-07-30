@@ -1,244 +1,167 @@
-
-/* to-do adjusts itself but css is out */
-/* @import '../utilities/variables.css';
-
 body {
-    background-color: var(--bg-color);
-    margin: 0;
-    padding: 0;
-    
-  }
-  
-  
-  .dashboard-container {
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    
-  }
-  
-  .dashboard-header {
-    display: flex;
-    align-items: center;
-    background-color: #1d3557;
-    position: absolute;
-    width: 100%;
-    top: 0;
-    left: 0;
-    margin-bottom: 0;
-    justify-content: space-between;
-  }
-  
-  .dashboard-header img {
-    height: 50px;
-    margin-right: 20px;
-    margin-left: 10px;
-  }
-  
-  a {
-    color: white;
-  }
+  background-color: var(--bg-color);
+  margin: 0;
+  padding: 0;
+}
 
-  .dashboard-header a {
-    margin-top: 3px;
-  }
-  
-  .search-bar {
-    padding: 0.5rem;
-    border-radius: 4px;
-    margin-right: 1rem;
-  }
-  
-  .options {
-    gap: 10px;
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-  }
+.dashboard-container {
+  font-family: Arial, sans-serif;
+  width: 100%;
+  overflow: hidden;
+}
 
-  .dropdown {
-    position: relative;
-    margin-right: 1rem;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  
-  .dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: white;
-    color: black;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 0.5rem;
-    min-width: 150px;
-    z-index: 1;
-  }
-  
-  .dropdown-menu div {
-    padding: 0.5rem;
-    cursor: pointer;
-  }
-  
-  .dropdown-menu div:hover {
-    background-color: #f1f1f1;
-  }
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  background-color: #1d3557;
+  padding: 10px 20px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
 
-  .nav-link.purple {
-    position: relative;
-    margin-right: 1rem;
-    cursor: pointer;
-    font-weight: bold;
-  } 
+.dashboard-header img {
+  height: 50px;
+  margin-right: 20px;
+}
 
-  .chart-container {
-    display: flex;
-    align-items: center;
-    background-color: white;
-    position: absolute;
-    width: 97%;
-    margin-right: 30px;
-    top: 160px;
-    left: 30px;
-    margin-bottom: 0;
-    gap: 50px;
-  } 
-  
-  .chart {
-    width: 1000px;
-    height: auto;
-    margin-left: 30px;
-  }
-  
-  .dashboard-legend {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-top: 20px;
-    font-size: 14px;
-  }
-  
-  .dashboard-legend-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 5px;
-  }
-  
-  .dashboard-legend-color {
-    width: 15px;
-    height: 15px;
-    margin-right: 10px;
-    border-radius: 50%;
-  }
-  
-  .dashboard-legend-text {
-    margin-left: 5px;
-    color: black;
-  }
+.dashboard-header h2 {
+  color: white;
+  margin: 0;
+}
 
-  .projects {
-    color: black;
-    width: 97%;
-    margin-bottom: 20px;
-    gap: 50px;
-    flex: 1;
-    padding: 10px;
-  }
+.options {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
 
-  .projectName {
-    background-color:transparent;
-    color: black;
-    width: 100px;
-    font-size: 17px; 
-  }
+.search-bar {
+  padding: 0.5rem;
+  border-radius: 4px;
+  margin-right: 1rem;
+}
 
-  .projectName:hover {
-    background-color: transparent;
-  }
+.dropdown {
+  position: relative;
+  margin-right: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+}
 
-  .dashboard-details {
-    background-color: white;
-    border-radius: 7px;
-    padding: 10px;
-    margin-bottom: 10px;
-    right: 30px;
-  }
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  color: black;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.5rem;
+  min-width: 150px;
+  z-index: 1;
+}
 
-  .dashboard-details h3, p {
-    margin-left: 15px;
-  }
+.dropdown-menu div {
+  padding: 0.5rem;
+  cursor: pointer;
+}
 
-  .dashboard-todo {
-    color: black;
-    width: 100%;
-    left: 30px;
-    margin-bottom: 20px;
-    gap: 50px;
-    width: 97%;
-    right: 30px;
-    padding: 10px;
-  }
-  
-  .content {
-    display: flex;
+.dropdown-menu div:hover {
+  background-color: #f1f1f1;
+}
+
+.nav-link {
+  color: white;
+  font-weight: bold;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+.chart-container {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  margin-top: 80px; /* Space for the header */
+  padding: 20px;
+  gap: 50px;
+}
+
+.chart {
+  width: 70%;
+  height: auto;
+}
+
+.dashboard-legend {
+  display: flex;
   flex-direction: column;
-  }
-  
- */
+  align-items: flex-start;
+  font-size: 14px;
+}
 
+.dashboard-legend-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
 
- /* ------------------------------------- */
- /* todo doesnot adjust itself but css is fine */
+.dashboard-legend-color {
+  width: 15px;
+  height: 15px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
 
- body { background-color: var(--bg-color); margin: 0; padding: 0; }
+.dashboard-legend-text {
+  margin-left: 5px;
+  color: black;
+}
 
-.dashboard-container { font-family: Arial, sans-serif; width: 1680px; }
+.content {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding: 20px;
+  margin-top: 20px;
+}
 
-.dashboard-header { display: flex; align-items: center; background-color: #1d3557; position: absolute; width: 100%; top: 0; left: 0; margin-bottom: 0; }
+.projects, .dashboard-todo {
+  flex: 1;
+  background-color: #f7faff;
+  border: 1px solid #dde1e4;
+  color: #333;
+  border-radius: 5px;
+  padding: 20px;
+  overflow-y: auto;
+  max-height: 400px; /* Set a max height for scrollable content */
+}
 
-.dashboard-header img { height: 50px; margin-right: 20px; margin-left: 10px; }
+.scrollable-container {
+  overflow-y: auto;
+}
 
-a { color: white; }
+.projectName {
+  background-color: transparent;
+  color: #007bff;
+  font-size: 17px;
+  text-decoration: none;
+  display: block;
+}
 
-.dashboard-header a { margin-top: 3px; }
+.projectName:hover {
+  text-decoration: underline;
+}
 
-.search-bar { padding: 0.5rem; border-radius: 4px; margin-right: 1rem; }
+.dashboard-details {
+  background-color: white;
+  border-radius: 7px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
 
-.options { gap: 10px; display: flex; align-items: center; margin-left: auto; }
-
-.dropdown { position: relative; margin-right: 1rem; cursor: pointer; font-weight: bold; }
-
-.dropdown-menu { position: absolute; top: 100%; left: 0; background: white; color: black; border: 1px solid #ccc; border-radius: 4px; padding: 0.5rem; min-width: 150px; z-index: 1; }
-
-.dropdown-menu div { padding: 0.5rem; cursor: pointer; }
-
-.dropdown-menu div:hover { background-color: #f1f1f1; }
-
-.nav-link.purple { position: relative; margin-right: 1rem; cursor: pointer; font-weight: bold; }
-
-.chart-container { display: flex; align-items: center; background-color: white; position: absolute; width: 97%; margin-right: 30px; top: 160px; left: 30px; margin-bottom: 0; gap: 50px; }
-
-.chart { width: 1000px; height: auto; margin-left: 30px; }
-
-.dashboard-legend { display: flex; flex-direction: column; align-items: flex-start; margin-top: 20px; font-size: 14px; }
-
-.dashboard-legend-item { display: flex; align-items: center; margin-bottom: 5px; }
-
-.dashboard-legend-color { width: 15px; height: 15px; margin-right: 10px; border-radius: 50%; }
-
-.dashboard-legend-text { margin-left: 5px; color: black; }
-
-.projects { color: black; position: absolute; width: 97%; margin-right: 30px; top: 400px; left: 30px; margin-bottom: 0; gap: 50px; }
-
-.projectName { background-color:transparent; color: black; width: 100px; font-size: 17px; }
-
-.projectName:hover { background-color: transparent; }
-
-.dashboard-details { background-color: white; border-radius: 7px; padding: 10px; margin-bottom: 10px; right: 30px; }
-
-.dashboard-details h3, p { margin-left: 15px; }
-
-.dashboard-todo { color: black; position: absolute; width: 100%; top: 730px; left: 30px; margin-bottom: 0; gap: 50px; width: 97%; right: 30px; }
-
-
+.dashboard-details h3, p {
+  margin: 0;
+  margin-left: 15px;
+}

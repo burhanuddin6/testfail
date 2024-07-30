@@ -11,7 +11,24 @@ const testSuites = [
   { id: 4, title: "Compliance", sections: 68, cases: 811, runs: 33 },
   { id: 5, title: "Connectors", sections: 3567, cases: 22779, runs: 762 },
   { id: 6, title: "Consent Management", sections: 298, cases: 4976, runs: 944 },
-  { id: 7, title: "Content Classification", sections: 78, cases: 728, runs: 65 }
+  { id: 587, title: "O_ General UI Testcases", sections: 6, cases: 72, runs: 23 },
+  { id: 7, title: "Content Classification", sections: 78, cases: 728, runs: 65 },
+  { id: 8, title: "Appliance (Pod)", sections: 1332, cases: 8769, runs: 544 },
+  { id: 9, title: "Breach Management", sections: 111, cases: 1003, runs: 67 },
+  { id: 10, title: "Co pilot", sections: 3, cases: 31, runs: 4 },
+  { id: 11, title: "Compliance", sections: 68, cases: 811, runs: 33 },
+  { id: 12, title: "Connectors", sections: 3567, cases: 22779, runs: 762 },
+  { id: 13, title: "Consent Management", sections: 298, cases: 4976, runs: 944 },
+  { id: 14, title: "Content Classification", sections: 78, cases: 728, runs: 65 },
+  { id: 587, title: "O_ General UI Testcases", sections: 6, cases: 72, runs: 23 },
+  { id: 7, title: "Content Classification", sections: 78, cases: 728, runs: 65 },
+  { id: 8, title: "Appliance (Pod)", sections: 1332, cases: 8769, runs: 544 },
+  { id: 9, title: "Breach Management", sections: 111, cases: 1003, runs: 67 },
+  { id: 10, title: "Co pilot", sections: 3, cases: 31, runs: 4 },
+  { id: 11, title: "Compliance", sections: 68, cases: 811, runs: 33 },
+  { id: 12, title: "Connectors", sections: 3567, cases: 22779, runs: 762 },
+  { id: 13, title: "Consent Management", sections: 298, cases: 4976, runs: 944 },
+  { id: 14, title: "Content Classification", sections: 78, cases: 728, runs: 65 }
 ];
 
 const TestSuitesCases = () => {
