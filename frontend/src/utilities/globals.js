@@ -20,3 +20,17 @@ export const getToken = () => {
     return token;
 };
 
+
+export const setProjectInfo = (newID, newName) => {
+    sessionStorage.setItem("projectID", newID);
+    sessionStorage.setItem("projectName", newName);
+};
+
+export const getProjectID = () => {
+    return sessionStorage.getItem("projectID");
+};
+
+export const getProjectName = () => {
+    return sessionStorage.getItem("projectName");
+};
+

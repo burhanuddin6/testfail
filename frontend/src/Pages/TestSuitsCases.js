@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useNavigate  } from 'react';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom'; // Import Link from react-router-dom
 import {fetchTestSuites} from '../api/TestSuites'; // Import the API function (update the import path based on your file structure)
 import AlertBox from '../components/Alert'; // Import the AlertBox component
 import '../styles/TestSuitsCases.css';
@@ -17,12 +17,16 @@ const TestSuitesCases = () => {
   const [error, setError] = useState(null); // Error state
   const [alertMessage, setAlertMessage] = useState(null); // State for alert messages
 
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const projectID = searchParams.get('projectID') || '0';
+
   // Fetch test suites data on component mount
   useEffect(() => {
     const loadTestSuites = async () => {
       setLoading(true); // Set loading state
       try {
-        const data = await fetchTestSuites(); // Fetch test suites from API
+        const data = await fetchTestSuites(projectID); // Fetch test suites from API
         setTestSuites(data); // Set the fetched data to state
       } catch (err) {
         setError('Failed to fetch test suites');

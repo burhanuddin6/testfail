@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
-import { getUserDetails } from './api/Auth';
-import { setToken } from './utilities/globals';
+import { fetchProjectByID } from './api/Project';
+import { setProjectInfo, setToken } from './utilities/globals';
 
 
 // components 
 import Header from './components/Header';
+import HeaderWrapper from './components/HeaderWrapper';
 import TestRuns from './components/TestRuns';
 
 // pages
@@ -38,13 +39,27 @@ const App = () => {
   useEffect(() => {
     const getDetails = async () => {
       const token = sessionStorage.getItem("token");
+      const projectID = sessionStorage.getItem("projectID");
+
       if (token) {
+
         setIsLoggedIn(true);
-        console.log(isLoggedIn);
-        setToken(token); // Update the global token
-        const details = await getUserDetails(token);
-        setUserName(details.first_name + " " + details.last_name);
-        setUserID(details.id);
+        setToken(token); // Update the global token //REVIEW USAGE
+      
+        const storedUserName = sessionStorage.getItem("user_name");
+        const storedUserID = sessionStorage.getItem("user_id");
+      
+        if (storedUserName && storedUserID) {
+          
+          setUserName(storedUserName);
+          setUserID(storedUserID);
+          console.log("USER DETAILS LOADED FROM SESSION STORAGE");
+        } 
+      }
+
+      if(projectID && projectID != "undefined"){
+        const payload = await fetchProjectByID(projectID);
+        setProjectInfo(projectID, payload.name); 
       }
     }
     getDetails();
@@ -58,25 +73,25 @@ const App = () => {
         {!isLoggedIn ? (
           <>
             <Route path="/" element={<Login />} />
-            <Route path="/Signup" element={<SignUp />} />
-            <Route path="/Forgot" element={<Forgot />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/forgot" element={<Forgot />} />
             <Route path="/verify-email" element={<EmailVerification />} />
             <Route path="*" element={<NotFound />} />
           </>
         ) : (
           <>
-            <Route path="/Dashboard" element={<Dashboard userName={userName} />} />
+            <Route path="/dashboard" element={<Dashboard userName={userName} />} />
             <Route
-              path="/overview/:projectId"
+              path="projects/overview" //URL CHANGES
               element={
                 <>
-                  <Header userName={userName} />
+                  <Header userName={userName}/>
                   <Overview/>
                 </>
               }
             />
             <Route
-              path="/todo/:projectId"
+              path="/todos/overview" //URL CHANGES
               element={
                 <>
                   <Header userName={userName} />
@@ -85,10 +100,11 @@ const App = () => {
               }
             />
             <Route
-              path="/milestones"
+              path="/milestones/overview" //URL CHANGES
               element={
                 <>
-                  <Header userName={userName} />
+                  <Header userName={userName}/>
+                  {/* <HeaderWrapper userName={userName} /> */}
                   <MilestonesPage />
                 </>
               }
@@ -139,10 +155,11 @@ const App = () => {
               }
             />
             <Route
-              path="/testsuitscases"
+              path="/suites/overview"
               element={
                 <>
-                  <Header userName={userName} />
+                  <Header userName={userName} /> 
+                  {/* <HeaderWrapper userName={userName} /> */}
                   <TestSuitesCases />
                 </>
               }
@@ -157,10 +174,11 @@ const App = () => {
               }
             />
             <Route
-              path="/TestRuns"
+              path="/runs/overview" //URL CHANGES
               element={
                 <>
                   <Header userName={userName} />
+                  {/* <HeaderWrapper userName={userName} /> */}
                   <TestRunsPage />
                 </>
               }
@@ -184,7 +202,7 @@ const App = () => {
               }
             />
             <Route
-              path="/testruns/:id"
+              path="/testruns"
               element={
                 <>
                   <Header userName={userName} />

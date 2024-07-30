@@ -35,3 +35,15 @@ class TestSuiteViewSet(viewsets.ModelViewSet):
 
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+    def get_queryset(self):
+        # Get 'project_id' from query parameters
+        project_id = self.request.query_params.get('project_id', None)
+        
+        
+        # Apply filter directly if 'project_id' is provided
+        if project_id:
+            return TestSuite.objects.filter(project_id=project_id)
+        
+        # Return all milestones if 'project_id' is not provided
+        return TestSuite.objects.all()

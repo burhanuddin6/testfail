@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { LOCAL_URL, LOCAL_VERIFY_EMAIL_URL } from '../utilities/globals';
+import axiosInstance from './AxiosInstance';
 
 
 const login = async (formData) => {
@@ -60,4 +61,18 @@ const getUserDetails = async (token) => {
   }
 };
 
-export { login, signUp, verifyEmail, getUserDetails };
+// Function to get QA users
+const getQaUsers = async (groupName = 'qa-user') => {
+  try {
+    const response = await axiosInstance.get(`get_qa_users/`, {
+      params: { group_name: groupName }
+    });
+    console.log("qa users " + response);
+    return response.data.users; // This returns the list of users
+  } catch (error) {
+    console.error('Error fetching QA users:', error);
+    throw error; // Rethrow the error to be handled by the caller
+  }
+};
+
+export { login, signUp, verifyEmail, getUserDetails, getQaUsers};

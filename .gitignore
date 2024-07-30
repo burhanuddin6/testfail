@@ -2,7 +2,6 @@
 *.pyc
 *.pyo
 venv
-db.sqlite3
 test_case_files
 *__pycache__
 

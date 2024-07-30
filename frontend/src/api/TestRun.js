@@ -15,8 +15,8 @@ const createTestRun = async (testRunData) => {
 };
 
 // API endpoint for fetching test runs
-const fetchTestRuns = async () => {
-    const API_URL = `test_run/`; 
+const fetchTestRuns = async (projectId) => {
+    const API_URL = `test_run/?project_id=${projectId}`; 
   
     try {
       const response = await axiosInstance.get(API_URL);

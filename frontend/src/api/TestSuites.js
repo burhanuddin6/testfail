@@ -1,16 +1,28 @@
 import axiosInstance from './AxiosInstance';
 
-const fetchTestSuites = async () => {
-    const API_URL = `test_suites/`; // Update the endpoint based on your API structure
+const fetchTestSuites = async (projectId) => {
+    const API_URL = `test_suites/?project_id=${projectId}`; 
+    console.log('proj id received in fetch suite api' + projectId)
 
     try {
-        const response = await axiosInstance.get(API_URL); // Use axiosInstance to fetch data
+        const response = await axiosInstance.get(API_URL); 
         console.log(response.data); // debug statement, remove before production
-        return response.data; // Return the data from the response
+        return response.data; 
     } catch (error) {
-        console.error('Error fetching test suites:', error); // Log the error for debugging
-        throw error; // Throw the error to be handled in the component
+        console.error('Error fetching test suites:', error); // debug statement, remove before production
+        throw error; 
     }
 };
 
-export { fetchTestSuites }; // Export the function for use in other components
+const createTestSuite = async (testSuiteData) => {
+    try {
+      const response = await axiosInstance.post('test_suites/', testSuiteData);
+      console.log(response.data); // Debug statement, remove before production
+      return response.data;
+    } catch (error) {
+      console.error('Error creating test suite:', error);
+      throw error;
+    }
+  };
+
+export { fetchTestSuites, createTestSuite}; // Export the function for use in other components

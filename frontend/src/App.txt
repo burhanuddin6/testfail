@@ -336,3 +336,10 @@ const App = () => {
 };
 
 export default App;
+
+
+URL changes: 
+Header.js
+Dashboard.js
+App.js
+AddMilestones.js

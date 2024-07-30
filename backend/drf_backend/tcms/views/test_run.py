@@ -24,6 +24,15 @@ class TestRunViewSet(viewsets.ModelViewSet):
 
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+    
+    def get_queryset(self):
+        
+        project_id = self.request.query_params.get('project_id', None)
+        
+        if project_id:
+            return TestRun.objects.filter(project_id=project_id)
+
+        return TestRun.objects.all()
 
 class TestRunFileViewSet(viewsets.ModelViewSet):
     queryset = TestRunFile.objects.all()

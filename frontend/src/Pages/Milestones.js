@@ -126,7 +126,9 @@ import React, { useState, useEffect } from 'react';
 import '../styles/Milestones.css';
 import { useNavigate } from 'react-router-dom';
 import { fetchMilestones, deleteMilestone } from '../api/Milestone';
-import AlertBox from '../components/Alert'; // Adjust the import path as necessary
+import AlertBox from '../components/Alert'; 
+import { getProjectID } from '../utilities/globals';
+
 
 const Milestones = () => {
   const navigate = useNavigate();
@@ -136,10 +138,13 @@ const Milestones = () => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
 
+  const projectID = getProjectID();
+
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetchMilestones();
+        const data = await fetchMilestones(projectID);
         console.log("Fetched milestones data:", data);
 
         const open = data.filter(milestone => !milestone.is_complete);

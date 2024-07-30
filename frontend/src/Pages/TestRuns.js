@@ -3,6 +3,8 @@ import { useLocation, Link } from "react-router-dom";
 import {fetchTestRuns} from '../api/TestRun'; // Update the import path based on your file structure
 import AlertBox from '../components/Alert'; // Update the import path based on your file structure
 import "../styles/TestRuns.css";
+import { getProjectID } from '../utilities/globals';
+
 
 const TestRuns = () => {
   const [activeRuns, setActiveRuns] = useState([]);
@@ -14,15 +16,18 @@ const TestRuns = () => {
   // Extracting test suite name and ID from URL parameters
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const suiteId = searchParams.get('suiteId') || '0'; // Default to '0' if no suiteId is provided
-  const suiteName = searchParams.get('suite') || 'Test Suite'; // Default to 'Test Suite' if no suiteName is provided
+  const suiteId = searchParams.get('suiteId') || ' '; // Default to '0' if no suiteId is provided
+  const suiteName = searchParams.get('suite') || 'Test Suites & Cases'; // Default to 'Test Suite' if no suiteName is provided
 
   // Fetch test runs data on component mount
   useEffect(() => {
+
+    const projectID = getProjectID();
+
     const loadTestRuns = async () => {
       setLoading(true); // Set loading state
       try {
-        const data = await fetchTestRuns();
+        const data = await fetchTestRuns(projectID);
         // Separate active and completed runs based on your criteria
         const active = data.filter(run => !run.is_complete);
         const completed = data.filter(run => run.is_complete);

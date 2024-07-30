@@ -1,6 +1,8 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import *
+from .views.project import *
+
 
 router = DefaultRouter()
 
@@ -40,13 +42,20 @@ router.register(r'milestones', MilestoneViewSet)
 router.register(r'milestone_files', MilestoneFileViewSet)
 router.register(r'milestone_tickets', MilestoneTicketViewSet)
 
+#project
+router.register(r'project', ProjectViewSet)
+
+
 #user
 router.register(r'user_api_keys', UserApiKeyViewSet)
 router.register(r'user_account_integrations', UserAccountIntegrationViewSet)
+
 
 
 urlpatterns = [
     path('', include(router.urls)),
     path('users/<int:user_id>/soft_delete/', UserSoftDeleteView.as_view(), name='user-soft-delete'),
     path('verify-email/', verify_email, name='verify_email'),
+    path('get_qa_users/', get_qa_users, name='get_qa_users'),
+
 ]
