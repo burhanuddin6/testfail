@@ -30,6 +30,7 @@ import SectionsCases from './Pages/SectionsCases';
 import AddTestCase from './Pages/AddTestCase';
 import AddSection from './Pages/AddSection';
 import TestCaseDetails from './Pages/TestCaseDetails';
+import TestsResults from './Pages/TestsResults';
 import NotFound from './Pages/NotFound';
 
 const App = () => {
@@ -286,6 +287,15 @@ const App = () => {
             <>
               <Header userName={userName} />
               <TestCaseDetails />
+            </>
+          }
+        />
+        <Route 
+          path="/TestsResults" 
+          element={
+            <>
+              <Header userName={userName} />
+              <TestsResults />
             </>
           }
         />
