@@ -62,51 +62,51 @@ const Dashboard = ({userName}) => {
         </div>
       </div>
 
-        <div className='content'>
-      <div className='projects'>
-        <h2>Projects</h2>
-        <div className='dashboard-details'>
-          <Link to="/overview/project01" className='projectName'>Project 01</Link>
-          <p>Contains 33 test suites, 143 active test runs and 10 active milestones</p>
-        </div> 
-        <div className='dashboard-details'>
-          <Link to="/overview/project02" className='projectName'>Project 02</Link>
-          <p>Contains 33 test suites, 143 active test runs and 10 active milestones</p>
+      <div className='content'>
+        <div className='projects'>
+          <h2>Projects</h2>
+          <div className='dashboard-details'>
+            <Link to="/overview/project01" className='projectName'>Project 01</Link>
+            <p>Contains 33 test suites, 143 active test runs and 10 active milestones</p>
+          </div> 
+          <div className='dashboard-details'>
+            <Link to="/overview/project02" className='projectName'>Project 02</Link>
+            <p>Contains 33 test suites, 143 active test runs and 10 active milestones</p>
+          </div>
+          <div className='dashboard-details'>
+            <Link to="/overview/project03" className='projectName'>Project 03</Link>
+            <p>Contains 33 test suites, 143 active test runs and 10 active milestones</p>
+          </div> 
+          <div className='dashboard-details'>
+            <Link to="/overview/project04" className='projectName'>Project 04</Link>
+            <p>Contains 33 test suites, 143 active test runs and 10 active milestones</p>
+          </div> 
+          <div className='dashboard-details'>
+            <Link to="/overview/project05" className='projectName'>Project 05</Link>
+            <p>Contains 33 test suites, 143 active test runs and 10 active milestones</p>
+          </div>
         </div>
-        <div className='dashboard-details'>
-          <Link to="/overview/project03" className='projectName'>Project 03</Link>
-          <p>Contains 33 test suites, 143 active test runs and 10 active milestones</p>
-        </div> 
-        <div className='dashboard-details'>
-          <Link to="/overview/project04" className='projectName'>Project 04</Link>
-          <p>Contains 33 test suites, 143 active test runs and 10 active milestones</p>
-        </div> 
-        <div className='dashboard-details'>
-          <Link to="/overview/project05" className='projectName'>Project 05</Link>
-          <p>Contains 33 test suites, 143 active test runs and 10 active milestones</p>
-        </div>
-      </div>
 
-      <div className='dashboard-todo'>
-        <h2>To-dos</h2>
-        <div className='dashboard-details'>
-          <Link to="/todo/project01" className='projectName'>Project 01</Link>
-        </div> 
-        <div className='dashboard-details'>
-         <Link to="/todo/project02" className='projectName'>Project 02</Link>
-        </div>
-        <div className='dashboard-details'>
-         <Link to="/todo/project03" className='projectName'>Project 03</Link>
-        </div>
-        <div className='dashboard-details'>
-         <Link to="/todo/project04" className='projectName'>Project 04</Link>
-        </div>
-        <div className='dashboard-details'>
-         <Link to="/todo/project05" className='projectName'>Project 05</Link>
-        </div>
-        <div className='dashboard-details'>
-         <Link to="/todo/project06" className='projectName'>Project 06</Link>
-        </div>
+        <div className='dashboard-todo'>
+          <h2>To-dos</h2>
+          <div className='dashboard-details'>
+            <Link to="/todo/project01" className='projectName'>Project 01</Link>
+          </div> 
+          <div className='dashboard-details'>
+          <Link to="/todo/project02" className='projectName'>Project 02</Link>
+          </div>
+          <div className='dashboard-details'>
+          <Link to="/todo/project03" className='projectName'>Project 03</Link>
+          </div>
+          <div className='dashboard-details'>
+          <Link to="/todo/project04" className='projectName'>Project 04</Link>
+          </div>
+          <div className='dashboard-details'>
+          <Link to="/todo/project05" className='projectName'>Project 05</Link>
+          </div>
+          <div className='dashboard-details'>
+          <Link to="/todo/project06" className='projectName'>Project 06</Link>
+          </div>
         </div>
       </div>
 

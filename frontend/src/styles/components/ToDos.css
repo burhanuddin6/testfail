@@ -4,7 +4,13 @@
     margin-top: 20px;
     border-radius: 5px;
     color: black;
-    width: 45%;
+    width: 45%; 
+    overflow-y: auto;
+    max-height: 300px;
+  }
+
+  .scrollable-container {
+    overflow-y: auto;
   }
   
  

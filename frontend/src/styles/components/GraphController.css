@@ -3,12 +3,13 @@
     align-items: center; 
     background-color: white; 
     position: absolute; 
-    width: 97%; 
+    width: 96%; 
     margin-right: 30px; 
     top: 100px; 
     left: 30px; 
     margin-bottom: 0; 
-    gap: 15px; }
+    gap: 15px; 
+    padding-left: 10px;}
 
 .controlButtons { display: flex; align-items: center; justify-content: center; width: 30px; height: auto; background-color: transparent; border: none; cursor: pointer; outline: none; }
 
