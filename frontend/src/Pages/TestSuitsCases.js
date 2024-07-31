@@ -56,7 +56,7 @@ const TestSuitesCases = () => {
       <div className="suite-summary">
         <span>33 test suites and 115,466 cases in this project.</span>
       </div>
-
+ 
       {/* List of Test Suites */}
       <div className="suite-list">
         {testSuites.map((suite) => (

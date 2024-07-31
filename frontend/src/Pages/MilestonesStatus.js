@@ -1,7 +1,14 @@
+import Graph from "../components/OverviewGraph";
 import "../styles/MilestonesStatus.css"
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const MilestonesStatus = () => {
+    const navigate = useNavigate();
+    const handleEditMilestone = () => {
+        navigate(`/add-milestone`, { state: { from: '/milestone-status' , action: 'edit'} });
+      };
+
     return (
         <div className="status-mainclass">
             <div className="status-header">
@@ -13,27 +20,50 @@ const MilestonesStatus = () => {
                 </div>
                
                 <div className="status-controls">
-                    <h3> Milestone Name </h3>
+                    <h2> Milestone Name </h2>
                     <div className="status-control-button">
                         <button >Export</button>
                         <button >Print</button>
-                        <button >Edit</button>
+                        <button onClick={handleEditMilestone}>Edit</button>
                     </div>
                 </div>
             </div>
 
             <div className="status-details">
                 <div className="status-details-chart">
-                    chart
+                    <div className="status-chart-download">
+                        <button className="download-csv">Download CSV</button>
+                        <button className="download-img">Download Image</button>
+                    </div>
+                    <Graph/>
                 </div>
                 <div className="status-details-percentage">
-                    percent
+                    <p className="status-passed-percent">52%</p>
+                    <p className="status-passed">passed</p>
+                    <p className="status-untested-value">1675 / 3518 untested (48%)</p>
                 </div>
             </div>
 
+            <div className="status-milestones-header">
+                <h2> Milestones </h2>
+                <div className="status-delete-milestones">
+                    <button > Delete Selected </button>
+                </div>
+            </div>
+
+            <div className="status-milestones-details-class">
+                <div className="status-milestones-details">
+                    <input type="checkbox"/>
+                    <p><strong>Milestone Name</strong><br></br>Due Date / Starts On</p>
+                    <div className="status-milestones-statusbar">
+                        <div className="status-milestones-progress-bar" style={{ width: '42%' }}> </div>
+                        <div className="status-milestones-progress-value">42%</div>
+                    </div>
+                </div>
+            </div>
             
             <div className="status-testruns-header">
-                <h3> Test Runs </h3>
+                <h2> Test Runs </h2>
                 <div className="status-delete-testrun">
                     <button > Delete Selected </button>
                 </div>
@@ -42,22 +72,13 @@ const MilestonesStatus = () => {
             <div className="status-testrun-details-class">
                 <div className="status-testrun-details">
                     <input type="checkbox"/>
-                    <p>Test run name</p>
+                    <p><strong>Test Run Name</strong><br></br> by ... on ...23 </p>
                     <div className="status-testrun-statusbar">
-                        <p>status bar</p>
-                        <p>percentage</p>
-                    </div>
-                </div>
-                <div className="status-testrun-details">
-                    <input type="checkbox"/>
-                    <p>Test run name</p>
-                    <div className="status-testrun-statusbar">
-                        <p>status bar</p>
-                        <p>percentage</p>
+                        <div className="status-testrun-progress-bar" style={{ width: '42%' }}> </div>
+                        <div className="status-testrun-progress-value">42%</div>
                     </div>
                 </div>
             </div>
-
         </div>
     );
 }

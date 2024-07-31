@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import '../styles/AddMilestones.css'; // Import the CSS file
-import { useNavigate } from 'react-router-dom';
+import { useNavigate , useLocation} from 'react-router-dom';
 
 const AddMilestone = () => {
   const [name, setName] = useState('');
@@ -15,7 +15,13 @@ const AddMilestone = () => {
 
   const navigate = useNavigate();
 
+  const location = useLocation();
+  const from = location.state?.from;
+  const action = location.state?.action;
 
+  const handleCancel = () => {
+    navigate(from);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -29,14 +35,10 @@ const AddMilestone = () => {
       endDate,
       isCompleted,
     });
-    navigate('/Milestones');
+    navigate('/milestones');
   };
 
-  const handleCancel = (e) => {
-    e.preventDefault();
-    navigate('/Milestones');
-  };
-
+  
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -48,7 +50,8 @@ const AddMilestone = () => {
        
       
       <form className='add_f' onSubmit={handleSubmit}>
-        <h2>Add Milestone</h2>
+        {/* <h2>Add Milestone</h2> */}
+        <h2>{action == "edit" ? 'Edit' : 'Add'} Milestone</h2>
         <div className="add-form-group">
           <label htmlFor="name">Name<span className='required'>*</span></label> 
           <input
@@ -58,7 +61,7 @@ const AddMilestone = () => {
             onChange={(e) => setName(e.target.value)}
             placeholder="Ex: Version 1.0, Internal Beta 2 or Sprint #4"
             required
-          />
+          /> 
         </div>
         <div className="add-form-group">
           <label htmlFor="references">References</label>
@@ -127,7 +130,7 @@ const AddMilestone = () => {
         </div>
       
         <div className="form-buttons">
-          <button type="submit">Add Milestone</button>
+          <button type="submit">{action == "edit" ? 'Update' : 'Add'} Milestone</button>
           <button type="button" onClick={handleCancel}>Cancel</button>
         </div>
       </form>

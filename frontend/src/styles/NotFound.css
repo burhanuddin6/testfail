@@ -7,6 +7,7 @@
 	padding: 40px 0;
 	background: #fff;
 	font-family: 'Arvo', serif;
+	width: 1000px;
 }
 
 .page_404 img {
@@ -23,7 +24,7 @@
 
 .four_zero_four_bg h1 {
 	font-size: 80px;
-}
+} 
 
 .four_zero_four_bg h3 {
 	font-size: 80px;
@@ -56,6 +57,10 @@
 .spacingCards{
 	max-width: 240px;
 	min-width: 100px;
+}
+
+.text-center {
+	text-align: center;
 }
 /*======================
     end of 404 page

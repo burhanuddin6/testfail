@@ -1,17 +1,22 @@
 @import '../utilities/variables.css';
 
 body {
-    background-color: var(--bg-color);
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    color: black;
   }
   
   .Milestones-container {
     font-family: Arial, sans-serif;
     width: 1680px;
+    color: black;
   }
   
-  
+  .milestones-heading{
+    margin-left: 30px;
+  }
   
   .heading {
     align-items: center;
@@ -38,28 +43,43 @@ body {
     height: auto;
   }
 
-  .open{
-    color: black;
-    position: relative;
-    width: 97%;
-    margin-right: 30px;
-    /* top: 150px; */
-    top:0;
-    left: 30px;
-    margin-bottom: 0;
-    gap: 50px;
+  .milestone-add-button {
+    background-color: rgb(112, 112, 255);
   }
 
-  .completed{
+  .milestone-delete-button {
+    background-color: rgb(255, 101, 101);
+  }
+
+  .milestone-add-button:hover {
+    background-color: rgb(115, 115, 182);
+  }
+
+  .milestone-delete-button:hover {
+    background-color: rgb(166, 69, 69);
+  }
+
+  .milestone-listing {
+    position: absolute;
+    top: 150px;
+    width: 100%;
+  }
+
+  .scrollable-container {
+    overflow-y: auto;
+  }
+  
+
+  .completed, .open{
     color: black;
-    position: relative;
-    width: 97%;
     margin-right: 30px;
-    /* top: 400px; */
+    margin-left: 30px;
     left: 30px;
     margin-bottom: 0;
     gap: 50px;
-    top: 0;
+    overflow-y: auto;
+    max-height: 250px;
+    
   }
 
   .milestoneName {
@@ -77,6 +97,7 @@ body {
     right: 30px;
     display: flex;
     gap: 15px;
+    
   }
 
   .details h3, p {
@@ -103,7 +124,7 @@ body {
   .status-bar-inner {
     height: 100%;
     background-color: #4CAF50;
-    border-radius: 10px;
+    border-radius: 10px; 
   }
   
   .status-52 {

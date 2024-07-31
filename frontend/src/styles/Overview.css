@@ -25,7 +25,7 @@
     flex-direction: column;
     align-items: flex-start;
     margin-top: 20px;
-    font-size: 14px;
+    font-size: 14px; 
   }
   
   .overview-legend-item {

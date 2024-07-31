@@ -1,5 +1,5 @@
 import React from 'react';
-import Graph from '../components/Graph';
+import Graph from '../components/OverviewGraph';
 import '../styles/Overview.css';
 import Graphcontrol from '../components/Graphcontrol';
 import Milestones from '../components/Milestones';

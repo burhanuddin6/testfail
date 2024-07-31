@@ -1,13 +1,38 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    color: black;
+  }
+
 .status-mainclass {
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     color: black;
     margin-left: 30px;
+    position: sticky;
+    top: 0px;
+    width: 98%;
+    overflow-y: auto;
+    max-height: 800px; */
+    /* margin-bottom: 30px; */
+    padding: 20px;
+    margin-top: 100px; /* Space for the header */
+    background-color: #e6f3ff;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+    overflow-y: auto; /* Enable vertical scrolling */
+    height: calc(100vh - 60px); /* Full screen height minus header */
+    width: 100%; /* Ensure full width */
 }
+
+
 
 .status-header {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .status-options {
@@ -19,28 +44,29 @@
     color: black;
 }
 
+
 .status-control-button button{
     width: 100px;
     height: 40px;
 }
 
-.status-controls, .status-testruns-header {
+.status-controls, .status-testruns-header, .status-milestones-header {
     display: flex;
     gap: 30px;
 }
 
-.status-control-button, .status-delete-testrun {
+.status-control-button, .status-delete-testrun, .status-delete-milestones {
    margin-left: auto;
    display: flex;
    gap: 30px;
-   margin-right: 30px;
+   margin-right: 5px;
 }
 
 .status-details {
     display: flex;
-    gap: 30px;
+    gap: 0px;
     width: auto;
-    margin-right: 30px;
+    margin-right: 5px;
 }
 
 .status-details-chart, .status-details-percentage {
@@ -48,26 +74,76 @@
     height: auto;
     width: 50%;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.status-delete-testrun button {
+.status-chart-download button{
+    width: auto;
+    margin-left: 30px;
+}
+
+.status-passed-percent {
+    font-size: 50px;
+}
+
+.status-passed {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.status-untested-value {
+    font-size: 20px;
+}
+
+.status-delete-testrun button , .status-delete-milestones button{
     width: 150px;
     height: 40px;
     margin-top: 10px;
 }
 
-.status-testrun-details {
+.status-testrun-details, .status-milestones-details {
     background-color: white;
     display: flex;
     gap: 0px;
-    margin-right: 30px;
-    margin-bottom: 20px;
-    padding-left: 20px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    padding: 10px;
 }
 
-.status-testrun-statusbar {
-    display: flex;
-    gap: 30px;
-    margin-left: auto;
-    margin-right: 30px;
+.status-testrun-details-class , .status-milestones-details-class{
+    overflow-y: auto;
+    max-height: 300px;
+    margin-bottom: 30px;
 }
+
+.scrollable-container {
+    overflow-y: auto;
+}
+
+
+.status-testrun-statusbar, .status-milestones-statusbar {
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 10px;
+    width: 10%;
+    height: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    padding: 2px;
+    margin-top: 5px;
+}
+
+.status-milestones-progress-bar, .status-testrun-progress-bar {
+    height: 100%;
+    background-color: #4CAF50;
+    border-radius: 10px; 
+}
+
+.status-milestones-progress-value, .status-testrun-progress-value {
+    font-weight: bold;
+  }
