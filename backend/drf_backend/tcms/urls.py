@@ -14,7 +14,6 @@ router.register(r'testcase_tickets', TestCaseTicketViewSet)
 router.register(r'testcases', TestCaseViewSet)
 
 #test case result
-router.register(r'status_for_testcase', StatusForTestCaseViewSet)
 router.register(r'testcase_results', TestCaseResultViewSet)
 router.register(r'testcase_result_files', TestCaseResultFileViewSet)
 
@@ -23,8 +22,13 @@ router.register(r'testcase_result_files', TestCaseResultFileViewSet)
 router.register(r'test_plans', TestPlanViewSet)
 router.register(r'test_plan_files', TestPlanFileViewSet)
 router.register(r'test_plan_tickets', TestPlanTicketViewSet)
-router.register(r'test_plan_test_cases', TestPlanTestCaseViewSet)
-router.register(r'test_plan_test_suites', TestPlanTestSuiteViewSet)
+router.register(r'test_plan_test_runs', TestPlanTestRunViewSet)
+
+#test run
+router.register(r'test_runs', TestRunViewSet)
+router.register(r'test_run_files', TestRunFileViewSet)
+router.register(r'test_run_tickets', TestRunTicketViewSet)
+router.register(r'test_run_test_case_results', TestRunTestCaseResultViewSet)
 
 #test suite
 router.register(r'test_suites', TestSuiteViewSet)
@@ -49,6 +53,9 @@ router.register(r'project', ProjectViewSet)
 #user
 router.register(r'user_api_keys', UserApiKeyViewSet)
 router.register(r'user_account_integrations', UserAccountIntegrationViewSet)
+
+#project
+router.register(r'projects', ProjectViewSet)
 
 
 

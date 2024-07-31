@@ -5,18 +5,18 @@ import '../styles/EditTestSuite.css'; // Import the CSS file
 import { useNavigate, useLocation } from 'react-router-dom'; // Import navigation hooks
 
 const EditTestSuite = () => {
-  // State for form inputs
-  const [name, setName] = useState('0. General UI Testcases'); // Preset with existing name
-  const [description, setDescription] = useState(''); // Preset with existing description if any
-
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Extract the suite ID from the URL if needed
+  // Extract the suite ID and suite name from the URL
   const searchParams = new URLSearchParams(location.search);
   const suiteId = searchParams.get('suiteId') || '0'; // Default to '0' if no suiteId is provided
   const sourcePage = searchParams.get('source'); // Will be either 'TestSuitesCases' or 'TestRuns'
   const suiteName = searchParams.get('suite') || 'Test Suite'; // Default to 'Test Suite' if no suiteName is provided
+
+  // Initialize the name state with suiteName from URL or default name
+  const [name, setName] = useState(suiteName); // Correct state initialization
+  const [description, setDescription] = useState(''); // Preset with existing description if any
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -28,7 +28,9 @@ const EditTestSuite = () => {
 
     // Navigate based on the source page and include suite ID in URL
     if (sourcePage === 'TestRuns') {
-      navigate(`/TestRuns?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}`);
+      navigate(`/TestRuns?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`); // Use updated name
+    } else if (sourcePage === 'SectionsCases') {
+      navigate(`/SectionsCases?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`); // Use updated name
     } else {
       navigate('/TestSuitsCases');
     }
@@ -39,7 +41,9 @@ const EditTestSuite = () => {
 
     // Navigate based on the source page and include suite ID in URL
     if (sourcePage === 'TestRuns') {
-        navigate(`/TestRuns?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}`);
+        navigate(`/TestRuns?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`); // Use updated name
+      } else if (sourcePage === 'SectionsCases') {
+        navigate(`/SectionsCases?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`); // Use updated name
       } else {
         navigate('/TestSuitsCases');
       }
@@ -62,7 +66,7 @@ const EditTestSuite = () => {
             <input
               type="text"
               id="name"
-              value={suiteName}
+              value={name} // Correctly bind to 'name' state
               onChange={(e) => setName(e.target.value)}
               className="edit-suite-input"
               required

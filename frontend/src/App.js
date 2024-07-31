@@ -29,6 +29,9 @@ import AddTestRun from './Pages/AddTestRun';
 import TestRunsPage from './Pages/TestRuns';
 import AddTestSuite from './Pages/AddTestSuite';
 import EditTestSuite from './Pages/EditTestSuite';
+import SectionsCases from './Pages/SectionsCases';
+import AddTestCase from './Pages/AddTestCase';
+import AddSection from './Pages/AddSection';
 import NotFound from './Pages/NotFound';
 
 const App = () => {

@@ -22,6 +22,14 @@ class TestRunViewSet(viewsets.ModelViewSet):
         for file in files:
             TestRunFile.objects.create(test_run_id=test_run, file=file)
 
+        try:
+            tickets = request.data.getlist('tickets')
+        except:
+            tickets = request.data.get('tickets', [])
+        if tickets:
+            for ticket in tickets:
+                TestRunTicket.objects.create(test_run_id=test_run, ticket=ticket)
+
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
     
@@ -44,7 +52,7 @@ class TestRunTicketViewSet(viewsets.ModelViewSet):
     serializer_class = TestRunTicketSerializer
     permission_classes = [HasModelPermissions]
 
-class TestRunTestCaseViewSet(viewsets.ModelViewSet):
-    queryset = TestRunTestCase.objects.all()
-    serializer_class = TestRunTestCaseSerializer
+class TestRunTestCaseResultViewSet(viewsets.ModelViewSet):
+    queryset = TestRunTestCaseResult.objects.all()
+    serializer_class = TestRunTestCaseResultsSerializer
     permission_classes = [HasModelPermissions]

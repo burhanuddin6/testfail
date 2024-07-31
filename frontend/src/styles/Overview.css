@@ -1,5 +1,4 @@
 
-  
   .overview-graph {
     width: 1000px;
     display: flex;
@@ -52,7 +51,7 @@
     margin-left: 30px;
     display: flex;
     position: relative;
-    top: 400px;
+    top: 550px;
     gap: 30px;
     margin-bottom: 30px;
     width: 97%;
@@ -63,7 +62,31 @@
     margin-left: 30px;
     color: black;
     position: relative; 
-    top: 450px;
+    top: 550px;
+    overflow-y: auto;
+    max-height: 400px;
+  }
+
+  .scrollable-container {
+    overflow-y: auto;
+  }
+
+  .activity-date {
+    margin-bottom: 20px;
+  }
+
+  .activity-datewise-details {
+    margin-bottom: 20px;
+  }
+
+  .activity-datewise-details button {
+    width: auto;
+    border-radius: 20px;
+    font-size: 13px;
+  }
+
+  .activity-datewise-details button:hover {
+    background-color: none;
   }
 
   .activity-details {
@@ -72,16 +95,18 @@
     gap: 30px;
     margin-right: 30px;
     margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+  }
+
+  .activity-details p {
+    margin-top: 10px;
   }
 
   .activity-change-by {
-    /* margin-left: auto; */
     display: flex;
     gap: 30px;
     margin-left: auto;
     margin-right: 30px;
   }
-
-
-
- 

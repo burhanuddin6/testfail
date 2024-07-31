@@ -16,7 +16,7 @@ class TestCase(models.Model):
     test_case_id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=255)
     expected_results = models.TextField(null=True, blank=True)
-    latest_result_id = models.ForeignKey('TestCaseResult', on_delete=models.SET_NULL, null=True)
+    latest_result_id = models.ForeignKey('TestCaseResult', on_delete=models.SET_NULL, null=True, blank=True)
     type_id = models.ForeignKey(TypesForTestCase, on_delete=models.SET_NULL, null=True)
     AUTOMATION_TYPE_CHOICES = (
         ('None', 'None'),

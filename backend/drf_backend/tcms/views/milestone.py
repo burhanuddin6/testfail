@@ -2,6 +2,8 @@ from rest_framework import viewsets
 from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework.decorators import parser_classes
 from ..models import Milestone, MilestoneTicket, MilestoneFile
 from ..serializers import MilestoneSerializer, MilestoneTicketSerializer, MilestoneFileSerializer
 from ..permissions import HasModelPermissions
@@ -21,6 +23,7 @@ class MilestoneViewSet(viewsets.ModelViewSet):
     serializer_class = MilestoneSerializer
     permission_classes = [HasModelPermissions]
 
+    @parser_classes([MultiPartParser, FormParser])
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -31,7 +34,10 @@ class MilestoneViewSet(viewsets.ModelViewSet):
         for file in files:
             MilestoneFile.objects.create(milestone_id=milestone, file=file)
 
-        tickets = request.data.get('tickets')
+        try:
+            tickets = request.data.getlist('tickets')
+        except:
+            tickets = request.data.get('tickets', [])
         if tickets:
             for ticket in tickets:
                 MilestoneTicket.objects.create(milestone_id=milestone, ticket=ticket)

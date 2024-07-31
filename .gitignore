@@ -3,6 +3,7 @@
 *.pyo
 venv
 test_case_files
+media
 *__pycache__
 
 # dependencies
