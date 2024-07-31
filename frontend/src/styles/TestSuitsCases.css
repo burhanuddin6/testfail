@@ -1,79 +1,108 @@
+/* Ensure basic styling */
+body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* General container for the component */
 .test-suites-cases {
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    background-color: #e6f3ff;
-    color: #333;
-    margin-top: 60px; /* Adjust to the height of the header */
-  }
-  
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .test-suites-cases h1 {
-    font-size: 24px;
-    margin: 0;
-  }
-  
-  .add-test-suite {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .suite-summary {
-    margin-bottom: 20px;
-  }
-  
-  .suite-list .suite {
-    border: 1px solid #e0e0e0;
-    border-radius: 5px;
-    padding: 15px;
-    margin-bottom: 15px;
-    background-color: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .suite-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .suite-title {
-    font-size: 18px;
-    font-weight: bold;
-    color: #007bff;
-    text-decoration: none;
-  }
-  
-  .suite-title:hover {
-    text-decoration: underline;
-  }
-  
-  .suite-options {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .suite-options a {
-    color: #007bff;
-    text-decoration: none;
-  }
-  
-  .suite-options a:hover {
-    text-decoration: underline;
-  }
-  
-  .suite-details {
-    font-size: 14px;
-    color: #666;
-  }
-  
+  padding: 20px;
+  margin-top: 60px; /* Space for the header */
+  background-color: #e6f3ff;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+  overflow-y: auto; /* Enable vertical scrolling */
+  height: calc(100vh - 60px); /* Full screen height minus header */
+  width: 100%; /* Ensure full width */
+}
+
+/* Header styling for 'Test Suites & Cases' heading and button */
+.test-suites-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #ddd;
+  background-color: #e6f3ff; /* Match background */
+  z-index: 10; /* Ensures header is above other content */
+}
+
+.test-suites-header h1 {
+  font-size: 22px;
+  color: #333;
+  margin: 0;
+}
+
+.add-test-suite {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-test-suite:hover {
+  background-color: #0056b3;
+}
+
+/* Styling for the test suite summary */
+.suite-summary {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Styling for the test suite list */
+.suite-list {
+  margin-top: 20px;
+}
+
+.suite-list .suite {
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.suite-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.suite-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.suite-title:hover {
+  text-decoration: underline;
+}
+
+.suite-options {
+  display: flex;
+  gap: 10px;
+}
+
+.suite-options a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.suite-options a:hover {
+  text-decoration: underline;
+}
+
+.suite-details {
+  font-size: 14px;
+  color: #666;
+}

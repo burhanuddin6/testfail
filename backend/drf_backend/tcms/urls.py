@@ -7,26 +7,43 @@ router = DefaultRouter()
 #test case 
 router.register(r'types_for_testcase', TypesForTestCaseViewSet)
 router.register(r'priority_for_testcase', PriorityForTestCaseViewSet)
-router.register(r'template_for_testcase', TemplateForTestCaseViewSet)
 router.register(r'testcase_files', TestCaseFileViewSet)
 router.register(r'testcase_tickets', TestCaseTicketViewSet)
 router.register(r'testcases', TestCaseViewSet)
+
+#test case result
+router.register(r'testcase_results', TestCaseResultViewSet)
+router.register(r'testcase_result_files', TestCaseResultFileViewSet)
+
 
 #test plan
 router.register(r'test_plans', TestPlanViewSet)
 router.register(r'test_plan_files', TestPlanFileViewSet)
 router.register(r'test_plan_tickets', TestPlanTicketViewSet)
-router.register(r'test_plan_test_cases', TestPlanTestCaseViewSet)
-router.register(r'test_plan_test_suites', TestPlanTestSuiteViewSet)
+router.register(r'test_plan_test_runs', TestPlanTestRunViewSet)
+
+#test run
+router.register(r'test_runs', TestRunViewSet)
+router.register(r'test_run_files', TestRunFileViewSet)
+router.register(r'test_run_tickets', TestRunTicketViewSet)
+router.register(r'test_run_test_case_results', TestRunTestCaseResultViewSet)
 
 #test suite
 router.register(r'test_suites', TestSuiteViewSet)
 router.register(r'sections', SectionViewSet)
 router.register(r'test_suite_files', TestSuiteFileViewSet)
 
+#milestone
+router.register(r'milestones', MilestoneViewSet)
+router.register(r'milestone_files', MilestoneFileViewSet)
+router.register(r'milestone_tickets', MilestoneTicketViewSet)
+
 #user
 router.register(r'user_api_keys', UserApiKeyViewSet)
 router.register(r'user_account_integrations', UserAccountIntegrationViewSet)
+
+#project
+router.register(r'projects', ProjectViewSet)
 
 
 urlpatterns = [

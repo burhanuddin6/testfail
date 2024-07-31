@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
-import '../styles/Login.css'; // Adjusted the import path
+import '../styles/Login.css';
 import logo from '../images/Securiti_Logo.jpg';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios'; // Import Axios for making HTTP requests
-
-const GIT_URL = "https://organic-orbit-p47g4pqqrqj36rvv-8000.app.github.dev/";
-const LOCAL_URL = "http://localhost:8000/";
-
+import { login } from '../api/Auth'; 
+import { SOFTWARE_TITLE } from '../utilities/globals';
 
 
 const Login = () => {
@@ -28,29 +25,36 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    // Basic form validation
     if (!formData.email || !formData.password) {
       setMessage('Please fill in both fields.');
       return;
     }
 
     try {
-      const response = await axios.post(`${GIT_URL}api/accounts/login/`, {
-        email: formData.email,
-        password: formData.password
-      });
-
-      // Assuming your backend returns a token in the response
-      const token = response.data.token; // Adjust this according to your API response structure
-
-      // Store the token in localStorage or sessionStorage for future use
-      localStorage.setItem('token', token); // Example: using localStorage
+      const response = await login(formData);
+    
+      const token = response.token; 
+      sessionStorage.setItem('token', token); 
 
       setMessage('');
-      navigate('/Dashboard'); // Redirect to Dashboard or any other route upon successful login
+
+      window.location.assign("/dashboard");
     } catch (error) {
-      setMessage('Invalid credentials. Please try again.'); // Handle login error
+      console.log(error.status);
+    
+      if (error.status === 404) {
+        setMessage('User does not exist. Please sign up.');
+      } else if (error.status === 401) {
+        if (error.data && error.data.detail === 'User account not verified.') {
+          setMessage('Please verify your account to continue.');
+        } else {
+          setMessage('Invalid credentials. Please try again.');
+        }
+      } else {
+        setMessage('Something went wrong. Please try again later.');
+      }
     }
+    
   };
   
   const handleSignUp = (e) => {
@@ -67,7 +71,7 @@ const Login = () => {
     <div className="login-container">
       <div className="login-box">
         <img src={logo} alt="Securiti.ai" />
-        <h2>Product Name</h2>
+        <h2>{SOFTWARE_TITLE}</h2>
         <form onSubmit={handleLogin}>
           <div className="form-group">
             <input
@@ -76,7 +80,7 @@ const Login = () => {
               placeholder="Email"
               value={formData.email}
               onChange={handleChange}
-              required
+              required 
             />
           </div>
           <div className="form-group">
@@ -97,9 +101,10 @@ const Login = () => {
             <input type="checkbox" id="keepLoggedIn" />
             <label htmlFor="keepLoggedIn">Keep me logged in</label>
           </div>
-          <a href="#" onClick={handleForgot}>Forgot your password?</a>
+          <div className='forgot-password'><a href="#" onClick={handleForgot}>Forgot your password?</a></div>
+          
         </form>
-        {message && <div className="message">{message}</div>}
+        {message && <div className={`message ${message.includes('successfully') ? 'message-success' : 'message-error'}`}>{message}</div>}
       </div>
     </div>
   );

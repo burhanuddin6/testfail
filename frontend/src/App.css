@@ -1,12 +1,59 @@
+/* --------------- */
+/* Batool App.css */
+/* ---------------- */
+
+/* .App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */
+
+/* ---------------- */
+/* Farhan App.css */
+/* ----------------- */
+
 /* App.css */
-.app {
+/* .app {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: #e6f3ff; /* same background color for the entire page */
-}
+  background-color: #e6f3ff; same background color for the entire page
+} */
 
-.main-content {
+/* .main-content {
   display: flex;
   flex: 1;
 }
@@ -35,10 +82,10 @@ header {
 .user-info {
   display: flex;
   align-items: center;
-}
+} */
 
 /* App.css */
-body, html, .app {
+/* body, html, .app {
   background-color: #e6f3ff;
   margin: 0;
   padding: 0;
@@ -50,9 +97,10 @@ body, html, .app {
   background-color: inherit;
 }
 
-/* .bottom-content {
+.bottom-content {
   display: flex;
   justify-content: space-between;
   padding: 20px;
   background-color: #5DA9E9;
 } */
+

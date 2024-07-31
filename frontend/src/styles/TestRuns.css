@@ -1,15 +1,197 @@
-/* TestRuns.css */
-.test-runs {
-    background-color: #5DA9E9;
+.test-runs-page {
     padding: 20px;
-    width: 48%;
-  }
-  
-  .test-runs .content {
-    background-color: white;
-    padding: 10px;
-    color: black;
-    width: 90%;
-    margin: 0 auto;
-  }
-  
+    margin-top: 80px; /* Space for the header */
+    background-color: #f7faff;
+    font-family: Arial, sans-serif;
+    max-width: 1200px; /* Restrict max width for better control */
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    overflow-x: hidden; /* Prevent horizontal overflow */
+    height: calc(100vh - 120px); /* Full screen height minus header and padding */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.test-runs-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #ddd;
+    background-color: #f7faff; /* Same background to blend */
+    z-index: 10; /* Ensures header is above other content */
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.test-runs-header h2 {
+    font-size: 22px;
+    color: #333;
+    margin: 0;
+    flex: 1; /* Flex for spacing between title and actions */
+}
+
+.test-runs-actions {
+    display: flex;
+    gap: 10px; /* Space between links */
+}
+
+.run-test-link,
+.edit-suite-link {
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.run-test-link:hover,
+.edit-suite-link:hover {
+    background-color: #0056b3;
+}
+
+.test-runs-content {
+    margin-top: 20px;
+}
+
+.test-run-type {
+    margin-bottom: 40px;
+}
+
+.test-run-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.test-run-title h3 {
+    margin: 0;
+    color: #555;
+    font-size: 18px;
+}
+
+.test-run-title span {
+    color: #888;
+    font-size: 14px;
+}
+
+.test-run-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 0 20px; /* Padding around the list */
+}
+
+.test-run-item {
+    background-color: #fff;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px; /* Set a fixed height for uniformity */
+}
+
+.test-run-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.test-run-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.test-run-info {
+    flex: 1;
+}
+
+.test-run-name {
+    font-weight: bold;
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Ensures text is cut off properly */
+    white-space: nowrap; /* Prevents text from wrapping */
+}
+
+.test-run-name:hover {
+    color: #0056b3;
+}
+
+.test-run-date {
+    display: block;
+    color: #888;
+    font-size: 14px;
+    margin-top: 5px;
+    min-width: 80px;
+    text-align: right;
+}
+
+.test-run-progress {
+    width: 150px;
+    background-color: #f0f0f0;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-left: 20px;
+}
+
+.progress-bar {
+    height: 10px;
+    background-color: #4caf50;
+    color: white;
+    text-align: center;
+    line-height: 10px;
+    font-size: 10px;
+    white-space: nowrap;
+    transition: width 0.3s ease;
+}
+
+@media screen and (max-width: 768px) {
+    .test-runs {
+        padding: 10px;
+        margin-top: 70px;
+        max-width: 95%; /* Ensure it fits smaller screens */
+    }
+
+    .test-runs-header h2 {
+        font-size: 20px;
+    }
+
+    .add-test-run-button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    .test-run-item {
+        padding: 10px;
+        flex-direction: column;
+        align-items: flex-start; /* Align contents vertically on small screens */
+    }
+
+    .test-run-info {
+        margin-right: 10px;
+        width: 100%; /* Ensures info takes full width on small screens */
+    }
+
+    .test-run-date {
+        font-size: 12px;
+        text-align: left;
+        margin-top: 5px;
+    }
+
+    .test-run-progress {
+        width: 100%;
+        margin-top: 10px;
+    }
+}

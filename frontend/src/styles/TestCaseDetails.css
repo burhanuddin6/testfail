@@ -4,7 +4,7 @@
     display: flex;
     justify-content: space-between;
     padding: 20px;
-    background-color: #f8f8f8;
+    /* background-color: #f8f8f8; */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #333;
   }
@@ -75,7 +75,7 @@
   .summary-value {
     padding: 10px;
     text-align: left;
-    color: #666;
+    color: #333;
   }
   
   .additional-details {

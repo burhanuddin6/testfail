@@ -1,21 +1,31 @@
 // TestCaseDetails.js
 
 import React from 'react';
+import { useLocation, Link } from 'react-router-dom';
 import '../styles/TestCaseDetails.css'; // Ensure this path is correct
 
 const TestCaseDetails = () => {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const testCaseId = searchParams.get('testCaseId') || 'C18969'; // Default to 'C18969' if no testCaseId is provided
+  const testCaseName = searchParams.get('testCaseName') || 'Opening and navigating on Chrome'; // Default to the provided name
+
+  const suiteName = searchParams.get('suite') || 'General UI Testcases'; // Fetch the suite name from the query params
+  const suiteId = searchParams.get('suiteId') || '0'; // Default to '0' if no suiteId is provided
+  const sectionName = searchParams.get('section') || 'General Cases'; // Fetch the section name from the query params
+
   return (
     <div className="test-case-details-container">
       <div className="test-case-details-content">
         <div className="test-case-header">
-          <div className="test-case-id">C18969</div>
-          <h1 className="test-case-name">Opening and navigating on Chrome</h1>
+          <div className="test-case-id">{testCaseId}</div>
+          <h1 className="test-case-name">{testCaseName}</h1>
         </div>
 
         <nav className="breadcrumb-nav">
-          <a href="#general-ui-testcases" className="breadcrumb-link">
-            0.0.. General UI Testcases &gt; General Cases
-          </a>
+          <Link to={`/SectionsCases?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}`} className="breadcrumb-link">
+            {suiteName} &gt; {sectionName}
+          </Link>
         </nav>
 
         <div className="test-case-summary">
@@ -50,12 +60,16 @@ const TestCaseDetails = () => {
 
       <aside className="test-case-sidebar">
         <section className="sidebar-section">
-          <h3 className="sidebar-title">Details</h3>
+          <h3 className="sidebar-title">
+            <Link to={`/TestCaseDetails?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`} className="sidebar-link">
+              Details
+            </Link>
+          </h3>
           <ul className="sidebar-links">
             <li>
-              <a href="#tests-results" className="sidebar-link">
+            <Link to={`/TestsResults?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`} className="sidebar-link">
                 Tests & Results
-              </a>
+            </Link>
             </li>
             <li>
               <a href="#defects" className="sidebar-link">

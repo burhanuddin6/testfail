@@ -1,0 +1,289 @@
+/* SectionsCases.css */
+
+.sections-cases-page {
+    padding: 20px;
+    margin-top: 80px; /* Space for the header */
+    background-color: #f7faff;
+    font-family: Arial, sans-serif;
+    max-width: 1200px; /* Restrict max width for better control */
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    overflow-x: hidden; /* Prevent horizontal overflow */
+    height: calc(100vh - 120px); /* Full screen height minus header and padding */
+    overflow-y: auto; /* Enable vertical scrolling */
+  }
+  
+  .sections-cases-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #eef3f7;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .sections-cases-header h2 {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .sections-cases-actions {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .add-case-button,
+  .edit-suite-link,
+  .delete-button,
+  .columns-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* .edit-suite-link {
+    background-color: #e67e22;
+  }
+  
+  .delete-button {
+    background-color: #e74c3c;
+  }
+  
+  .columns-button {
+    background-color: #2ecc71;
+  } */
+  
+  .add-case-button:hover,
+  .edit-suite-link:hover,
+  .delete-button:hover,
+  .columns-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* .edit-suite-link:hover {
+    background-color: #d35400;
+  }
+  
+  .delete-button:hover {
+    background-color: #c0392b;
+  }
+  
+  .columns-button:hover {
+    background-color: #27ae60;
+  } */
+  
+  .sections-cases-summary {
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .sections-cases-content {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .sections-list {
+    flex: 3;
+    margin-right: 20px;
+  }
+  
+  .section {
+    background-color: #fff;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border: 1px solid #dde1e4;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+  }
+  
+  .section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .section-header {
+    padding: 15px;
+    background-color: #3498db;
+    border-bottom: 1px solid #dde1e4;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+  }
+  
+  .case-list {
+    padding: 10px;
+    overflow-y: auto;
+    max-height: 400px; /* Scroll within the case list */
+  }
+  
+  .case-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #dde1e4;
+    transition: background-color 0.3s ease;
+  }
+  
+  .case-item:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .case-id {
+    width: 80px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .case-id input {
+    margin-right: 8px;
+  }
+  
+  .case-id-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .case-title {
+    flex: 2;
+    margin-right: 10px;
+    color: #888;
+  }
+  
+  .case-automation {
+    width: 120px;
+    text-align: center;
+    color: #888;
+  }
+  
+  .case-type {
+    width: 80px;
+    text-align: center;
+    color: #888;
+  }
+  
+  .sections-tree-view {
+    flex: 1;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border: 1px solid #dde1e4;
+    padding: 10px;
+  }
+  
+  .sections-tree-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .add-section-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-section-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .sections-tree {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .sections-tree > li {
+    margin-bottom: 10px;
+  }
+  
+  .tree-node {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: #555;
+    padding: 5px;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .tree-node:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .tree-node-title {
+    margin-left: 8px;
+    font-weight: bold;
+  }
+  
+  .cases-subtree {
+    list-style: none;
+    padding: 0;
+    margin-left: 15px;
+    margin-top: 5px;
+  }
+  
+  .subtree-node {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 5px;
+    transition: color 0.3s ease;
+  }
+  
+  .subtree-node:hover {
+    color: #3498db;
+  }
+  
+  .subtree-node::before {
+    content: '•';
+    color: #777;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .sections-cases-page {
+      padding: 10px;
+    }
+  
+    .sections-cases-header h2 {
+      font-size: 20px;
+    }
+  
+    .sections-cases-actions {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .sections-cases-content {
+      flex-direction: column;
+    }
+  
+    .sections-list {
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
+  }
+  
