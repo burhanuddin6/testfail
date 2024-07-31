@@ -1,0 +1,154 @@
+.test-case-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* background-color: #f8f9fa; */
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+/* .test-case-header {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  background-color: #fff; 
+  padding: 10px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+} */
+
+.add-test-case-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
+
+.test-case-container {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  max-width: 800px;
+  width: 100%;
+  overflow-y: auto;
+  height: calc(100vh - 150px); /* Make container height responsive */
+  box-sizing: border-box;
+  align-items: center;
+}
+
+.test-case-form {
+  display: flex;
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+.test-case-form-group {
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+}
+
+.test-case-form-row {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.form-column {
+  flex: 1;
+  min-width: 180px;
+}
+
+.test-case-label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+  color: #555;
+}
+
+.test-case-required {
+  color: red;
+}
+
+.test-case-input,
+.test-case-select,
+.test-case-textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box; /* Ensure padding does not affect total width */
+}
+
+.test-case-input:focus,
+.test-case-select:focus,
+.test-case-textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.test-case-checkbox {
+  margin-top: 10px;
+}
+
+/* .test-case-note {
+  font-size: 12px;
+  color: #888;
+  display: block;
+  margin-top: 5px;
+} */
+
+.test-case-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.test-case-button {
+  width: 150px;
+  height: 40px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.test-case-button:hover {
+  background-color: #90ee90;
+}
+
+/* .test-case-add-next {
+  background-color: #007bff;
+} */
+
+/* .test-case-add-next:hover {
+  background-color: #5DA9E9;
+} */
+
+.test-case-cancel {
+  background-color: #dc3545;
+}
+
+.test-case-cancel:hover {
+  background-color: #FAA0A0;
+}
+
+@media (max-width: 768px) {
+  .test-case-form-row {
+    flex-direction: column;
+  }
+
+  .test-case-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

@@ -1,0 +1,90 @@
+.testruns-results {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .testruns-results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+  }
+  
+  .testruns-results-header h1 {
+    margin: 0;
+    font-size: 24px;
+    color: black;
+  }
+  
+  .filter-options {
+    display: flex;
+  }
+  
+  .filter-button {
+    background-color: #0056b3; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .filter-button:hover {
+    background-color: #5DA9E9;
+  }
+
+  .testruns-results-content {
+    display: flex;
+    padding: 20px;
+    
+  }
+  
+  .test-results-summary {
+    width: 30%;
+    margin-right: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    color: black;
+  }
+  
+  .test-cases-list {
+    width: 70%;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    color: black;
+    /* background-color: white; */
+  }
+  
+  .test-cases-list table {
+    width: 100%;
+    border-collapse: collapse;
+    /* background-color: #0056b3; */
+  }
+  
+  .test-cases-list th,
+  .test-cases-list td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .test-cases-list th {
+    font-weight: bold;
+    text-align: left;
+  }
+  
+  /* .test-cases-list tr {
+    background-color: #5DA9E9;
+  } */
+  
+  .test-cases-list tr:hover {
+    background-color: #ddd;
+  }

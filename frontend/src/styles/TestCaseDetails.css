@@ -1,0 +1,145 @@
+/* TestCaseDetails.css */
+
+.test-case-details-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #f8f8f8;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+  }
+  
+  .test-case-details-content {
+    flex: 3;
+    margin-right: 20px;
+  }
+  
+  .test-case-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .test-case-id {
+    background-color: #8a94a8;
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-right: 15px;
+  }
+  
+  .test-case-name {
+    font-size: 20px;
+    font-weight: 500;
+    color: #333;
+    margin: 0;
+  }
+  
+  .breadcrumb-nav {
+    margin-bottom: 25px;
+  }
+  
+  .breadcrumb-link {
+    color: #0077cc;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .breadcrumb-link:hover {
+    text-decoration: underline;
+  }
+  
+  .test-case-summary {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .summary-table {
+    width: 100%;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+  }
+  
+  .summary-label {
+    font-weight: bold;
+    padding: 10px;
+    background-color: #f2f2f2;
+    text-align: left;
+  }
+  
+  .summary-value {
+    padding: 10px;
+    text-align: left;
+    color: #666;
+  }
+  
+  .additional-details {
+    font-style: italic;
+    color: #999;
+    text-align: center;
+  }
+  
+  .test-case-sidebar {
+    flex: 1;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .sidebar-section {
+    margin-bottom: 30px;
+  }
+  
+  .sidebar-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .sidebar-links {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .sidebar-link {
+    color: #0077cc;
+    text-decoration: none;
+    display: block;
+    padding: 5px 0;
+  }
+  
+  .sidebar-link:hover {
+    text-decoration: underline;
+  }
+  
+  .people-dates {
+    margin-top: 15px;
+  }
+  
+  .date-item {
+    margin-bottom: 15px;
+  }
+  
+  .date-label {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .date-value {
+    color: #333;
+    font-size: 14px;
+  }
+  
+  .date-timestamp {
+    font-size: 12px;
+    color: #999;
+  }
+  

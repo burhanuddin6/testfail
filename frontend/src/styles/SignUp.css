@@ -1,6 +1,6 @@
 @import '../utilities/variables.css';
 
-body {
+/* body {
     font-family: Arial, sans-serif;
     background-color: var(--primary-background-color);
     margin: 0;
@@ -9,7 +9,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-}
+} */
 
 .signup-container {
     display: flex;
@@ -96,7 +96,7 @@ form {
 }
 
 .button-group button:hover {
-    background-color: #155724;
+    background-color: #e6f3ff;;
 }
 
 .message {

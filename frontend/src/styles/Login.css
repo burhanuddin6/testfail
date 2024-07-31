@@ -1,6 +1,6 @@
 @import '../utilities/variables.css';
 
-body {
+/* body {
   margin: 0;
   font-family: Arial, sans-serif;
   background-color: var(--bg-color);
@@ -9,13 +9,14 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh; 
-}
+} */
 
 
 .login-box img {
   width: 200px;
   height: auto;
   margin-bottom: 20px; /* Space between the image and the login box */
+  /* display: flex; */
 }
 
 .login-container {
