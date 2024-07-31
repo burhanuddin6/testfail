@@ -61,15 +61,15 @@ const TestCaseDetails = () => {
       <aside className="test-case-sidebar">
         <section className="sidebar-section">
           <h3 className="sidebar-title">
-            <Link to={`/TestCaseDetails?testCaseId=${testCaseId}&testCaseName=${testCaseName}&suite=${suiteName}&section=${sectionName}`} className="sidebar-link">
+            <Link to={`/TestCaseDetails?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`} className="sidebar-link">
               Details
             </Link>
           </h3>
           <ul className="sidebar-links">
             <li>
-              <a href="#tests-results" className="sidebar-link">
+            <Link to={`/TestsResults?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`} className="sidebar-link">
                 Tests & Results
-              </a>
+            </Link>
             </li>
             <li>
               <a href="#defects" className="sidebar-link">

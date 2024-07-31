@@ -1,0 +1,218 @@
+.tests-results-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+  }
+  
+  .test-case-details-content {
+    flex: 3;
+    margin-right: 20px;
+  }
+  
+  .test-case-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .test-case-id {
+    background-color: #8a94a8;
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    margin-right: 15px;
+  }
+  
+  .test-case-name {
+    font-size: 20px;
+    font-weight: 500;
+    color: #333;
+    margin: 0;
+  }
+  
+  .breadcrumb-nav {
+    margin-bottom: 25px;
+  }
+  
+  .breadcrumb-link {
+    color: #0077cc;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .breadcrumb-link:hover {
+    text-decoration: underline;
+  }
+  
+  .results-summary {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .results-graph {
+    flex: 2;
+    border: 1px solid #ddd;
+    height: 200px;
+  }
+  
+  .results-graph canvas {
+    width: 100% !important;
+    height: 100% !important;
+    flex: 1;
+    border: 1px solid #ddd;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
+  }
+  
+  .results-status-summary {
+    flex: 1;
+    border: 1px solid #ddd;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .results-status-summary ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .results-status-summary ul li {
+    margin-bottom: 10px;
+  }
+  
+  .results-status-summary .passed {
+    color: #5cb85c;
+  }
+  
+  .results-status-summary .blocked {
+    color: #f0ad4e;
+  }
+  
+  .results-status-summary .retest {
+    color: #5bc0de;
+  }
+  
+  .results-status-summary .failed {
+    color: #d9534f;
+  }
+  
+  .results-status-summary .comments,
+  .results-status-summary .partial {
+    color: #777;
+  }
+  
+  .test-results {
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+  }
+  
+  .result-month {
+    margin-bottom: 20px;
+  }
+  
+  .result-month h2 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  
+  .result-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    color: black;
+  }
+  
+  .result-item .status {
+    width: 60px;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    margin-right: 10px;
+    color: white;
+  }
+  
+  .result-item .passed {
+    background-color: #5cb85c;
+  }
+  
+  .result-item .blocked {
+    background-color: #f0ad4e;
+  }
+  
+  .result-item .retest {
+    background-color: #5bc0de;
+  }
+  
+  .result-item .failed {
+    background-color: #d9534f;
+  }
+  
+  .result-item .test-id {
+    margin-right: 10px;
+    text-decoration: none;
+    color: #337ab7;
+  }
+  
+  .result-item .test-id:hover {
+    text-decoration: underline;
+  }
+  
+  .result-item .test-suite {
+    flex: 2;
+  }
+  
+  .result-item .release {
+    flex: 1;
+    text-align: right;
+  }
+  
+  .result-item .tested-by {
+    flex: 1;
+    text-align: right;
+  }
+  
+  .test-case-sidebar {
+    flex: 1;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .sidebar-section {
+    margin-bottom: 30px;
+  }
+  
+  .sidebar-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .sidebar-links {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .sidebar-link {
+    color: #0077cc;
+    text-decoration: none;
+    display: block;
+    padding: 5px 0;
+  }
+  
+  .sidebar-link:hover {
+    text-decoration: underline;
+  }

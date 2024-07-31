@@ -55,9 +55,9 @@ const SectionsCases = () => {
 
   const navigate = useNavigate();
 
-  const handleAddTestCase = () => {
-    navigate(`/AddTestCase?suiteId=${suiteId}`);
-  };
+//   const handleAddTestCase = () => {
+//     navigate(`/AddTestCase?suiteId=${suiteId}`);
+//   };
 
   // Navigate to Add Section page
   const handleAddSection = () => {
@@ -65,7 +65,7 @@ const SectionsCases = () => {
   };
 
   const handleCaseClick = (testCase) => {
-    navigate(`/TestCaseDetails?suiteId=${suiteId}&suite=${suiteName}&testCaseId=${testCase.id}&testCaseName=${testCase.title}&section=${sections.find(section => section.cases.includes(testCase)).title}`);
+    navigate(`/TestCaseDetails?suiteId=${suiteId}&suite=${suiteName}&section=${sections.find(section => section.cases.includes(testCase)).title}&testCaseId=${testCase.id}&testCaseName=${testCase.title}`);
   };
 
   // Calculate total sections and cases
