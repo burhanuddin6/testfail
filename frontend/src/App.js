@@ -32,6 +32,7 @@ import AddSection from './Pages/AddSection';
 import TestCaseDetails from './Pages/TestCaseDetails';
 import TestsResults from './Pages/TestsResults';
 import TestCaseDefects from './Pages/TestCaseDefects';
+import TestCaseHistory from './Pages/TestCaseHistory';
 import NotFound from './Pages/NotFound';
 
 const App = () => {
@@ -306,6 +307,15 @@ const App = () => {
             <>
               <Header userName={userName} />
               <TestCaseDefects />
+            </>
+          }
+        />
+        <Route 
+          path="/TestCaseHistory" 
+          element={
+            <>
+              <Header userName={userName} />
+              <TestCaseHistory />
             </>
           }
         />

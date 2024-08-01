@@ -178,9 +178,9 @@ const TestCaseDefects = () => {
               </Link>
             </h3>
             <li>
-              <a href="#history" className="sidebar-link">
-                History
-              </a>
+                <Link to={`/TestCaseHistory?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`} className="sidebar-link">
+                    History
+                </Link>
             </li>
           </ul>
         </section>
