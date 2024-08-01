@@ -1,6 +1,6 @@
 from django.db import models
 from .test_case import TestCase
-from .user import MyUser
+from datetime import datetime, timezone
 
 class TestCaseResult(models.Model):
     test_case_result_id = models.AutoField(primary_key=True)
@@ -20,14 +20,19 @@ class TestCaseResult(models.Model):
         (PARTIAL, 'PARTIAL'),
     ]
     status = models.CharField(max_length=255, choices=STATUS_CHOICES, default=UNTESTED)
-    creator_id = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     result_blob = models.TextField()
     version = models.CharField(max_length=255, null=True, blank=True)
     comment = models.CharField(max_length=255, null=True, blank=True)
+    result_time = models.TimeField(null=True, blank=True)
+
+    created_by = models.ForeignKey('MyUser', on_delete=models.CASCADE, related_name='created_test_case_results')
     created_on = models.DateTimeField(auto_now_add=True)
-    result_time = models.IntegerField(null=True, blank=True)
+    updated_by = models.ForeignKey('MyUser', on_delete=models.CASCADE, null=True, blank=True, related_name='updated_test_case_results')
+    updated_on = models.DateTimeField(null=True, blank=True)
 
     def save(self, *args, **kwargs):
+        if self.pk is not None:
+            self.updated_on = datetime.now(timezone.utc)
         super().save(*args, **kwargs)
         testcase = self.test_case_id
         testcase.latest_result_id = self
