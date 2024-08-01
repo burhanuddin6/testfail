@@ -33,6 +33,7 @@ import TestCaseDetails from './Pages/TestCaseDetails';
 import TestsResults from './Pages/TestsResults';
 import TestCaseDefects from './Pages/TestCaseDefects';
 import TestCaseHistory from './Pages/TestCaseHistory';
+import EditTestCase from './Pages/EditTestCase';
 import NotFound from './Pages/NotFound';
 
 const App = () => {
@@ -316,6 +317,15 @@ const App = () => {
             <>
               <Header userName={userName} />
               <TestCaseHistory />
+            </>
+          }
+        />
+        <Route 
+          path="/EditTestCase" 
+          element={
+            <>
+              <Header userName={userName} />
+              <EditTestCase />
             </>
           }
         />

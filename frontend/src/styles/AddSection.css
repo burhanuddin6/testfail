@@ -68,7 +68,7 @@ body {
 }
 
 /* File upload styling */
-.add-section-file-upload {
+.file-upload {
   position: relative;
   margin-bottom: 20px;
   border: 2px dashed #ccc;

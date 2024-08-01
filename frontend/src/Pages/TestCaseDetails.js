@@ -20,6 +20,7 @@ const TestCaseDetails = () => {
         <div className="test-case-header">
           <div className="test-case-id">{testCaseId}</div>
           <h1 className="test-case-name">{testCaseName}</h1>
+          <Link to={`/EditTestCase?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}&source=TestCaseDetails`} className="edit-case-link">Edit</Link>
         </div>
 
         <nav className="breadcrumb-nav">

@@ -118,6 +118,7 @@ const TestCaseDefects = () => {
         <div className="test-case-header">
           <div className="test-case-id">{testCaseId}</div>
           <h1 className="test-case-name">{testCaseName}</h1>
+          <Link to={`/EditTestCase?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}&source=TestCaseDefects`} className="edit-testsresults-link">Edit</Link>
         </div>
         <nav className="breadcrumb-nav">
           <Link to={`/SectionsCases?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}`} className="breadcrumb-link">
