@@ -7,16 +7,59 @@ const testResults = [
   {
     date: 'April 2021',
     results: [
-      { status: 'Passed', id: 'T21499', suite: 'O_ General UI Testcases', release: 'Content Classification 1.43', type: 'Release 1.43', testedBy: 'Reviewer' },
-      { status: 'Passed', id: 'T2147876', suite: 'O_ General UI Testcases', release: 'Consent Management 1.43 regression', type: 'Regression', testedBy: 'Reviewer' }
-    ]
+      {
+        status: 'Passed',
+        id: 'T21499',
+        suite: 'O_ General UI Testcases',
+        release: 'Content Classification 1.43',
+        type: 'Release 1.43',
+        testedBy: 'Reviewer',
+      },
+      {
+        status: 'Passed',
+        id: 'T2147876',
+        suite: 'O_ General UI Testcases',
+        release: 'Consent Management 1.43 regression',
+        type: 'Regression',
+        testedBy: 'Reviewer',
+      },
+    ],
   },
   {
     date: 'March 2021',
     results: [
-      { status: 'Passed', id: 'T1972863', suite: 'O_ General UI Testcases', release: 'Content Classification 1.40', type: 'Release 1.40', testedBy: 'Reviewer' }
-    ]
+      {
+        status: 'Passed',
+        id: 'T1972863',
+        suite: 'O_ General UI Testcases',
+        release: 'Content Classification 1.40',
+        type: 'Release 1.40',
+        testedBy: 'Reviewer',
+      },
+    ],
   },
+  {
+    date: 'April 2021',
+    results: [
+      {
+        status: 'Passed',
+        id: 'T21499',
+        suite: 'O_ General UI Testcases',
+        release: 'Content Classification 1.43',
+        type: 'Release 1.43',
+        testedBy: 'Reviewer',
+      },
+      {
+        status: 'Passed',
+        id: 'T2147876',
+        suite: 'O_ General UI Testcases',
+        release: 'Consent Management 1.43 regression',
+        type: 'Regression',
+        testedBy: 'Reviewer',
+      },
+    ],
+  },
+  
   // Add more data here as per the screenshot
 ];
 
@@ -51,7 +94,7 @@ const TestsResults = () => {
                 'rgba(91, 192, 222, 0.2)',
                 'rgba(217, 83, 79, 0.2)',
                 'rgba(119, 119, 119, 0.2)',
-                'rgba(119, 119, 119, 0.2)'
+                'rgba(119, 119, 119, 0.2)',
               ],
               borderColor: [
                 'rgba(92, 184, 92, 1)',
@@ -59,19 +102,25 @@ const TestsResults = () => {
                 'rgba(91, 192, 222, 1)',
                 'rgba(217, 83, 79, 1)',
                 'rgba(119, 119, 119, 1)',
-                'rgba(119, 119, 119, 1)'
+                'rgba(119, 119, 119, 1)',
               ],
-              borderWidth: 1
-            }
-          ]
+              borderWidth: 1,
+            },
+          ],
         },
         options: {
           scales: {
             y: {
-              beginAtZero: true
-            }
-          }
-        }
+              beginAtZero: true,
+            },
+          },
+          plugins: {
+            legend: {
+              display: true,
+              position: 'top',
+            },
+          },
+        },
       });
     }
 
@@ -90,7 +139,10 @@ const TestsResults = () => {
           <h1 className="test-case-name">{testCaseName}</h1>
         </div>
         <nav className="breadcrumb-nav">
-          <Link to={`/SectionsCases?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}`} className="breadcrumb-link">
+          <Link
+            to={`/SectionsCases?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}`}
+            className="breadcrumb-link"
+          >
             {suiteName} &gt; {sectionName}
           </Link>
         </nav>
@@ -110,42 +162,59 @@ const TestsResults = () => {
             </ul>
           </div>
         </div>
-        <div className="test-results">
-          {testResults.map((result, index) => (
-            <div key={index} className="result-month">
-              <h2>{result.date}</h2>
-              {result.results.map((item, idx) => (
-                <div key={idx} className="result-item">
-                  <span className={`status ${item.status.toLowerCase()}`}>{item.status}</span>
-                  <Link to={`/TestCaseDetails?suiteId=${suiteId}&testCaseId=${item.id}&testCaseName=${encodeURIComponent(testCaseName)}`} className="test-id">
-                    {item.id}
-                  </Link>
-                  <span className="test-suite">in {item.suite} (completed)</span>
-                  <span className="release">{item.release}</span>
-                  <span className="tested-by">Tested by {item.testedBy}</span>
-                </div>
-              ))}
-            </div>
-          ))}
+        <div className="test-results-list-scroll">
+          <h2 className="test-results-heading">Test Runs</h2>
+          <div className="test-results">
+            {testResults.map((result, index) => (
+              <div key={index} className="result-month">
+                <h3>{result.date}</h3>
+                {result.results.map((item, idx) => (
+                  <div key={idx} className="result-item">
+                    <span className={`status ${item.status.toLowerCase()}`}>{item.status}</span>
+                    <Link
+                      to={`/TestCaseDetails?suiteId=${suiteId}&testCaseId=${item.id}&testCaseName=${encodeURIComponent(
+                        testCaseName
+                      )}`}
+                      className="test-id"
+                    >
+                      {item.id}
+                    </Link>
+                    <span className="test-suite">in {item.suite} (completed)</span>
+                    <span className="release">{item.release}</span>
+                    <span className="tested-by">Tested by {item.testedBy}</span>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
       <aside className="test-case-sidebar">
         <section className="sidebar-section">
           <ul className="sidebar-links">
             <li>
-                <Link to={`/TestCaseDetails?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`} className="sidebar-link">
-                    Details
-                </Link>
+              <Link
+                to={`/TestCaseDetails?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`}
+                className="sidebar-link"
+              >
+                Details
+              </Link>
             </li>
             <h3 className="sidebar-title">
-                <Link to={`/TestsResults?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`} className="sidebar-link">
-                    Tests & Results
-                </Link>
-          </h3>
+              <Link
+                to={`/TestsResults?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`}
+                className="sidebar-link"
+              >
+                Tests & Results
+              </Link>
+            </h3>
             <li>
-              <a href="#defects" className="sidebar-link">
+              <Link
+                to={`/TestCaseDefects?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`}
+                className="sidebar-link"
+              >
                 Defects
-              </a>
+              </Link>
             </li>
             <li>
               <a href="#history" className="sidebar-link">

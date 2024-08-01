@@ -31,6 +31,7 @@ import AddTestCase from './Pages/AddTestCase';
 import AddSection from './Pages/AddSection';
 import TestCaseDetails from './Pages/TestCaseDetails';
 import TestsResults from './Pages/TestsResults';
+import TestCaseDefects from './Pages/TestCaseDefects';
 import NotFound from './Pages/NotFound';
 
 const App = () => {
@@ -296,6 +297,15 @@ const App = () => {
             <>
               <Header userName={userName} />
               <TestsResults />
+            </>
+          }
+        />
+        <Route 
+          path="/TestCaseDefects" 
+          element={
+            <>
+              <Header userName={userName} />
+              <TestCaseDefects />
             </>
           }
         />

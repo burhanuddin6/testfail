@@ -72,9 +72,9 @@ const TestCaseDetails = () => {
             </Link>
             </li>
             <li>
-              <a href="#defects" className="sidebar-link">
+              <Link to={`/TestCaseDefects?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`} className="sidebar-link">
                 Defects
-              </a>
+              </Link>
             </li>
             <li>
               <a href="#history" className="sidebar-link">
