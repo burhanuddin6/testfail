@@ -1,5 +1,5 @@
 import React from 'react';
-import Graph from '../components/Graph';
+import Graph from '../components/OverviewGraph';
 import '../styles/Overview.css';
 import Graphcontrol from '../components/Graphcontrol';
 import Milestones from '../components/Milestones';
@@ -53,64 +53,66 @@ const Overview = () => {
       </div>
   
       <div className='overview-activitylog'>
-        <h3>Activity</h3>
-        <div className='activity-datewise-details'>
-          <p className='activity-date'>20 July 2024</p>
-          <div className='activity-details'>
-            <button>Test Run</button>
-            <p>details</p>
-            <div className='activity-change-by'>
-              <p>change by</p>
-            </div>
-          </div> 
-          <div className='activity-details'>
-            <button>Test Run</button>
-            <p>details</p>
-            <div className='activity-change-by'>
-              <p>change by</p>
-            </div>
-          </div> 
-          <div className='activity-details'>
-            <button>Test Run</button>
-            <p>details</p>
-            <div className='activity-change-by'>
-              <p>change by</p>
-            </div>
-          </div> 
-        </div>
-        
-        <div className='activity-datewise-details'>
-          <p className='activity-date'>19 July 2024</p>
-          <div className='activity-details'>
-            <button>Test Run</button>
-            <p>details</p>
-            <div className='activity-change-by'>
-              <p>change by</p>
-            </div>
-          </div> 
-          <div className='activity-details'>
-            <button>Test Run</button>
-            <p>details</p>
-            <div className='activity-change-by'>
-              <p>change by</p>
-            </div>
-          </div> 
-        </div>
+        <h2>Activity</h2>
+        <div className='overview-activity-scrollable'>
+          <div className='activity-datewise-details'>
+            <p className='activity-date'>20 July 2024</p>
+            <div className='activity-details'>
+              <button>Test Run</button>
+              <p>details</p>
+              <div className='activity-change-by'>
+                <p>change by</p>
+              </div>
+            </div> 
+            <div className='activity-details'>
+              <button>Test Plan</button>
+              <p>details</p>
+              <div className='activity-change-by'>
+                <p>change by</p>
+              </div>
+            </div> 
+            <div className='activity-details'>
+              <button>Milestone</button>
+              <p>details</p>
+              <div className='activity-change-by'>
+                <p>change by</p>
+              </div>
+            </div> 
+          </div>
+          
+          <div className='activity-datewise-details'>
+            <p className='activity-date'>19 July 2024</p>
+            <div className='activity-details'>
+              <button>Test Run</button>
+              <p>details</p>
+              <div className='activity-change-by'>
+                <p>change by</p>
+              </div>
+            </div> 
+            <div className='activity-details'>
+              <button>Test Run</button>
+              <p>details</p>
+              <div className='activity-change-by'>
+                <p>change by</p>
+              </div>
+            </div> 
+          </div>
 
-        <div className='activity-datewise-details'>
-          <p className='activity-date'>18 July 2024</p>
-          <div className='activity-details'>
-            <button>Test Run</button>
-            <p>details</p>
-            <div className='activity-change-by'>
-              <p>change by</p>
-            </div>
-          </div> 
-          <div className='activity-details'>
-            <button>Test Run</button>
-            <p>details</p>
-            <div className='activity-change-by'>
-              <p>change by</p>
+          <div className='activity-datewise-details'>
+            <p className='activity-date'>18 July 2024</p>
+            <div className='activity-details'>
+              <button>Test Run</button>
+              <p>details</p>
+              <div className='activity-change-by'>
+                <p>change by</p>
+              </div>
+            </div> 
+            <div className='activity-details'>
+              <button>Test Run</button>
+              <p>details</p>
+              <div className='activity-change-by'>
+                <p>change by</p>
+              </div>
             </div>
           </div> 
         </div>

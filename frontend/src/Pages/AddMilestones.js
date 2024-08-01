@@ -221,7 +221,8 @@ const AddMilestone = ({ userID }) => {
   return (
     <div className="milestone-form">
       <form className='add_f' onSubmit={handleSubmit}>
-        <h2>Add Milestone</h2>
+        {/* <h2>Add Milestone</h2> */}
+        <h2>{action == "edit" ? 'Edit' : 'Add'} Milestone</h2>
         <div className="add-form-group">
           <label htmlFor="name">Name<span className='required'>*</span></label> 
           <input
@@ -231,7 +232,7 @@ const AddMilestone = ({ userID }) => {
             onChange={(e) => setName(e.target.value)}
             placeholder="Ex: Version 1.0, Internal Beta 2 or Sprint #4"
             required
-          />
+          /> 
         </div>
         <div className="add-form-group">
           <label htmlFor="references">References</label>
@@ -299,7 +300,7 @@ const AddMilestone = ({ userID }) => {
           <label htmlFor="isCompleted">This milestone is completed</label>
         </div>
         <div className="form-buttons">
-          <button type="submit">Add Milestone</button>
+          <button type="submit">{action == "edit" ? 'Update' : 'Add'} Milestone</button>
           <button type="button" onClick={handleCancel}>Cancel</button>
         </div>
       </form>

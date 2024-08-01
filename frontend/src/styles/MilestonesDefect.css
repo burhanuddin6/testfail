@@ -1,8 +1,20 @@
-.defects-mainclass {
-    display: flex;
-    flex-direction: column;
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
     color: black;
-    margin-left: 30px;
+  }
+
+.defects-mainclass {
+    padding: 20px;
+    margin-top: 100px; /* Space for the header */
+    background-color: #e6f3ff;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+    overflow-y: auto; /* Enable vertical scrolling */
+    height: calc(100vh - 60px); /* Full screen height minus header */
+    width: 100%; /* Ensure full width */
 }
 
 .defects-header {
@@ -33,15 +45,17 @@
    margin-left: auto;
    display: flex;
    gap: 30px;
-   margin-right: 30px;
+   margin-right: 5px;
 }
 
 .defects-details {
     display: flex;
     gap: 30px;
     width: auto;
-    margin-right: 30px;
+    margin-right: 5px;
     margin-bottom: 30px;
+    justify-content: center;
+    background-color: white;
 }
 
 
@@ -50,13 +64,69 @@
     height: auto;
     width: 50%;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
+
+.defects-chart-download button{
+    width: auto;
+    margin-left: 30px;
+}
+
+.defects-details-number {
+    width: 10%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.defects-details-legend {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 200px;
+    font-size: 14px;
+    background-color: white;
+  }
+  
+  .defects-legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  
+  .defects-legend-color {
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+    border-radius: 50%;
+  }
+  
+  .defects-legend-text {
+    margin-left: 5px;
+    color: black;
+    width: 200px;
+  }
+
+  .defects-testrun-class, .defects-details-class {
+    overflow-y: auto;
+    max-height: 300px;
+    margin-bottom: 30px;
+  }
 
 .defects-testrun-details {
     background-color: white;
     display: flex;
-    margin-right: 30px;
-    margin-bottom: 10px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    padding: 10px;
+    
+}
+
+.scrollable-container {
+    overflow-y: auto;
 }
 
 .defects-testrun-number {
@@ -64,24 +134,33 @@
     margin-right: 30px;
 }
 
+.defects-date {
+    margin-bottom: 10px;
+}
 
 .defects-details-individual {
     background-color: white;
     display: flex;
     gap: 0px;
-    margin-right: 30px;
-    margin-bottom: 10px;
-    padding-left: 10px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    padding: 7px;
 }
 
 .defects-doneby {
     margin-left: auto;
     margin-right: 30px;
+    margin-top: 7px;
 }
 
 .defects-status-bar-failed {
     background-color: red;
-    border-radius: 8px;
-    width: 60px;
-    height: 30px;
+    border-radius: 30px;
+    width: auto;
+    height: auto;
+    padding: 7px;
+}
+
+.defects-name {
+    margin-top: 7px;
 }

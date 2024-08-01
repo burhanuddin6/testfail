@@ -71,7 +71,7 @@ const TestSuitesCases = () => {
       <div className="suite-summary">
         <span>{`${testSuites.length} test suites and ${testSuites.reduce((total, suite) => total + suite.cases, 0)} cases in this project.`}</span>
       </div>
-
+ 
       {/* List of Test Suites */}
       <div className="suite-list">
         {testSuites.map((suite) => (

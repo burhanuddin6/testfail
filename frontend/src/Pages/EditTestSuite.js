@@ -115,7 +115,7 @@ const EditTestSuite = () => {
             <label htmlFor="name" className="edit-suite-label">
               Name<span className="edit-suite-required">*</span>
             </label>
-            <input
+            <input 
               type="text"
               id="name"
               value={name} // Correctly bind to 'name' state

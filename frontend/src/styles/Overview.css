@@ -25,7 +25,7 @@
     flex-direction: column;
     align-items: flex-start;
     margin-top: 20px;
-    font-size: 14px;
+    font-size: 14px; 
   }
   
   .overview-legend-item {
@@ -51,8 +51,8 @@
     margin-left: 30px;
     display: flex;
     position: relative;
-    top: 550px;
-    gap: 30px;
+    top: 650px;
+    gap: 5px;
     margin-bottom: 30px;
     width: 97%;
     margin-right: 30px;
@@ -62,11 +62,14 @@
     margin-left: 30px;
     color: black;
     position: relative; 
-    top: 550px;
+    top: 650px;
+  }
+
+  .overview-activity-scrollable {
     overflow-y: auto;
     max-height: 400px;
   }
-
+  
   .scrollable-container {
     overflow-y: auto;
   }

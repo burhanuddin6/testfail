@@ -79,8 +79,8 @@ const Dashboard = ({ userName }) => {
               </div>
             )}
           </div>
-          <a href="/help" className="nav-link purple">Help & Feedback</a>
-          <a href="mailto:support@example.com" className="nav-link purple"> Mail</a>
+          <a href="/help" className="nav-link">Help & Feedback</a>
+          <a href="mailto:support@example.com" className="nav-link"> Mail</a>
         </div>
       </header>
 

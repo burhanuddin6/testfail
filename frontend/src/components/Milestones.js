@@ -4,24 +4,47 @@ import '../styles/components/Milestones.css';
 const Milestones = () => {
   return (
     <div className="milestones">
+      <div className='milestone-component-listing'>
         <h3>Milestones</h3>
-        <ul>
-          <li>FSA Release 1.114 Cycle 1 - No due date</li>
-          <li>Release 1.117 - No due date</li>
-          <li>FSA Release 1.114 Cycle 2 - No due date</li>
-          <li>FSA Release 1.114 Cycle 1 - No due date</li>
-          <li>Release 1.117 - No due date</li>
-          <li>FSA Release 1.114 Cycle 2 - No due date</li>
-          <li>FSA Release 1.114 Cycle 1 - No due date</li>
-          <li>Release 1.117 - No due date</li>
-          <li>FSA Release 1.114 Cycle 2 - No due date</li>
-          <li>FSA Release 1.114 Cycle 1 - No due date</li>
-          <li>Release 1.117 - No due date</li>
-          <li>FSA Release 1.114 Cycle 2 - No due date</li>
-          <li>FSA Release 1.114 Cycle 1 - No due date</li>
-          <li>Release 1.117 - No due date</li>
-          <li>FSA Release 1.114 Cycle 2 - No due date</li>
-        </ul>
+        <div className='milestones-scrollable-list'>
+          <div className='milestone-details'>
+            FSA Release 1.114 Cycle 1 - No due date
+          </div>
+          <div className='milestone-details'>
+            FSA Release 1.114 Cycle 1 - No due date
+          </div>
+          <div className='milestone-details'>
+            FSA Release 1.114 Cycle 1 - No due date
+          </div>
+          <div className='milestone-details'>
+            FSA Release 1.114 Cycle 1 - No due date
+          </div>
+          <div className='milestone-details'>
+            FSA Release 1.114 Cycle 1 - No due date
+          </div>
+          <div className='milestone-details'>
+            FSA Release 1.114 Cycle 1 - No due date
+          </div>
+          <div className='milestone-details'>
+            FSA Release 1.114 Cycle 1 - No due date
+          </div>
+          <div className='milestone-details'>
+            FSA Release 1.114 Cycle 1 - No due date
+          </div>
+          <div className='milestone-details'>
+            FSA Release 1.114 Cycle 1 - No due date
+          </div>
+          <div className='milestone-details'>
+            FSA Release 1.114 Cycle 1 - No due date
+          </div>
+          <div className='milestone-details'>
+            FSA Release 1.114 Cycle 1 - No due date
+          </div>
+          <div className='milestone-details'>
+            FSA Release 1.114 Cycle 1 - No due date
+          </div>
+        </div>
+      </div>
     </div> 
   );
 };

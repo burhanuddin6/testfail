@@ -1,13 +1,38 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    color: black;
+  }
+
 .activity-mainclass {
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     color: black;
     margin-left: 30px;
+    position: sticky;
+    top: 0px;
+    width: 98%;
+    overflow-y: auto;
+    max-height: 800px; */
+    /* margin-bottom: 30px; */
+    padding: 20px;
+    margin-top: 100px; /* Space for the header */
+    background-color: #e6f3ff;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+    overflow-y: auto; /* Enable vertical scrolling */
+    height: calc(100vh - 60px); /* Full screen height minus header */
+    width: 100%; /* Ensure full width */
 }
+
+
 
 .activity-header {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .activity-options {
@@ -19,69 +44,116 @@
     color: black;
 }
 
+
 .activity-control-button button{
     width: 100px;
     height: 40px;
 }
 
-.activity-controls {
+.activity-controls{
     display: flex;
     gap: 30px;
 }
 
-.activity-control-button {
+.activity-control-button{
    margin-left: auto;
    display: flex;
    gap: 30px;
-   margin-right: 30px;
+   margin-right: 5px;
 }
 
 .activity-details {
     display: flex;
-    gap: 30px;
+    gap: 0px;
     width: auto;
-    margin-right: 30px; 
-    background-color: white;
+    margin-right: 5px;
 }
 
-.activity-details-chart, .activity-details-label {
+.activity-details-chart {
+    background-color: white;
     height: auto;
     width: 50%;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
+.activity-chart-download button{
+    width: auto;
+    margin-left: 30px;
+}
 
-.activity-details-individual {
+.activity-milestones-details {
     background-color: white;
     display: flex;
     gap: 0px;
-    margin-right: 30px;
-    margin-bottom: 10px;
-    padding-left: 10px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    padding: 10px;
 }
 
-.activity-testrun-activitybar {
+.activity-milestones-details-class{
+    overflow-y: auto;
+    max-height: 300px;
+    margin-bottom: 30px;
+}
+
+.scrollable-container {
+    overflow-y: auto;
+}
+
+  .activity-details-legend {
     display: flex;
-    gap: 30px;
-    margin-left: auto;
-    margin-right: 30px;
-}
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 200px;
+    font-size: 14px;
+  }
+  
+  .activity-legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  
+  .activity-legend-color {
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+    border-radius: 50%;
+  }
+  
+  .activity-legend-text {
+    margin-left: 5px;
+    color: black;
+    width: 100px;
+  }
 
-.activity-doneby {
-    margin-left: auto;
-    margin-right: 30px;
-}
-
-.activity-status-bar-passed {
+  .activity-pass-status {
     background-color: green;
-    border-radius: 8px;
-    width: 60px;
-    height: 30px;
-}
+    border-radius: 30px;
+    padding: 7px;
+  }
 
-.activity-status-bar-failed {
+  .activity-fail-status {
     background-color: red;
-    border-radius: 8px;
-    width: 60px;
-    height: 30px;
-}
+    border-radius: 30px;
+    padding: 7px;
+  }
+
+  .activity-details-listing {
+    margin-top: 7px;
+  }
+
+  .activity-milestones-date {
+    margin-bottom: 7px;
+    margin-top: 10px;
+  }
+
+  .activity-milestone-doneby {
+    margin-left: auto;
+    margin-right: 30px;
+    margin-top: 7px;
+  }
