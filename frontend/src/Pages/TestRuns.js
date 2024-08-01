@@ -27,7 +27,7 @@ const TestRuns = () => {
     const loadTestRuns = async () => {
       setLoading(true); // Set loading state
       try {
-        const data = await fetchTestRuns(projectID);
+        const data = await fetchTestRuns(projectID, suiteId);
         // Separate active and completed runs based on your criteria
         const active = data.filter(run => !run.is_complete);
         const completed = data.filter(run => run.is_complete);

@@ -61,7 +61,3 @@ class TestRun(models.Model):
                 TestRunTestCaseResult.objects.create(test_run_id=self, test_case_id=tc, test_case_result_id=testcase_result)
             
 
-class TestRunTestCase(models.Model):
-    test_run_test_case_id = models.AutoField(primary_key=True)
-    test_run_id = models.ForeignKey('TestRun', on_delete=models.CASCADE)
-

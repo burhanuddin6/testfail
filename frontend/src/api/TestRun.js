@@ -15,17 +15,31 @@ const createTestRun = async (testRunData) => {
 };
 
 // API endpoint for fetching test runs
-const fetchTestRuns = async (projectId) => {
-    const API_URL = `test_run/?project_id=${projectId}`; 
+// const fetchTestRuns = async (projectId) => {
+//     const API_URL = `test_run/?project_id=${projectId}`; 
   
-    try {
+//     try {
+//       const response = await axiosInstance.get(API_URL);
+//       console.log(response);
+//       return response.data; 
+//     } catch (error) {
+//       console.error('Error fetching test runs:', error);
+//       throw error; 
+//     }
+// };
+
+const fetchTestRuns = async (projectId, suiteId = '') => {
+  // Append suiteId to query parameters if it exists
+  const API_URL = `test_run/?project_id=${projectId}${suiteId ? `&suite_id=${suiteId}` : ''}`;
+
+  try {
       const response = await axiosInstance.get(API_URL);
       console.log(response);
-      return response.data; 
-    } catch (error) {
+      return response.data;
+  } catch (error) {
       console.error('Error fetching test runs:', error);
-      throw error; 
-    }
+      throw error;
+  }
 };
   
-  export { createTestRun, fetchTestRuns };
+export { createTestRun, fetchTestRuns };

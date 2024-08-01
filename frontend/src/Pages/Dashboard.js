@@ -3,71 +3,63 @@ import '../styles/Dashboard.css';
 import logo from '../images/logo_02.png';
 import linechart from '../images/linechart.png';
 import { Link } from 'react-router-dom';
-import { SOFTWARE_TITLE , setProjectInfo} from '../utilities/globals.js';
-import Graphcontrol from '../components/Graphcontrol.js';
+import { SOFTWARE_TITLE, setProjectInfo } from '../utilities/globals';
+import Graphcontrol from '../components/Graphcontrol';
 import { getUserDetails } from '../api/Auth';
-import { fetchProjects } from '../api/Project.js'; // Adjust the import path
+import { fetchProjects } from '../api/Project';
 
 const Dashboard = ({ userName }) => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const [showButtons, setShowButtons] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showWorkingOnMenu, setShowWorkingOnMenu] = useState(false);
 
-
   useEffect(() => {
-    
     const getDetails = async () => {
       try {
         const token = sessionStorage.getItem("token");
         const details = await getUserDetails(token);
-  
         sessionStorage.setItem("user_name", `${details.first_name} ${details.last_name}`);
         sessionStorage.setItem("user_id", `${details.id}`);
         sessionStorage.setItem("user_email", `${details.email}`);
-
-        
-        console.log("User details successfully stored in sessionStorage."); //debug statement, remove before production!!
+        console.log("User details successfully stored in sessionStorage.");
       } catch (error) {
-        console.error("Failed to fetch user details", error); //debug statement, remove before production!!
+        console.error("Failed to fetch user details", error);
       }
     };
-  
+
     const getProjects = async () => {
       try {
         const data = await fetchProjects();
         setProjects(data);
       } catch (err) {
-        setError('Failed to fetch projects.');
+        if (err.response && err.response.status === 403) {
+          setError('You do not have permission for this action.');
+        } else {
+          setError('Failed to fetch projects.');
+        }
       } finally {
         setLoading(false);
       }
     };
-  
-    
+
     Promise.all([getDetails(), getProjects()])
       .then(() => {
-        console.log("Both getDetails and getProjects have completed.");  //debug statement, remove before production!!
+        console.log("Both getDetails and getProjects have completed.");
       })
       .catch((error) => {
-        console.error("An error occurred while fetching data", error); //debug statement, remove before production!!
+        console.error("An error occurred while fetching data", error);
       });
-  
-  }, [setProjects, setError, setLoading]);  
-
-  const handleFormat = () => {
-    setShowButtons(!showButtons);
-  };
+  }, []);
 
   return (
     <div className="dashboard-container">
       <header className="dashboard-header">
         <img src={logo} alt="Securiti.ai" />
         <h2>{SOFTWARE_TITLE}</h2>
-        <div className="options">
+        <div className='options'>
           <input type="text" className="search-bar" placeholder="Search..." />
           <div className="dropdown" onClick={() => setShowWorkingOnMenu(!showWorkingOnMenu)}>
             Working On
@@ -115,14 +107,14 @@ const Dashboard = ({ userName }) => {
           ) : (
             projects.map(project => (
               <div key={project.project_id} className='dashboard-details'>
-                 <Link 
-                        to={`/projects/overview`} 
-                        className='projectName'
-                        onClick={() => setProjectInfo(project.project_id, project.name)} // Set the project ID globally
-                    >
-                        {project.name}
-                    </Link> 
-                <p>Contains 33 test suites, 143 active test runs and 10 active milestones</p>
+                <Link
+                  to={`/projects/overview`}
+                  className='projectName'
+                  onClick={() => setProjectInfo(project.project_id, project.name)}
+                >
+                  {project.name}
+                </Link>
+                <p>Contains {project.test_suite_count} test suites, {project.active_test_run_count} active test runs, and {project.active_milestone_count} active milestones</p>
               </div>
             ))
           )}
@@ -143,5 +135,3 @@ const Dashboard = ({ userName }) => {
 };
 
 export default Dashboard;
-
-         

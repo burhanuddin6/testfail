@@ -13,3 +13,23 @@ Test run creation:
  3. user id required
 
 fetch milestones (id, name), users (id, name) in run creation form
+
+
+
+-----------
+- handle sub-milstones display in add-milestones form parent
+
+
+
+-----
+- a test run 'should' be assigned to a test suite
+
+
+
+================
+Things to remove 
+ - remove priorityfortestcase table and typefortestcase table
+ - remove debug statements 
+
+
+

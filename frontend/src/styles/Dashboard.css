@@ -85,7 +85,7 @@ body {
   display: flex;
   align-items: center;
   background-color: white;
-  margin-top: 250px; /* Space for the header */
+  margin-top: 80px; /* Space for the header */
   padding: 20px;
   gap: 50px;
   margin-left: 30px;
@@ -105,7 +105,7 @@ body {
 }
 
 .dashboard-legend-item {
-  display: flex; 
+  display: flex;
   align-items: center;
   margin-bottom: 5px;
 }
@@ -141,10 +141,6 @@ body {
   max-height: 400px; /* Set a max height for scrollable content */
 }
 
-.scrollable-container {
-  overflow-y: auto;
-}
-
 .projectName {
   background-color: transparent;
   color: #007bff;
@@ -154,59 +150,9 @@ body {
   margin-bottom: 10px;
 }
 
-<<<<<<< HEAD
-.dashboard-header a { margin-top: 3px; }
-
-.search-bar { padding: 0.5rem; border-radius: 4px; margin-right: 1rem; }
-
-.options { gap: 10px; display: flex; align-items: center; margin-left: auto; }
-
-.dropdown { position: relative; margin-right: 1rem; cursor: pointer; font-weight: bold; }
-
-.dropdown-menu { position: absolute; top: 100%; left: 0; background: white; color: black; border: 1px solid #ccc; border-radius: 4px; padding: 0.5rem; min-width: 150px; z-index: 1; }
-
-.dropdown-menu div { padding: 0.5rem; cursor: pointer; }
-
-.dropdown-menu div:hover { background-color: #f1f1f1; }
-
-.nav-link.purple { position: relative; margin-right: 1rem; cursor: pointer; font-weight: bold; }
-
-.chart-container { display: flex; align-items: center; background-color: white; position: absolute; width: 97%; margin-right: 30px; top: 160px; left: 30px; margin-bottom: 0; gap: 50px; }
-
-.chart { width: 1000px; height: auto; margin-left: 30px; }
-
-.dashboard-legend { display: flex; flex-direction: column; align-items: flex-start; margin-top: 20px; font-size: 14px; }
-
-.dashboard-legend-item { display: flex; align-items: center; margin-bottom: 5px; }
-
-.dashboard-legend-color { width: 15px; height: 15px; margin-right: 10px; border-radius: 50%; }
-
-.dashboard-legend-text { margin-left: 5px; color: black; }
-
-.projects { color: black; position: absolute; width: 97%; margin-right: 30px; top: 400px; left: 30px; margin-bottom: 0; gap: 50px; }
-
-.projectName {
-  background-color: transparent; 
-  color: black; 
-  width: auto; /* Allow the width to adjust automatically */
-  font-size: 17px; 
-  white-space: nowrap; /* Prevent text from wrapping */
-  overflow: hidden; /* Hide overflow content */
-  text-overflow: ellipsis; /* Show ellipsis (...) if text overflows */
-}
-
-.projectName:hover { background-color: transparent; }
-
-.dashboard-details { background-color: white; border-radius: 7px; padding: 10px; margin-bottom: 10px; right: 30px; }
-
-.dashboard-details h3, p { margin-left: 15px; }
-
-.dashboard-todo { color: black; position: absolute; width: 100%; top: 730px; left: 30px; margin-bottom: 0; gap: 50px; width: 97%; right: 30px; }
-=======
 .projectName:hover {
   text-decoration: underline;
 }
->>>>>>> origin/main
 
 .dashboard-details {
   background-color: white;

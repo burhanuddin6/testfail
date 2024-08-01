@@ -15,23 +15,7 @@ class PriorityForTestCase(models.Model):
 class TestCase(models.Model):
     test_case_id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=255)
-    expected_results = models.TextField(null=True, blank=True)
-    latest_result_id = models.ForeignKey('TestCaseResult', on_delete=models.SET_NULL, null=True, blank=True)
-    type_id = models.ForeignKey(TypesForTestCase, on_delete=models.SET_NULL, null=True)
-    AUTOMATION_TYPE_CHOICES = (
-        ('None', 'None'),
-        ('Need to Triage', 'Need to Triage'),
-        ('BE', 'BE'),
-        ('UI', 'UI'),
-        ('BE & UI', 'BE & UI'),
-        ("Can't Automate", "Can't Automate"),
-        ('Automatable', 'Automatable'),
-        ('Other', 'Other'),
-    )
-    automation_type = models.CharField(max_length=255, choices=AUTOMATION_TYPE_CHOICES, default='Need to Triage')
-    priority_id = models.ForeignKey(PriorityForTestCase, on_delete=models.SET_NULL, null=True)
-    created_on = models.DateTimeField(auto_now_add=True)
-    estimate = models.IntegerField(null=True, blank=True)
+    project_id = models.ForeignKey('Project', on_delete=models.CASCADE, related_name='test_cases')
     section_id = models.ForeignKey('Section', on_delete=models.CASCADE, related_name='test_cases')
     # the template helps to lay out the data
     STEPS = 'Test Case (Steps)'
@@ -45,14 +29,57 @@ class TestCase(models.Model):
         BDD: 'Behavior Driven Development',
     }
     template_type = models.CharField(max_length=255, choices=TEMPLATE_TYPE_CHOICES, default='Test Case (Text)')
-    template_frame = models.TextField(default='')
+    TYPE_CHOICES = (
+            ('Acceptance', 'Acceptance'),
+            ('Accessibility', 'Accessibility'),
+            ('Automatable', 'Automatable'),
+            ('Automated', 'Automated'),
+            ('Can\'t Automate', 'Can\'t Automate'),
+            ('Compatibility', 'Compatibility'),
+            ('Destructive', 'Destructive'),
+            ('Functional', 'Functional'),
+            ('Other', 'Other'),
+            ('Performance', 'Performance'),
+            ('Regression', 'Regression'),
+            ('Security', 'Security'),
+            ('Smoke & Sanity', 'Smoke & Sanity'),
+            ('Usability', 'Usability'),
+    )
+    type_id = models.CharField(max_length=255, choices=TYPE_CHOICES, default='Other')
+    PRIORITY_CHOICES = (
+            ('Critical', 'Critical'),
+            ('High', 'High'),
+            ('Medium', 'Medium'),
+            ('Low', 'Low'),
+    )
+    priority_id = models.CharField(max_length=255, choices=PRIORITY_CHOICES, default='Low')
+    estimate = models.IntegerField(null=True, blank=True)
+    AUTOMATION_TYPE_CHOICES = (
+        ('None', 'None'),
+        ('Need to Triage', 'Need to Triage'),
+        ('BE', 'BE'),
+        ('UI', 'UI'),
+        ('BE & UI', 'BE & UI'),
+        ("Can't Automate", "Can't Automate"),
+        ('Automatable', 'Automatable'),
+        ('Other', 'Other'),
+    )
+    automation_type = models.CharField(max_length=255, choices=AUTOMATION_TYPE_CHOICES, default='Need to Triage')
+    obsolete = models.BooleanField(default=False)
+    preconditions = models.TextField(null=True, blank=True)
+    steps = models.TextField(null=True, blank=True)
     expected_result = models.TextField(null=True, blank=True)
+    automated_cases = models.TextField(null=True, blank=True)
+    latest_result_id = models.ForeignKey('TestCaseResult', on_delete=models.SET_NULL, null=True, blank=True)
+    created_on = models.DateTimeField(auto_now_add=True)
+    creator_id = models.ForeignKey(MyUser, on_delete=models.CASCADE)
+    template_frame = models.TextField(default='')
     updated_on = models.DateTimeField(auto_now=True)
     updated_by = models.ForeignKey(MyUser, on_delete=models.SET_NULL, null=True, related_name='updated_test_cases')
-    obsolete = models.BooleanField(default=False)
-    creator_id = models.ForeignKey(MyUser, on_delete=models.CASCADE)
-    project_id = models.ForeignKey('Project', on_delete=models.CASCADE, related_name='test_cases')
     assigned_to = models.ForeignKey(MyUser, on_delete=models.SET_NULL, null=True, related_name='assigned_test_cases')
+    # type_id = models.ForeignKey(TypesForTestCase, on_delete=models.SET_NULL, null=True)
+    # priority_id = models.ForeignKey(PriorityForTestCase, on_delete=models.SET_NULL, null=True)
+    
 
 class TestCaseFile(models.Model):
     file_id = models.AutoField(primary_key=True)

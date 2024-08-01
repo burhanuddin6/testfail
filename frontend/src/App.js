@@ -34,6 +34,7 @@ import AddTestCase from './Pages/AddTestCase';
 import AddSection from './Pages/AddSection';
 import NotFound from './Pages/NotFound';
 
+
 const App = () => {
   const [userName, setUserName] = useState("");
   const [userID, setUserID] = useState("");
@@ -204,13 +205,62 @@ const App = () => {
                 </>
               }
             />
-            <Route
+            {/* <Route //REVIEW USAGE
               path="/testruns"
               element={
                 <>
                   <Header userName={userName} />
                   <div className="main-content">
                     <TestRuns />
+                  </div>
+                </>
+              }
+            /> */}
+            <Route 
+              path="/SectionsCases" 
+              element={
+                <>
+                  <Header userName={userName} />
+                  <SectionsCases />
+                </>
+              }
+            />
+            <Route 
+              path="/AddTestCase" 
+              element={
+                <>
+                  <Header userName={userName} />
+                  <AddTestCase />
+                </>
+              }
+            />
+            <Route 
+              path="/AddSection" 
+              element={
+                <>
+                  <Header userName={userName} />
+                  <AddSection />
+                </>
+              }
+            />
+            <Route
+              path="/testruns/:id"
+              element={
+                <>
+                  <Header userName={userName} />
+                  <div className="main-content">
+                    <TestRuns />
+                  </div>
+                </>
+              }
+            />
+            <Route
+              path="/TestRuns"
+              element={
+                <>
+                  <Header userName={userName} />
+                  <div className="main-content">
+                    <TestRunsPage />
                   </div>
                 </>
               }

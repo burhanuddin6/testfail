@@ -5,6 +5,9 @@ from rest_framework.response import Response
 from ..models import *
 from ..serializers import *
 from ..permissions import HasModelPermissions
+from rest_framework.decorators import api_view
+
+
 
 class TypesForTestCaseViewSet(viewsets.ModelViewSet):
     queryset = TypesForTestCase.objects.all()
@@ -52,3 +55,66 @@ class TestCaseViewSet(viewsets.ModelViewSet):
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
     
+    def list(self, request, *args, **kwargs):
+        # Define the fields with choices
+        choices = {
+            'template_type': dict(TestCase.TEMPLATE_TYPE_CHOICES),
+            'type_id': dict(TestCase.TYPE_CHOICES),
+            'priority_id': dict(TestCase.PRIORITY_CHOICES),
+            'automation_type': dict(TestCase.AUTOMATION_TYPE_CHOICES),
+        }
+        return Response(choices, status=status.HTTP_200_OK)
+    
+    
+@api_view(['GET'])
+def sections_and_cases(request):
+    suite_id = request.query_params.get('suiteId')
+
+    if not suite_id:
+        return Response({'error': 'suiteId is required'}, status=400)
+
+    try:
+        # Fetch all sections for the given test suite
+        sections = Section.objects.filter(test_suite_id=suite_id)
+        
+        # Print fetched sections
+        print("Fetched sections:")
+        for section in sections:
+            print(f"Section ID: {section.section_id}, Name: {section.name}")
+        
+        # Fetch all test cases that belong to these sections
+        section_ids = sections.values_list('section_id', flat=True)
+        print(f"Section IDs: {section_ids}")
+        
+        test_cases = TestCase.objects.filter(section_id__in=section_ids)
+        
+        # Print fetched test cases
+        print("Fetched test cases:")
+        for test_case in test_cases:
+            print(f"Test Case ID: {test_case.test_case_id}, Title: {test_case.title}, Section ID: {test_case.section_id_id}, Automation: {test_case.automation_type}, Type: {test_case.type_id}")
+
+        # Prepare data structure
+        data = []
+        for section in sections:
+            section_data = {
+                'id': section.section_id,
+                'title': section.name,
+                'cases': [
+                    {
+                        'id': test_case.test_case_id,
+                        'title': test_case.title,
+                        'automation': test_case.automation_type,
+                        'type': test_case.type_id
+                    }
+                    for test_case in test_cases if test_case.section_id_id == section.section_id
+                ]
+            }
+            data.append(section_data)
+
+        # Print the final data structure
+        print("Prepared data:")
+        print(data)
+
+        return Response(data)
+    except Section.DoesNotExist:
+        return Response({'error': 'Test suite not found'}, status=404)

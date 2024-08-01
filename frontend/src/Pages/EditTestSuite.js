@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import '../styles/EditTestSuite.css'; // Import the CSS file
 import { useNavigate, useLocation } from 'react-router-dom'; // Import navigation hooks
+import { updateTestSuite, deleteTestSuite } from '../api/TestSuites'; // Import the API functions
 
 const EditTestSuite = () => {
   const navigate = useNavigate();
@@ -26,6 +27,7 @@ const EditTestSuite = () => {
       description,
     });
 
+
     // Navigate based on the source page and include suite ID in URL
     if (sourcePage === 'TestRuns') {
       navigate(`/TestRuns?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`); // Use updated name
@@ -33,6 +35,56 @@ const EditTestSuite = () => {
       navigate(`/SectionsCases?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`); // Use updated name
     } else {
       navigate('/TestSuitsCases');
+    }
+  };
+
+  const handleUpdate = async (event) => {
+    event.preventDefault();
+    try {
+      const projectID = sessionStorage.getItem("projectID");
+      const creatorID = sessionStorage.getItem("user_id");
+
+      if (!projectID || !creatorID) {
+        console.error('Project ID or Creator ID is missing');
+        return;
+      }
+
+      // Prepare the payload with all required fields
+      const testSuiteData = {
+        name,
+        description,
+        project_id: projectID,
+        creator_id: creatorID,
+      };
+
+      await updateTestSuite(suiteId, testSuiteData);
+
+      if (sourcePage === 'TestRuns') {
+        navigate(`/TestRuns?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`);
+      } else if (sourcePage === 'SectionsCases') {
+        navigate(`/SectionsCases?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`);
+      } else {
+        navigate('/TestSuitsCases');
+      }
+    } catch (error) {
+      // Handle error (e.g., show a notification)
+      console.error("Error updating test suite:", error);
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      await deleteTestSuite(suiteId);
+      if (sourcePage === 'TestRuns') {
+        navigate(`/TestRuns`);
+      } else if (sourcePage === 'SectionsCases') {
+        navigate(`/SectionsCases`);
+      } else {
+        navigate('/TestSuitsCases');
+      }
+    } catch (error) {
+      // Handle error (e.g., show a notification)
+      console.error("Error deleting test suite:", error);
     }
   };
 
@@ -58,7 +110,7 @@ const EditTestSuite = () => {
       </div>
 
       <div className="edit-suite-content">
-        <form className="edit-suite-form" onSubmit={handleSubmit}>
+        <form className="edit-suite-form" onSubmit={handleUpdate}>
           <div className="edit-suite-form-group">
             <label htmlFor="name" className="edit-suite-label">
               Name<span className="edit-suite-required">*</span>
@@ -117,7 +169,7 @@ const EditTestSuite = () => {
           <p className="actions-description">
             Delete this test suite to remove it from your project. This also deletes all related test cases and running tests.
           </p>
-          <button className="delete-suite-button">✗ Delete this test suite</button>
+          <button className="delete-suite-button" onClick={handleDelete}>✗ Delete this test suite</button>
         </div>
       </div>
     </div>
