@@ -55,13 +55,17 @@ const SectionsCases = () => {
 
   const navigate = useNavigate();
 
-  const handleAddTestCase = () => {
-    navigate(`/AddTestCase?suiteId=${suiteId}`);
-  };
+//   const handleAddTestCase = () => {
+//     navigate(`/AddTestCase?suiteId=${suiteId}`);
+//   };
 
   // Navigate to Add Section page
   const handleAddSection = () => {
     navigate(`/AddSection?suiteId=${suiteId}&suite=${suiteName}`);
+  };
+
+  const handleCaseClick = (testCase) => {
+    navigate(`/TestCaseDetails?suiteId=${suiteId}&suite=${suiteName}&section=${sections.find(section => section.cases.includes(testCase)).title}&testCaseId=${testCase.id}&testCaseName=${testCase.title}`);
   };
 
   // Calculate total sections and cases
@@ -94,7 +98,7 @@ const SectionsCases = () => {
               </div>
               <div className="case-list">
                 {section.cases.map((testCase) => (
-                  <div key={testCase.id} className="case-item">
+                  <div key={testCase.id} className="case-item" onClick={() => handleCaseClick(testCase)}>
                     <div className="case-id">
                       <input type="checkbox" />
                       <Link to={`/TestCaseDetails`} className="case-id-link">{testCase.id}</Link>

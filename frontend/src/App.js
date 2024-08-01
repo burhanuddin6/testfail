@@ -29,6 +29,11 @@ import EditTestSuite from './Pages/EditTestSuite';
 import SectionsCases from './Pages/SectionsCases';
 import AddTestCase from './Pages/AddTestCase';
 import AddSection from './Pages/AddSection';
+import TestCaseDetails from './Pages/TestCaseDetails';
+import TestsResults from './Pages/TestsResults';
+import TestCaseDefects from './Pages/TestCaseDefects';
+import TestCaseHistory from './Pages/TestCaseHistory';
+import EditTestCase from './Pages/EditTestCase';
 import NotFound from './Pages/NotFound';
 
 const App = () => {
@@ -276,6 +281,51 @@ const App = () => {
             <>
               <Header userName={userName} />
               <AddSection />
+            </>
+          }
+        />
+        <Route 
+          path="/TestCaseDetails" 
+          element={
+            <>
+              <Header userName={userName} />
+              <TestCaseDetails />
+            </>
+          }
+        />
+        <Route 
+          path="/TestsResults" 
+          element={
+            <>
+              <Header userName={userName} />
+              <TestsResults />
+            </>
+          }
+        />
+        <Route 
+          path="/TestCaseDefects" 
+          element={
+            <>
+              <Header userName={userName} />
+              <TestCaseDefects />
+            </>
+          }
+        />
+        <Route 
+          path="/TestCaseHistory" 
+          element={
+            <>
+              <Header userName={userName} />
+              <TestCaseHistory />
+            </>
+          }
+        />
+        <Route 
+          path="/EditTestCase" 
+          element={
+            <>
+              <Header userName={userName} />
+              <EditTestCase />
             </>
           }
         />

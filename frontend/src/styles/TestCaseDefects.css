@@ -1,0 +1,239 @@
+.test-case-defects-container {
+    display: flex;
+  justify-content: space-between;
+  padding-top: 250px;
+  padding-left: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  overflow-y: auto;
+}
+
+.defects-summary {
+    display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding-right: 20px;
+  flex-direction: column;
+  gap: 15px; /* Added gap for spacing between elements */
+  
+}
+
+.defects-graph {
+    position: relative;
+    padding: 10px;
+    height: 200px;
+    flex: 2; /* Increase width */
+    max-width: 600px; /* Adjust width as needed */
+    margin-right: 20px; /* Add margin for spacing */
+    padding-left: 200px;
+}
+
+.defects-graph canvas {
+    width: 100% !important; /* Ensure the canvas takes full width */
+  height: 100% !important;
+  flex: 1;
+  border: 1px solid #ddd;
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.defects-status-summary {
+    position: absolute;
+    right: 600px;
+    transform: translateY(50%);
+    border: 1px solid #ddd;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+  
+.defects-status-summary span {
+    font-weight: bold;
+  }
+
+.defects-status-summary ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .defects-status-summary li {
+    margin: 5px 0;
+  }
+  
+  .tests {
+    color: blue;
+  }
+  
+  .results {
+    color: orange;
+  }
+  
+  .defects {
+    color: red;
+  }
+
+.defects-count {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 123, 255, 0.85);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.defects-list-scroll {
+    border: 1px solid #ddd;
+  border-radius: 3px;
+  overflow-y: auto;
+  height: 400px; /* Increase height */
+  padding-left: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.defects-list {
+    padding: 15px;
+}
+
+.defect-month {
+    margin-bottom: 20px;
+}
+
+.defect-month h3 {
+    font-size: 14px; /* Shortened font size for months */
+    margin: 0 0 10px;
+}
+
+.defect-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.defect-item .status {
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 12px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.defect-item .tests {
+    background-color: blue;
+  }
+  
+  .defect-item .results {
+    background-color: orange;
+  }
+  
+  .defecs-item .defects {
+    background-color: red;
+  }
+
+.status.failed {
+    background-color: #d9534f;
+}
+
+.defect-id {
+    font-weight: bold;
+    color: #0077cc;
+    text-decoration: none;
+}
+
+.defect-id:hover {
+    text-decoration: underline;
+}
+
+.added-by {
+    color: #666;
+    font-size: 12px;
+}
+
+.test-case-sidebar {
+    flex: 1;
+    border-left: 1px solid #ddd;
+    padding-left: 20px;
+}
+
+.sidebar-section {
+    margin-bottom: 20px;
+}
+
+.sidebar-links {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-link {
+    display: block;
+    color: #0077cc;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 10px 0;
+}
+
+.sidebar-link:hover {
+    text-decoration: underline;
+}
+
+.sidebar-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin: 10px 0;
+}
+
+.people-dates {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.date-item {
+    margin-bottom: 10px;
+}
+
+.date-label {
+    color: #666;
+    font-size: 12px;
+    margin-bottom: 2px;
+}
+
+.date-value {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+.date-timestamp {
+    color: #999;
+    font-size: 12px;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .test-case-defects-container {
+        flex-direction: column;
+    }
+
+    .test-case-details-content {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .test-case-sidebar {
+        border-left: none;
+        padding-left: 0;
+    }
+}
