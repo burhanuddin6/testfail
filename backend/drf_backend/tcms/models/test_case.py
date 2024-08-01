@@ -1,7 +1,7 @@
 from django.db import models
 from .user import MyUser
 # Create your models here.
-	
+from datetime import datetime, timezone
 
 class TypesForTestCase(models.Model):
     type_id = models.AutoField(primary_key=True)
@@ -30,7 +30,6 @@ class TestCase(models.Model):
     )
     automation_type = models.CharField(max_length=255, choices=AUTOMATION_TYPE_CHOICES, default='Need to Triage')
     priority_id = models.ForeignKey(PriorityForTestCase, on_delete=models.SET_NULL, null=True)
-    created_on = models.DateTimeField(auto_now_add=True)
     estimate = models.IntegerField(null=True, blank=True)
     section_id = models.ForeignKey('Section', on_delete=models.CASCADE, related_name='test_cases')
     # the template helps to lay out the data
@@ -47,12 +46,19 @@ class TestCase(models.Model):
     template_type = models.CharField(max_length=255, choices=TEMPLATE_TYPE_CHOICES, default='Test Case (Text)')
     template_frame = models.TextField(default='')
     expected_result = models.TextField(null=True, blank=True)
-    updated_on = models.DateTimeField(auto_now=True)
-    updated_by = models.ForeignKey(MyUser, on_delete=models.SET_NULL, null=True, related_name='updated_test_cases')
     obsolete = models.BooleanField(default=False)
-    creator_id = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     project_id = models.ForeignKey('Project', on_delete=models.CASCADE, related_name='test_cases')
     assigned_to = models.ForeignKey(MyUser, on_delete=models.SET_NULL, null=True, related_name='assigned_test_cases')
+
+    created_by = models.ForeignKey('MyUser', on_delete=models.CASCADE, related_name='created_test_cases')
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_by = models.ForeignKey('MyUser', on_delete=models.CASCADE, null=True, blank=True, related_name='updated_test_cases')
+    updated_on = models.DateTimeField(null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if self.pk is not None:
+            self.updated_on = datetime.now(timezone.utc)
+        super().save(*args, **kwargs)
 
 class TestCaseFile(models.Model):
     file_id = models.AutoField(primary_key=True)

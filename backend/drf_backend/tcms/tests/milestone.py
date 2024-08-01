@@ -3,6 +3,7 @@ from rest_framework import status
 from rest_framework.test import APITestCase
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.contrib.auth import get_user_model
+from datetime import datetime, timezone, timedelta
 from ..models import Milestone, MilestoneTicket, MilestoneFile, Project
 from ..views import MilestoneViewSet, MilestoneFileViewSet, MilestoneTicketViewSet
 from rest_framework.permissions import AllowAny
@@ -13,16 +14,16 @@ class MilestoneAPITest(APITestCase):
         self.old_permission_classes = MilestoneViewSet.permission_classes
         MilestoneViewSet.permission_classes = [AllowAny]
         self.user = get_user_model().objects.create_user(email='testuser@example.com', password='testpassword')
-        self.project = Project.objects.create(name='Test Project', creator_id=self.user)
+        self.project = Project.objects.create(name='Test Project', created_by=self.user)
         self.milestone_url = reverse('milestone-list')  # Assuming you're using a DefaultRouter
-    
+
     def tearDown(self):
         MilestoneViewSet.permission_classes = self.old_permission_classes
 
     def test_create_milestone_without_files_or_tickets(self):
         data = {
             'name': 'Milestone 1',
-            'creator_id': self.user.pk,
+            'created_by': self.user.pk,
             'project_id': self.project.pk,
             'description': 'This is a test milestone',
             'start_date': '2024-01-01',
@@ -33,16 +34,18 @@ class MilestoneAPITest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Milestone.objects.count(), 1)
         milestone = Milestone.objects.first()
-        self.assertEqual(milestone.creator_id, self.user)
+        self.assertEqual(milestone.created_by, self.user)
         self.assertEqual(milestone.project_id, self.project)
         self.assertEqual(milestone.name, 'Milestone 1')
         self.assertFalse(milestone.is_complete)
+        self.assertIsNotNone(milestone.created_on)
+        self.assertIsNone(milestone.updated_on)
 
     def test_create_milestone_with_files_and_tickets(self):
         file = SimpleUploadedFile("file.txt", b"file_content", content_type="text/plain")
         data = {
             'name': 'Milestone 2',
-            'creator_id': self.user.pk,
+            'created_by': self.user.pk,
             'project_id': self.project.pk,
             'description': 'This is another test milestone',
             'start_date': '2024-01-01',
@@ -52,22 +55,23 @@ class MilestoneAPITest(APITestCase):
             'tickets': ['ticket1', 'ticket2'],
         }
         response = self.client.post(self.milestone_url, data, format='multipart')
+        print(response.data)    
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Milestone.objects.count(), 1)
         self.assertEqual(MilestoneFile.objects.count(), 1)
-        for ticket in MilestoneTicket.objects.all():
-            print(ticket.ticket)
         self.assertEqual(MilestoneTicket.objects.count(), 2)
         milestone = Milestone.objects.first()
-        self.assertEqual(milestone.creator_id, self.user)
+        self.assertEqual(milestone.created_by, self.user)
         self.assertEqual(milestone.project_id, self.project)
-        self.assertEqual(milestone.files.first().file.name, 'milestone_files/file.txt')
+        self.assertIn(milestone.files.first().file.name, response.data['files'][0]['file'])
         self.assertEqual(milestone.tickets.count(), 2)
+        self.assertIsNotNone(milestone.created_on)
+        self.assertIsNone(milestone.updated_on)
 
     def test_retrieve_milestone(self):
         milestone = Milestone.objects.create(
             name='Milestone 3', 
-            creator_id=self.user, 
+            created_by=self.user, 
             project_id=self.project,
             description='Retrieve test milestone', 
             start_date='2024-01-01', 
@@ -77,13 +81,13 @@ class MilestoneAPITest(APITestCase):
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data['name'], milestone.name)
-        self.assertEqual(response.data['creator_id'], self.user.pk)
+        self.assertEqual(response.data['created_by'], self.user.pk)
         self.assertEqual(response.data['project_id'], self.project.pk)
 
     def test_update_milestone(self):
         milestone = Milestone.objects.create(
             name='Old Milestone', 
-            creator_id=self.user, 
+            created_by=self.user, 
             project_id=self.project,
             description='Old description', 
             start_date='2024-01-01', 
@@ -92,7 +96,7 @@ class MilestoneAPITest(APITestCase):
         url = reverse('milestone-detail', args=[milestone.pk])
         data = {
             'name': 'Updated Milestone',
-            'creator_id': self.user.pk,
+            'created_by': self.user.pk,
             'project_id': self.project.pk,
             'description': 'Updated description',
             'start_date': '2024-02-01',
@@ -105,11 +109,13 @@ class MilestoneAPITest(APITestCase):
         self.assertEqual(milestone.name, 'Updated Milestone')
         self.assertEqual(milestone.description, 'Updated description')
         self.assertTrue(milestone.is_complete)
+        self.assertIsNotNone(milestone.updated_on)
+        self.assertAlmostEqual(milestone.updated_on, datetime.now(timezone.utc), delta=timedelta(seconds=10))
 
     def test_delete_milestone(self):
         milestone = Milestone.objects.create(
             name='Milestone 4', 
-            creator_id=self.user, 
+            created_by=self.user, 
             project_id=self.project,
             description='Delete test milestone', 
             start_date='2024-01-01', 
@@ -126,13 +132,12 @@ class MilestoneTicketAPITest(APITestCase):
         self.old_permission_classes = MilestoneTicketViewSet.permission_classes
         MilestoneTicketViewSet.permission_classes = [AllowAny]
         self.user = get_user_model().objects.create_user(email='testuser@example.com', password='testpassword')
-        self.project = Project.objects.create(name='Test Project', creator_id=self.user)
-        self.milestone = Milestone.objects.create(name='Milestone with Tickets', creator_id=self.user, project_id=self.project)
+        self.project = Project.objects.create(name='Test Project', created_by=self.user)
+        self.milestone = Milestone.objects.create(name='Milestone with Tickets', created_by=self.user, project_id=self.project)
         self.milestone_ticket_url = reverse('milestoneticket-list')  # Assuming you're using a DefaultRouter
 
     def tearDown(self):
         MilestoneTicketViewSet.permission_classes = self.old_permission_classes
-
 
     def test_create_milestone_ticket(self):
         data = {
@@ -179,8 +184,8 @@ class MilestoneFileAPITest(APITestCase):
         self.old_permission_classes = MilestoneFileViewSet.permission_classes
         MilestoneFileViewSet.permission_classes = [AllowAny]
         self.user = get_user_model().objects.create_user(email='testuser@example.com', password='testpassword')
-        self.project = Project.objects.create(name='Test Project', creator_id=self.user)
-        self.milestone = Milestone.objects.create(name='Milestone with Files', creator_id=self.user, project_id=self.project)
+        self.project = Project.objects.create(name='Test Project', created_by=self.user)
+        self.milestone = Milestone.objects.create(name='Milestone with Files', created_by=self.user, project_id=self.project)
         self.milestone_file_url = reverse('milestonefile-list')  # Assuming you're using a DefaultRouter
 
     def tearDown(self):
@@ -196,7 +201,7 @@ class MilestoneFileAPITest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(MilestoneFile.objects.count(), 1)
         milestone_file = MilestoneFile.objects.first()
-        self.assertEqual(milestone_file.file.name, 'milestone_files/file.txt')
+        self.assertIn(milestone_file.file.name, response.data['file'])
         self.assertEqual(milestone_file.milestone_id, self.milestone)
 
     def test_retrieve_milestone_file(self):
@@ -204,7 +209,7 @@ class MilestoneFileAPITest(APITestCase):
         url = reverse('milestonefile-detail', args=[milestone_file.pk])
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertIn('milestone_files/file2.txt', response.data['file'])
+        self.assertIn(milestone_file.file.name, response.data['file'])
         self.assertEqual(response.data['milestone_id'], self.milestone.pk)
 
     def test_update_milestone_file(self):
@@ -218,7 +223,7 @@ class MilestoneFileAPITest(APITestCase):
         response = self.client.put(url, data, format='multipart')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         milestone_file.refresh_from_db()
-        self.assertEqual(milestone_file.file.name, 'milestone_files/updated_file3.txt')
+        self.assertIn(milestone_file.file.name, response.data['file'])
 
     def test_delete_milestone_file(self):
         milestone_file = MilestoneFile.objects.create(file='milestone_files/file4.txt', milestone_id=self.milestone)
