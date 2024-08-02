@@ -1,12 +1,8 @@
-version: '3.8'
-
 services:
   backend:
     build:
       context: ..
       dockerfile: ./docker/django.dev.dockerfile
-    volumes:
-      - ../backend:/backend
     ports:
       - "8000:8000"
     environment:
@@ -16,8 +12,6 @@ services:
     build:
       context: ..
       dockerfile: ./docker/node.dev.dockerfile
-    volumes:
-      - ../frontend:/frontend
     ports:
       - "3000:3000"
     stdin_open: true
