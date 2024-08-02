@@ -35,6 +35,7 @@ import TestCaseDefects from './Pages/TestCaseDefects';
 import TestCaseHistory from './Pages/TestCaseHistory';
 import EditTestCase from './Pages/EditTestCase';
 import NotFound from './Pages/NotFound';
+import AddTestPlan from './Pages/AddTestPlan';
 
 const App = () => {
   const [userName, setUserName] = useState("");
@@ -222,11 +223,20 @@ const App = () => {
           }
         />
         <Route 
-          path="/AddTestRun" 
+          path="/add-test-run" 
           element={
             <>
               <Header userName={userName} />
               <AddTestRun  />
+            </>
+          }
+        />
+         <Route 
+          path="/add-test-plan" 
+          element={
+            <>
+              <Header userName={userName} />
+              <AddTestPlan  />
             </>
           }
         />

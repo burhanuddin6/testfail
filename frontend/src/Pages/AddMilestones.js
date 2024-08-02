@@ -35,13 +35,7 @@ const AddMilestone = () => {
       endDate,
       isCompleted,
     });
-    navigate('/milestones');
-  };
-
-  
-
-  const handleFileChange = (event) => {
-    setSelectedFile(event.target.files[0]);
+    navigate(from);
   };
 
   
@@ -95,7 +89,7 @@ const AddMilestone = () => {
           >
             {selectedFile && `File: ${selectedFile.name}`}
           </textarea>
-          <input type="file" id="file-upload" name="file-upload" onChange={handleFileChange}/>
+          <input type="file" id="file-upload" name="file-upload"/>
           
         </div>
         <div className="add-form-group">
@@ -130,8 +124,8 @@ const AddMilestone = () => {
         </div>
       
         <div className="form-buttons">
-          <button type="submit">{action == "edit" ? 'Update' : 'Add'} Milestone</button>
-          <button type="button" onClick={handleCancel}>Cancel</button>
+          <button type="submit" className='add-edit-button'> ✓ {action == "edit" ? 'Update' : 'Add'} Milestone</button>
+          <button type="button" onClick={handleCancel} className='add-cancel-button'>✗ Cancel</button>
         </div>
       </form>
     </div>

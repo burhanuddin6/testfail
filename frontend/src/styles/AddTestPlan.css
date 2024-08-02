@@ -1,0 +1,193 @@
+/* Background color for the form page */
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    color: black;
+  }
+  
+ 
+  /* Container for the test run form */
+  .test-plan-container {
+    padding: 20px;
+    /* margin-top: 100px; Space for the header */
+    background-color: #e6f3ff;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+    overflow-y: auto; /* Enable vertical scrolling */
+    height: calc(100vh - 60px); /* Full screen height minus header */
+    width: 100%; /* Ensure full width */
+  }
+  
+  /* Main form styling */
+  .test-plan-form {
+    margin-top: 70px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 800px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Title of the form */
+  .add-test-plan-title {
+    color: black;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Form group styling for inputs and labels */
+  .test-plan-form-group {
+    margin-bottom: 20px;
+  }
+  
+  /* Input fields styling */
+  .test-plan-input,
+  .test-plan-select,
+  .test-plan-textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  /* Textarea styling */
+  .test-plan-textarea {
+    height: 100px;
+    resize: vertical;
+  }
+  
+  /* Label styling */
+  .test-plan-label {
+    display: block;
+    margin-bottom: 5px;
+    color: black;
+  }
+  
+  /* Required field asterisk */
+  .test-plan-required {
+    color: red;
+  }
+  
+  /* Image preview section */
+  .image-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 0px;
+  }
+  
+  .image-container {
+    position: relative;
+  }
+  
+  .preview-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .remove-image-button {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background-color: rgba(255, 0, 0, 0.7);
+    border: none;
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0 5px;
+    font-size: 10px;
+  }
+  
+  .remove-image-button:hover {
+    background-color: rgba(255, 0, 0, 1);
+  }
+  
+  /* Form buttons container */
+  .test-plan-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  /* Button styling */
+  .test-plan-button{
+    width: 150px;
+    height: 40px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  /* Button hover effect */
+  .test-plan-button:hover {
+    background-color: #90ee90;
+  }
+  
+  /* Cancel button styling */
+  .test-plan-cancel {
+    background-color: #dc3545;
+  }
+  
+  .test-plan-cancel:hover {
+    background-color: #FAA0A0;
+  }
+  
+  .test-plan-input-buttons {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 20px;
+  }
+  
+  .test-plan-input-buttons button {
+    appearance: button; /* Use the default button appearance */
+    -webkit-appearance: button; /* For WebKit browsers (Chrome, Safari) */
+    -moz-appearance: button; /* For Mozilla browsers (Firefox) */
+    display: inline-block;
+    background-color: #e0e0e0; /* Light gray background (similar to file inputs) */
+    color: #000; /* Black text (default file inputs have black text) */
+    border: 1px solid #00000000; /* Light gray border */
+    border-radius: 4px; /* Rounded corners */
+    /* padding: 8px 16px; Adjust padding to resemble file inputs */
+    cursor: pointer; /* Pointer cursor */
+    font-size: 14px; /* Match font size with default file inputs */
+    font-family: inherit; /* Inherit font from parent */
+    text-align: center; /* Center text */
+    transition: background-color 0.3s, border-color 0.3s;
+    width: auto;
+  }
+  
+  .test-plan-input-buttons button:hover {
+    background-color: #d0d0d0; 
+  }
+
+  .selected-test-suite {
+    border: 1px solid #ccc; /* Light grey border */
+    border-radius: 5px;
+    max-height: 200px; /* Adjust based on your needs */
+    overflow-y: auto; /* Scroll if content overflows */
+    margin-bottom: 20px;
+  }
+
+  .selected-test-suite ul {
+    list-style-type: none; /* Removes bullets */
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Individual test suite item styling */
+  .selected-test-suite li {
+    padding: 10px;
+    color: #333;
+  }
+  

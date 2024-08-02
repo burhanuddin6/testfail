@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/AddTestRun.css';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -9,15 +9,22 @@ const AddTestRun = () => {
   const [assignTo, setAssignTo] = useState('');
   const [description, setDescription] = useState('');
   const [testCaseSelection, setTestCaseSelection] = useState('all');
+  const [images, setImages] = useState([]);
 
   const navigate = useNavigate();
   const location = useLocation();
+  const from = location.state?.from;
+  const { selectedOption } = location.state || {};
 
-  // Retrieve suite ID, source page, and suite name from URL query parameters
-  const searchParams = new URLSearchParams(location.search);
-  const suiteId = searchParams.get('suiteId') || '0'; // Default to '0' if no suiteId is provided
-  const sourcePage = searchParams.get('source'); // Will be either 'TestSuitesCases' or 'TestRuns'
-  const suiteName = searchParams.get('suite') || 'Test Suite'; // Default to 'Test Suite' if no suiteName is provided
+  useEffect(() => {
+    if (selectedOption) {
+      setName(selectedOption);
+    }
+  }, [selectedOption]);
+
+  const handleCancel = () => { 
+    navigate(from);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -31,26 +38,19 @@ const AddTestRun = () => {
       description,
       testCaseSelection,
     });
-
-    // Navigate based on the source page and include suite ID in URL
-    if (sourcePage === 'TestRuns') {
-      navigate(`/TestRuns?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}`);
-    } else {
-      navigate('/TestSuitsCases');
-    }
+    navigate(from);
   };
 
-  const handleCancel = (e) => {
-    e.preventDefault();
-
-    // Navigate based on the source page and include suite ID in URL
-    if (sourcePage === 'TestRuns') {
-      navigate(`/TestRuns?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}`);
-    } else {
-      navigate('/TestSuitsCases');
-    }
+  const handleFileChange = (event) => {
+    const files = Array.from(event.target.files);
+    setImages((prevImages) => [...prevImages, ...files]);
   };
 
+  const removeImage = (index) => {
+    setImages(images.filter((_, i) => i !== index));
+  };
+
+  
   return (
     <div className="test-run-container">
       <form className="test-run-form" onSubmit={handleSubmit}>
@@ -130,6 +130,33 @@ const AddTestRun = () => {
             placeholder="Use this description to describe the purpose of this test run."
             className="test-run-textarea"
           />
+          <input
+            type="file"
+            id="file-upload"
+            name="file-upload"
+            onChange={handleFileChange}
+            accept="image/*"
+            multiple
+          />
+        </div>
+
+        <div className="image-preview">
+          {images.map((image, index) => (
+            <div key={index} className="image-container">
+              <img
+                src={URL.createObjectURL(image)}
+                alt={`Selected ${index}`}
+                className="preview-image"
+              />
+              <button
+                type="button"
+                className="remove-image-button"
+                onClick={() => removeImage(index)}
+              >
+                ✗
+              </button>
+            </div>
+          ))}
         </div>
 
         <div className="test-run-case-selection">

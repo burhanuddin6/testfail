@@ -69,7 +69,7 @@ body, html {
     margin-right: 5px;
 }
 
-.status-details-chart, .status-details-percentage {
+.status-details-chart, .status-details-percentage { 
     background-color: white;
     height: auto;
     width: 50%;
@@ -138,12 +138,25 @@ body, html {
     margin-top: 5px;
 }
 
-.status-milestones-progress-bar, .status-testrun-progress-bar {
+.status-milestones-progress-bar-passed, .status-testrun-progress-bar-passed {
     height: 100%;
     background-color: #4CAF50;
-    border-radius: 10px; 
-}
+    /* border-radius: 10px;  */
+  }
+
+  .status-milestones-progress-bar-untested, .status-testrun-progress-bar-untested {
+    height: 100%;
+    background-color: #f0f0f087;
+    /* border-radius: 10px;  */
+  }
+
+  .status-milestones-progress-bar-failed, .status-testrun-progress-bar-failed {
+    height: 100%;
+    background-color: rgb(253, 37, 37);
+    /* border-radius: 10px;  */
+  }
 
 .status-milestones-progress-value, .status-testrun-progress-value {
     font-weight: bold;
+    margin-top: 8px;
   }

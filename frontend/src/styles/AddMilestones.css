@@ -62,6 +62,24 @@ body {
 }
 
 .form-buttons button {
-    width: 150px;
+    width: auto;
+    padding-left: 20px;
+    padding-right: 20px;
     height: auto;
+}
+
+.add-edit-button {
+  background-color:  #4CAF50;
+}
+
+.add-edit-button:hover{
+  background-color:  #90ee90;
+}
+
+.add-cancel-button {
+  background-color: #dc3545;
+}
+
+.add-cancel-button:hover{
+  background-color: #FAA0A0;
 }
