@@ -9,12 +9,19 @@ const TestRuns = () => {
   const [selectedOption, setSelectedOption] = useState('');
   const [isPopupVisible, setIsPopupVisible] = useState(false);
 
-  const handleAddTestRuns = (selectedOption) => {
+  const handleAddTestRuns = (selectedOption, actionType) => {
     if (selectedOption) {
-      navigate('/add-test-run', { state: { from: '/testruns', selectedOption } });
-      setIsPopupVisible(false);  // Ensure popup is closed
+      if (actionType == 'run'){
+        navigate('/add-test-run', { state: { from: '/testruns', selectedOption } });
+        setIsPopupVisible(false);  // Ensure popup is closed
+      }
     }
   };
+
+  const handleAddTestPlan = (e) => {
+    e.preventDefault();
+    navigate('/add-test-plan', { state: { from: '/testruns'}});
+  }
 
   return (
     <div className="test-runs-page">
@@ -26,10 +33,11 @@ const TestRuns = () => {
                   {isPopupVisible && (
                   <Popup
                     onConfirm={handleAddTestRuns}
-                    closePopup={() => setIsPopupVisible(false)}
+                    onCancel={() => setIsPopupVisible(false)}
+                    actionType="run"
                   />
                 )}
-                  <button className="test-runs-results-add-button"> + Add Test Plan </button>
+                  <button className="test-runs-results-add-button" onClick={handleAddTestPlan}> + Add Test Plan </button>
                   <button className="test-runs-results-delete-button"> - Delete Selected</button>
               </div>
         </div>

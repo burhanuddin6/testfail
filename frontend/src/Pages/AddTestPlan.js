@@ -12,14 +12,19 @@ const AddTestPlan = () => {
   const [popupVisible, setPopupVisible] = useState(false);
   const [selectedPopupOptions, setSelectedPopupOptions] = useState([]);
 
-  const handlePopupConfirm = (option) => {
-    setSelectedPopupOptions([...selectedPopupOptions, option]);
-    setPopupVisible(false);
-  };
-
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from;
+
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
+
+  const handleConfirm = (option, actionType) => {
+    if (actionType === 'suite') {
+      setSelectedPopupOptions([...selectedPopupOptions, option]);
+      setPopupVisible(false);
+    }
+    setIsPopupVisible(false);
+  };
 
   const handleCancel = () => {
     navigate(from);
@@ -152,8 +157,8 @@ const AddTestPlan = () => {
                 <ul>
                     {selectedPopupOptions.map((option, index) => (
                     <li key={index}>
+                        <button className="testsuite-remove" onClick={() => handleRemoveOption(option)}>✗</button>
                         {option}
-                        <button onClick={() => handleRemoveOption(option)}>Remove</button>
                     </li>
                     ))}
                 </ul>
@@ -162,10 +167,17 @@ const AddTestPlan = () => {
                 <button
                     type="button"
                     className="test-plan-button"
-                    onClick={() => setPopupVisible(true)}
+                    onClick={() => setIsPopupVisible(true)}
                 >
                     + Add Test Suite
                 </button>
+                {isPopupVisible && (
+                  <Popup
+                    onConfirm={handleConfirm}
+                    onCancel={() => setIsPopupVisible(false)}
+                    actionType="suite"
+                  />
+                )}
             </div>
             
         </div>
@@ -189,7 +201,7 @@ const AddTestPlan = () => {
       {popupVisible && (
         <Popup
           closePopup={() => setPopupVisible(false)}
-          onConfirm={handlePopupConfirm}
+          onConfirm={handleConfirm}
         />
       )}
 

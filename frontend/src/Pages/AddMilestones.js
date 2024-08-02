@@ -12,6 +12,7 @@ const AddMilestone = () => {
   const [isCompleted, setIsCompleted] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const [newText, setNewText] = useState('');
+  const [images, setImages] = useState([]);
 
   const navigate = useNavigate();
 
@@ -38,6 +39,14 @@ const AddMilestone = () => {
     navigate(from);
   };
 
+  const handleFileChange = (event) => {
+    const files = Array.from(event.target.files);
+    setImages((prevImages) => [...prevImages, ...files]);
+  };
+
+  const removeImage = (index) => {
+    setImages(images.filter((_, i) => i !== index));
+  };
   
   return (
     <div className="milestone-form">
@@ -87,11 +96,37 @@ const AddMilestone = () => {
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Use this description to describe the purpose and goals of this milestone."
           >
-            {selectedFile && `File: ${selectedFile.name}`}
           </textarea>
-          <input type="file" id="file-upload" name="file-upload"/>
-          
+        
+          <input 
+            type="file"
+            id="file-upload"
+            name="file-upload"
+            onChange={handleFileChange}
+            accept="image/*"
+            multiple
+          />
         </div>
+
+        <div className="image-preview">
+          {images.map((image, index) => (
+            <div key={index} className="image-container">
+              <img
+                src={URL.createObjectURL(image)}
+                alt={`Selected ${index}`}
+                className="preview-image"
+              />
+              <button
+                type="button"
+                className="remove-image-button"
+                onClick={() => removeImage(index)}
+              >
+                ✗
+              </button>
+            </div>
+          ))}
+        </div>
+
         <div className="add-form-group">
           <label htmlFor="startDate">Start Date</label>
           <input

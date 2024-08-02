@@ -91,9 +91,10 @@ body, html {
     object-fit: cover;
     border: 1px solid #ccc;
     border-radius: 5px;
+    margin-bottom: 20px;
   }
   
-  .remove-image-button {
+  .remove-image-button  {
     position: absolute;
     top: 2px;
     right: 2px;
@@ -191,3 +192,21 @@ body, html {
     color: #333;
   }
   
+  .testsuite-remove {
+    /* position: absolute; */
+    /* top: 2px;
+    right: 2px; */
+    background-color: rgba(255, 0, 0, 0.7);
+    border: none;
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0 5px;
+    font-size: 10px;
+    width: auto;
+    margin-right: 10px;
+  }
+
+  .testsuite-remove:hover {
+    background-color: #FAA0A0;
+  }

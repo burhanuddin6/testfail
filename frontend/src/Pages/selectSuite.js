@@ -1,31 +1,29 @@
-import React, { useState } from 'react';
-import '../styles/selectSuite.css'; // Assuming the CSS is saved in Popup.css
 
-const Popup = ({ closePopup, onConfirm }) => {
+import React, { useState } from 'react';
+import '../styles/selectSuite.css'; // Import your CSS for the popup
+
+const Popup = ({ onConfirm, onCancel, actionType }) => {
   const [selectedOption, setSelectedOption] = useState('');
 
   const handleConfirm = () => {
     if (selectedOption) {
-      onConfirm(selectedOption);
-      closePopup();
+      onConfirm(selectedOption, actionType);
+      // Optional: close the popup here if you want to automatically close it on confirm
     }
   };
 
   return (
     <div className="popup-overlay">
       <div className="popup">
-        <h2>Select an Option</h2>
-        <select value={selectedOption} onChange={(e) => setSelectedOption(e.target.value)}>
+        <h3>Select an Option</h3>
+        <select onChange={(e) => setSelectedOption(e.target.value)} value={selectedOption}>
           <option value="">Select...</option>
-          <option value="Option 1">Option 1</option>
-          <option value="Option 2">Option 2</option>
-          <option value="Option 3">Option 3</option>
+          <option value="option1">Option 1</option>
+          <option value="option2">Option 2</option>
         </select>
         <div className="popup-buttons">
-          <button onClick={handleConfirm} disabled={!selectedOption}>
-            Confirm
-          </button>
-          <button onClick={closePopup}>Cancel</button>
+          <button onClick={handleConfirm}>Confirm</button>
+          <button onClick={onCancel}>Cancel</button>
         </div>
       </div>
     </div>
