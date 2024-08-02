@@ -186,7 +186,7 @@ const AddSection = () => {
           />
         </div>
 
-        <div className="add-section-file-upload">
+        <div className="file-upload">
           <div className="file-upload-icon" />
           <input
             type="file"

@@ -6,10 +6,11 @@ from .user import MyUser
 class Project(models.Model):
     project_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255, null=False)
-    creator_id = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     description = models.TextField(null=True, blank=True)
     show_description = models.BooleanField(default=False)
     enable_testcase_approval = models.BooleanField(default=False)
+    created_by = models.ForeignKey(MyUser, on_delete=models.CASCADE, related_name='projects')
+    created_on = models.DateTimeField(auto_now_add=True)
 
 
 # class ProjectGroups(models.Model):

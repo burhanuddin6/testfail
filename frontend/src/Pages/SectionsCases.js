@@ -376,7 +376,7 @@ const SectionsCases = () => {
               </div>
               <div className="case-list">
                 {section.cases.map((testCase) => (
-                  <div key={testCase.id} className="case-item">
+                  <div key={testCase.id} className="case-item" onClick={() => handleCaseClick(testCase)}>
                     <div className="case-id">
                       <input 
                         type="checkbox" 

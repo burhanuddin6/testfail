@@ -1,7 +1,7 @@
 from django.db import models
 from .user import MyUser
 # Create your models here.
-	
+from datetime import datetime, timezone
 
 class TypesForTestCase(models.Model):
     type_id = models.AutoField(primary_key=True)
@@ -71,15 +71,17 @@ class TestCase(models.Model):
     expected_result = models.TextField(null=True, blank=True)
     automated_cases = models.TextField(null=True, blank=True)
     latest_result_id = models.ForeignKey('TestCaseResult', on_delete=models.SET_NULL, null=True, blank=True)
-    created_on = models.DateTimeField(auto_now_add=True)
-    creator_id = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     template_frame = models.TextField(default='')
-    updated_on = models.DateTimeField(auto_now=True)
-    updated_by = models.ForeignKey(MyUser, on_delete=models.SET_NULL, null=True, related_name='updated_test_cases')
     assigned_to = models.ForeignKey(MyUser, on_delete=models.SET_NULL, null=True, related_name='assigned_test_cases')
-    # type_id = models.ForeignKey(TypesForTestCase, on_delete=models.SET_NULL, null=True)
-    # priority_id = models.ForeignKey(PriorityForTestCase, on_delete=models.SET_NULL, null=True)
-    
+    created_by = models.ForeignKey('MyUser', on_delete=models.CASCADE, related_name='created_test_cases')
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_by = models.ForeignKey('MyUser', on_delete=models.CASCADE, null=True, blank=True, related_name='updated_test_cases')
+    updated_on = models.DateTimeField(null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if self.pk is not None:
+            self.updated_on = datetime.now(timezone.utc)
+        super().save(*args, **kwargs)
 
 class TestCaseFile(models.Model):
     file_id = models.AutoField(primary_key=True)

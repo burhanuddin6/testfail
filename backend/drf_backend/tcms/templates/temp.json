@@ -1,0 +1,75 @@
+[
+    { 
+        "test_suite_id": 1,
+        "test_suite_name": "Test Suite 1",
+        "selection_type": "ALL",
+        "selection": []
+    },
+    { 
+        "test_suite_id": 2,
+        "test_suite_name": "Test Suite 2",
+        "selection_type": "SELECT",
+        "selection": [
+            {
+                "section_id": 1,
+                "section_name": "Section 1",
+                "test_cases": [
+                    {
+                        "test_case_id": 1,
+                        "test_case_name": "Test Case 1"
+                    },
+                    {
+                        "test_case_id": 1,
+                        "test_case_name": "Test Case 1"
+                    }
+                ]
+            }
+        ]
+    },
+    { 
+        "test_suite_id": 2,
+        "test_suite_name": "Test Suite 2",
+        "selection_type": "SELECT",
+        "selection": [
+            {
+                "section_id": 1,
+                "section_name": "Section 1",
+                "test_cases": [
+                    {
+                        "test_case_id": 1,
+                        "test_case_name": "Test Case 1",
+                        "selected": true
+                    },
+                    {
+                        "test_case_id": 1,
+                        "test_case_name": "Test Case 1",
+                        "selected": true
+                    }
+                ]
+            }
+        ]
+    },
+    { 
+        "test_suite_id": 3,
+        "test_suite_name": "Test Suite 2",
+        "selection_type": "SELECT",
+        "selection": [
+            {
+                "section_id": 4,
+                "section_name": "Section 1",
+                "test_cases": [
+                    {
+                        "test_case_id": 4,
+                        "test_case_name": "Test Case 4",
+                        "selected": true
+                    },
+                    {
+                        "test_case_id": 3,
+                        "test_case_name": "Test Case 3",
+                        "selected": true
+                    }
+                ]
+            }
+        ]
+    }
+]

@@ -49,37 +49,13 @@
     transition: background-color 0.3s ease;
   }
   
-  /* .edit-suite-link {
-    background-color: #e67e22;
-  }
-  
-  .delete-button {
-    background-color: #e74c3c;
-  }
-  
-  .columns-button {
-    background-color: #2ecc71;
-  } */
-  
   .add-case-button:hover,
   .edit-suite-link:hover,
   .delete-button:hover,
   .columns-button:hover {
     background-color: #0056b3;
   }
-  
-  /* .edit-suite-link:hover {
-    background-color: #d35400;
-  }
-  
-  .delete-button:hover {
-    background-color: #c0392b;
-  }
-  
-  .columns-button:hover {
-    background-color: #27ae60;
-  } */
-  
+
   .sections-cases-summary {
     margin-bottom: 20px;
     font-size: 16px;

@@ -18,25 +18,27 @@ const EditTestSuite = () => {
   // Initialize the name state with suiteName from URL or default name
   const [name, setName] = useState(suiteName); // Correct state initialization
   const [description, setDescription] = useState(''); // Preset with existing description if any
+  const [file, setFile] = useState(null);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Handle form submission here
-    console.log('Edited Suite with:', {
-      name,
-      description,
-    });
+  // const handleSubmit = (event) => { //REVIEW USAGE
+  //   event.preventDefault();
+  //   // Handle form submission here
+  //   console.log('Edited Suite with:', {
+  //     name,
+  //     description,
+  //     file
+  //   });
 
 
-    // Navigate based on the source page and include suite ID in URL
-    if (sourcePage === 'TestRuns') {
-      navigate(`/TestRuns?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`); // Use updated name
-    } else if (sourcePage === 'SectionsCases') {
-      navigate(`/SectionsCases?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`); // Use updated name
-    } else {
-      navigate('/TestSuitsCases');
-    }
-  };
+  //   // Navigate based on the source page and include suite ID in URL
+  //   if (sourcePage === 'TestRuns') {
+  //     navigate(`/TestRuns?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`); // Use updated name
+  //   } else if (sourcePage === 'SectionsCases') {
+  //     navigate(`/SectionsCases?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`); // Use updated name
+  //   } else {
+  //     navigate('/TestSuitsCases');
+  //   }
+  // };
 
   const handleUpdate = async (event) => {
     event.preventDefault();
@@ -53,6 +55,7 @@ const EditTestSuite = () => {
       const testSuiteData = {
         name,
         description,
+        file,
         project_id: projectID,
         creator_id: creatorID,
       };
@@ -99,6 +102,10 @@ const EditTestSuite = () => {
       } else {
         navigate('/TestSuitsCases');
       }
+  };
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
   };
 
   return (
@@ -157,11 +164,16 @@ const EditTestSuite = () => {
           </div>
         </form>
 
-        <div className="file-upload-area">
-          <div className="file-upload-placeholder">
-            <p>Drop files here to attach,</p>
-            <p>or click on "+" to browse</p>
-          </div>
+        <div className="file-upload">
+          <div className="file-upload-icon" />
+          <input
+            type="file"
+            onChange={handleFileChange}
+            className="file-upload-input"
+          />
+          <p className="file-upload-text">
+            Drop files here to attach, or click on "+" to browse
+          </p>
         </div>
 
         <div className="actions-section">
