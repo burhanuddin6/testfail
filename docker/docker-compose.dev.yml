@@ -16,3 +16,18 @@ services:
       - "3000:3000"
     stdin_open: true
     tty: true
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - static_volume:/backend/drf_backend/static
+      - media_volume:/backend/drf_backend/media
+    depends_on:
+      - backend
+
+volumes:
+  static_volume:
+  media_volume:

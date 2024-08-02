@@ -2,6 +2,6 @@
 
 # Apply database migrations
 python drf_backend/manage.py migrate
-ls -a
+python drf_backend/manage.py collectstatic --noinput
 # Start the server
 exec "$@"
