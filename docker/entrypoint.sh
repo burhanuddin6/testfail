@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Apply database migrations
-python store/manage.py migrate
-
+python drf_backend/manage.py migrate
+ls -a
 # Start the server
 exec "$@"

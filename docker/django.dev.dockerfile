@@ -5,19 +5,19 @@ FROM python:3.12
 WORKDIR /backend
 
 # Copy the requirements file into the container
-COPY requirements.txt /backend/
+COPY /backend/requirements.txt /backend/
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the application code into the container
-COPY ./backend/* /backend/
+COPY ./backend/ /backend/
 
 # Make port 8000 available to the world outside this container
 EXPOSE 8000
 
 # Add the entrypoint script
-COPY entrypoint.sh /backend/entrypoint.sh
+COPY ./docker/entrypoint.sh /backend/entrypoint.sh
 
 # Ensure the entrypoint script is executable
 RUN chmod +x /backend/entrypoint.sh
@@ -26,3 +26,4 @@ RUN chmod +x /backend/entrypoint.sh
 ENTRYPOINT ["/backend/entrypoint.sh"]
 
 CMD ["python", "drf_backend/manage.py", "runserver", "0.0.0.0:8000"]
+
