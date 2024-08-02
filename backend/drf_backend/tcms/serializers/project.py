@@ -6,7 +6,7 @@ class ProjectSerializer(serializers.ModelSerializer):
     test_suite_count = serializers.SerializerMethodField()
     active_test_run_count = serializers.SerializerMethodField()
     active_milestone_count = serializers.SerializerMethodField()
-    created_by_info = UserSerializer(read_only=True)
+    created_by_info = UserSerializer(read_only=True, source='created_by')
 
     class Meta:
         model = Project

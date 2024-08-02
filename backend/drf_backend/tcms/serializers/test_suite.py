@@ -18,7 +18,7 @@ class TestSuiteSerializer(serializers.ModelSerializer):
     number_of_active_testruns = serializers.SerializerMethodField()
     suite_data = serializers.SerializerMethodField()
     files = TestSuiteFileSerializer(many=True, read_only=True)
-    created_by_info = UserSerializer(read_only=True)
+    created_by_info = UserSerializer(read_only=True, source='created_by')
     class Meta:
         model = TestSuite
         fields = '__all__'

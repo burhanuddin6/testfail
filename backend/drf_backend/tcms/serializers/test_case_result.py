@@ -15,7 +15,7 @@ class BugTrackerTicketSerializer(serializers.ModelSerializer):
 class TestCaseResultSerializer(serializers.ModelSerializer):
     files = TestCaseResultFileSerializer(many=True, read_only=True)
     tickets = BugTrackerTicketSerializer(many=True, read_only=True)
-    created_by_info = UserSerializer(read_only=True)
+    created_by_info = UserSerializer(read_only=True, source='created_by')
 
     class Meta:
         model = TestCaseResult

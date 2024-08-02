@@ -15,7 +15,7 @@ class MilestoneFileSerializer(serializers.ModelSerializer):
 class MilestoneSerializer(serializers.ModelSerializer):
     files = MilestoneFileSerializer(many=True, read_only=True)
     tickets = MilestoneTicketSerializer(many=True, read_only=True)
-    created_by_info = UserSerializer(read_only=True)
+    created_by_info = UserSerializer(read_only=True, source='created_by')
     class Meta:
         model = Milestone
         fields = '__all__'

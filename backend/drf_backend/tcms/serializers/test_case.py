@@ -25,7 +25,7 @@ class TestCaseTicketSerializer(serializers.ModelSerializer):
 class TestCaseSerializer(serializers.ModelSerializer):
     files = TestCaseFileSerializer(many=True, read_only=True)
     tickets = TestCaseTicketSerializer(many=True, read_only=True)
-    created_by_info = UserSerializer(read_only=True)
+    created_by_info = UserSerializer(read_only=True, source='created_by')
 
     class Meta:
         model = TestCase
