@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from ..models import TestCase, TypesForTestCase, PriorityForTestCase, TestCaseFile, TestCaseTicket
+from .user import UserSerializer
 
 class TypesForTestCaseSerializer(serializers.ModelSerializer):
     class Meta:
@@ -24,6 +25,7 @@ class TestCaseTicketSerializer(serializers.ModelSerializer):
 class TestCaseSerializer(serializers.ModelSerializer):
     files = TestCaseFileSerializer(many=True, read_only=True)
     tickets = TestCaseTicketSerializer(many=True, read_only=True)
+    created_by_info = UserSerializer(read_only=True)
 
     class Meta:
         model = TestCase

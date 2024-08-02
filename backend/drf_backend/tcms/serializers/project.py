@@ -1,10 +1,12 @@
 from ..models import *
 from rest_framework import serializers
+from .user import UserSerializer
 
 class ProjectSerializer(serializers.ModelSerializer):
     test_suite_count = serializers.SerializerMethodField()
     active_test_run_count = serializers.SerializerMethodField()
     active_milestone_count = serializers.SerializerMethodField()
+    created_by_info = UserSerializer(read_only=True)
 
     class Meta:
         model = Project
