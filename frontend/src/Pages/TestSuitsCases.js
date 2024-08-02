@@ -3,6 +3,8 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import {fetchTestSuites} from '../api/TestSuites'; 
 import AlertBox from '../components/Alert'; 
 import '../styles/TestSuitsCases.css';
+import { getProjectID } from '../utilities/globals';
+
 
 const TestSuitesCases = () => {
   const navigate = useNavigate();
@@ -22,9 +24,8 @@ const TestSuitesCases = () => {
   const [error, setError] = useState(null); // Error state
   const [alertMessage, setAlertMessage] = useState(null); // State for alert messages
 
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  const projectID = searchParams.get('projectID') || '0';
+  const projectID = getProjectID();
+
 
   // Fetch test suites data on component mount
   useEffect(() => {

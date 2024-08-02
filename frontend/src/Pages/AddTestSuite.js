@@ -21,7 +21,7 @@ const AddTestSuite = () => {
 
     const testSuiteData = {
       name,
-      creator_id: creatorId,
+      created_by: creatorId,
       description,
       project_id: projectID,
       file: file
@@ -29,7 +29,7 @@ const AddTestSuite = () => {
 
     try {
       await createTestSuite(testSuiteData);
-      navigate('/TestSuitsCases');
+      navigate('/suites/overview');
     } catch (error) {
       console.error('Failed to create test suite:', error);
     }
@@ -37,7 +37,7 @@ const AddTestSuite = () => {
 
   const handleCancel = (e) => {
     e.preventDefault();
-    navigate('/TestSuitsCases');
+    navigate('/suites/overview');
   };
 
   const handleFileChange = (e) => {

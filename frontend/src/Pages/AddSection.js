@@ -132,7 +132,7 @@ const AddSection = () => {
     formData.append('file', file);
     console.log("file is" + file);
     formData.append('test_suite_id', suiteId);
-    formData.append('creator_id', userId); 
+    formData.append('created_by', userId); 
     // formData.append('parent_id', null); 
     try {
       await createSection(formData); // Use the API function

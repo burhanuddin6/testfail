@@ -299,6 +299,11 @@ const SectionsCases = () => {
     navigate(`/AddSection?suiteId=${suiteId}&suite=${suiteName}`);
   };
 
+  const handleCaseClick = (testCase) => {
+    navigate(`/TestCaseDetails?suiteId=${suiteId}&suite=${suiteName}&section=${sections.find(section => section.cases.includes(testCase)).title}&testCaseId=${testCase.id}&testCaseName=${testCase.title}`);
+  };
+
+
   const handleDeleteTestCases = async () => {
     if (selectedCases.size === 0) {
       alert('No test cases selected for deletion.');

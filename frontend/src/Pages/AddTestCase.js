@@ -368,7 +368,6 @@ const AddTestCase = () => {
     
     const userId = sessionStorage.getItem('user_id');
     const projectId = getProjectID(); // Ensure this function is defined in your globals
-
     const newTestCase = {
       title,
       project_id: projectId,
@@ -376,16 +375,18 @@ const AddTestCase = () => {
       template_type: template,
       type_id: type,
       priority_id: priority,
-      estimate: estimate ? parseInt(estimate, 10) : null, // Convert to integer if not empty
-      automation_type: automationType,
+      // estimate: estimate ? parseInt(estimate, 10) : null, // Convert to integer if not empty
+      // automation_type: null,
       obsolete,
       preconditions,
       steps,
       expected_result: expectedResult,
       automated_cases: automatedCases,
-      creator_id: userId,
+      created_by: userId,
     };
-
+    if(automationType != '') newTestCase = {...newTestCase, automation_type: automationType};
+    if( estimate ) newTestCase = {...newTestCase, estimate: parseInt(estimate, 10)};
+    console.log(newTestCase);
     try {
       await createTestCase(newTestCase);
       navigate(`/SectionsCases?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}`);
