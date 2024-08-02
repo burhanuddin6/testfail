@@ -73,7 +73,5 @@ class TestRun(models.Model):
                 TestRunTestCaseResult.objects.create(test_run_id=self, test_case_id=tc, test_case_result_id=testcase_result)
             testcase_result = TestCaseResult.objects.filter(test_run_test_case_results__test_run_id=self.pk).first()
             if testcase_result:
-                print("testcase_result", testcase_result)
                 testcase_result.save()
-            print("fdfdsf")
 
