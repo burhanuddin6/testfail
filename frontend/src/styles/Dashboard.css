@@ -106,7 +106,7 @@ body {
 }
 
 .dashboard-legend-item {
-  display: flex;
+  display: flex; 
   align-items: center;
   margin-bottom: 5px;
 }
@@ -144,6 +144,10 @@ body {
 .projects-scrollable , .todos-scrollable{
   overflow-y: auto;
   max-height: 400px; /* Set a max height for scrollable content */
+}
+
+.scrollable-container {
+  overflow-y: auto;
 }
 
 .projectName {

@@ -165,4 +165,3 @@ const Milestonesprogress = () => {
 }
 
 export default Milestonesprogress;
-

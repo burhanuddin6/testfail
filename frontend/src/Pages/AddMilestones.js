@@ -153,7 +153,7 @@
 
 import React, { useState, useEffect } from 'react';
 import '../styles/AddMilestones.css'; // Import the CSS file
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { createMilestone } from '../api/Milestone';
 import { getProjectID } from '../utilities/globals';
 import { fetchMilestonesIdName } from '../api/Milestone'; // Import your fetch function
@@ -171,6 +171,10 @@ const AddMilestone = ({ userID }) => {
   const [parentMilestones, setParentMilestones] = useState([]);
 
   const navigate = useNavigate();
+
+  const location = useLocation();
+  const from = location.state?.from;
+  const action = location.state?.action;
 
   useEffect(() => {
     const loadParentMilestones = async () => {
@@ -203,15 +207,18 @@ const AddMilestone = ({ userID }) => {
       const createdMilestone = await createMilestone(milestoneData);
       console.log('Milestone created:', createdMilestone);
       console.log('ProjID in addmilestone', projectID);
-      navigate(`/milestones/overview?projectID=${projectID}`); // URL CHANGE
+      // navigate(`/milestones/overview?projectID=${projectID}`); // URL CHANGE
+      navigate('/milestones'); //batoolchange
+
     } catch (error) {
       console.error('Failed to create milestone:', error);
     }
   };
 
   const handleCancel = (e) => {
-    e.preventDefault();
-    navigate(`/milestones/overview?projectID=${projectID}`); // URL CHANGE
+    // e.preventDefault();
+    // navigate(`/milestones/overview?projectID=${projectID}`); // URL CHANGE
+    navigate(from); //batoolchange
   };
 
   const handleFileChange = (event) => {

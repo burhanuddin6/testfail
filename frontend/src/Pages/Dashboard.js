@@ -100,33 +100,37 @@ const Dashboard = ({ userName }) => {
       <div className='content'>
         <div className='projects'>
           <h2>Projects</h2>
-          {loading ? (
-            <p>Loading projects...</p>
-          ) : error ? (
-            <p>{error}</p>
-          ) : (
-            projects.map(project => (
-              <div key={project.project_id} className='dashboard-details'>
-                <Link
-                  to={`/projects/overview`}
-                  className='projectName'
-                  onClick={() => setProjectInfo(project.project_id, project.name)}
-                >
-                  {project.name}
-                </Link>
-                <p>Contains {project.test_suite_count} test suites, {project.active_test_run_count} active test runs, and {project.active_milestone_count} active milestones</p>
-              </div>
-            ))
-          )}
+          <div className='projects-scrollable'>
+            {loading ? (
+              <p>Loading projects...</p>
+            ) : error ? (
+              <p>{error}</p>
+            ) : (
+              projects.map(project => (
+                <div key={project.project_id} className='dashboard-details'>
+                  <Link
+                    to={`/projects/overview`}
+                    className='projectName'
+                    onClick={() => setProjectInfo(project.project_id, project.name)}
+                  >
+                    {project.name}
+                  </Link>
+                  <p>Contains {project.test_suite_count} test suites, {project.active_test_run_count} active test runs, and {project.active_milestone_count} active milestones</p>
+                </div>
+              ))
+            )}
+          </div>
         </div>
 
         <div className='dashboard-todo'>
           <h2>To-dos</h2>
-          <div className='dashboard-details'>
-            <Link to="/todo/project01" className='projectName'>Project 01</Link>
-          </div>
-          <div className='dashboard-details'>
-            <Link to="/todo/project02" className='projectName'>Project 02</Link>
+          <div className='todos-scrollable'> 
+            <div className='dashboard-details'>
+              <Link to="/todo/project01" className='projectName'>Project 01</Link>
+            </div>
+            <div className='dashboard-details'>
+              <Link to="/todo/project02" className='projectName'>Project 02</Link>
+            </div>
           </div>
         </div>
       </div>

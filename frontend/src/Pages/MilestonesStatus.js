@@ -84,4 +84,3 @@ const MilestonesStatus = () => {
 }
 
 export default MilestonesStatus;
-

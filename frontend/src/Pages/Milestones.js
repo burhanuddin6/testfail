@@ -223,43 +223,38 @@ const Milestones = () => {
             </div>
         </div>
 
-        <div className='open'>
-            <h3>Open</h3>
-
-            {openMilestones.map((milestone) => (
-              <div className='details' key={milestone.id}>
-                <input type="checkbox" checked={milestone.checked} onChange={() => handleCheckboxChange(milestone.id, 'open')} />
-                <a href='/milestone-status' className='milestoneName'>milestone</a>
-                <div class="status-bar">
-                    <div class="status-bar-inner status-52"></div>
+        <div className='milestone-listing'>
+          <h3 className='milestones-heading'> Open</h3>
+          <div className='open'>
+              {/* <h3>Open</h3> */}
+              {openMilestones.map((milestone) => (
+                <div className='details' key={milestone.id}>
+                  <input
+                    type="checkbox"
+                    checked={milestone.checked || false}
+                    onChange={() => handleCheckboxChange(milestone.id, 'open')}
+                  />
+                  <a href='/milestone-status' className='milestoneName'>{milestone.name}</a>
+                  <div className="status-bar">
+                    <div className="status-bar-inner status-52"></div>
+                  </div>
+                  <span className="milestoneStatus">52%</span>
                 </div>
-                <span class="milestoneStatus">52%</span>
-              </div>
-            ))}
+              ))}
+              
+          </div>
+        
 
-            {openMilestones.map((milestone) => (
-              <div className='details' key={milestone.id}>
-                <input type="checkbox" checked={milestone.checked} onChange={() => handleCheckboxChange(milestone.id, 'open')} />
-                <a href='' className='milestoneName'>milestone</a>
-                <div class="status-bar">
-                    <div class="status-bar-inner status-6"></div>
-                </div>
-                <span class="milestoneStatus">6%</span>
-              </div>
-            ))}
-            
-        </div>
-
-        <h3 className='milestones-heading'>Completed</h3>
-
-        <div className='completed'>
-            <h3>Completed</h3>
+          <h3 className='milestones-heading'>Completed</h3>
+          <div className='completed'>
+            {/* <h3>Completed</h3> */}
             {completedMilestones.map((milestone) => (
               <div className='details' key={milestone.id}>
                 <input type="checkbox" checked={milestone.checked} onChange={() => handleCheckboxChange(milestone.id, 'completed')} />
                 <a href='' className='milestoneName'>{milestone.name}</a>
               </div>
             ))}
+        </div>
         </div>
 
     </div>

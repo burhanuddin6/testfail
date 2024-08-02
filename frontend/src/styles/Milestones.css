@@ -83,11 +83,10 @@ body {
   }
 
   .milestoneName {
-    background-color: transparent;
+    background-color:transparent;
     color: black;
-    display: inline-block; 
+    width: 100px;
     font-size: 17px;
-    padding: 0 10px; 
   }
 
   .details {
@@ -135,26 +134,3 @@ body {
   .status-6 {
     width: 6%;
   }
-  
-  .message-box {
-    padding: 15px;
-    border-radius: 5px;
-    margin-top: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-  }
-  
-  .success-box {
-    color: #155724;
-    background-color: #d4edda;
-    border: 1px solid #c3e6cb;
-  }
-  
-  .error-box {
-    color: #721c24;
-    background-color: #f8d7da;
-    border: 1px solid #f5c6cb;
-  }
-  
-  
