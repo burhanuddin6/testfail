@@ -4,7 +4,7 @@ from ..models.user import *
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = MyUser
-        fields = '__all__'
+        fields = ('email', 'first_name', 'last_name')
 
 class UserApiKeySerializer(serializers.ModelSerializer):
     class Meta:
