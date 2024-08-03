@@ -27,6 +27,7 @@
   font-size: 14px; 
 }
 
+<<<<<<< HEAD
 .overview-legend-item {
   display: flex;
   align-items: center;
@@ -39,6 +40,35 @@
   margin-right: 10px;
   border-radius: 50%;
 }
+=======
+  .overview-content {
+    margin-left: 30px;
+    display: flex;
+    position: relative;
+    top: 680px;
+    gap: 5px;
+    margin-bottom: 30px;
+    width: 97%;
+    margin-right: 30px;
+  }
+
+
+  
+  .overview-activitylog {
+    margin-left: 30px;
+    color: black;
+    position: relative; 
+    top: 650px;
+    flex: 1;
+    background-color: #f7faff;
+    border: 1px solid #dde1e4;
+    border-radius: 5px;
+    padding: 20px;
+    width: 94%;
+    margin-left: 30px;
+    height: 470px;
+  }
+>>>>>>> origin/main
 
 .overview-legend-text {
   margin-left: 5px;
@@ -64,6 +94,7 @@
   top: 650px;
 }
 
+<<<<<<< HEAD
 .overview-activity-scrollable {
   overflow-y: auto;
   max-height: 400px;
@@ -112,3 +143,106 @@
   margin-left: auto;
   margin-right: 30px;
 }
+=======
+  .activity-details {
+    background-color: white;
+    display: flex;
+    gap: 30px;
+    /* margin-right: 30px; */
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+  }
+
+  .activity-details-details {
+    margin-top: 3px;
+  }
+
+  .activity-change-by {
+    display: flex;
+    gap: 30px;
+    margin-left: auto;
+    margin-right: 30px;
+    
+  }
+
+  .overview-activitylog-change {
+    display: flex;
+    gap: 7px;
+    margin-left: auto;
+    
+  }
+
+  .overview-activitylog-header {
+    display: flex;
+    /* gap: 20px; */
+  }
+
+  .overview-activitylog-change button {
+    width: auto;
+    height: 40px;
+    background-color: transparent;
+    color: black;
+  }
+
+  .overview-activitylog-change button:hover {
+    background-color: transparent;
+    text-decoration: underline;
+  }
+
+  .activity-status-milestone {
+    background-color: red;
+    padding: 5px;
+    border-radius: 40px;
+    font-size: 14px;
+    color: white;
+  }
+
+  .activity-status-testrun {
+    background-color: purple;
+    padding: 5px;
+    border-radius: 40px;
+    font-size: 14px;
+    color: white;
+  }
+
+  .activity-status-testplan {
+    background-color: purple;
+    padding: 5px;
+    border-radius: 40px;
+    font-size: 14px;
+    color: white;
+  }
+
+  .activity-status-testsuite {
+    background-color: green;
+    padding: 5px;
+    border-radius: 40px;
+    font-size: 14px;
+    color: white;
+  }
+
+  .activity-status-passed {
+    background-color: green;
+    padding: 5px;
+    border-radius: 40px;
+    font-size: 14px;
+    color: white;
+  }
+
+  .activity-status-failed {
+    background-color: red;
+    padding: 5px;
+    border-radius: 40px;
+    font-size: 14px;
+    color: white;
+  }
+
+  .active-button {
+    text-decoration: underline;
+    font-weight: bold;
+  }
+
+  
+>>>>>>> origin/main

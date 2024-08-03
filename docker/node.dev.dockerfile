@@ -1,5 +1,4 @@
-÷ dockerfile for frontend
-FROM node:latest
+FROM node:20-alpine
 
 WORKDIR /frontend
 

@@ -94,4 +94,19 @@ a {
 }
 
 
+<<<<<<< HEAD
+=======
+  .nav-link.purple {
+    position: relative;
+    margin-right: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .active-button {
+    text-decoration: underline;
+    font-weight: bold;
+  }
+ 
+>>>>>>> origin/main
 

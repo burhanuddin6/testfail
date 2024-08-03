@@ -38,6 +38,7 @@ import TestCaseDefects from './Pages/TestCaseDefects';
 import TestCaseHistory from './Pages/TestCaseHistory';
 import EditTestCase from './Pages/EditTestCase';
 import NotFound from './Pages/NotFound';
+import AddTestPlan from './Pages/AddTestPlan';
 
 
 const App = () => {

@@ -1,17 +1,28 @@
 import React, { useState } from 'react';
 import '../styles/components/Header.css';
 import logo from '../images/logo_02.png';
+<<<<<<< HEAD
 import { getProjectID, getProjectName } from '../utilities/globals';
+=======
+import { useNavigate } from 'react-router-dom';
+>>>>>>> origin/main
 
 const Header = ({userName }) => {
 
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showWorkingOnMenu, setShowWorkingOnMenu] = useState(false);
+<<<<<<< HEAD
   const projectName = getProjectName();
   const projectID = getProjectID();
   console.log("username in header " + projectName); //debug statement, remove before production!!
   console.log("projectid in header " + projectID); //debug statement, remove before production!!
   console.log("projectname in header " + projectID); //debug statement, remove before production!!
+=======
+  const [activeView, setActiveView] = useState('overview');
+  const navigate = useNavigate();
+  console.log(activeView);
+  // console.log("username in header" + userName)
+>>>>>>> origin/main
 
   return (
     <div className="header-container">
@@ -55,7 +66,6 @@ const Header = ({userName }) => {
         </div>
         
       </header>
-
     </div>
   );
 };

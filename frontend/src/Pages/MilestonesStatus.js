@@ -52,13 +52,15 @@ const MilestonesStatus = () => {
             </div>
 
             <div className="status-milestones-details-class">
-                <div className="status-milestones-details">
+                <div className="status-milestones-details"> 
                     <input type="checkbox"/>
                     <p><strong>Milestone Name</strong><br></br>Due Date / Starts On</p>
                     <div className="status-milestones-statusbar">
-                        <div className="status-milestones-progress-bar" style={{ width: '42%' }}> </div>
-                        <div className="status-milestones-progress-value">42%</div>
+                        <div className="status-milestones-progress-bar-passed" style={{ width: '42%' }}> </div>
+                        <div className="status-milestones-progress-bar-untested" style={{ width: '16%' }}> </div>
+                        <div className="status-milestones-progress-bar-failed" style={{ width: '42%' }}> </div>
                     </div>
+                    <div className="status-milestones-progress-value">42%</div>
                 </div>
             </div>
             
@@ -72,11 +74,13 @@ const MilestonesStatus = () => {
             <div className="status-testrun-details-class">
                 <div className="status-testrun-details">
                     <input type="checkbox"/>
-                    <p><strong>Test Run Name</strong><br></br> by ... on ...23 </p>
+                    <p><strong>Test Run Name</strong><br></br> by ... on ... </p>
                     <div className="status-testrun-statusbar">
-                        <div className="status-testrun-progress-bar" style={{ width: '42%' }}> </div>
-                        <div className="status-testrun-progress-value">42%</div>
+                        <div className="status-testrun-progress-bar-passed" style={{ width: '42%' }}> </div>
+                        <div className="status-testrun-progress-bar-untested" style={{ width: '16%' }}> </div>
+                        <div className="status-testrun-progress-bar-failed" style={{ width: '42%' }}> </div>
                     </div>
+                    <div className="status-testrun-progress-value">42%</div>
                 </div>
             </div>
         </div>

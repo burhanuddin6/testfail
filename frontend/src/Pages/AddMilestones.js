@@ -222,7 +222,8 @@ const AddMilestone = ({ userID }) => {
   };
 
   const handleFileChange = (event) => {
-    setSelectedFile(event.target.files[0]);
+    const files = Array.from(event.target.files);
+    setImages((prevImages) => [...prevImages, ...files]);
   };
 
   return (
@@ -273,10 +274,29 @@ const AddMilestone = ({ userID }) => {
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Use this description to describe the purpose and goals of this milestone."
           >
-            {selectedFile && `File: ${selectedFile.name}`}
           </textarea>
           <input type="file" id="file-upload" name="file-upload" onChange={handleFileChange}/>
         </div>
+
+        <div className="image-preview">
+          {images.map((image, index) => (
+            <div key={index} className="image-container">
+              <img
+                src={URL.createObjectURL(image)}
+                alt={`Selected ${index}`}
+                className="preview-image"
+              />
+              <button
+                type="button"
+                className="remove-image-button"
+                onClick={() => removeImage(index)}
+              >
+                ✗
+              </button>
+            </div>
+          ))}
+        </div>
+
         <div className="add-form-group">
           <label htmlFor="startDate">Start Date</label>
           <input
@@ -307,8 +327,8 @@ const AddMilestone = ({ userID }) => {
           <label htmlFor="isCompleted">This milestone is completed</label>
         </div>
         <div className="form-buttons">
-          <button type="submit">{action == "edit" ? 'Update' : 'Add'} Milestone</button>
-          <button type="button" onClick={handleCancel}>Cancel</button>
+          <button type="submit" className='add-edit-button'> ✓ {action == "edit" ? 'Update' : 'Add'} Milestone</button>
+          <button type="button" onClick={handleCancel} className='add-cancel-button'>✗ Cancel</button>
         </div>
       </form>
     </div>
