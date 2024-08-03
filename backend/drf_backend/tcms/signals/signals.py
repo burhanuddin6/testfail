@@ -143,3 +143,20 @@ def update_user_actions(sender, instance, created, **kwargs):
                 action_object = sender.__name__,
                 action_message=f'updated "{str(instance)}"',
             )
+
+
+@receiver(post_delete, sender=TestCase)
+@receiver(post_delete, sender=TestCaseResult)
+@receiver(post_delete, sender=Section)
+@receiver(post_delete, sender=TestSuite)
+@receiver(post_delete, sender=TestPlan)
+@receiver(post_delete, sender=TestRun)
+@receiver(post_delete, sender=Milestone)
+@receiver(post_delete, sender=Project)
+def delete_user_actions(sender, instance, **kwargs):
+    UserAction.objects.create(
+        user=instance.created_by,
+        action = UserAction.DELETED,
+        action_object = sender.__name__,
+        action_message=f'deleted "{str(instance)}"',
+    )
