@@ -45,6 +45,8 @@ router.register(r'user_account_integrations', UserAccountIntegrationViewSet)
 #project
 router.register(r'projects', ProjectViewSet)
 
+router.register(r'user_actions', UserActionViewSet)
+
 
 urlpatterns = [
     path('', include(router.urls)),

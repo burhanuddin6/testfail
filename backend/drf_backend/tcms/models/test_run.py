@@ -40,6 +40,7 @@ class TestRun(models.Model):
     test_case_filter_value = models.TextField(null=True, blank=True)
     project_id = models.ForeignKey('Project', on_delete=models.CASCADE)
     is_complete = models.BooleanField(default=False)
+    is_part_of_test_plan = models.BooleanField(default=False)
 
     number_of_passed_test_cases = models.IntegerField(blank=True, default=0)
     number_of_failed_test_cases = models.IntegerField(blank=True, default=0)
@@ -75,3 +76,5 @@ class TestRun(models.Model):
             if testcase_result:
                 testcase_result.save()
 
+    def __str__(self):
+        return self.name

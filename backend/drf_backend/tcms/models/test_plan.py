@@ -67,7 +67,8 @@ class TestPlan(models.Model):
                     test_case_filter=selection_type,
                     test_case_filter_value=test_case_filter,
                     project_id=self.project_id,
-                    created_by=self.created_by
+                    created_by=self.created_by,
+                    is_part_of_test_plan=True
                 )
 
                 # Create TestPlanTestRun association
@@ -75,6 +76,9 @@ class TestPlan(models.Model):
                     test_plan_id=self,
                     test_run_id=test_run
                 )
+    
+    def __str__(self):
+        return self.name
 
 class TestPlanFile(models.Model):
     file_id = models.AutoField(primary_key=True)
