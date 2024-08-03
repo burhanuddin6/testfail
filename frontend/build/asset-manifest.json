@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/static/css/main.99d76826.css",
+    "main.js": "/static/js/main.ce4430d9.js",
+    "static/js/453.d8e78e1a.chunk.js": "/static/js/453.d8e78e1a.chunk.js",
+    "static/media/linechart.png": "/static/media/linechart.97be82903362d9c6f762.png",
+    "static/media/Securiti_Logo.jpg": "/static/media/Securiti_Logo.162e79187ee5041c0aa2.jpg",
+    "static/media/logo_02.png": "/static/media/logo_02.1d0d4308284299911f70.png",
+    "static/media/file.png": "/static/media/file.0e470bbdc30b5057f365.png",
+    "index.html": "/index.html",
+    "main.99d76826.css.map": "/static/css/main.99d76826.css.map",
+    "main.ce4430d9.js.map": "/static/js/main.ce4430d9.js.map",
+    "453.d8e78e1a.chunk.js.map": "/static/js/453.d8e78e1a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.99d76826.css",
+    "static/js/main.ce4430d9.js"
+  ]
+}
