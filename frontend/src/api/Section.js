@@ -1,6 +1,6 @@
 import axiosInstance from './AxiosInstance'; 
 
-// API endpoint for fetching sections by suite ID
+// API endpoint for fetching sections (id, name) by suite ID
 const fetchSectionsBySuiteId = async (suiteId) => {
     const API_URL = `/sections/by_suite/?test_suite_id=${suiteId}`; 
 
@@ -36,5 +36,7 @@ const deleteSection = async (sectionId) => {
     throw new Error(error);
   }
 };
+
+
 
 export { fetchSectionsBySuiteId, createSection, deleteSection };

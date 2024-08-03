@@ -49,8 +49,8 @@ const Header = ({userName }) => {
             <a href={`/projects/overview`}>Overview</a>
             <a href={`/todos/overview`}>To-do</a>
             <a href={`/milestones/overview`}>Milestones</a>
-            <a href={`/runs/overview`}>Test Runs & Results</a>
-            <a href={`/suites/overview`}>Test Suits & Cases</a>
+            <a href={`/TestRuns`}>Test Runs & Results</a>
+            <a href={`TestSuitsCases`}>Test Suits & Cases</a>
             <a href='/*'>Reports</a>
         </div>
         

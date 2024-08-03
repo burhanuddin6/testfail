@@ -164,7 +164,7 @@ const App = () => {
               }
             />
             <Route
-              path="/suites/overview"
+              path="TestSuitsCases"
               element={
                 <>
                   <Header userName={userName} /> 
@@ -183,7 +183,7 @@ const App = () => {
               }
             />
             <Route
-              path="/runs/overview" //URL CHANGES
+              path="/TestRuns" //URL CHANGES
               element={
                 <>
                   <Header userName={userName} />

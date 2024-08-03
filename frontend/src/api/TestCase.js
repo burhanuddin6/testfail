@@ -6,7 +6,8 @@ const fetchTestCaseChoices = async () => {
 
     try {
         const response = await axiosInstance.get(API_URL);
-        console.log(response);
+        console.log("HAHAHAHAH");
+        console.log("test case choices" + response.data);
         return response.data;
     } catch (error) {
         console.error('Error fetching test case choices:', error);
@@ -51,7 +52,29 @@ const deleteTestCase = async (testCaseId) => {
       console.error('Error deleting test case:', error);
       throw error;
     }
-  };
+};
+
+const fetchTestCaseDetails = async (testCaseId) => {
+  try {
+    const response = await axiosInstance.get(`test_cases/${testCaseId}`);
+    console.log(response);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching test case details:', error);
+    throw error;
+  }
+};
+
+// Function to update a test case
+const updateTestCase = async (testCaseId, testCaseData) => {
+  try {
+    const response = await axiosInstance.put(`test_cases/${testCaseId}`, testCaseData);
+    return response.data;
+  } catch (error) {
+    console.error('Error updating test case:', error);
+    throw error;
+  }
+};
 
 
-export { fetchTestCaseChoices, createTestCase, fetchSectionsAndCases, deleteTestCase};
+export { fetchTestCaseChoices, createTestCase, fetchSectionsAndCases, deleteTestCase, fetchTestCaseDetails, updateTestCase};
