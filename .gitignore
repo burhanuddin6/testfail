@@ -4,6 +4,7 @@
 venv
 test_case_files
 media
+build
 *__pycache__
 
 # dependencies
