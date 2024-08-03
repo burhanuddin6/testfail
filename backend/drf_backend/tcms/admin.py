@@ -27,6 +27,7 @@ admin.site.unregister(get_user_model())
 admin.site.register(get_user_model(), MyUserAdmin)
 admin.site.register(UserApiKey)
 admin.site.register(UserAccountIntegration)
+admin.site.register(UserAction)
 
 admin.site.register(TypesForTestCase)
 admin.site.register(PriorityForTestCase)

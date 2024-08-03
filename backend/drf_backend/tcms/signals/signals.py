@@ -1,7 +1,6 @@
-from django.db.models.signals import post_save, post_delete, pre_delete
+from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from ..models import *
-from django.db import transaction
 
 @receiver(post_save, sender=TestCaseResult)
 @receiver(post_delete, sender=TestCaseResult)
@@ -79,3 +78,85 @@ def update_milestone_stats_on_test_run(sender, instance, **kwargs):
 def delete_results_on_test_run_test_case_result(sender, instance, **kwargs):
     instance.test_case_result_id.delete()
 
+
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from ..models import *
+from django.db import transaction
+
+@receiver(post_save, sender=TestCase)
+@receiver(post_save, sender=TestCaseResult)
+@receiver(post_save, sender=Section)
+@receiver(post_save, sender=TestSuite)
+@receiver(post_save, sender=TestPlan)
+@receiver(post_save, sender=TestRun)
+@receiver(post_save, sender=Milestone)
+@receiver(post_save, sender=Project)
+def update_user_actions(sender, instance, created, **kwargs):
+    if created:
+        if sender.__name__ == 'TestCaseResult':
+            test_run=instance.test_run,
+            if test_run.is_part_of_test_plan:
+                test_plan=instance.test_run.test_plan
+                UserAction.objects.create(
+                    user=instance.created_by,
+                    action = UserAction.CREATED,
+                    action_object = sender.__name__,
+                    action_message=f'updated "{str(instance.test_case_id)}" for Test Plan: "{str(test_plan)}"',
+                )
+            else:
+                UserAction.objects.create(
+                    user=instance.created_by,
+                    action = UserAction.CREATED,
+                    action_object = sender.__name__,
+                    action_message=f'updated "{str(instance.test_case_id)}" for Test Run: "{str(test_run)}"',
+                )
+        else:
+            UserAction.objects.create(
+                user=instance.created_by,
+                action = UserAction.CREATED,
+                action_object = sender.__name__,
+                action_message=f'created "{str(instance)}"',
+            )
+    else:
+        if sender.__name__ == 'TestCaseResult':
+            test_run=instance.test_run,
+            if test_run.is_part_of_test_plan:
+                test_plan=instance.test_run.test_plan
+                UserAction.objects.create(
+                    user=instance.created_by,
+                    action = UserAction.UPDATED,
+                    action_object = sender.__name__,
+                    action_message=f'updated "{str(instance.test_case_id)}" for Test Plan: "{str(test_plan)}"',
+                )
+            else:
+                UserAction.objects.create(
+                    user=instance.created_by,
+                    action = UserAction.UPDATED,
+                    action_object = sender.__name__,
+                    action_message=f'updated "{str(instance.test_case_id)}" for Test Run: "{str(test_run)}"',
+                )
+        else:
+            UserAction.objects.create(
+                user=instance.created_by,
+                action = UserAction.UPDATED,
+                action_object = sender.__name__,
+                action_message=f'updated "{str(instance)}"',
+            )
+
+
+@receiver(post_delete, sender=TestCase)
+@receiver(post_delete, sender=TestCaseResult)
+@receiver(post_delete, sender=Section)
+@receiver(post_delete, sender=TestSuite)
+@receiver(post_delete, sender=TestPlan)
+@receiver(post_delete, sender=TestRun)
+@receiver(post_delete, sender=Milestone)
+@receiver(post_delete, sender=Project)
+def delete_user_actions(sender, instance, **kwargs):
+    UserAction.objects.create(
+        user=instance.created_by,
+        action = UserAction.DELETED,
+        action_object = sender.__name__,
+        action_message=f'deleted "{str(instance)}"',
+    )

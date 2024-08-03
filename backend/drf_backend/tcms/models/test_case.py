@@ -83,6 +83,9 @@ class TestCase(models.Model):
             self.updated_on = datetime.now(timezone.utc)
         super().save(*args, **kwargs)
 
+    def __str__(self):
+        return self.title
+    
 class TestCaseFile(models.Model):
     file_id = models.AutoField(primary_key=True)
     file = models.FileField(upload_to='test_case_files/')

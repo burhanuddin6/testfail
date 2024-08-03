@@ -29,6 +29,9 @@ class Milestone(models.Model):
 			self.updated_on = datetime.now(timezone.utc)
 		super().save(*args, **kwargs)
 
+	def __str__(self):
+		return self.name
+
 class MilestoneTicket(models.Model):
 	ticket_id = models.AutoField(primary_key=True)
 	ticket = models.CharField(max_length=255, null=False)
