@@ -1,35 +1,10 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom'; 
+import {fetchTestSuites} from '../api/TestSuites'; 
+import AlertBox from '../components/Alert'; 
 import '../styles/TestSuitsCases.css';
+import { getProjectID } from '../utilities/globals';
 
-// Updated testSuites array with IDs
-const testSuites = [
-  { id: 587, title: "O_ General UI Testcases", sections: 6, cases: 72, runs: 23 },
-  { id: 1, title: "Appliance (Pod)", sections: 1332, cases: 8769, runs: 544 },
-  { id: 2, title: "Breach Management", sections: 111, cases: 1003, runs: 67 },
-  { id: 3, title: "Co pilot", sections: 3, cases: 31, runs: 4 },
-  { id: 4, title: "Compliance", sections: 68, cases: 811, runs: 33 },
-  { id: 5, title: "Connectors", sections: 3567, cases: 22779, runs: 762 },
-  { id: 6, title: "Consent Management", sections: 298, cases: 4976, runs: 944 },
-  { id: 587, title: "O_ General UI Testcases", sections: 6, cases: 72, runs: 23 },
-  { id: 7, title: "Content Classification", sections: 78, cases: 728, runs: 65 },
-  { id: 8, title: "Appliance (Pod)", sections: 1332, cases: 8769, runs: 544 },
-  { id: 9, title: "Breach Management", sections: 111, cases: 1003, runs: 67 },
-  { id: 10, title: "Co pilot", sections: 3, cases: 31, runs: 4 },
-  { id: 11, title: "Compliance", sections: 68, cases: 811, runs: 33 },
-  { id: 12, title: "Connectors", sections: 3567, cases: 22779, runs: 762 },
-  { id: 13, title: "Consent Management", sections: 298, cases: 4976, runs: 944 },
-  { id: 14, title: "Content Classification", sections: 78, cases: 728, runs: 65 },
-  { id: 587, title: "O_ General UI Testcases", sections: 6, cases: 72, runs: 23 },
-  { id: 7, title: "Content Classification", sections: 78, cases: 728, runs: 65 },
-  { id: 8, title: "Appliance (Pod)", sections: 1332, cases: 8769, runs: 544 },
-  { id: 9, title: "Breach Management", sections: 111, cases: 1003, runs: 67 },
-  { id: 10, title: "Co pilot", sections: 3, cases: 31, runs: 4 },
-  { id: 11, title: "Compliance", sections: 68, cases: 811, runs: 33 },
-  { id: 12, title: "Connectors", sections: 3567, cases: 22779, runs: 762 },
-  { id: 13, title: "Consent Management", sections: 298, cases: 4976, runs: 944 },
-  { id: 14, title: "Content Classification", sections: 78, cases: 728, runs: 65 }
-];
 
 const TestSuitesCases = () => {
   const navigate = useNavigate();
@@ -39,14 +14,55 @@ const TestSuitesCases = () => {
     navigate('/AddTestSuite'); // Redirect to Add Test Suite page
   };
 
-  // Handle click on a suite to navigate to Sections & Cases page
-  const handleSuiteClick = (suiteId, suiteName) => {
+   // Handle click on a suite to navigate to Sections & Cases page
+   const handleSuiteClick = (suiteId, suiteName) => {
     navigate(`/SectionsCases?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}`);
   };
 
+  const [testSuites, setTestSuites] = useState([]); // State to hold test suites data
+  const [loading, setLoading] = useState(true); // Loading state
+  const [error, setError] = useState(null); // Error state
+  const [alertMessage, setAlertMessage] = useState(null); // State for alert messages
+
+  const projectID = getProjectID();
+
+
+  // Fetch test suites data on component mount
+  useEffect(() => {
+    const loadTestSuites = async () => {
+      setLoading(true); // Set loading state
+      try {
+        const data = await fetchTestSuites(projectID); // Fetch test suites from API
+        setTestSuites(data); // Set the fetched data to state
+      } catch (err) {
+        setError('Failed to fetch test suites');
+        setAlertMessage('Failed to fetch test suites. Please try again later.'); // Set alert message
+        console.error(err);
+      } finally {
+        setLoading(false); // Reset loading state
+      }
+    };
+
+    loadTestSuites();
+  }, []); // Empty dependency array to run only once on mount
+
+  // Function to close the alert
+  const closeAlert = () => {
+    setAlertMessage(null);
+    setError(null); // Clear the error state as well
+  };
+
+
+  if (loading) {
+    return <div>Loading...</div>; // Loading state
+  }
+
   return (
     <div className="test-suites-cases">
-      {/* Header Section */}
+      {alertMessage && ( // Render AlertBox if there's an alert message
+        <AlertBox message={alertMessage} type="error" onClose={closeAlert} />
+      )}
+
       <div className="test-suites-header">
         <h1>Test Suites & Cases</h1>
         <button className="add-test-suite" onClick={handleAddTestSuite}>+ Add New Test Suite</button>
@@ -54,37 +70,36 @@ const TestSuitesCases = () => {
 
       {/* Suite Summary */}
       <div className="suite-summary">
-        <span>33 test suites and 115,466 cases in this project.</span>
+        <span>{`${testSuites.length} test suites and ${testSuites.reduce((total, suite) => total + suite.cases, 0)} cases in this project.`}</span>
       </div>
  
       {/* List of Test Suites */}
       <div className="suite-list">
         {testSuites.map((suite) => (
-          <div key={suite.id} className="suite">
+          <div key={suite.test_suite_id} className="suite">
             <div className="suite-header">
               <Link
-                to={`/SectionsCases?suiteId=${suite.id}&suite=${encodeURIComponent(suite.title)}`}
+                to={`/SectionsCases?suiteId=${suite.test_suite_id}&suite=${encodeURIComponent(suite.name)}`}
                 className="suite-title"
-                onClick={() => handleSuiteClick(suite.id, suite.title)}
+                onClick={() => handleSuiteClick(suite.test_suite_id, suite.name)}
               >
-                {suite.title}
+                {suite.name}
               </Link>
               <div className="suite-options">
-                <Link to={`/AddTestRun?suiteId=${suite.id}&suite=${encodeURIComponent(suite.title)}&source=TestSuitsCases`}>
+                <Link to={`/AddTestRun?suiteId=${suite.test_suite_id}&suite=${encodeURIComponent(suite.name)}&source=TestSuitsCases`}>
                   Run Test
                 </Link>
-                <span>|</span>
-                <Link to={`/TestRuns?suiteId=${suite.id}&suite=${encodeURIComponent(suite.title)}`}>
+                <Link to={`/TestRuns?suiteId=${suite.test_suite_id}&suite=${encodeURIComponent(suite.name)}`}>
                   Test Runs
                 </Link>
-                <span>|</span>
-                <Link to={`/EditTestSuite?suiteId=${suite.id}&suite=${encodeURIComponent(suite.title)}&source=TestSuitsCases`}>
+                <Link to={`/EditTestSuite?suiteId=${suite.test_suite_id}&suite=${encodeURIComponent(suite.name)}&source=TestSuitsCases`}>
                   Edit
                 </Link>
               </div>
             </div>
             <div className="suite-details">
-              <span>{`Has ${suite.sections} sections with ${suite.cases} test cases. ${suite.runs} active test runs.`}</span>
+              <span>{`Has X sections with ${suite.cases} test cases. Y active test runs.`}</span>
+              {/* Replace X and Y with actual data if available */}
             </div>
           </div>
         ))}
@@ -94,3 +109,4 @@ const TestSuitesCases = () => {
 };
 
 export default TestSuitesCases;
+

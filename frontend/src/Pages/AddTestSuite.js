@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import '../styles/AddTestSuite.css'; // Import the CSS file
 import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
+import { createTestSuite } from '../api/TestSuites'; // Import the API function
+import { getProjectID } from '../utilities/globals'; // Import getProjectID
+
 
 const AddTestSuite = () => {
   const [name, setName] = useState('');
@@ -8,24 +11,33 @@ const AddTestSuite = () => {
   const [file, setFile] = useState(null);
 
   const navigate = useNavigate();
+  const [projectID] = useState(getProjectID()); // Retrieve the project ID
 
-  const handleSubmit = (event) => {
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted with:', {
-      name,
-      description,
-    });
 
-    // Navigate back to the Test Suites & Cases page
-    navigate('/TestSuitsCases');
+    const creatorId = sessionStorage.getItem('user_id'); // Get the creator ID from session storage
+
+    const testSuiteData = {
+      name,
+      created_by: creatorId,
+      description,
+      project_id: projectID,
+      file: file
+    };
+
+    try {
+      await createTestSuite(testSuiteData);
+      navigate('/suites/overview');
+    } catch (error) {
+      console.error('Failed to create test suite:', error);
+    }
   };
 
   const handleCancel = (e) => {
     e.preventDefault();
-
-    // Navigate back to the Test Suites & Cases page
-    navigate('/TestSuitsCases');
+    navigate('/suites/overview');
   };
 
   const handleFileChange = (e) => {
@@ -79,7 +91,7 @@ const AddTestSuite = () => {
 
         <div className="test-suite-buttons">
           <button type="submit" className="test-suite-button test-suite-submit">
-          ✓ Add Test Suite
+            ✓ Add Test Suite
           </button>
           <button
             type="button"
