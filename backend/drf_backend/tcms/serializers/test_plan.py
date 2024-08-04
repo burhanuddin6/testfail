@@ -17,7 +17,7 @@ class TestPlanSerializer(serializers.ModelSerializer):
     files = TestPlanFileSerializer(many=True, read_only=True)
     tickets = TestPlanTicketSerializer(many=True, read_only=True)
     created_by_info = UserSerializer(read_only=True, source='created_by')
-    milestone_info = MilestoneSerializer(read_only=True, source='milestone')
+    milestone_info = MilestoneSerializer(read_only=True, source='milestone_id')
     class Meta:
         model = TestPlan
         fields = '__all__'
