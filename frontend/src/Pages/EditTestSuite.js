@@ -29,8 +29,8 @@ const EditTestSuite = () => {
     });
 
     // Navigate based on the source page and include suite ID in URL
-    if (sourcePage === 'TestRuns') {
-      navigate(`/TestRuns?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`); // Use updated name
+    if (sourcePage === 'TestSuiteTestRuns') {
+      navigate(`/TestSuiteTestRuns?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`); // Use updated name
     } else if (sourcePage === 'SectionsCases') {
       navigate(`/SectionsCases?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`); // Use updated name
     } else {
@@ -42,8 +42,8 @@ const EditTestSuite = () => {
     e.preventDefault();
 
     // Navigate based on the source page and include suite ID in URL
-    if (sourcePage === 'TestRuns') {
-        navigate(`/TestRuns?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`); // Use updated name
+    if (sourcePage === 'TestSuiteTestRuns') {
+        navigate(`/TestSuiteTestRuns?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`); // Use updated name
       } else if (sourcePage === 'SectionsCases') {
         navigate(`/SectionsCases?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`); // Use updated name
       } else {

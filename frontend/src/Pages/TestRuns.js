@@ -12,7 +12,7 @@ const TestRuns = () => {
   const handleAddTestRuns = (selectedOption, actionType) => {
     if (selectedOption) {
       if (actionType == 'run'){
-        navigate('/add-test-run', { state: { from: '/testruns', selectedOption } });
+        navigate('/add-test-run?source=TestRuns', { state: { from: '/testruns', selectedOption } });
         setIsPopupVisible(false);  // Ensure popup is closed
       }
     }
@@ -24,7 +24,7 @@ const TestRuns = () => {
   }
 
   return (
-    <div className="test-runs-page">
+    <div className="test-runs-results-page">
       <div className="test-runs-results-header">
         <div className='test-runs-results-main-heading'>
               <h2>Test Runs & Results</h2>
@@ -116,12 +116,12 @@ const TestRuns = () => {
               <div className="date-wise-test-run-details">
                 <div className="test-run-result-date">Date</div>
                 <div className="test-run-results-details">
-                  <div className="test-run-name">Name</div>
+                  <div className="test-run-results-name">Name</div>
                   <div className="test-run-results-completion-value">92%</div>
                 </div>
 
                 <div className="test-run-results-details">
-                  <div className="test-run-name">Name</div>
+                  <div className="test-run-results-name">Name</div>
                   <div className="test-run-results-completion-value">100%</div>
                 </div>
 
@@ -130,12 +130,12 @@ const TestRuns = () => {
               <div className="date-wise-test-run-details">
                 <div className="test-run-result-date">Date</div>
                 <div className="test-run-results-details">
-                  <div className="test-run-name">Name</div>
+                  <div className="test-run-results-name">Name</div>
                   <div className="test-run-results-completion-value">84%</div>
                 </div>
 
                 <div className="test-run-results-details">
-                  <div className="test-run-name">Name</div>
+                  <div className="test-run-results-name">Name</div>
                   <div className="test-run-results-completion-value">96%</div>
                 </div>
 

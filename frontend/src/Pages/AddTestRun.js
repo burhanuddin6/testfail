@@ -16,6 +16,12 @@ const AddTestRun = () => {
   const from = location.state?.from;
   const { selectedOption } = location.state || {};
 
+  const searchParams = new URLSearchParams(location.search);
+  const suiteId = searchParams.get('suiteId') || '0'; // Default to '0' if no suiteId is provided
+  const sourcePage = searchParams.get('source'); // Will be either 'TestSuitesCases' or 'TestRuns'
+  const suiteName = searchParams.get('suite') || 'Test Suite'; // Default to 'Test Suite' if no suiteName is provided
+
+
   useEffect(() => {
     if (selectedOption) {
       setName(selectedOption);
@@ -23,7 +29,14 @@ const AddTestRun = () => {
   }, [selectedOption]);
 
   const handleCancel = () => { 
-    navigate(from);
+    // navigate(from);
+    if (sourcePage === 'TestSuiteTestRuns') {
+      navigate(`/TestSuiteTestRuns?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}`);
+    } else if (sourcePage === 'TestRuns') {
+        navigate('/TestRuns')
+      } else {
+        navigate('/TestSuitsCases');
+      }
   };
 
   const handleSubmit = (event) => {
@@ -38,7 +51,14 @@ const AddTestRun = () => {
       description,
       testCaseSelection,
     });
-    navigate(from);
+    // navigate(from);
+    if (sourcePage === 'TestSuiteTestRuns') {
+      navigate(`/TestSuiteTestRuns?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}`);
+    } else if (sourcePage === 'TestRuns') {
+        navigate('/TestRuns')
+      } else {
+        navigate('/TestSuitsCases');
+      }
   };
 
   const handleFileChange = (event) => {

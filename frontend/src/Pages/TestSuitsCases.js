@@ -70,11 +70,11 @@ const TestSuitesCases = () => {
                 {suite.title}
               </Link>
               <div className="suite-options">
-                <Link to={`/AddTestRun?suiteId=${suite.id}&suite=${encodeURIComponent(suite.title)}&source=TestSuitsCases`}>
-                  Run Test
+                <Link to={`/add-test-run?suiteId=${suite.id}&suite=${encodeURIComponent(suite.title)}&source=TestSuitsCases`}>
+                  Add Test Run
                 </Link>
                 <span>|</span>
-                <Link to={`/TestRuns?suiteId=${suite.id}&suite=${encodeURIComponent(suite.title)}`}>
+                <Link to={`/TestSuiteTestRuns?suiteId=${suite.id}&suite=${encodeURIComponent(suite.title)}`}>
                   Test Runs
                 </Link>
                 <span>|</span>
