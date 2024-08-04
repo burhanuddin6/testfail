@@ -48,9 +48,6 @@ router.register(r'project', ProjectViewSet)
 #user
 router.register(r'user_api_keys', UserApiKeyViewSet)
 router.register(r'user_account_integrations', UserAccountIntegrationViewSet)
-
-router.register(r'projects', ProjectViewSet)
-
 router.register(r'user_actions', UserActionViewSet)
 
 urlpatterns = [

@@ -2,6 +2,8 @@ import axiosInstance from './AxiosInstance';
 
 // function for fetching sections (id, name) by suite ID
 const fetchSectionsBySuiteId = async (suiteId) => {
+  console.log("inside fetchTestCaseChoices");
+
     try {
         const response = await axiosInstance.get(`/sections/by_suite/?test_suite_id=${suiteId}`);
         return response.data;

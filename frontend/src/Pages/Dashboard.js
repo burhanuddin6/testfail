@@ -24,33 +24,40 @@ const Dashboard = ({ userName }) => {
         sessionStorage.setItem("user_name", `${details.first_name} ${details.last_name}`);
         sessionStorage.setItem("user_id", `${details.id}`);
         sessionStorage.setItem("user_email", `${details.email}`);
-        console.log("User details successfully stored in sessionStorage.");
+        // console.log("User details successfully stored in sessionStorage."); // debug statement, remove before production
       } catch (error) {
-        console.error("Failed to fetch user details", error);
+        console.error("Failed to fetch user details", error); // debug statement, remove before production
       }
     };
 
     const getProjects = async () => {
+      setLoading(true); 
       try {
         const data = await fetchProjects();
-        setProjects(data);
+    
+        if (data && data.length > 0) {
+          setProjects(data);
+        } else {
+          setProjects([]);
+          setError('No projects are available at the moment. Consider starting a new project to get things rolling!');
+        }
       } catch (err) {
         if (err.response && err.response.status === 403) {
           setError('You do not have permission for this action.');
         } else {
-          setError('Failed to fetch projects.');
+          setError('Failed to fetch projects. Please try again later.');
         }
       } finally {
-        setLoading(false);
+        setLoading(false); 
       }
     };
-
+    
     Promise.all([getDetails(), getProjects()])
       .then(() => {
-        console.log("Both getDetails and getProjects have completed.");
+        // console.log("Both getDetails and getProjects have completed."); // debug statement, remove before production
       })
       .catch((error) => {
-        console.error("An error occurred while fetching data", error);
+        console.error("An error occurred while fetching data", error); // debug statement, remove before production
       });
   }, []);
 
@@ -109,7 +116,7 @@ const Dashboard = ({ userName }) => {
               projects.map(project => (
                 <div key={project.project_id} className='dashboard-details'>
                   <Link
-                    to={`/projects/overview`}
+                    to={`/overview`}
                     className='projectName'
                     onClick={() => setProjectInfo(project.project_id, project.name)}
                   >

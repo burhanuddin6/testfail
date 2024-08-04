@@ -44,10 +44,10 @@ const EditTestSuite = () => {
     event.preventDefault();
     try {
       const projectID = sessionStorage.getItem("projectID");
-      const creatorID = sessionStorage.getItem("user_id");
+      const userID = sessionStorage.getItem("user_id");
 
-      if (!projectID || !creatorID) {
-        console.error('Project ID or Creator ID is missing');
+      if (!projectID || !userID) {
+        console.error('Project ID or user ID is missing');
         return;
       }
 
@@ -55,9 +55,10 @@ const EditTestSuite = () => {
       const testSuiteData = {
         name,
         description,
-        file,
+        // file,
         project_id: projectID,
-        creator_id: creatorID,
+        updated_by: userID,
+
       };
 
       await updateTestSuite(suiteId, testSuiteData);

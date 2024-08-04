@@ -14,6 +14,8 @@ class TestPlan(models.Model):
     test_case_filter = models.TextField(null=True, blank=True)
     project_id = models.ForeignKey('Project', on_delete=models.CASCADE)
     selection = JSONField(null=True, blank=True)
+    is_complete = models.BooleanField(default=False)
+
     
     number_of_passed_test_cases = models.IntegerField(blank=True, default=0)
     number_of_failed_test_cases = models.IntegerField(blank=True, default=0)

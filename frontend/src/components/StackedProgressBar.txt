@@ -1,0 +1,55 @@
+import React from 'react';
+import '../styles/components/StackedProgressBar.css'; 
+
+const StackedProgressBar = ({ data }) => {
+  const {
+    number_of_passed_test_cases,
+    number_of_failed_test_cases,
+    number_of_blocked_test_cases,
+    number_of_untested_test_cases,
+    number_of_partial_test_cases,
+    number_of_test_cases
+  } = data;
+
+  const totalTests = number_of_test_cases;
+
+  const passedPercentage = totalTests > 0 ? (number_of_passed_test_cases / totalTests) * 100 : 0;
+  const failedPercentage = totalTests > 0 ? (number_of_failed_test_cases / totalTests) * 100 : 0;
+  const blockedPercentage = totalTests > 0 ? (number_of_blocked_test_cases / totalTests) * 100 : 0;
+  const untestedPercentage = totalTests > 0 ? (number_of_untested_test_cases / totalTests) * 100 : 0;
+  const partialPercentage = totalTests > 0 ? (number_of_partial_test_cases / totalTests) * 100 : 0;
+
+  const totalPercentage = passedPercentage + failedPercentage + blockedPercentage + untestedPercentage + partialPercentage;
+
+  return (
+    <div className="progress-bar-container">
+      <div className="progress-bar" style={{ width: `${passedPercentage}%`, backgroundColor: '#4CAF50' }}>
+        <div className="progress-bar-tooltip">
+          Passed {passedPercentage.toFixed(1)}% ({number_of_passed_test_cases}/{totalTests} tests)
+        </div>
+      </div>
+      <div className="progress-bar" style={{ width: `${failedPercentage}%`, backgroundColor: '#dc3545' }}>
+        <div className="progress-bar-tooltip">
+          Failed {failedPercentage.toFixed(1)}% ({number_of_failed_test_cases}/{totalTests} tests)
+        </div>
+      </div>
+      <div className="progress-bar" style={{ width: `${blockedPercentage}%`, backgroundColor: '#ffc107' }}>
+        <div className="progress-bar-tooltip">
+          Blocked {blockedPercentage.toFixed(1)}% ({number_of_blocked_test_cases}/{totalTests} tests)
+        </div>
+      </div>
+      <div className="progress-bar" style={{ width: `${untestedPercentage}%`, backgroundColor: '#6c757d' }}>
+        <div className="progress-bar-tooltip">
+          Untested {untestedPercentage.toFixed(1)}% ({number_of_untested_test_cases}/{totalTests} tests)
+        </div>
+      </div>
+      <div className="progress-bar" style={{ width: `${partialPercentage}%`, backgroundColor: '#17a2b8' }}>
+        <div className="progress-bar-tooltip">
+          Partial {partialPercentage.toFixed(1)}% ({number_of_partial_test_cases}/{totalTests} tests)
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default StackedProgressBar;

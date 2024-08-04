@@ -12,6 +12,16 @@ const createTestRun = async (testRunData) => {
   }
 };
 
+// function to delete a test run using its id
+const deleteTestRun = async (testRunId) => {
+  try {
+    await axiosInstance.delete(`test_runs/${testRunId}/`);
+  } catch (error) {
+    console.error('Error deleting test run:', error); // debug statement, remove before production
+    throw error;
+  }
+};
+
 // function for fetching a test run of a given suite
 const fetchTestRuns = async (projectId, suiteId = '') => {
   try {
@@ -24,4 +34,4 @@ const fetchTestRuns = async (projectId, suiteId = '') => {
   }
 };
   
-export { createTestRun, fetchTestRuns };
+export { createTestRun, fetchTestRuns, deleteTestRun };

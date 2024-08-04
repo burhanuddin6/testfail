@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import '../styles/AddTestSuite.css'; // Import the CSS file
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
-import { createTestSuite } from '../api/TestSuites'; // Import the API function
-import { getProjectID } from '../utilities/globals'; // Import getProjectID
+import '../styles/AddTestSuite.css'; 
+import { useNavigate } from 'react-router-dom'; 
+import { createTestSuite } from '../api/TestSuites'; 
+import { getProjectID } from '../utilities/globals'; 
 
 
 const AddTestSuite = () => {
@@ -11,13 +11,13 @@ const AddTestSuite = () => {
   const [file, setFile] = useState(null);
 
   const navigate = useNavigate();
-  const [projectID] = useState(getProjectID()); // Retrieve the project ID
+  const [projectID] = useState(getProjectID()); 
 
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const creatorId = sessionStorage.getItem('user_id'); // Get the creator ID from session storage
+    const creatorId = sessionStorage.getItem('user_id'); 
 
     const testSuiteData = {
       name,
@@ -29,22 +29,19 @@ const AddTestSuite = () => {
 
     try {
       await createTestSuite(testSuiteData);
-      navigate('/suites/overview');
+      navigate('/testsuitscases'); //URL CHANGE
     } catch (error) {
-      console.error('Failed to create test suite:', error);
+      console.error('Failed to create test suite:', error); // debug statement, remove before production
     }
   };
 
   const handleCancel = (e) => {
     e.preventDefault();
-    navigate('/suites/overview');
+    navigate('/testsuitscases'); //URL CHANGE
   };
 
   const handleFileChange = (e) => {
-    console.log("insidde fille chsnge");
-
     setFile(e.target.files[0]);
-    console.log("addeded  filee" + file);
   };
 
   return (

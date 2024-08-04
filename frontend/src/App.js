@@ -39,6 +39,8 @@ import TestCaseHistory from './Pages/TestCaseHistory';
 import EditTestCase from './Pages/EditTestCase';
 import NotFound from './Pages/NotFound';
 import AddTestPlan from './Pages/AddTestPlan';
+// import ProgressBarPage from './Pages/ProgressBarPage'; // Adjust path as necessary
+
 
 
 const App = () => {
@@ -92,7 +94,7 @@ const App = () => {
           <>
             <Route path="/dashboard" element={<Dashboard userName={userName} />} />
             <Route
-              path="/overview/:projectId" //URL CHANGES
+              path="/overview" //URL CHANGES
               element={
                 <>
                   <Header userName={userName}/>
@@ -101,7 +103,7 @@ const App = () => {
               }
             />
             <Route
-              path="/todo/:projectId" //URL CHANGES
+              path="/todo" //URL CHANGES
               element={
                 <>
                   <Header userName={userName} />
@@ -313,6 +315,8 @@ const App = () => {
                 </>
               }
             />
+            {/* <Route path="/progress-bar" element={<ProgressBarPage />} /> */}
+
             <Route path="*" element={<NotFound />} />
           </>
         )}

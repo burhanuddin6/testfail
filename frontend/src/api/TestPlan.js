@@ -15,7 +15,7 @@ const createTestPlan = async (testPlanData) => {
 // function to update a test plan using its id 
 const updateTestPlan = async (testPlanId, testPlanData) => {
   try {
-    const response = await axiosInstance.put(`test_plans/${testPlanId}`, testPlanData);
+    const response = await axiosInstance.patch(`test_plans/${testPlanId}`, testPlanData);
     return response.data;
   } catch (error) {
     console.error('Error updating test plan:', error); // debug statement, remove before production
@@ -45,4 +45,16 @@ const fetchTestPlanDetails = async (testPlanId) => {
   }
 };
 
-export {createTestPlan, updateTestPlan, deleteTestPlan, fetchTestPlanDetails};
+// function for fetching test plans of a given project
+const fetchTestPlans= async (projectId) => {
+  try {
+      const response = await axiosInstance.get(`test_plans/?project_id=${projectId}`); //review projectid usage
+      console.log(response); // debug statement, remove before production
+      return response.data;
+  } catch (error) {
+      console.error('Error fetching test plans:', error); // debug statement, remove before production
+      throw error;
+  }
+};
+
+export {createTestPlan, updateTestPlan, deleteTestPlan, fetchTestPlanDetails, fetchTestPlans};

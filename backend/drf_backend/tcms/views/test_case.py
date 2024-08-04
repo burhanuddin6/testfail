@@ -56,6 +56,7 @@ class TestCaseViewSet(viewsets.ModelViewSet):
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
     
     def list(self, request, *args, **kwargs):
+        print("reached inside list functions")
         # Define the fields with choices
         choices = {
             'template_type': dict(TestCase.TEMPLATE_TYPE_CHOICES),
