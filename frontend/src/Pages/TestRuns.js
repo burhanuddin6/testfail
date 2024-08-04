@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import {useNavigate, useLocation, Link } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import "../styles/TestRuns.css";
 import Popup from "./selectSuite";
 
 const TestRuns = () => {
 
   const navigate = useNavigate();
-  const [selectedOption, setSelectedOption] = useState('');
+  // const [selectedOption, setSelectedOption] = useState('');
   const [isPopupVisible, setIsPopupVisible] = useState(false);
 
   const handleAddTestRuns = (selectedOption, actionType) => {
     if (selectedOption) {
-      if (actionType == 'run'){
+      if (actionType === 'run'){
         navigate('/add-test-run?source=TestRuns', { state: { from: '/testruns', selectedOption } });
         setIsPopupVisible(false);  // Ensure popup is closed
       }
@@ -54,7 +54,12 @@ const TestRuns = () => {
                 <div className="test-run-results-details">
                     <input type="checkbox"/>
                     <p className="test-run-indicator">Test Run</p>
-                    <p><strong>Name</strong><br></br>by ... on ...<br></br>92 Passed, 0 Blocked, 0 Untested, 0 Retest, 4 Failed, 0 Comments and 0 Partial</p>
+                    <p><strong><a
+                                href={`/TestRunTestsResults`}
+                                
+                            >
+                                Name
+                            </a></strong>by ... on ...<br></br>92 Passed, 0 Blocked, 0 Untested, 0 Retest, 4 Failed, 0 Comments and 0 Partial</p>
                     <div className="test-run-results-statusbar">
                         <div className="test-run-results-progress-bar-passes" style={{ width: '42%' }}> </div>
                         <div className="test-run-results-progress-bar-untested" style={{ width: '42%' }}> </div>
@@ -85,7 +90,11 @@ const TestRuns = () => {
                 <div className="test-run-results-details">
                     <input type="checkbox"/>
                     <p className="test-run-indicator">Test Run</p>
-                    <p><strong>Name</strong><br></br>by ... on ...<br></br>92 Passed, 0 Blocked, 0 Untested, 0 Retest, 4 Failed, 0 Comments and 0 Partial</p>
+                    <p><strong><a
+                                href={`/TestRunTestsResults`}
+                            >
+                                Name
+                            </a></strong>by ... on ...<br></br>92 Passed, 0 Blocked, 0 Untested, 0 Retest, 4 Failed, 0 Comments and 0 Partial</p>
                     <div className="test-run-results-statusbar">
                         <div className="test-run-results-progress-bar-passes" style={{ width: '42%' }}> </div>
                         <div className="test-run-results-progress-bar-untested" style={{ width: '42%' }}> </div>

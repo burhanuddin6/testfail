@@ -329,7 +329,7 @@ const TestRunTestsResults = () => {
           <section className="sidebar-section">
             <h3 className="sidebar-title">
               <Link
-                to={`/TestRunTestsResults?suiteId=${suiteId}&suite=${suiteName}&testRunId=${testRunId}&testRunName=${testRunName}&source=TestRunTestsResults`}
+                to={`/TestRunTestsResults?suiteId=${suiteId}&suite=${suiteName}&testRunId=${testRunId}&testRunName=${testRunName}`}
                 className="sidebar-link"
               >
                 Tests & Results

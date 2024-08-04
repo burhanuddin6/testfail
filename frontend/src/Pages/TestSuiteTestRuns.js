@@ -58,7 +58,7 @@ const TestSuiteTestRuns = () => {
               <div key={index} className="test-run-item">
                 <div className="test-run-details">
                   <div className="test-run-info">
-                  <Link to={`/TestRunTestsResults?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}&testRunId=${run.id}&testRunName=${run.title}&source=TestRunTestsResults`} className="test-run-name">{run.title}</Link>
+                  <Link to={`/TestRunTestsResults?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}&testRunId=${run.id}&testRunName=${run.title}`} className="test-run-name">{run.title}</Link>
                     <span className="test-run-date">{run.date}</span>
                   </div>
                   <div className="test-run-progress">
