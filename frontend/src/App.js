@@ -7,7 +7,7 @@ import { setProjectInfo, setToken } from './utilities/globals';
 
 // components 
 import Header from './components/Header';
-import HeaderWrapper from './components/HeaderWrapper';
+// import HeaderWrapper from './components/HeaderWrapper';
 import TestRuns from './components/TestRuns';
 
 // pages
@@ -73,7 +73,7 @@ const App = () => {
       }
     }
     getDetails();
-  }, []); // Runs once when the component mounts
+  }, []); 
 
 
   return (
@@ -92,7 +92,7 @@ const App = () => {
           <>
             <Route path="/dashboard" element={<Dashboard userName={userName} />} />
             <Route
-              path="projects/overview" //URL CHANGES
+              path="/overview/:projectId" //URL CHANGES
               element={
                 <>
                   <Header userName={userName}/>
@@ -101,7 +101,7 @@ const App = () => {
               }
             />
             <Route
-              path="/todos/overview" //URL CHANGES
+              path="/todo/:projectId" //URL CHANGES
               element={
                 <>
                   <Header userName={userName} />
@@ -110,7 +110,7 @@ const App = () => {
               }
             />
             <Route
-              path="/milestones/overview" //URL CHANGES
+              path="/milestones" //URL CHANGES
               element={
                 <>
                   <Header userName={userName}/>
@@ -124,7 +124,7 @@ const App = () => {
               element={
                 <>
                   <Header userName={userName} />
-                  <AddMilestone userID={userID} />
+                  <AddMilestone userID={userID} /> {/*REVIEW*/}
                 </>
               }
             />
@@ -165,21 +165,29 @@ const App = () => {
               }
             />
             <Route
-              path="TestSuitsCases"
+              path="/testsuitscases"
               element={
                 <>
                   <Header userName={userName} /> 
-                  {/* <HeaderWrapper userName={userName} /> */}
                   <TestSuitesCases />
                 </>
               }
             />
             <Route 
-              path="/AddTestRun" 
+              path="/add-test-run" 
               element={
                 <>
                   <Header userName={userName} />
                   <AddTestRun userID={userID} />
+                </>
+              }
+            />
+            <Route 
+              path="/add-test-plan" 
+              element={
+                <>
+                  <Header userName={userName} />
+                  <AddTestPlan  />
                 </>
               }
             />
@@ -246,17 +254,6 @@ const App = () => {
                 <>
                   <Header userName={userName} />
                   <AddSection />
-                </>
-              }
-            />
-            <Route
-              path="/TestRuns"
-              element={
-                <>
-                  <Header userName={userName} />
-                  <div className="main-content">
-                    <TestRunsPage />
-                  </div>
                 </>
               }
             />

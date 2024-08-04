@@ -309,7 +309,7 @@ const TestRuns = () => {
     if (selectedOption) {
       if (actionType == 'run'){
         navigate('/add-test-run', { state: { from: '/testruns', selectedOption } });
-        setIsPopupVisible(false);  // Ensure popup is closed
+        setIsPopupVisible(false);  
       }
     }
   };

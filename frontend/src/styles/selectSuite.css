@@ -1,74 +1,73 @@
 /* Popup overlay */
 .popup-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000; /* Ensure it's above other content */
-  }
-  
-  /* Popup box */
-  .popup {
-    background-color: white;
-    padding: 30px;
-    padding-top: 40px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 400px; /* Set a fixed width or adjust as needed */
-    height: 200px;
-    z-index: 1001; /* Higher than the overlay */
-    text-align: center; /* Center the text inside the popup */
-  }
-  
-  .popup h2 {
-    margin-top: 10px;
-  }
-  
-  .popup select {
-    margin-top: 10px;
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .popup-buttons {
-    margin-top: 20px;
-    display: flex;
-    gap: 20px;
-    margin-left: 130px;
-    margin-right: 100px;
-  }
-  
-  .popup-buttons button {
-    width: auto;
-    height: auto;
-    padding-left: 10px;
-    padding-right: 10px;
-    
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Ensure it's above other content */
+}
 
-  .select-suite-confirm {
-    background-color: #4CAF50;
-  }
+/* Popup box */
+.popup {
+  background-color: white;
+  padding: 30px;
+  padding-top: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 400px; /* Set a fixed width or adjust as needed */
+  height: 200px;
+  z-index: 1001; /* Higher than the overlay */
+  text-align: center; /* Center the text inside the popup */
+}
 
-  .select-suite-cancel {
-    background-color: #dc3545;
-    width: auto;
-  }
-  
-  
+.popup h2 {
+  margin-top: 10px;
+}
 
-  .select-suite-cancel:hover {
-    background-color: #FAA0A0;
-  }
+.popup select {
+  margin-top: 10px;
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
 
-  .select-suite-confirm:hover {
-    background-color: #90ee90;
-  }
+.popup-buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+  margin-left: 130px;
+  margin-right: 100px;
+}
+
+.popup-buttons button {
+  width: auto;
+  height: auto;
+  padding-left: 10px;
+  padding-right: 10px;
   
+}
+
+.select-suite-confirm {
+  background-color: #4CAF50;
+}
+
+.select-suite-cancel {
+  background-color: #dc3545;
+  width: auto;
+}
+
+
+
+.select-suite-cancel:hover {
+  background-color: #FAA0A0;
+}
+
+.select-suite-confirm:hover {
+  background-color: #90ee90;
+}
