@@ -35,8 +35,9 @@ import TestCaseDefects from './Pages/TestCaseDefects';
 import TestCaseHistory from './Pages/TestCaseHistory';
 import EditTestCase from './Pages/EditTestCase';
 import AddTestPlan from './Pages/AddTestPlan';
-import NotFound from './Pages/NotFound';
 import TestSuiteTestRuns from './Pages/TestSuiteTestRuns';
+import TestRunTestsResults from './Pages/TestRunTestsResults';
+import NotFound from './Pages/NotFound';
 
 const App = () => {
   const [userName, setUserName] = useState("");
@@ -215,20 +216,38 @@ const App = () => {
           }
         />
         <Route
+          path="/TestRuns"
+          element={
+            <>
+              <Header userName={userName} />
+              <TestRunsPage />
+            </>
+          }
+        />
+        <Route 
+          path="/add-test-plan" 
+          element={
+            <>
+              <Header userName={userName} />
+              <AddTestPlan  />
+            </>
+          }
+        />
+        <Route
+          path="/TestRunTestsResults"
+          element={
+            <>
+              <Header userName={userName} />
+              <TestRunTestsResults />
+            </>
+          }
+        />
+        <Route
           path="/testsuitscases"
           element={
             <>
               <Header userName={userName} />
               <TestSuitesCases />
-            </>
-          }
-        />
-        <Route
-          path="/TestSuiteTestRuns"
-          element={
-            <>
-              <Header userName={userName} />
-              <TestSuiteTestRuns />
             </>
           }
         />
@@ -241,21 +260,12 @@ const App = () => {
             </>
           }
         />
-         <Route 
-          path="/add-test-plan" 
-          element={
-            <>
-              <Header userName={userName} />
-              <AddTestPlan  />
-            </>
-          }
-        />
         <Route
-          path="/TestRuns"
+          path="/TestSuiteTestRuns"
           element={
             <>
               <Header userName={userName} />
-              <TestRunsPage />
+              <TestSuiteTestRuns />
             </>
           }
         />

@@ -1,0 +1,244 @@
+.test-run-tests-results-page {
+  padding: 20px;
+  margin-top: 80px; /* Space for the header */
+  font-family: Arial, sans-serif;
+  max-width: 1200px; /* Restrict max width for better control */
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  height: calc(100vh - 120px);
+}
+
+.test-run-tests-results-header {
+  margin-bottom: 20px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #ddd;
+  background-color: #f7faff; /* Same background to blend */
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.test-run-tests-results-header h2 {
+  font-size: 24px;
+  color: #333;
+}
+
+.test-run-tests-results-actions {
+  display: flex;
+  gap: 15px;
+}
+
+.add-case-button,
+.edit-test-run-link {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.add-case-button:hover,
+.edit-test-run-link:hover {
+  background-color: #0056b3;
+}
+
+.test-run-tests-results-summary {
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: #333;
+}
+
+.test-run-tests-results-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.test-run-tests-results-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1;
+  padding: 10px;
+}
+
+.test-run-tests-results-pie-chart {
+  flex: 1;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border: 1px solid #dde1e4;
+  padding: 10px;
+  padding-right: 500px;
+
+  width: 300px;
+  margin: auto;
+}
+
+.test-run-tests-results-test-cases {
+  flex: 2;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border: 1px solid #dde1e4;
+  padding: 10px;
+  margin-left: 0; /* Move the test cases to the left */
+}
+
+.pie-chart-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.pie-chart-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: absolute;
+  right: 700px;
+  transform: translateY(10%);
+  padding: 60px;
+}
+
+.test-run-tests-results-test-cases-table {
+  width: 100%;
+}
+
+.test-run-tests-results-test-cases-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.test-run-tests-results-test-cases-table th,
+.test-run-tests-results-test-cases-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.test-run-tests-results-test-cases-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.test-case-title {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* .test-case-status {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #fff; 
+  color: #333; 
+  appearance: none; 
+  -webkit-appearance: none; 
+} */
+
+.test-case-status option {
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: #fff; 
+  color: #333; 
+}
+
+
+.test-case-status.Passed {
+  background-color: #4CAF50; /* Green background for Passed */
+  color: white; /* White text for Passed */
+}
+
+.test-case-status.Blocked {
+  background-color: #ffc107; /* Yellow background for Blocked */
+  color: white; /* White text for Blocked */
+}
+
+.test-case-status.Retest {
+  background-color: #ffeb3b; /* Yellow background for Retest */
+  color: #333; /* Dark text for Retest */
+}
+
+.test-case-status.Failed {
+  background-color: #f44336; /* Red background for Failed */
+  color: white; /* White text for Failed */
+}
+
+.test-case-status.Comments {
+  background-color: #000; /* Black background for Comments */
+  color: white; /* White text for Comments */
+}
+
+.test-case-status.Partial {
+  background-color: #ff9800; /* Orange background for Partial */
+  color: white; /* White text for Partial */
+}
+
+.test-case-defects {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.test-case-defects li {
+  margin-bottom: 5px;
+}
+
+/* Media Queries for Responsive Design */
+@media screen and (max-width: 768px) {
+  .test-run-tests-results-content {
+    flex-direction: column;
+  }
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-header {
+  margin-bottom: 15px;
+}
+
+.sidebar-header h3 {
+  color: #333;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  margin-bottom: 10px;
+}
+
+.sidebar a {
+  display: block;
+  padding: 8px 12px;
+  border-radius: 5px;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar a:hover {
+  background-color: #ddd;
+}
