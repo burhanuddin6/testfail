@@ -11,6 +11,9 @@ from tcms.models import (
     TestCase, TypesForTestCase, PriorityForTestCase, 
     MyUser, TestSuite, Section, Project
 )
+if __name__ == "__main__":
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'drf_backend.settings')
+    django.setup()
 
 class ImportTestCases():
     help = 'Import test cases from a CSV file'
@@ -42,8 +45,12 @@ class ImportTestCases():
     def import_row(self, row):
         # Handle Sections and Test Suites
         self.user = self.get_or_create_user(row['Created By'])
-        self.priority = self.get_or_create_priority(row['Priority'])
-        self.type = self.get_or_create_type(row['Type'])
+
+        # check and add valid priority
+        self.priority = row['Priority'].strip()
+        self.type = row['Type'].strip()
+        if not self.priority in [x[0] for x in TestCase.PRIORITY_CHOICES] or not self.type in [x[0] for x in TestCase.TYPE_CHOICES]:
+            raise ValueError(f"Invalid priority or type: {self.priority} or {self.type}")
         self.test_suite = self.get_or_create_suite(f'{row['Suite ID']}::{row['Suite']}', user=self.user, project=self.project)
         self.section = self.get_or_create_section(section_name=row['Section'], section_heirarchy=row['Section Hierarchy'], test_suite=self.test_suite, user=self.user)
         
