@@ -1,16 +1,12 @@
-//src/api/Auth.js
 import axios from 'axios';
-
-const GIT_URL = "https://organic-orbit-p47g4pqqrqj36rvv-8000.app.github.dev/";
-const LOCAL_URL = "http://localhost:8000/";
-
-const GIT_VERIFY_EMAIL_URL = "https://organic-orbit-p47g4pqqrqj36rvv-8000.app.github.dev/api/tcms/verify-email/";
-const LOCAL_VERIFY_EMAIL_URL = "http://127.0.0.1:8000/api/tcms/verify-email/";
+import { LOCAL_URL, LOCAL_VERIFY_EMAIL_URL } from '../utilities/globals';
+import axiosInstance from './AxiosInstance';
 
 
 const login = async (formData) => {
   try {
     const response = await axios.post(`${LOCAL_URL}api/accounts/login/`, formData);
+    console.log(response.data);
     return response.data; 
   } catch (error) {
     
@@ -65,4 +61,18 @@ const getUserDetails = async (token) => {
   }
 };
 
-export { login, signUp, verifyEmail, getUserDetails };
+// Function to get QA users
+const getQaUsers = async (groupName = 'qa-user') => {
+  try {
+    const response = await axiosInstance.get(`get_qa_users/`, {
+      params: { group_name: groupName }
+    });
+    console.log("qa users " + response);
+    return response.data.users; // This returns the list of users
+  } catch (error) {
+    console.error('Error fetching QA users:', error);
+    throw error; // Rethrow the error to be handled by the caller
+  }
+};
+
+export { login, signUp, verifyEmail, getUserDetails, getQaUsers};

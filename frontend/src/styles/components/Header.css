@@ -1,100 +1,97 @@
+.header-container {
+  font-family: Arial, sans-serif;
+  width: 1680px;
+  color: white;
+  
+}
 
-  
-  .header-container {
-    font-family: Arial, sans-serif;
-    width: 1680px;
-    color: white;
-    
-  }
-  
-  .header-header {
-    /* display: flex; */
-    align-items: center;
-    background-color: #1d3557;
-    position: absolute;
-    width: 100%;
-    top: 0;
-    left: 0;
-    margin-bottom: 0;
-  }
+.header-header {
+  /* display: flex; */
+  align-items: center;
+  background-color: #1d3557;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  margin-bottom: 0;
+}
 
-  .top {
-    display: flex;
-  }
+.top {
+  display: flex;
+}
 
-  .nav {
-    display: flex;
-    gap: 20px;
-    color: white;
-    margin-left: 20px;
-    font-size: 18px;
-  }
+.nav {
+  display: flex;
+  gap: 20px;
+  color: white;
+  margin-left: 20px;
+  font-size: 18px;
+}
 
-  a {
-    color: white;
-  }
+a {
+  color: white;
+}
 
-  .header-header a {
-    margin-top: 3px;
-    color: white;
-  }
-  
-  .header-header img {
-    height: 50px;
-    margin-right: 20px;
-    margin-left: 10px;
-    margin-top: 10px;
-  }
-  
-  .search-bar {
-    padding: 0.5rem;
-    border-radius: 4px;
-    margin-right: 1rem;
-  }
-  
-  .options {
-    gap: 10px;
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-  }
+.header-header a {
+  margin-top: 3px;
+  color: white;
+}
 
-  .dropdown {
-    position: relative;
-    margin-right: 1rem;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  
-  .dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: white;
-    color: black;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 0.5rem;
-    min-width: 150px;
-    z-index: 1;
-  }
-  
-  .dropdown-menu div {
-    padding: 0.5rem;
-    cursor: pointer;
-  }
-  
-  .dropdown-menu div:hover {
-    background-color: #f1f1f1;
-  }
+.header-header img {
+  height: 50px;
+  margin-right: 20px;
+  margin-left: 10px;
+  margin-top: 10px;
+}
 
-  .nav-link.purple {
-    position: relative;
-    margin-right: 1rem;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  
- 
+.search-bar {
+  padding: 0.5rem;
+  border-radius: 4px;
+  margin-right: 1rem;
+}
 
- 
+.options {
+  gap: 10px;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.dropdown {
+  position: relative;
+  margin-right: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  color: black;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.5rem;
+  min-width: 150px;
+  z-index: 1;
+}
+
+.dropdown-menu div {
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.dropdown-menu div:hover {
+  background-color: #f1f1f1;
+}
+
+.nav-link.purple {
+  position: relative;
+  margin-right: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+
+

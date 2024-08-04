@@ -1,5 +1,6 @@
 from rest_framework import viewsets
 from rest_framework import status
+from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.decorators import parser_classes
@@ -43,3 +44,22 @@ class MilestoneViewSet(viewsets.ModelViewSet):
 
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+    
+    def get_queryset(self):
+        
+        project_id = self.request.query_params.get('project_id', None)
+        
+        if project_id:
+            return Milestone.objects.filter(project_id=project_id)
+
+        return Milestone.objects.all()
+    
+    @action(detail=False, methods=['get'])
+    def get_name_id(self, request):
+        
+        project_id = request.query_params.get('project_id', None)
+        
+        if project_id:
+            milestones = Milestone.objects.filter(project_id=project_id, is_complete=False).values('id', 'name')
+
+        return Response({'milestones': list(milestones)})

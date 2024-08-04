@@ -1,0 +1,35 @@
+Test suite creations: 
+ 1. user id required
+ 2. project_id required
+
+nothing required to fetch in suite creation form
+
+- add suite creation api
+
+
+Test run creation: 
+ 1. suite_id required
+ 2. project_id required
+ 3. user id required
+
+fetch milestones (id, name), users (id, name) in run creation form
+
+
+
+-----------
+- handle sub-milstones display in add-milestones form parent
+
+
+
+-----
+- a test run 'should' be assigned to a test suite
+
+
+
+================
+Things to remove 
+ - remove priorityfortestcase table and typefortestcase table
+ - remove debug statements 
+
+
+

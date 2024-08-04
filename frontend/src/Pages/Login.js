@@ -35,12 +35,12 @@ const Login = () => {
     
       const token = response.token; 
       sessionStorage.setItem('token', token); 
-
-      setMessage('');
+      
+      setMessage(''); //REVIEW USAGE
 
       window.location.assign("/dashboard");
     } catch (error) {
-      console.log(error.status);
+      console.log(error.status); //debug statement, remove before production
     
       if (error.status === 404) {
         setMessage('User does not exist. Please sign up.');
@@ -59,12 +59,12 @@ const Login = () => {
   
   const handleSignUp = (e) => {
     e.preventDefault();
-    navigate('/SignUp');
+    navigate('/signup');
   };
 
   const handleForgot = (e) => {
     e.preventDefault();
-    navigate('/Forgot');
+    navigate('/forgot');
   };
 
   return (
