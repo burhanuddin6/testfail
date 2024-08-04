@@ -8,7 +8,7 @@ from ..serializers.test_run import *
 from ..permissions import HasModelPermissions
 
 class TestRunViewSet(viewsets.ModelViewSet):
-    queryset = TestRun.objects.all()
+    queryset = TestRun.objects.filter(is_part_of_test_plan=False)
     serializer_class = TestRunSerializer
     permission_classes = [HasModelPermissions]
 

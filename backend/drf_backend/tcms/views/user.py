@@ -4,7 +4,9 @@ from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from ..models.user import *
+from ..models.actions import UserAction
 from ..serializers.user import *
+from ..serializers.actions import UserActionSerializer
 from ..permissions import HasModelPermissions
 from rest_framework.permissions import IsAdminUser
 from django.contrib.auth.models import Group
@@ -75,6 +77,11 @@ def verify_email(request):
             return JsonResponse({'error': 'Email verification failed.'}, status=response.status_code)
     except requests.RequestException as e:
         return JsonResponse({'error': 'Error verifying email.'}, status=500)
+    
+class UserActionViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = UserAction.objects.all()
+    serializer_class = UserActionSerializer
+    permission_classes = [HasModelPermissions]
     
 def get_qa_users(request):
     # Get 'group_name' from query parameters

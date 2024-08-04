@@ -12,6 +12,9 @@ class Project(models.Model):
     created_by = models.ForeignKey(MyUser, on_delete=models.CASCADE, related_name='projects')
     created_on = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.name
+
 
 # class ProjectGroups(models.Model):
 #     group_id = models.ForeignKey(Group, on_delete=models.CASCADE)
