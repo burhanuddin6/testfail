@@ -7,11 +7,11 @@ from .views.project import *
 router = DefaultRouter()
 
 #test case 
+router.register(r'test_cases', TestCaseViewSet)
 router.register(r'types_for_testcase', TypesForTestCaseViewSet)
 router.register(r'priority_for_testcase', PriorityForTestCaseViewSet)
 router.register(r'test_case_files', TestCaseFileViewSet)
 router.register(r'test_case_tickets', TestCaseTicketViewSet)
-router.register(r'test_cases', TestCaseViewSet)
 
 #test case result
 router.register(r'test_case_results', TestCaseResultViewSet)
@@ -30,7 +30,7 @@ router.register(r'sections', SectionViewSet)
 router.register(r'test_suite_files', TestSuiteFileViewSet)
 
 #test run --to get checked
-router.register(r'test_run', TestRunViewSet)
+router.register(r'test_runs', TestRunViewSet)
 router.register(r'test_run_files', TestRunFileViewSet)
 router.register(r'test_run_tickets', TestRunTicketViewSet)
 router.register(r'test_run_test_case_results', TestRunTestCaseResultViewSet)

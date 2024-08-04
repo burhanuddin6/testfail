@@ -1,25 +1,27 @@
-import axiosInstance from './AxiosInstance'; // Adjust the path based on your project structure
+import axiosInstance from './AxiosInstance'; 
 
+
+// function to get all projects
 const fetchProjects = async () => {
   try {
     const response = await axiosInstance.get('project/');
-    console.log(response);
+    console.log(response); // debug statement, remove before production
     return response.data; 
   } catch (error) {
-    console.error('Error fetching projects:', error);
+    console.error('Error fetching projects:', error); // debug statement, remove before production
     throw error; 
   }
 };
 
+// function to get a specific project using its id 
 const fetchProjectByID = async (projectID) => {
   try {
-    console.log(`projecct id is ${projectID}`)
+    // console.log(`projecct id is ${projectID}`) // debug statement, remove before production
     const response = await axiosInstance.get(`project/${projectID}/`);
-    console.log("fetchProjectByID" + response);
+    // console.log("fetchProjectByID" + response);// debug statement, remove before production
     return response.data; 
   } catch (error) {
-    console.error('Error fetching projects:', error);
-    // throw error; 
+    console.error('Error fetching projects:', error); // debug statement, remove before production
   }
 };
 

@@ -312,9 +312,9 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/AddTestCase.css'; // Import the CSS file
 import { useNavigate, useLocation } from 'react-router-dom';
-import { createTestCase } from '../api/TestCase';
+import { createTestCase, fetchTestCaseChoices } from '../api/TestCase';
 import { getProjectID } from '../utilities/globals'; // Import your function to get the project ID
-import axiosInstance from '../api/AxiosInstance'; // Import your axios instance
+import { fetchSectionsBySuiteId } from '../api/Section';
 
 const AddTestCase = () => {
   const [section, setSection] = useState(''); // Default empty as it will be populated dynamically
@@ -347,12 +347,16 @@ const AddTestCase = () => {
         setLoading(true);
         // Fetch sections and choices
         const [sectionsResponse, choicesResponse] = await Promise.all([
-          axiosInstance.get(`/sections/by_suite/?test_suite_id=${suiteId}`),
-          axiosInstance.get('/test_cases/') // Adjusted to your choices endpoint
+          fetchSectionsBySuiteId(suiteId),
+          fetchTestCaseChoices // Adjusted to your choices endpoint
         ]);
 
         setSections(sectionsResponse.data);
         setChoices(choicesResponse.data);
+        console.log(`Test case choices: ${JSON.stringify(choicesResponse.data, null, 2)}`);
+        console.log(`Test case choices: ${JSON.stringify(sectionsResponse.data, null, 2)}`);
+
+
         setLoading(false);
       } catch (error) {
         console.error('Failed to load data:', error);
@@ -368,7 +372,7 @@ const AddTestCase = () => {
     
     const userId = sessionStorage.getItem('user_id');
     const projectId = getProjectID(); // Ensure this function is defined in your globals
-    const newTestCase = {
+    let newTestCase = {
       title,
       project_id: projectId,
       section_id: section,
@@ -384,7 +388,7 @@ const AddTestCase = () => {
       automated_cases: automatedCases,
       created_by: userId,
     };
-    if(automationType != '') newTestCase = {...newTestCase, automation_type: automationType};
+    if(automationType !== '') newTestCase = {...newTestCase, automation_type: automationType};
     if( estimate ) newTestCase = {...newTestCase, estimate: parseInt(estimate, 10)};
     console.log(newTestCase);
     try {

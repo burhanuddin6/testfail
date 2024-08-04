@@ -7,7 +7,7 @@ import { setProjectInfo, setToken } from './utilities/globals';
 
 // components 
 import Header from './components/Header';
-import HeaderWrapper from './components/HeaderWrapper';
+// import HeaderWrapper from './components/HeaderWrapper';
 import TestRuns from './components/TestRuns';
 
 // pages
@@ -38,6 +38,7 @@ import TestCaseDefects from './Pages/TestCaseDefects';
 import TestCaseHistory from './Pages/TestCaseHistory';
 import EditTestCase from './Pages/EditTestCase';
 import NotFound from './Pages/NotFound';
+import AddTestPlan from './Pages/AddTestPlan';
 
 
 const App = () => {
@@ -72,7 +73,7 @@ const App = () => {
       }
     }
     getDetails();
-  }, []); // Runs once when the component mounts
+  }, []); 
 
 
   return (
@@ -91,7 +92,7 @@ const App = () => {
           <>
             <Route path="/dashboard" element={<Dashboard userName={userName} />} />
             <Route
-              path="projects/overview" //URL CHANGES
+              path="/overview/:projectId" //URL CHANGES
               element={
                 <>
                   <Header userName={userName}/>
@@ -100,7 +101,7 @@ const App = () => {
               }
             />
             <Route
-              path="/todos/overview" //URL CHANGES
+              path="/todo/:projectId" //URL CHANGES
               element={
                 <>
                   <Header userName={userName} />
@@ -109,7 +110,7 @@ const App = () => {
               }
             />
             <Route
-              path="/milestones/overview" //URL CHANGES
+              path="/milestones" //URL CHANGES
               element={
                 <>
                   <Header userName={userName}/>
@@ -123,7 +124,7 @@ const App = () => {
               element={
                 <>
                   <Header userName={userName} />
-                  <AddMilestone userID={userID} />
+                  <AddMilestone userID={userID} /> {/*REVIEW*/}
                 </>
               }
             />
@@ -164,17 +165,16 @@ const App = () => {
               }
             />
             <Route
-              path="/suites/overview"
+              path="/testsuitscases"
               element={
                 <>
                   <Header userName={userName} /> 
-                  {/* <HeaderWrapper userName={userName} /> */}
                   <TestSuitesCases />
                 </>
               }
             />
             <Route 
-              path="/AddTestRun" 
+              path="/add-test-run" 
               element={
                 <>
                   <Header userName={userName} />
@@ -182,8 +182,17 @@ const App = () => {
                 </>
               }
             />
+            <Route 
+              path="/add-test-plan" 
+              element={
+                <>
+                  <Header userName={userName} />
+                  <AddTestPlan  />
+                </>
+              }
+            />
             <Route
-              path="/runs/overview" //URL CHANGES
+              path="/TestRuns" //URL CHANGES
               element={
                 <>
                   <Header userName={userName} />
@@ -245,17 +254,6 @@ const App = () => {
                 <>
                   <Header userName={userName} />
                   <AddSection />
-                </>
-              }
-            />
-            <Route
-              path="/TestRuns"
-              element={
-                <>
-                  <Header userName={userName} />
-                  <div className="main-content">
-                    <TestRunsPage />
-                  </div>
                 </>
               }
             />

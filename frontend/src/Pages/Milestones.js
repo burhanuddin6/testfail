@@ -137,7 +137,6 @@ const Milestones = () => {
   const [completedMilestones, setCompletedMilestones] = useState([]);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
-
   const projectID = getProjectID();
 
 
@@ -145,18 +144,18 @@ const Milestones = () => {
     const fetchData = async () => {
       try {
         const data = await fetchMilestones(projectID);
-        console.log("Fetched milestones data:", data);
+        console.log("Fetched milestones data:", data); //debug statement, remove before deployment 
 
         const open = data.filter(milestone => !milestone.is_complete);
-        console.log("Open milestones:", JSON.stringify(open, null, 2));
+        console.log("Open milestones:", JSON.stringify(open, null, 2)); //debug statement, remove before deployment 
 
         const completed = data.filter(milestone => milestone.is_complete);
-        console.log("Completed milestones:", JSON.stringify(completed, null, 2));
+        console.log("Completed milestones:", JSON.stringify(completed, null, 2)); //debug statement, remove before deployment 
 
         setOpenMilestones(open);
         setCompletedMilestones(completed);
       } catch (error) {
-        console.error('Error fetching milestones:', error);
+        console.error('Error fetching milestones:', error); //debug statement, remove before deployment 
         setError('Error fetching milestones. Please try again.');
       }
     };
@@ -192,7 +191,7 @@ const Milestones = () => {
       ...completedMilestones.filter(milestone => milestone.checked).map(milestone => milestone.id)
     ];
 
-    try {
+    try { //Review for mariam
       for (const id of idsToDelete) {
         await deleteMilestone(id);
       }
@@ -215,7 +214,7 @@ const Milestones = () => {
 
   return (
     <div className="Milestones-container">
-        <div className='heading'>
+        <div className='milestone-main-heading'>
             <h2>Milestones</h2>
             <div className='button-class'>
                 <button className="milestone-add-button" onClick={handleAdd}> + Add Milestone</button>
@@ -224,39 +223,44 @@ const Milestones = () => {
         </div>
 
         <div className='milestone-listing'>
-          <h3 className='milestones-heading'> Open</h3>
-          <div className='open'>
-              {/* <h3>Open</h3> */}
-              {openMilestones.map((milestone) => (
-                <div className='details' key={milestone.id}>
-                  <input
-                    type="checkbox"
-                    checked={milestone.checked || false}
-                    onChange={() => handleCheckboxChange(milestone.id, 'open')}
-                  />
-                  <a href='/milestone-status' className='milestoneName'>{milestone.name}</a>
-                  <div className="status-bar">
-                    <div className="status-bar-inner status-52"></div>
+         <div className='milestones-open'>
+            <h3 className='milestones-heading'> Open</h3>
+            <div className='milestones-scrollable'>
+                {openMilestones.map((milestone) => (
+                  <div className='details' key={milestone.id}>
+                    <input
+                      type="checkbox"
+                      checked={milestone.checked || false} //Review
+                      onChange={() => handleCheckboxChange(milestone.id, 'open')}
+                    />
+                    <a href='/milestone-status' className='milestoneName'>{milestone.name}</a>
+                    <div className="status-bar">
+                      <div className="status-bar-inner status-52"></div>
+                    </div>
+                    <span className="milestoneStatus">52%</span>
                   </div>
-                  <span className="milestoneStatus">52%</span>
-                </div>
-              ))}
-              
+                ))}
+            </div>
           </div>
-        
 
-          <h3 className='milestones-heading'>Completed</h3>
-          <div className='completed'>
-            {/* <h3>Completed</h3> */}
-            {completedMilestones.map((milestone) => (
-              <div className='details' key={milestone.id}>
-                <input type="checkbox" checked={milestone.checked} onChange={() => handleCheckboxChange(milestone.id, 'completed')} />
-                <a href='' className='milestoneName'>{milestone.name}</a>
+          <div className='milestones-completed'>
+            <h3 className='milestones-heading'>Completed</h3>
+            <div className='milestones-scrollable'>
+              <div className='milestones-completed-datewise'>
+                <div className='milestones-completed-date'>
+                  20 July 2024
+                </div>
+                {completedMilestones.map((milestone) => (
+                  <div className='details' key={milestone.id}>
+                    <input type="checkbox" checked={milestone.checked} //Review
+                     onChange={() => handleCheckboxChange(milestone.id, 'completed')} /> 
+                    <a href='/milestone-status' className='milestoneName'>{milestone.name}</a>
+                  </div>
+                ))}
               </div>
-            ))}
+           </div>
+          </div>
         </div>
-        </div>
-
     </div>
   );
 };

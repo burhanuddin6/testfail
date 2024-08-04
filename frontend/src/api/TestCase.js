@@ -1,57 +1,73 @@
 import axiosInstance from './AxiosInstance';
 
-// API endpoint for fetching choices
-const fetchTestCaseChoices = async () => {
-    const API_URL = 'test_cases/';
+// function for creating a test case
+const createTestCase = async (data) => {
+  try {
+      const response = await axiosInstance.post('test_cases/', data);
+      console.log(response) // debug statement, remove before production
+      return response.data; 
+  } catch (error) {
+      console.error('Error creating test case:', error); // debug statement, remove before production
+      throw error; 
+  }
+};
 
+// function to update a test case using its id 
+const updateTestCase = async (testCaseId, testCaseData) => {
+  try {
+    const response = await axiosInstance.put(`test_cases/${testCaseId}`, testCaseData);
+    return response.data;
+  } catch (error) {
+    console.error('Error updating test case:', error); // debug statement, remove before production
+    throw error;
+  }
+};
+
+// function to delete a test case using its id
+const deleteTestCase = async (testCaseId) => {
+  try {
+    await axiosInstance.delete(`test_cases/${testCaseId}/`);
+  } catch (error) {
+    console.error('Error deleting test case:', error); // debug statement, remove before production
+    throw error;
+  }
+};
+
+// function for fetching a test case using its id 
+const fetchTestCaseDetails = async (testCaseId) => {
+  try {
+    const response = await axiosInstance.get(`test_cases/${testCaseId}`);
+    console.log(response); // debug statement, remove before production
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching test case details:', error); // debug statement, remove before production
+    throw error;
+  }
+};
+
+// function for fetching choices to be displayed on test case creation form 
+const fetchTestCaseChoices = async () => {
     try {
-        const response = await axiosInstance.get(API_URL);
-        console.log(response);
+        const response = await axiosInstance.get('test_cases/');
+        console.log("test case choices" + response.data); // debug statement, remove before production
         return response.data;
     } catch (error) {
-        console.error('Error fetching test case choices:', error);
+        console.error('Error fetching test case choices:', error); // debug statement, remove before production
         throw error;
     }
 };
 
-// API endpoint for creating a test case
-const createTestCase = async (data) => {
-    const API_URL = 'test_cases/'; 
-
-    try {
-        const response = await axiosInstance.post(API_URL, data);
-        console.log(response)
-        return response.data; 
-    } catch (error) {
-        console.error('Error creating test case:', error);
-        throw error; 
-    }
-};
-
-
+// function for fetching sections and cases of a given test suite
 const fetchSectionsAndCases = async (suiteId) => {
- 
-    const API_URL = 'sections_cases/'; 
-
   try {
-    const response = await axiosInstance.get(API_URL, {
+    const response = await axiosInstance.get('sections_cases/', {
       params: { suiteId }
     });
     return response.data;
   } catch (error) {
-    console.error('Error fetching sections and cases:', error);
-    throw error; // Re-throw the error to handle it in the component
+    console.error('Error fetching sections and cases:', error); // debug statement, remove before production
+    throw error; 
   }
 };
 
-const deleteTestCase = async (testCaseId) => {
-    try {
-      await axiosInstance.delete(`test_cases/${testCaseId}/`);
-    } catch (error) {
-      console.error('Error deleting test case:', error);
-      throw error;
-    }
-  };
-
-
-export { fetchTestCaseChoices, createTestCase, fetchSectionsAndCases, deleteTestCase};
+export { fetchTestCaseChoices, createTestCase, fetchSectionsAndCases, deleteTestCase, fetchTestCaseDetails, updateTestCase};

@@ -41,7 +41,10 @@ const AddTestSuite = () => {
   };
 
   const handleFileChange = (e) => {
+    console.log("insidde fille chsnge");
+
     setFile(e.target.files[0]);
+    console.log("addeded  filee" + file);
   };
 
   return (
@@ -81,7 +84,7 @@ const AddTestSuite = () => {
           <div className="file-upload-icon" />
           <input
             type="file"
-            onChange={handleFileChange}
+            onChange= {(e) => handleFileChange(e)}
             className="file-upload-input"
           />
           <p className="file-upload-text">
