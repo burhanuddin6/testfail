@@ -5,6 +5,7 @@ venv
 db.sqlite3
 test_case_files
 media
+build
 *__pycache__
 
 # dependencies

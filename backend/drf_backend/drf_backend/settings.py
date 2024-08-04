@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -140,19 +141,9 @@ REST_FRAMEWORK = {
 	)
 }
 
-MIDDLEWARE += [
-    'corsheaders.middleware.CorsMiddleware',  # Add this before CommonMiddleware
-    'django.middleware.common.CommonMiddleware',    
-]
 
 
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',  # Add your React frontend URL here
-    # Add more origins if needed
-]
-
-# Optional: Allow credentials (cookies, authorization headers, etc.)
-CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_ALL_ORIGINS = True
 
 # Email settings
 # https://docs.djangoproject.com/en/3.1/topics/email/
@@ -175,3 +166,6 @@ AUTH_USER_MODEL = 'tcms.MyUser'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+STATIC_URL = '/server_static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
