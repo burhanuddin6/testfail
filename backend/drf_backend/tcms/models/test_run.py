@@ -52,7 +52,13 @@ class TestRun(models.Model):
     updated_by = models.ForeignKey('MyUser', on_delete=models.CASCADE, null=True, blank=True, related_name='updated_testruns')
     updated_on = models.DateTimeField(null=True, blank=True)
 
+    is_completed = models.BooleanField(default=False)
+    completed_on = models.DateTimeField(null=True, blank=True)
+
     def save(self, *args, **kwargs):
+        if self.is_completed:
+            self.completed_on = datetime.now(timezone.utc)
+            
         if self.pk is not None:
             self.updated_on = datetime.now(timezone.utc)
         is_new = self.pk is None

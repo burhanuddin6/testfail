@@ -27,7 +27,14 @@ class TestPlan(models.Model):
     updated_by = models.ForeignKey(MyUser, on_delete=models.CASCADE, null=True, blank=True, related_name='updated_test_plans')
     updated_on = models.DateTimeField(null=True, blank=True)
 
+    is_completed = models.BooleanField(default=False)
+    completed_on = models.DateTimeField(null=True, blank=True)
+
     def save(self, *args, **kwargs):
+        
+        if self.is_completed:
+            self.completed_on = datetime.now(timezone.utc)
+            
         is_new = self.pk is None
         if not is_new:
             self.updated_on = datetime.now(timezone.utc)
@@ -77,6 +84,7 @@ class TestPlan(models.Model):
                     test_run_id=test_run
                 )
     
+            
     def __str__(self):
         return self.name
 

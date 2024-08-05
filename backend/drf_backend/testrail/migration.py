@@ -45,12 +45,8 @@ class ImportTestCases():
     def import_row(self, row):
         # Handle Sections and Test Suites
         self.user = self.get_or_create_user(row['Created By'])
-
-        # check and add valid priority
-        self.priority = row['Priority'].strip()
-        self.type = row['Type'].strip()
-        if not self.priority in [x[0] for x in TestCase.PRIORITY_CHOICES] or not self.type in [x[0] for x in TestCase.TYPE_CHOICES]:
-            raise ValueError(f"Invalid priority or type: {self.priority} or {self.type}")
+        self.priority = self.get_or_create_priority(row['Priority'])
+        self.type = self.get_or_create_type(row['Type'])
         self.test_suite = self.get_or_create_suite(f'{row['Suite ID']}::{row['Suite']}', user=self.user, project=self.project)
         self.section = self.get_or_create_section(section_name=row['Section'], section_heirarchy=row['Section Hierarchy'], test_suite=self.test_suite, user=self.user)
         
@@ -94,7 +90,7 @@ class ImportTestCases():
                 'project_id': self.project, 
                 'section_id': self.section,
                 'assigned_to': self.assigned_to,
-                'creator_id': self.user,
+                'created_by': self.user,
                 'created_on': test_case_created_on,
                 'updated_on': test_case_updated_on,
                 'updated_by': test_case_updated_by,
@@ -103,10 +99,16 @@ class ImportTestCases():
         )
 
     def get_or_create_type(self, type_name):
-        return TypesForTestCase.objects.get_or_create(name=type_name)[0]
+        type_name = type_name.strip()
+        if type_name not in [x[1] for x in TestCase.TYPE_CHOICES]:
+            raise ValueError(f"Unknown type from testrail: {type_name}")
+        return type_name
 
     def get_or_create_priority(self, priority_name):
-        return PriorityForTestCase.objects.get_or_create(name=priority_name)[0]
+        priority_name = priority_name.strip()
+        if priority_name not in [x[1] for x in TestCase.PRIORITY_CHOICES]:
+            raise ValueError(f"Unknown priority from testrail: {priority_name}")
+        return priority_name
 
     def get_or_create_user(self, name):
         name = name.split(' ')
