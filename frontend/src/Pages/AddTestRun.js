@@ -277,6 +277,7 @@ import { getQaUsers } from '../api/Auth';
 import { fetchMilestonesIdName } from '../api/Milestone';
 import { getProjectID } from '../utilities/globals';
 import AlertBox from '../components/Alert'; 
+import FilterPopup from './ChangeSelectionTestRun.js'
 
 const AddTestRun = ({ userID }) => {
   const [name, setName] = useState('');
@@ -288,9 +289,11 @@ const AddTestRun = ({ userID }) => {
   const [images, setImages] = useState([]);
   const [users, setUsers] = useState([]);
   const [milestones, setMilestones] = useState([]);
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
+  const [isPopupVisibleFilter, setIsPopupVisibleFilter] = useState(false);
+  const [alert, setAlert] = useState({ message: '', type: '' }); 
   const [projectID] = useState(getProjectID());
 
-  const [alert, setAlert] = useState({ message: '', type: '' }); 
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -303,6 +306,10 @@ const AddTestRun = ({ userID }) => {
   const suiteName = searchParams.get('suite') || 'Test Suite';
 
   useEffect(() => {
+    if (selectedOption) {
+      setName(selectedOption);
+    }
+
     const fetchData = async () => {
       try {
         const usersData = await getQaUsers('qa-user');
@@ -322,7 +329,7 @@ const AddTestRun = ({ userID }) => {
     };
 
     fetchData();
-  }, [projectID]);
+  }, [projectID, selectedOption]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -384,6 +391,14 @@ const AddTestRun = ({ userID }) => {
       } else {
         navigate('/TestSuitsCases');
     }
+  };
+
+  const handleClickableTextClick = () => {
+    setIsPopupVisible(true);
+  };
+
+  const closePopup = () => {
+    setIsPopupVisible(false);
   };
 
   const handleAlertClose = () => {
@@ -521,7 +536,7 @@ const AddTestRun = ({ userID }) => {
               className="test-run-radio"
             />
             <label htmlFor="include-all" className="test-run-radio-label">
-              Include all test cases
+              <strong>Include all test cases</strong><br></br>Select this option to include all test cases in this test run. If new test cases are added to the test suite, they are also automatically included in this run.
             </label>
           </div>
 
@@ -536,9 +551,16 @@ const AddTestRun = ({ userID }) => {
               className="test-run-radio"
             />
             <label htmlFor="select-specific" className="test-run-radio-label">
-              Select specific test cases
+              <strong>Select specific test cases</strong><br></br>You can alternatively select the test cases to include in this test run. New test cases are not automatically added to this run in this case.
             </label>
           </div>
+
+          {testCaseSelection === 'SELECTED' && (
+            <div className='add-test-run-filter-selection'>
+              <span><strong>0</strong> test cases included </span>
+              <span> (<span className="add-test-run-filter-clickable-text" onClick={handleClickableTextClick}>Change Selection</span>)</span>
+            </div>
+          )}
 
           <div>
             <input
@@ -551,10 +573,17 @@ const AddTestRun = ({ userID }) => {
               className="test-run-radio"
             />
             <label htmlFor="dynamic-filtering" className="test-run-radio-label">
-              Dynamic Filtering
+              <strong>Dynamic Filtering</strong> <br></br> Automatically add test cases based on filter selection. New test cases are automatically added to the run if they match the filter (unless the run is closed).
             </label>
           </div>
+          {testCaseSelection === 'REGEX_ON_NAME' && (
+            <div className='add-test-run-filter-selection'>
+              <span><strong>0</strong> test cases included </span>
+              <span> (<span className="add-test-run-filter-clickable-text" onClick={handleClickableTextClick}>Change Filter</span>)</span>
+            </div>
+          )}
         </div>
+
 
         <div className="test-run-buttons">
           <button type="submit" className="test-run-button test-run-submit">
@@ -568,6 +597,10 @@ const AddTestRun = ({ userID }) => {
             ✗ Cancel
           </button>
         </div>
+
+        {isPopupVisible && 
+          <FilterPopup onCancel={() => setIsPopupVisible(false)}/>}
+        
       </form>
     </div>
   );

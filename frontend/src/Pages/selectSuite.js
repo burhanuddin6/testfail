@@ -77,7 +77,7 @@ const Popup = ({ onConfirm, onCancel, actionType }) => {
 
   return (
     <div className="popup-overlay">
-      <div className="popup">
+      <div className="popup"> 
         <h3>Select an Option</h3>
         {loading && <div>Loading...</div>}
         {showAlert && <AlertBox message={error} type="error" onClose={handleCloseAlert} />}
