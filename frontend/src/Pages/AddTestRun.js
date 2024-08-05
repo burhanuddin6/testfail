@@ -342,10 +342,12 @@ const AddTestRun = ({ userID }) => {
         await createTestRun(testRunData);
         console.log('Test run created successfully');
   
-        if (sourcePage === 'TestRuns') {
-          navigate(`/TestRuns?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}`);
-        } else {
-          navigate('/TestSuitsCases');
+        if (sourcePage === 'TestSuiteTestRuns') {
+          navigate(`/TestSuiteTestRuns?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}`);
+        } else if (sourcePage === 'TestRuns') {
+            navigate('/TestRuns')
+          } else {
+            navigate('/TestSuitsCases');
         }
       } catch (error) {
         console.error('Failed to create Test Run:', error);
@@ -374,7 +376,14 @@ const AddTestRun = ({ userID }) => {
   };
 
   const handleCancel = () => {
-    navigate(from);
+    // navigate(from);
+    if (sourcePage === 'TestSuiteTestRuns') {
+      navigate(`/TestSuiteTestRuns?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}`);
+    } else if (sourcePage === 'TestRuns') {
+        navigate('/TestRuns')
+      } else {
+        navigate('/TestSuitsCases');
+    }
   };
 
   const handleAlertClose = () => {

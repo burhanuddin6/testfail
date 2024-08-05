@@ -26,6 +26,8 @@ const deleteTestRun = async (testRunId) => {
 const fetchTestRuns = async (projectId, suiteId = '') => {
   try {
       const response = await axiosInstance.get(`test_runs/?project_id=${projectId}${suiteId ? `&suite_id=${suiteId}` : ''}`); //review projectid usage
+       console.log(`runs response: ${JSON.stringify(response.data, null, 2)}`); // debug statement, remove before production
+
       console.log(response); // debug statement, remove before production
       return response.data;
   } catch (error) {

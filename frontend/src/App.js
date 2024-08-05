@@ -37,10 +37,11 @@ import TestsResults from './Pages/TestsResults';
 import TestCaseDefects from './Pages/TestCaseDefects';
 import TestCaseHistory from './Pages/TestCaseHistory';
 import EditTestCase from './Pages/EditTestCase';
-import NotFound from './Pages/NotFound';
 import AddTestPlan from './Pages/AddTestPlan';
+import TestSuiteTestRuns from './Pages/TestSuiteTestRuns';
+import TestRunTestsResults from './Pages/TestRunTestsResults';
+import NotFound from './Pages/NotFound';
 // import ProgressBarPage from './Pages/ProgressBarPage'; // Adjust path as necessary
-
 
 
 const App = () => {
@@ -167,20 +168,11 @@ const App = () => {
               }
             />
             <Route
-              path="/testsuitscases"
-              element={
-                <>
-                  <Header userName={userName} /> 
-                  <TestSuitesCases />
-                </>
-              }
-            />
-            <Route 
-              path="/add-test-run" 
+              path="/TestRuns"
               element={
                 <>
                   <Header userName={userName} />
-                  <AddTestRun userID={userID} />
+                  <TestRunsPage />
                 </>
               }
             />
@@ -194,12 +186,38 @@ const App = () => {
               }
             />
             <Route
-              path="/TestRuns" //URL CHANGES
+              path="/TestRunTestsResults"
               element={
                 <>
                   <Header userName={userName} />
-                  {/* <HeaderWrapper userName={userName} /> */}
-                  <TestRunsPage />
+                  <TestRunTestsResults />
+                </>
+              }
+            />
+            <Route
+              path="/testsuitscases"
+              element={
+                <>
+                  <Header userName={userName} /> 
+                  <TestSuitesCases />
+                </>
+              }
+            />
+            <Route 
+              path="/add-test-run" 
+              element={
+                <>
+                  <Header userName={userName} />
+                  <AddTestRun  />
+                </>
+              }
+            />
+            <Route
+              path="/TestSuiteTestRuns"
+              element={
+                <>
+                  <Header userName={userName} />
+                  <TestSuiteTestRuns />
                 </>
               }
             />

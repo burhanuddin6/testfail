@@ -9,7 +9,7 @@ from .test_run import TestRun
 class TestPlan(models.Model):
     test_plan_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255, unique=True)
-    milestone_id = models.ForeignKey('Milestone', on_delete=models.CASCADE, null=True, blank=True, related_name='testplansid')
+    milestone_id = models.ForeignKey('Milestone', on_delete=models.CASCADE, null=True, blank=True, related_name='testplans')
 
     description = models.TextField(null=True, blank=True)
     test_case_filter = models.TextField(null=True, blank=True)

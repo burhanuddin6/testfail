@@ -24,7 +24,7 @@ class TestRun(models.Model):
     test_run_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255, unique=True)
     test_suite_id = models.ForeignKey('TestSuite', on_delete=models.CASCADE, related_name='testruns')
-    milestone_id = models.ForeignKey('Milestone', on_delete=models.CASCADE, null=True, blank=True, related_name='testrunsid')
+    milestone_id = models.ForeignKey('Milestone', on_delete=models.CASCADE, null=True, blank=True, related_name='testruns')
 
     description = models.TextField(null=True, blank=True)
     ALL = 'ALL'

@@ -795,7 +795,8 @@ const TestRuns = () => {
   const handleAddTestRuns = (selectedOption, actionType) => {
     if (selectedOption) {
       if (actionType === 'run') {
-        navigate('/add-test-run', { state: { from: '/testruns', selectedOption } });
+        // navigate('/add-test-run', { state: { from: '/testruns', selectedOption } });
+        navigate('/add-test-run?source=TestRuns', { state: { from: '/testruns', selectedOption } });
         setIsPopupVisible(false);
       }
     }
@@ -930,7 +931,7 @@ const TestRuns = () => {
                   <div key={run.test_run_id} className="test-run-results-details">
                     <input type="checkbox" onChange={() => handleSelectItem(run.test_run_id, 'run')} />
                     <p className="test-run-indicator">Test Run</p>
-                    <p><strong>{run.name}</strong><br />By {run.created_by_info.first_name} {run.created_by_info.last_name} on {new Date(run.created_on).toLocaleDateString()}<br />{run.number_of_passed_test_cases} Passed, {run.number_of_blocked_test_cases} Blocked, {run.number_of_untested_test_cases} Untested, {run.number_of_partial_test_cases} Partial, {run.number_of_failed_test_cases} Failed</p>
+                    <p><strong><a href={`/TestRunTestsResults`}>{run.name}</a></strong><br />By {run.created_by_info.first_name} {run.created_by_info.last_name} on {new Date(run.created_on).toLocaleDateString()}<br />{run.number_of_passed_test_cases} Passed, {run.number_of_blocked_test_cases} Blocked, {run.number_of_untested_test_cases} Untested, {run.number_of_partial_test_cases} Partial, {run.number_of_failed_test_cases} Failed</p>
                     <div className="test-run-results-statusbar">
                       <div className="test-run-results-progress-bar-passes" style={{ width: `${calculatePercentage(run.number_of_passed_test_cases, run.number_of_test_cases)}%` }}></div>
                       <div className="test-run-results-progress-bar-untested" style={{ width: `${calculatePercentage(run.number_of_untested_test_cases, run.number_of_test_cases)}%` }}></div>
@@ -971,7 +972,7 @@ const TestRuns = () => {
                     <div key={run.test_run_id} className="test-run-results-details">
                       <input type="checkbox" onChange={() => handleSelectItem(run.test_run_id, 'run')} />
                       <p className="test-run-indicator">Test Run</p>
-                      <p><strong>{run.name}</strong><br />By {run.created_by_info.first_name} {run.created_by_info.last_name} on {new Date(run.created_on).toLocaleDateString()}<br />{run.number_of_passed_test_cases} Passed, {run.number_of_blocked_test_cases} Blocked, {run.number_of_untested_test_cases} Untested, {run.number_of_partial_test_cases} Partial, {run.number_of_failed_test_cases} Failed</p>
+                      <p><strong><a href={`/TestRunTestsResults`}>{run.name}</a></strong><br />By {run.created_by_info.first_name} {run.created_by_info.last_name} on {new Date(run.created_on).toLocaleDateString()}<br />{run.number_of_passed_test_cases} Passed, {run.number_of_blocked_test_cases} Blocked, {run.number_of_untested_test_cases} Untested, {run.number_of_partial_test_cases} Partial, {run.number_of_failed_test_cases} Failed</p>
                       <div className="test-run-results-statusbar">
                         <div className="test-run-results-progress-bar-passes" style={{ width: `${calculatePercentage(run.number_of_passed_test_cases, run.number_of_test_cases)}%` }}></div>
                         <div className="test-run-results-progress-bar-untested" style={{ width: `${calculatePercentage(run.number_of_untested_test_cases, run.number_of_test_cases)}%` }}></div>

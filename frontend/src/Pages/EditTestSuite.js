@@ -20,26 +20,6 @@ const EditTestSuite = () => {
   const [description, setDescription] = useState(''); // Preset with existing description if any
   const [file, setFile] = useState(null);
 
-  // const handleSubmit = (event) => { //REVIEW USAGE
-  //   event.preventDefault();
-  //   // Handle form submission here
-  //   console.log('Edited Suite with:', {
-  //     name,
-  //     description,
-  //     file
-  //   });
-
-
-  //   // Navigate based on the source page and include suite ID in URL
-  //   if (sourcePage === 'TestRuns') {
-  //     navigate(`/TestRuns?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`); // Use updated name
-  //   } else if (sourcePage === 'SectionsCases') {
-  //     navigate(`/SectionsCases?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`); // Use updated name
-  //   } else {
-  //     navigate('/TestSuitsCases');
-  //   }
-  // };
-
   const handleUpdate = async (event) => {
     event.preventDefault();
     try {
@@ -63,10 +43,11 @@ const EditTestSuite = () => {
 
       await updateTestSuite(suiteId, testSuiteData);
 
-      if (sourcePage === 'TestRuns') {
-        navigate(`/TestRuns?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`);
+      // Navigate based on the source page and include suite ID in URL
+      if (sourcePage === 'TestSuiteTestRuns') {
+        navigate(`/TestSuiteTestRuns?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`); // Use updated name
       } else if (sourcePage === 'SectionsCases') {
-        navigate(`/SectionsCases?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`);
+        navigate(`/SectionsCases?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`); // Use updated name
       } else {
         navigate('/TestSuitsCases');
       }
@@ -95,14 +76,14 @@ const EditTestSuite = () => {
   const handleCancel = (e) => {
     e.preventDefault();
 
-    // Navigate based on the source page and include suite ID in URL
-    if (sourcePage === 'TestRuns') {
-        navigate(`/TestRuns?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`); // Use updated name
-      } else if (sourcePage === 'SectionsCases') {
-        navigate(`/SectionsCases?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`); // Use updated name
-      } else {
-        navigate('/TestSuitsCases');
-      }
+     // Navigate based on the source page and include suite ID in URL
+     if (sourcePage === 'TestSuiteTestRuns') {
+      navigate(`/TestSuiteTestRuns?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`); // Use updated name
+    } else if (sourcePage === 'SectionsCases') {
+      navigate(`/SectionsCases?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`); // Use updated name
+    } else {
+      navigate('/TestSuitsCases');
+    }
   };
 
   const handleFileChange = (e) => {

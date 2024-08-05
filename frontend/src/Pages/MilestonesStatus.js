@@ -74,7 +74,11 @@ const MilestonesStatus = () => {
             <div className="status-testrun-details-class">
                 <div className="status-testrun-details">
                     <input type="checkbox"/>
-                    <p><strong>Test Run Name</strong><br></br> by ... on ... </p>
+                    <p><strong><a
+                                href={`/TestRunTestsResults`}
+                            >
+                                Test Run Name
+                            </a></strong>by ... on ...<br></br></p>
                     <div className="status-testrun-statusbar">
                         <div className="status-testrun-progress-bar-passed" style={{ width: '42%' }}> </div>
                         <div className="status-testrun-progress-bar-untested" style={{ width: '16%' }}> </div>

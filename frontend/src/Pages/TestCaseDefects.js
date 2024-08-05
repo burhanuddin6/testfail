@@ -73,7 +73,7 @@ const TestCaseDefects = () => {
           labels: ['Tests', 'Results', 'Defects'],
           datasets: [
             {
-              label: 'Tests and defects',
+              label: 'Tests and Defects',
               data: [35, 39, defectsData.reduce((sum, month) => sum + month.defects.length, 0)],
               backgroundColor: [
                 'rgba(66, 135, 245, 0.2)',
@@ -128,7 +128,7 @@ const TestCaseDefects = () => {
         <div className="defects-summary">
           <div className="defects-graph">
             <canvas ref={chartRef}></canvas>
-            <div className="defects-count">{defectsData.reduce((sum, month) => sum + month.defects.length, 0)} Defects</div>
+            <div className="test-case-defects-count">{defectsData.reduce((sum, month) => sum + month.defects.length, 0)} Defects</div>
           </div>
           <div className="defects-status-summary">
             <span>Tests and defects:</span>
