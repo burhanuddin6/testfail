@@ -71,7 +71,7 @@ const TodoPage = () => {
         
         <ul className="test-runs-list">
           <li className="test-runs-item">
-            <Link to="/testruns/1">
+            <Link to="/TestRunTestsResults">
               <div className="test-runs-item-icon">
                 <i className="fas fa-folder-open"></i>
               </div>
@@ -84,7 +84,7 @@ const TodoPage = () => {
             </Link>
           </li>
           <li className="test-runs-item">
-            <Link to="/testruns/2">
+            <Link to="/TestRunTestsResults">
               <div className="test-runs-item-icon">
                 <i className="fas fa-folder-open"></i>
               </div>
@@ -97,7 +97,7 @@ const TodoPage = () => {
             </Link>
           </li>
           <li className="test-runs-item">
-            <Link to="/testruns/3">
+            <Link to="/TestRunTestsResults">
               <div className="test-runs-item-icon">
                 <i className="fas fa-folder-open"></i>
               </div>

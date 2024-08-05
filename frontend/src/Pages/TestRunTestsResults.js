@@ -95,6 +95,22 @@ const TestRunTestsResults = () => {
             defects: [],
             assignedTo: "",
           },
+          {
+            id: "T8187",
+            title:
+              "UI is not disturbing on resizing of screen (extra big and extra small screens)",
+            status: "Failed",
+            defects: ["PRIV-42474"],
+            assignedTo: "",
+          },
+          {
+            id: "T818761",
+            title: "Errors are displaying on success and failures",
+            status: "Passed",
+            defects: [],
+            assignedTo: "",
+          },
+          
         ];
 
         // Calculate test case statistics

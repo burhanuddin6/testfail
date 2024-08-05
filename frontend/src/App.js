@@ -5,7 +5,7 @@ import { getUserDetails } from './api/Auth';
 
 // components 
 import Header from './components/Header';
-import TestRuns from './components/TestRuns';
+// import TestRuns from './components/TestRuns';
 
 // pages
 import Overview from './Pages/Overview';
@@ -371,7 +371,7 @@ const App = () => {
             </>
           }
         /> */}
-        <Route
+        {/* <Route
           path="/testruns/:id"
           element={
             <>
@@ -381,7 +381,7 @@ const App = () => {
               </div>
             </>
           }
-        />
+        /> */}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
