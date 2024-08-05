@@ -113,7 +113,7 @@ const Milestones = () => {
                     <div className="status-bar">
                       <div className="status-bar-inner status-52"></div>
                     </div>
-                    <span className="milestoneStatus">52%</span>
+                    <span className="milestoneStatus">8%</span>
                   </div>
                 ))}
             </div>

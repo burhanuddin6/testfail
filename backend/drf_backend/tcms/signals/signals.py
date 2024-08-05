@@ -94,55 +94,39 @@ from django.db import transaction
 @receiver(post_save, sender=Project)
 def update_user_actions(sender, instance, created, **kwargs):
     if created:
+        action = UserAction.CREATED
         if sender.__name__ == 'TestCaseResult':
-            test_run=instance.test_run,
-            if test_run.is_part_of_test_plan:
-                test_plan=instance.test_run.test_plan
-                UserAction.objects.create(
-                    user=instance.created_by,
-                    action = UserAction.CREATED,
-                    action_object = sender.__name__,
-                    action_message=f'updated "{str(instance.test_case_id)}" for Test Plan: "{str(test_plan)}"',
-                )
-            else:
-                UserAction.objects.create(
-                    user=instance.created_by,
-                    action = UserAction.CREATED,
-                    action_object = sender.__name__,
-                    action_message=f'updated "{str(instance.test_case_id)}" for Test Run: "{str(test_run)}"',
-                )
+            try:
+                test_run=TestRun.objects.get(test_case_results__test_case_result_id=instance.pk)
+                if test_run.is_part_of_test_plan:
+                    test_plan=TestPlan.objects.get(test_runs__test_run_id=test_run)
+                    action_message=f'created "{str(instance.test_case_id)}" for Test Plan: "{str(test_plan)}"'
+                else:
+                    action_message=f'created "{str(instance.test_case_id)}" for Test Run: "{str(test_run)}"'
+            except TestRun.DoesNotExist:
+                action_message=f'created "{str(instance)}"'
         else:
-            UserAction.objects.create(
-                user=instance.created_by,
-                action = UserAction.CREATED,
-                action_object = sender.__name__,
-                action_message=f'created "{str(instance)}"',
-            )
+            action_message=f'created "{str(instance)}"'
     else:
+        action = UserAction.UPDATED
         if sender.__name__ == 'TestCaseResult':
-            test_run=instance.test_run,
-            if test_run.is_part_of_test_plan:
-                test_plan=instance.test_run.test_plan
-                UserAction.objects.create(
-                    user=instance.created_by,
-                    action = UserAction.UPDATED,
-                    action_object = sender.__name__,
-                    action_message=f'updated "{str(instance.test_case_id)}" for Test Plan: "{str(test_plan)}"',
-                )
-            else:
-                UserAction.objects.create(
-                    user=instance.created_by,
-                    action = UserAction.UPDATED,
-                    action_object = sender.__name__,
-                    action_message=f'updated "{str(instance.test_case_id)}" for Test Run: "{str(test_run)}"',
-                )
+            try:
+                test_run=TestRun.objects.get(test_case_results__test_case_result_id=instance.pk)
+                if test_run.is_part_of_test_plan:
+                    test_plan=TestPlan.objects.get(test_runs__test_run_id=test_run)
+                    action_message=f'updated "{str(instance.test_case_id)}" for Test Plan: "{str(test_plan)}"'
+                else:
+                    action_message=f'updated "{str(instance.test_case_id)}" for Test Run: "{str(test_run)}"'
+            except TestRun.DoesNotExist:
+                action_message = f'updated "{str(instance)}"'
         else:
-            UserAction.objects.create(
-                user=instance.created_by,
-                action = UserAction.UPDATED,
-                action_object = sender.__name__,
-                action_message=f'updated "{str(instance)}"',
-            )
+            action_message=f'updated "{str(instance)}"'
+    UserAction.objects.create(
+        user=instance.created_by,
+        action = action,
+        action_object = sender.__name__,
+        action_message=action_message,
+    )
 
 
 @receiver(post_delete, sender=TestCase)
