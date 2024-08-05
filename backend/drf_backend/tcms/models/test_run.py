@@ -24,7 +24,8 @@ class TestRun(models.Model):
     test_run_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255, unique=True)
     test_suite_id = models.ForeignKey('TestSuite', on_delete=models.CASCADE, related_name='testruns')
-    milestone_id = models.ForeignKey('Milestone', on_delete=models.CASCADE, null=True, blank=True, related_name='testruns')
+    milestone_id = models.ForeignKey('Milestone', on_delete=models.CASCADE, null=True, blank=True, related_name='testrunsid')
+
     description = models.TextField(null=True, blank=True)
     ALL = 'ALL'
     SELECTED = 'SELECTED'
@@ -51,6 +52,8 @@ class TestRun(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_by = models.ForeignKey('MyUser', on_delete=models.CASCADE, null=True, blank=True, related_name='updated_testruns')
     updated_on = models.DateTimeField(null=True, blank=True)
+    assigned_to = models.ForeignKey('MyUser', on_delete=models.CASCADE, null=True, blank=True, related_name='assigned_testruns')
+
 
     def save(self, *args, **kwargs):
         if self.pk is not None:
