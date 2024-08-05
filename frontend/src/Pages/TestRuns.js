@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {useNavigate} from "react-router-dom";
 import "../styles/TestRuns.css";
-import Popup from "./selectSuite";
+import Popup from "./selectSuite"; 
 
 const TestRuns = () => {
 

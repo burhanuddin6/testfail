@@ -14,7 +14,7 @@ const Popup = ({ onConfirm, onCancel, actionType }) => {
 
   return (
     <div className="popup-overlay">
-      <div className="popup">
+      <div className="popup"> 
         <h3>Select an Option</h3>
         <select onChange={(e) => setSelectedOption(e.target.value)} value={selectedOption}>
           <option value="">Select...</option>
