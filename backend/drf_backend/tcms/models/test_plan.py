@@ -10,6 +10,7 @@ class TestPlan(models.Model):
     test_plan_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255, unique=True)
     milestone_id = models.ForeignKey('Milestone', on_delete=models.CASCADE, null=True, blank=True, related_name='testplansid')
+
     description = models.TextField(null=True, blank=True)
     test_case_filter = models.TextField(null=True, blank=True)
     project_id = models.ForeignKey('Project', on_delete=models.CASCADE)
@@ -27,12 +28,13 @@ class TestPlan(models.Model):
     updated_by = models.ForeignKey(MyUser, on_delete=models.CASCADE, null=True, blank=True, related_name='updated_test_plans')
     updated_on = models.DateTimeField(null=True, blank=True)
 
-    is_completed = models.BooleanField(default=False)
+    
+    is_complete = models.BooleanField(default=False)
     completed_on = models.DateTimeField(null=True, blank=True)
 
     def save(self, *args, **kwargs):
         
-        if self.is_completed:
+        if self.is_complete:
             self.completed_on = datetime.now(timezone.utc)
             
         is_new = self.pk is None

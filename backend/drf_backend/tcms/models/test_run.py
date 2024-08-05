@@ -54,11 +54,11 @@ class TestRun(models.Model):
     assigned_to = models.ForeignKey('MyUser', on_delete=models.CASCADE, null=True, blank=True, related_name='assigned_testruns')
 
 
-    is_completed = models.BooleanField(default=False)
+    is_complete = models.BooleanField(default=False)
     completed_on = models.DateTimeField(null=True, blank=True)
 
     def save(self, *args, **kwargs):
-        if self.is_completed:
+        if self.is_complete:
             self.completed_on = datetime.now(timezone.utc)
             
         if self.pk is not None:
