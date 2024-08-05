@@ -4,11 +4,13 @@
 
 /* Main container for the edit suite page */
 
-/* .edit-suite-container {
-  padding: 20px;
-  background-color: #f9f9f9;
-  margin: 0 auto;
-} */
+body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  color: black;
+}
 
 /* Suite ID display section */
 .suite-id-display {
@@ -34,17 +36,27 @@
 
 /* Form content styling */
 .edit-suite-content {
-  background-color: #fff;
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  max-width: 800px;
-  margin: 0 auto;
+  /* margin-top: 100px; Space for the header */
+  background-color: #e6f3ff; 
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+  overflow-y: auto; /* Enable vertical scrolling */
+  height: calc(100vh - 60px); /* Full screen height minus header */
+  width: 100%; /* Ensure full width */
 }
 
 /* Form styling */
 .edit-suite-form {
-  margin-bottom: 20px;
+  margin-top: 100px;
+  background-color: white;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;;
+  border-radius: 10px;
+  margin-left: 400px;
+  margin-right: 400px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .edit-suite-form-group {
@@ -86,18 +98,21 @@
 /* Buttons styling */
 .edit-suite-buttons {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
+  align-items: center;
   gap: 15px;
 }
 
 .edit-suite-button {
-    background-color: #4CAF50;
+  background-color: #4CAF50;
   color: white;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  width: auto;
+  
 }
 
 .edit-suite-save:hover {
@@ -132,7 +147,10 @@
   margin-top: 30px;
   border-top: 1px solid #ddd;
   padding-top: 20px;
-  text-align: left;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
 }
 
 .actions-title {
@@ -155,8 +173,16 @@
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  width: auto;
+  /* margin-left: auto; */
+  height: 35px;
 }
 
 .delete-suite-button:hover {
   background-color: #FAA0A0;
+}
+
+.edit-suite-form h2 {
+  color: black;
+  align-self: center;
 }

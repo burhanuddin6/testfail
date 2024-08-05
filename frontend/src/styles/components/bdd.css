@@ -1,0 +1,61 @@
+.test-bdd {
+    display: flex;
+    align-items: flex-start;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+  }
+  
+  .bdd-number {
+    font-size: 18px;
+    margin-right: 10px;
+    padding-top: 10px;
+  }
+  
+  .bdd-content {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    margin-right: 10px;
+  }
+ 
+  
+  .bdd-description{
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    resize: none;
+  }
+  
+  
+  
+  .bdd-actions {
+    display: flex;
+    align-items: center;
+  }
+   
+  .action-button-delete-bdd {
+    background-color: red;
+    color: white;
+    margin-left: auto;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    border-radius: 40%;
+    position: relative;
+  }
+
+  .action-button-delete-bdd:hover {
+    background-color: rgba(255, 0, 0, 0.533);
+  }
+  
+  
+  

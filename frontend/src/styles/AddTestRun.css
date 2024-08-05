@@ -183,3 +183,14 @@ body, html {
 .add-test-run-filter-clickable-text:hover {
   color: #0056b3;
 }
+
+.add-references-add-run-form {
+  margin-left: auto;
+  text-decoration: underline;
+  margin-top: 0px;
+}
+
+.references-add-run-form-grp {
+  display: flex;
+  margin-bottom: 5px;
+}
