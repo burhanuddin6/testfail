@@ -38,7 +38,6 @@ class TestRun(models.Model):
     test_case_filter = models.CharField(max_length=255, choices=TEST_CASE_FILTER_CHOICES, default=ALL)
     test_case_filter_value = models.TextField(null=True, blank=True)
     project_id = models.ForeignKey('Project', on_delete=models.CASCADE)
-    is_complete = models.BooleanField(default=False)
     is_part_of_test_plan = models.BooleanField(default=False)
 
     number_of_passed_test_cases = models.IntegerField(blank=True, default=0)

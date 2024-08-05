@@ -10,14 +10,11 @@ class TestPlan(models.Model):
     test_plan_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255, unique=True)
     milestone_id = models.ForeignKey('Milestone', on_delete=models.CASCADE, null=True, blank=True, related_name='testplansid')
-
     description = models.TextField(null=True, blank=True)
     test_case_filter = models.TextField(null=True, blank=True)
     project_id = models.ForeignKey('Project', on_delete=models.CASCADE)
     selection = JSONField(null=True, blank=True)
-    is_complete = models.BooleanField(default=False)
 
-    
     number_of_passed_test_cases = models.IntegerField(blank=True, default=0)
     number_of_failed_test_cases = models.IntegerField(blank=True, default=0)
     number_of_blocked_test_cases = models.IntegerField(blank=True, default=0)
