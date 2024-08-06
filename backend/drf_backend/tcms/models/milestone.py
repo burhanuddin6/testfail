@@ -9,7 +9,6 @@ class Milestone(models.Model):
 	description = models.TextField(null=True, blank=True)
 	start_date = models.DateField(null=True, blank=True)
 	end_date = models.DateField(null=True, blank=True)
-	is_complete = models.BooleanField(default=False)
 	project_id = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='milestones')
 
 	number_of_passed_test_cases = models.IntegerField(blank=True, default=0)
@@ -24,11 +23,11 @@ class Milestone(models.Model):
 	updated_by = models.ForeignKey('MyUser', on_delete=models.CASCADE, null=True, blank=True, related_name='updated_milestones')
 	updated_on = models.DateTimeField(null=True, blank=True)
 
-	is_completed = models.BooleanField(default=False)
+	is_complete = models.BooleanField(default=False)
 	completed_on = models.DateTimeField(null=True, blank=True)
 
 	def save(self, *args, **kwargs):
-		if self.is_completed:
+		if self.is_complete:
 			self.completed_on = datetime.now(timezone.utc)
             
 		if self.pk is not None:

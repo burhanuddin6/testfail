@@ -1,0 +1,25 @@
+import React from 'react';
+import StackedProgressBar from '../components/StackedProgressBar';
+import 'bootstrap/dist/css/bootstrap.min.css'; 
+
+const ProgressBarPage = () => {
+  const testData = {
+    number_of_passed_test_cases: 40,
+    number_of_failed_test_cases: 10,
+    number_of_blocked_test_cases: 5,
+    number_of_untested_test_cases: 20,
+    number_of_partial_test_cases: 15,
+    number_of_test_cases: 90
+  };
+
+  return (
+    <div style={{ padding: '20px', textAlign: 'center' }}>
+      <h1>Stacked Progress Bar</h1>
+      <StackedProgressBar data={testData} />
+      
+    </div>
+  );
+
+};
+
+export default ProgressBarPage;

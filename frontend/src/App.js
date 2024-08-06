@@ -7,8 +7,7 @@ import { setProjectInfo, setToken } from './utilities/globals';
 
 // components 
 import Header from './components/Header';
-// import HeaderWrapper from './components/HeaderWrapper';
-import TestRuns from './components/TestRuns';
+// import TestRuns from './components/TestRuns';
 
 // pages
 import Overview from './Pages/Overview';
@@ -37,9 +36,11 @@ import TestsResults from './Pages/TestsResults';
 import TestCaseDefects from './Pages/TestCaseDefects';
 import TestCaseHistory from './Pages/TestCaseHistory';
 import EditTestCase from './Pages/EditTestCase';
-import NotFound from './Pages/NotFound';
 import AddTestPlan from './Pages/AddTestPlan';
-
+import TestSuiteTestRuns from './Pages/TestSuiteTestRuns';
+import TestRunTestsResults from './Pages/TestRunTestsResults';
+import NotFound from './Pages/NotFound';
+import TestPlanStatus from './Pages/TestPlanStatus';
 
 const App = () => {
   const [userName, setUserName] = useState("");
@@ -92,7 +93,7 @@ const App = () => {
           <>
             <Route path="/dashboard" element={<Dashboard userName={userName} />} />
             <Route
-              path="/overview/:projectId" //URL CHANGES
+              path="/overview" //URL CHANGES
               element={
                 <>
                   <Header userName={userName}/>
@@ -101,7 +102,7 @@ const App = () => {
               }
             />
             <Route
-              path="/todo/:projectId" //URL CHANGES
+              path="/todo" //URL CHANGES
               element={
                 <>
                   <Header userName={userName} />
@@ -165,6 +166,42 @@ const App = () => {
               }
             />
             <Route
+              path="/TestRuns"
+              element={
+                <>
+                  <Header userName={userName} />
+                  <TestRunsPage />
+                </>
+              }
+            />
+            <Route 
+              path="/add-test-plan" 
+              element={
+                <>
+                  <Header userName={userName} />
+                  <AddTestPlan  />
+                </>
+              }
+            />
+             <Route
+              path="/TestPlanStatus"
+              element={
+                <>
+                  <Header userName={userName} />
+                  <TestPlanStatus />
+                </>
+              }
+            />
+            <Route
+              path="/TestRunTestsResults"
+              element={
+                <>
+                  <Header userName={userName} />
+                  <TestRunTestsResults />
+                </>
+              }
+            />
+            <Route
               path="/testsuitscases"
               element={
                 <>
@@ -178,26 +215,16 @@ const App = () => {
               element={
                 <>
                   <Header userName={userName} />
-                  <AddTestRun userID={userID} />
-                </>
-              }
-            />
-            <Route 
-              path="/add-test-plan" 
-              element={
-                <>
-                  <Header userName={userName} />
-                  <AddTestPlan  />
+                  <AddTestRun  />
                 </>
               }
             />
             <Route
-              path="/TestRuns" //URL CHANGES
+              path="/TestSuiteTestRuns"
               element={
                 <>
                   <Header userName={userName} />
-                  {/* <HeaderWrapper userName={userName} /> */}
-                  <TestRunsPage />
+                  <TestSuiteTestRuns />
                 </>
               }
             />
@@ -302,7 +329,7 @@ const App = () => {
                 </>
               }
             />
-            <Route
+            {/* <Route
               path="/testruns/:id"
               element={
                 <>
@@ -312,7 +339,9 @@ const App = () => {
                   </div>
                 </>
               }
-            />
+            /> */}
+            {/* <Route path="/progress-bar" element={<ProgressBarPage />} /> */}
+
             <Route path="*" element={<NotFound />} />
           </>
         )}

@@ -73,20 +73,22 @@ const TestCaseHistory = () => {
     return (
         <div className="test-case-history-container">
             <div className="test-case-details-content">
-                <div className="test-case-header">
-                    <div className="test-case-id">{testCaseId}</div>
-                    <h1 className="test-case-name">{testCaseName}</h1>
-                    <Link to={`/EditTestCase?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}&source=TestCaseHistory`} className="edit-casehistory-link">Edit</Link>
-                </div>
-                <nav className="breadcrumb-nav">
-                    <Link
-                        to={`/SectionsCases?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}`}
-                        className="breadcrumb-link"
-                    >
-                        {suiteName} &gt; {sectionName}
-                    </Link>
-                </nav>
-                <div className="history-content">
+                <div className='test-case-left-side'>
+                    <div className='test-case-header-class'>
+                        <div className="test-case-header">
+                            <div className="test-case-id">{testCaseId}</div>
+                            <h1 className="test-case-name">{testCaseName}</h1>
+                            <Link to={`/EditTestCase?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}&source=TestsResults`} className="edit-case-link">Edit</Link>
+                        </div>
+                            <Link
+                            to={`/SectionsCases?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}`}
+                            className="breadcrumb-link"
+                            >
+                            {suiteName} &gt; {sectionName}
+                            </Link> 
+                    </div>
+
+                    <div className="history-content">
                     {testCaseHistoryData.map((entry, index) => (
                         <div className="history-entry" key={index}>
                             <div className="history-header">
@@ -110,63 +112,49 @@ const TestCaseHistory = () => {
                             </div>
                         </div>
                     ))}
-                </div>
-            </div>
-            <aside className="test-case-sidebar">
-                <section className="sidebar-section">
-                    <ul className="sidebar-links">
-                        <li>
-                            <Link
-                                to={`/TestCaseDetails?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`}
-                                className="sidebar-link"
-                            >
-                                Details
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                to={`/TestsResults?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`}
-                                className="sidebar-link"
-                            >
-                                Tests & Results
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                to={`/TestCaseDefects?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`}
-                                className="sidebar-link"
-                            >
-                                Defects
-                            </Link>
-                        </li>
-                        <li>
-                        <h3 className="sidebar-title">
-                            <Link
-                                to={`/TestCaseHistory?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`}
-                                className="sidebar-link"
-                            >
-                                History
-                            </Link>
-                        </h3>
-                        </li>
-                    </ul>
-                </section>
-                <section className="sidebar-section">
-                    <h3 className="sidebar-title">People & Dates</h3>
-                    <div className="people-dates">
-                        <div className="date-item">
-                            <div className="date-label">Created</div>
-                            <div className="date-value">Muhammad Faizan</div>
-                            <div className="date-timestamp">10/29/2020 12:22 PM</div>
-                        </div>
-                        <div className="date-item">
-                            <div className="date-label">Updated</div>
-                            <div className="date-value">Mohammed Maqsood</div>
-                            <div className="date-timestamp">11/17/2020 08:03 PM</div>
-                        </div>
                     </div>
-                </section>
-            </aside>
+
+                </div>
+                       
+        <div className="test-case-sidebar">
+          <nav className="breadcrumb-nav">
+            <div className="test-case-details-options">
+                <Link to={`/TestCaseDetails?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`} className="sidebar-link">
+                  Details
+                </Link>
+                <Link to={`/TestsResults?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`} className="sidebar-link">
+                  Tests & Results
+                </Link>
+                <Link to={`/TestCaseDefects?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`} className="sidebar-link">
+                  Defects
+                </Link>
+                <h3 className="sidebar-title">
+                    <Link
+                        to={`/TestCaseHistory?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`}
+                        className="sidebar-link"
+                    >
+                        History
+                    </Link>
+                </h3>
+            </div>
+          </nav>
+          <div className="sidebar-section-people">
+            <h3 className="sidebar-title">People & Dates</h3>
+            <div className="people-dates">
+              <div className="date-item">
+                <div className="date-label">Created</div>
+                <div className="date-value">Muhammad Faizan</div>
+                <div className="date-timestamp">10/29/2020 12:22 PM</div>
+              </div>
+              <div className="date-item">
+                <div className="date-label">Updated</div>
+                <div className="date-value">Mohammed Maqsood</div>
+                <div className="date-timestamp">11/2/2020 12:39 PM</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
         </div>
     );
 };

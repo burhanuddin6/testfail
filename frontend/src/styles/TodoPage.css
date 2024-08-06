@@ -1,148 +1,185 @@
-@import '../utilities/variables.css';
+body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  color: black;
+}
 
-.todo-page {
-    padding: 20px;
-    background-color: var(--bg-color);
-    border-radius: 5px;
-    color: black;
-  }
-  
-  .todo-chart-container {
-    position: absolute;
-    top: 100px;
-    width: 50%;
-    margin: 20px auto;
-    margin-left: 400px;
-    background-color: white;
-  }
-  
-  .todo-testruns {
-    position: absolute;
-    top: 600px;
-    gap: 30px;
-  }
+.todo-mainclass {
+  padding: 20px;
+  margin-top: 100px; /* Space for the header */
+  /* background-color: #E6F3FF; */
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+  overflow-y: auto; /* Enable vertical scrolling */
+  height: calc(100vh - 60px); /* Full screen height minus header */
+  width: 100%; /* Ensure full width */
+}
 
-  .test-runs-filter {
+.todo-header {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.todo-page-details {
+  /* background-color: white; */
+  height: auto;
+  /* width: 100%; */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.todo-chart-download button{
+  width: auto;
+  margin-left: 30px;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.todo-chart {
+  width: 40%;
+  height: auto;
+  background-color: white;
+  padding: 20px;
+  display: flex;
+}
+.download {
+  background-color: #007BFF;
+}
+
+.download:hover {
+  background-color: #0056B3;
+}
+
+
+.test-runs-filter {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.test-runs-filter-label {
+  margin-right: 10px;
+}
+
+.test-runs-filter-value {
+  font-weight: bold;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #F9F9F9;
+  min-width: 160px;
+  /* box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); */
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  /* display: block; */
+}
+
+.dropdown-content a:hover {
+  background-color: #F1F1F1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #5DA9E9;
+}
+
+.dropbtn {
+  background-color: #0056B3;
+  color: white;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  padding: 4px 10px;
+  width: auto;
+}
+
+.todo-testruns {
+  background-color: #F7FAFF;
+  padding-left: 20px;
+  padding-top: 20px;
+}
+
+.todo-testrun-listing {
+
+    color: black;
+    margin-right: 30px;
+    margin-left: 0px;
+    margin-bottom: 30px;
+    gap: 50px;
+    overflow-y: auto;
+    max-height: 250px;
+}
+
+.todo-testrun-item {
+  background-color: white;
+  padding: 7px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  display: flex;
+}
+
+
+.todo-test-runs-status-bar {
+  gap: 10px;
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .test-runs-filter-label {
+    margin-left: auto;
     margin-right: 10px;
-  }
-  
-  .test-runs-filter-value {
-    font-weight: bold;
-  }
-  
-  .test-runs-list {
-    list-style: none;
-    padding: 0;
-    color: black;
-  }
-  
-  .test-runs-item {
+    width: 10%;
+    height: 20px;
+    background-color: #F0F0F0;
+    border-radius: 10px;
+    padding: 2px;
+    margin-top: 5px;
+}
+
+.test-runs-item-progress {
+    /* gap: 10px;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #fff;
-    margin-bottom: 10px;
-  }
-  
-  .test-runs-item-icon {
-    margin-right: 10px;
-  }
-  
-  .test-runs-item-title {
-    font-weight: bold;
-    flex: 1;
-    color: black;
-  }
-  
-  .test-runs-item-status {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .test-runs-item-progress {
-    display: flex;
-    align-items: center;
-  }
-  
-  .test-runs-item-progress-bar {
-    height: 10px;
-    background-color: #007bff;
-    border-radius: 5px;
-    margin-right: 5px;
-    width: 50px;
-  } 
-  
-  .test-runs-item-progress-value {
-    font-weight: bold;
-  }
-  
-  .test-runs-item-unassigned {
-    font-weight: bold;
-  }
-  
-  .test-runs-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .test-runs-item > .test-runs-item-title {
-    flex: 1;
-  }
-  
-  .test-runs-item > .test-runs-item-status {
-    flex-shrink: 0;
-  }
-  
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    /* box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2); */
-    z-index: 1;
-  }
-  
-  .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    /* display: block; */
-  }
-  
-  .dropdown-content a:hover {
-    background-color: #f1f1f1;
-  }
-  
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
-  
-  .dropdown:hover .dropbtn {
-    background-color: #5DA9E9;
-  }
-  
-  .dropbtn {
-    background-color: #0056b3;
-    color: white;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    padding: 4px 10px;
-    width: auto;
-  }
+    align-items: center; */
+    margin-left: auto;
+    /* margin-right: 10px;  */
+    width: 100%;
+    height: 20px;
+    background-color: #F0F0F0;
+    border-radius: 10px;
+    /* padding: 2px;
+    margin-top: 5px; */
+}
+
+.test-runs-item-progress-bar {
+  height: 100%;
+  background-color: #007BFF;
+  border-radius: 10px;
+}
+
+.test-runs-item-progress-value {
+  font-weight: bold;
+}
+
+.test-runs-item-unassigned {
+  margin-top: 7px;
+  margin-left: 20px;
+}

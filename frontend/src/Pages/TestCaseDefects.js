@@ -73,7 +73,7 @@ const TestCaseDefects = () => {
           labels: ['Tests', 'Results', 'Defects'],
           datasets: [
             {
-              label: 'Tests and defects',
+              label: 'Tests and Defects',
               data: [35, 39, defectsData.reduce((sum, month) => sum + month.defects.length, 0)],
               backgroundColor: [
                 'rgba(66, 135, 245, 0.2)',
@@ -115,93 +115,105 @@ const TestCaseDefects = () => {
   return (
     <div className="test-case-defects-container">
       <div className="test-case-details-content">
-        <div className="test-case-header">
-          <div className="test-case-id">{testCaseId}</div>
-          <h1 className="test-case-name">{testCaseName}</h1>
-          <Link to={`/EditTestCase?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}&source=TestCaseDefects`} className="edit-testsresults-link">Edit</Link>
-        </div>
-        <nav className="breadcrumb-nav">
-          <Link to={`/SectionsCases?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}`} className="breadcrumb-link">
-            {suiteName} &gt; {sectionName}
-          </Link>
-        </nav>
-        <div className="defects-summary">
-          <div className="defects-graph">
-            <canvas ref={chartRef}></canvas>
-            <div className="defects-count">{defectsData.reduce((sum, month) => sum + month.defects.length, 0)} Defects</div>
-          </div>
-          <div className="defects-status-summary">
-            <span>Tests and defects:</span>
-            <ul>
-              <li className="tests">40 tests started</li>
-              <li className="results">42 test results added</li>
-              <li className="defects">0 defects logged</li>
-            </ul>
-          </div>
-          <hr className="defects-divider" />
-          <div className="defects-list-scroll">
-            <h2 className="defects-heading">Defects</h2>
-            <div className="defects-list">
-              {defectsData.map((month, index) => (
-                <div key={index} className="defect-month">
-                  <h3>{month.date}</h3>
-                  {month.defects.map((item, idx) => (
-                    <div key={idx} className="defect-item">
-                      <span className={`status ${item.status.toLowerCase()}`}>{item.status}</span>
-                      <Link to={`/DefectDetails?defectId=${item.defectId}&testCaseId=${testCaseId}&testCaseName=${encodeURIComponent(testCaseName)}`} className="defect-id">
-                        {item.defectId}
-                      </Link>
-                      <span className="added-by">Added by {item.addedBy}</span>
-                    </div>
-                  ))}
+        <div className='test-case-left-side'>
+            <div className='test-case-header-class'>
+              <div className="test-case-header">
+                <div className="test-case-id">{testCaseId}</div>
+                <h1 className="test-case-name">{testCaseName}</h1>
+                <Link to={`/EditTestCase?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}&source=TestsResults`} className="edit-case-link">Edit</Link>
+              </div>
+                <Link
+                  to={`/SectionsCases?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}`}
+                  className="breadcrumb-link"
+                >
+                  {suiteName} &gt; {sectionName}
+                </Link> 
+            </div>
+
+            <div className="defects-summary">
+              <div className='defects-graph-details'>
+                <div className="defects-graph">
+                <div className="test-case-defects-count">{defectsData.reduce((sum, month) => sum + month.defects.length, 0)} Defects</div>
+                  <canvas ref={chartRef}></canvas>
+                  
                 </div>
-              ))}
+                <div className="defects-status-summary">
+                  <span>Tests and defects:</span>
+                  <ul>
+                    <li className="tests">40 tests started</li>
+                    <li className="results">42 test results added</li>
+                    <li className="defects">0 defects logged</li>
+                  </ul>
+                </div>
+              </div>
+            
+            <hr className="defects-divider" />
+            <div className="defects-list-scroll">
+              <h2 className="defects-heading">Defects</h2>
+              <div className="defects-list">
+                {defectsData.map((month, index) => (
+                  <div key={index} className="defect-month">
+                    <h3>{month.date}</h3>
+                    {month.defects.map((item, idx) => (
+                      <div key={idx} className="defect-item">
+                        <span className={`status ${item.status.toLowerCase()}`}>{item.status}</span>
+                        <Link to={`/DefectDetails?defectId=${item.defectId}&testCaseId=${testCaseId}&testCaseName=${encodeURIComponent(testCaseName)}`} className="defect-id">
+                          {item.defectId}
+                        </Link>
+                        <span className="added-by">Added by {item.addedBy}</span>
+                      </div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+          </div>
+        </div>
+        </div>
+        
+
+        
+        <div className="test-case-sidebar">
+          <nav className="breadcrumb-nav">
+            <div className="test-case-details-options">
+                <Link to={`/TestCaseDetails?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`} className="sidebar-link">
+                  Details
+                </Link>
+                <Link to={`/TestsResults?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`} className="sidebar-link">
+                  Tests & Results
+                </Link>
+                <h3 className="sidebar-title">
+                <Link to={`/TestCaseDefects?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`} className="sidebar-link">
+                  Defects
+                </Link>
+                </h3>
+                <Link to={`/TestCaseHistory?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`} className="sidebar-link">
+                  History
+                </Link>
+            </div>
+          </nav>
+          <div className="sidebar-section-people">
+            <h3 className="sidebar-title">People & Dates</h3>
+            <div className="people-dates">
+              <div className="date-item">
+                <div className="date-label">Created</div>
+                <div className="date-value">Muhammad Faizan</div>
+                <div className="date-timestamp">10/29/2020 12:22 PM</div>
+              </div>
+              <div className="date-item">
+                <div className="date-label">Updated</div>
+                <div className="date-value">Mohammed Maqsood</div>
+                <div className="date-timestamp">11/2/2020 12:39 PM</div>
+              </div>
             </div>
           </div>
+        </div>
+
+       
+        
+         
         </div>
       </div>
-      <aside className="test-case-sidebar">
-        <section className="sidebar-section">
-          <ul className="sidebar-links">
-            <li>
-              <Link to={`/TestCaseDetails?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`} className="sidebar-link">
-                Details
-              </Link>
-            </li>
-            <li>
-              <Link to={`/TestsResults?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`} className="sidebar-link">
-                Tests & Results
-              </Link>
-            </li>
-            <h3 className="sidebar-title">
-              <Link to={`/TestCaseDefects?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`} className="sidebar-link">
-                Defects
-              </Link>
-            </h3>
-            <li>
-                <Link to={`/TestCaseHistory?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`} className="sidebar-link">
-                    History
-                </Link>
-            </li>
-          </ul>
-        </section>
-        <section className="sidebar-section">
-          <h3 className="sidebar-title">People & Dates</h3>
-          <div className="people-dates">
-            <div className="date-item">
-              <div className="date-label">Created</div>
-              <div className="date-value">Muhammad Faizan</div>
-              <div className="date-timestamp">10/29/2020 12:22 PM</div>
-            </div>
-            <div className="date-item">
-              <div className="date-label">Updated</div>
-              <div className="date-value">Mohammed Maqsood</div>
-              <div className="date-timestamp">11/2/2020 12:39 PM</div>
-            </div>
-          </div>
-        </section>
-      </aside>
-    </div>
+   
   );
 };
 

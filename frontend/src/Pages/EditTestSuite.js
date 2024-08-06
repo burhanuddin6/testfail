@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import '../styles/EditTestSuite.css'; // Import the CSS file
 import { useNavigate, useLocation } from 'react-router-dom'; // Import navigation hooks
 import { updateTestSuite, deleteTestSuite } from '../api/TestSuites'; // Import the API functions
+import FileUpload from '../components/fileUpload';
 
 const EditTestSuite = () => {
   const navigate = useNavigate();
@@ -20,34 +21,14 @@ const EditTestSuite = () => {
   const [description, setDescription] = useState(''); // Preset with existing description if any
   const [file, setFile] = useState(null);
 
-  // const handleSubmit = (event) => { //REVIEW USAGE
-  //   event.preventDefault();
-  //   // Handle form submission here
-  //   console.log('Edited Suite with:', {
-  //     name,
-  //     description,
-  //     file
-  //   });
-
-
-  //   // Navigate based on the source page and include suite ID in URL
-  //   if (sourcePage === 'TestRuns') {
-  //     navigate(`/TestRuns?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`); // Use updated name
-  //   } else if (sourcePage === 'SectionsCases') {
-  //     navigate(`/SectionsCases?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`); // Use updated name
-  //   } else {
-  //     navigate('/TestSuitsCases');
-  //   }
-  // };
-
   const handleUpdate = async (event) => {
     event.preventDefault();
     try {
       const projectID = sessionStorage.getItem("projectID");
-      const creatorID = sessionStorage.getItem("user_id");
+      const userID = sessionStorage.getItem("user_id");
 
-      if (!projectID || !creatorID) {
-        console.error('Project ID or Creator ID is missing');
+      if (!projectID || !userID) {
+        console.error('Project ID or user ID is missing');
         return;
       }
 
@@ -55,17 +36,19 @@ const EditTestSuite = () => {
       const testSuiteData = {
         name,
         description,
-        file,
+        // file,
         project_id: projectID,
-        creator_id: creatorID,
+        updated_by: userID,
+
       };
 
       await updateTestSuite(suiteId, testSuiteData);
 
-      if (sourcePage === 'TestRuns') {
-        navigate(`/TestRuns?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`);
+      // Navigate based on the source page and include suite ID in URL
+      if (sourcePage === 'TestSuiteTestRuns') {
+        navigate(`/TestSuiteTestRuns?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`); // Use updated name
       } else if (sourcePage === 'SectionsCases') {
-        navigate(`/SectionsCases?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`);
+        navigate(`/SectionsCases?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`); // Use updated name
       } else {
         navigate('/TestSuitsCases');
       }
@@ -94,14 +77,14 @@ const EditTestSuite = () => {
   const handleCancel = (e) => {
     e.preventDefault();
 
-    // Navigate based on the source page and include suite ID in URL
-    if (sourcePage === 'TestRuns') {
-        navigate(`/TestRuns?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`); // Use updated name
-      } else if (sourcePage === 'SectionsCases') {
-        navigate(`/SectionsCases?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`); // Use updated name
-      } else {
-        navigate('/TestSuitsCases');
-      }
+     // Navigate based on the source page and include suite ID in URL
+     if (sourcePage === 'TestSuiteTestRuns') {
+      navigate(`/TestSuiteTestRuns?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`); // Use updated name
+    } else if (sourcePage === 'SectionsCases') {
+      navigate(`/SectionsCases?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`); // Use updated name
+    } else {
+      navigate('/TestSuitsCases');
+    }
   };
 
   const handleFileChange = (e) => {
@@ -111,13 +94,14 @@ const EditTestSuite = () => {
   return (
     <div className="edit-suite-container">
       {/* Display Suite ID */}
-      <div className="suite-id-display">
+      {/* <div className="suite-id-display">
         <span className="suite-id-badge">S{suiteId}</span>
         <span className="suite-title">{suiteName}</span>
-      </div>
+      </div> */}
 
       <div className="edit-suite-content">
         <form className="edit-suite-form" onSubmit={handleUpdate}>
+           <h2>Edit Test Suite</h2>
           <div className="edit-suite-form-group">
             <label htmlFor="name" className="edit-suite-label">
               Name<span className="edit-suite-required">*</span>
@@ -141,11 +125,11 @@ const EditTestSuite = () => {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               className="edit-suite-textarea"
+              placeholder='Use this description to explain the content and purpose of this test suite.'
             />
-            <p className="edit-description-hint">
-              Use this description to explain the content and purpose of this test suite.
-            </p>
           </div>
+
+          <FileUpload/>
 
           <div className="edit-suite-buttons">
             <button
@@ -164,22 +148,11 @@ const EditTestSuite = () => {
           </div>
         </form>
 
-        <div className="file-upload">
-          <div className="file-upload-icon" />
-          <input
-            type="file"
-            onChange={handleFileChange}
-            className="file-upload-input"
-          />
-          <p className="file-upload-text">
-            Drop files here to attach, or click on "+" to browse
-          </p>
-        </div>
-
+    
         <div className="actions-section">
-          <p className="actions-title">Actions</p>
+          {/* <p className="actions-title">Actions</p> */}
           <p className="actions-description">
-            Delete this test suite to remove it from your project. This also deletes all related test cases and running tests.
+            Delete this test suite to remove it from your project. <br></br>This also deletes all related test cases and running tests.
           </p>
           <button className="delete-suite-button" onClick={handleDelete}>✗ Delete this test suite</button>
         </div>

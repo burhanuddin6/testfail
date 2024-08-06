@@ -12,10 +12,22 @@ const createTestRun = async (testRunData) => {
   }
 };
 
-// function for fetching a test run of a given suite
-const fetchTestRuns = async (projectId, suiteId = '') => {
+// function to delete a test run using its id
+const deleteTestRun = async (testRunId) => {
   try {
-      const response = await axiosInstance.get(`test_runs/?project_id=${projectId}${suiteId ? `&suite_id=${suiteId}` : ''}`); //review projectid usage
+    await axiosInstance.delete(`test_runs/${testRunId}/`);
+  } catch (error) {
+    console.error('Error deleting test run:', error); // debug statement, remove before production
+    throw error;
+  }
+};
+
+// function for fetching a test run of a given suite
+const fetchTestRuns = async (projectId, suiteId = '', milestoneId = '') => {
+  try {
+      const response = await axiosInstance.get(`test_runs/?project_id=${projectId}${suiteId ? `&suite_id=${suiteId}` : ''}${milestoneId ? `&milestone_id=${milestoneId}` : ''}`); //review projectid usage
+       console.log(`runs response: ${JSON.stringify(response.data, null, 2)}`); // debug statement, remove before production
+
       console.log(response); // debug statement, remove before production
       return response.data;
   } catch (error) {
@@ -24,4 +36,4 @@ const fetchTestRuns = async (projectId, suiteId = '') => {
   }
 };
   
-export { createTestRun, fetchTestRuns };
+export { createTestRun, fetchTestRuns, deleteTestRun };

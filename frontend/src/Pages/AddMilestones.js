@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { createMilestone } from '../api/Milestone';
 import { getProjectID } from '../utilities/globals';
 import { fetchMilestonesIdName } from '../api/Milestone'; 
+import FileUpload from '../components/fileUpload';
 
 const AddMilestone = ({ userID }) => {
   const [name, setName] = useState('');
@@ -93,15 +94,19 @@ const AddMilestone = ({ userID }) => {
             onChange={(e) => setName(e.target.value)}
             placeholder="Ex: Version 1.0, Internal Beta 2 or Sprint #4"
             required
-          /> 
+          />  
         </div>
         <div className="add-form-group">
-          <label htmlFor="references">References</label>
+          <div className='references-add-form-grp'>
+            <label htmlFor="references">References</label>
+            <a href="" className='add-references-add-form'>Add</a>
+          </div>
           <input
             type="text"
             id="references"
             value={references}
             onChange={(e) => setReferences(e.target.value)}
+            placeholder='Add reference IDs'
           />
         </div>
         <div className="add-form-group">
@@ -128,35 +133,18 @@ const AddMilestone = ({ userID }) => {
             placeholder="Use this description to describe the purpose and goals of this milestone."
           >
           </textarea>
-
-          <input 
+        
+          {/* <input 
             type="file"
             id="file-upload"
             name="file-upload"
             onChange={handleFileChange}
             accept="image/*"
             multiple
-          />
+          /> */}
         </div>
 
-        <div className="image-preview">
-          {images.map((image, index) => (
-            <div key={index} className="image-container">
-              <img
-                src={URL.createObjectURL(image)}
-                alt={`Selected ${index}`}
-                className="preview-image"
-              />
-              <button
-                type="button"
-                className="remove-image-button"
-                onClick={() => removeImage(index)}
-              >
-                ✗
-              </button>
-            </div>
-          ))}
-        </div>
+        
 
         <div className="add-form-group">
           <label htmlFor="startDate">Start Date</label>
@@ -187,6 +175,9 @@ const AddMilestone = ({ userID }) => {
           />
           <label htmlFor="isCompleted">This milestone is completed</label>
         </div>
+
+        <FileUpload/>
+      
         <div className="form-buttons">
           <button type="submit" className='add-edit-button'> ✓ {action == "edit" ? 'Update' : 'Add'} Milestone</button>
           <button type="button" onClick={handleCancel} className='add-cancel-button'>✗ Cancel</button>

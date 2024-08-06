@@ -1,11 +1,20 @@
 import "../styles/MilestonesDefect.css"
 import React, { useState } from 'react';
 import Graph from "../components/OverviewGraph";
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Milestonesdefects = () => {
 
     const navigate = useNavigate();
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const testRunId = searchParams.get("testRunId") || "0"; 
+    const testRunName = searchParams.get("testRunName") || "Test Run";
+    const sourcePage = searchParams.get('source');
+
+    const suiteId = searchParams.get('suiteId') || '0';
+    const suiteName = searchParams.get('suite') || 'Suite Name';
+
     const handleEditMilestone = () => {
         navigate(`/add-milestone`, { state: { from: '/milestone-defect' , action: 'edit'} });
       };
@@ -13,17 +22,60 @@ const Milestonesdefects = () => {
     return (
         <div className="defects-mainclass">
             <div className="defects-header">
-                <div className="defects-options">
-                    <a href="/milestone-status">Status</a>
-                    <a href="/milestone-activity">Activity</a>
-                    <a href="/milestone-progress">Progress</a>
-                    <a href="/milestone-defect">Defects</a>
+            <div className="activity-options">
+                    {sourcePage === 'TestRunTestsResults' || sourcePage === 'milestone-activity' || sourcePage === 'milestone-progress' || sourcePage === 'milestone-defect' ? (
+                        <>
+                            <a
+                                href={`/TestRunTestsResults?suiteId=${suiteId}&suite=${suiteName}&testRunId=${testRunId}&testRunName=${testRunName}`}
+                                
+                            >
+                                Tests & Results
+                            </a>
+                            <a
+                                href={`/milestone-activity?suiteId=${suiteId}&suite=${suiteName}&testRunId=${testRunId}&testRunName=${testRunName}&source=milestone-defect`}
+                                
+                            >
+                                Activity
+                            </a>
+                            <a
+                                href={`/milestone-progress?suiteId=${suiteId}&suite=${suiteName}&testRunId=${testRunId}&testRunName=${testRunName}&source=milestone-defect`}
+    
+                            >
+                                Progress
+                            </a>
+                            <a
+                                href={`/milestone-defect?suiteId=${suiteId}&suite=${suiteName}&testRunId=${testRunId}&testRunName=${testRunName}&source=milestone-defect`}
+                                
+                            >
+                                Defects
+                            </a>
+                        </>
+                    ) : (
+                        <>
+                            <a href="/milestone-status" >
+                                Status
+                            </a>
+                            <a href="/milestone-activity" >
+                                Activity
+                            </a>
+                            <a href="/milestone-progress" >
+                                Progress
+                            </a>
+                            <a href="/milestone-defect" >
+                                Defects
+                            </a>
+                        </>
+                    )}
                 </div>
                
                 <div className="defects-controls">
-                    <h3> Milestone Name </h3>
+                {sourcePage === 'TestRunTestsResults' || sourcePage === 'milestone-activity' || sourcePage === 'milestone-progress' || sourcePage === 'milestone-defect' ? (
+                        <h2>{`R${testRunId} - ${testRunName}`}</h2>
+                    ) : (
+                        <h2>Milestone Name</h2>   
+                    )}
                     <div className="defects-control-button">
-                        <button onClick={handleEditMilestone}>Edit</button>
+                        <button className="milestone-button" onClick={handleEditMilestone}>Edit</button>
                     </div>
                 </div>
             </div>
@@ -35,8 +87,8 @@ const Milestonesdefects = () => {
                 </div>
                 <div className="defects-details-chart">
                     <div className="defects-chart-download">
-                        <button className="download-csv">Download CSV</button>
-                        <button className="download-img">Download Image</button>
+                        <button className="download">Download CSV</button>
+                        <button className="download">Download Image</button>
                     </div>
                     <Graph/>
                 </div>
@@ -56,7 +108,9 @@ const Milestonesdefects = () => {
                 </div>
             </div>
 
-            <div className="defects-testrun-class">
+            {sourcePage !== 'TestRunTestsResults' && sourcePage !== 'milestone-activity' && sourcePage !== 'milestone-progress' && sourcePage !== 'milestone-defect' && (
+                <>
+                    <div className="defects-testrun-class">
                 <div className="defects-testrun-details">
                     <p>Test run name</p>
                     <div className="defects-testrun-number">
@@ -118,6 +172,8 @@ const Milestonesdefects = () => {
                     </div>
                 </div>
             </div>
+            </>
+            )}
 
             <div className="defects-details-header">
                 <h3> Defects </h3>

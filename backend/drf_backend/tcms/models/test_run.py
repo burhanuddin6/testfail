@@ -25,6 +25,7 @@ class TestRun(models.Model):
     name = models.CharField(max_length=255, unique=True)
     test_suite_id = models.ForeignKey('TestSuite', on_delete=models.CASCADE, related_name='testruns')
     milestone_id = models.ForeignKey('Milestone', on_delete=models.CASCADE, null=True, blank=True, related_name='testruns')
+
     description = models.TextField(null=True, blank=True)
     ALL = 'ALL'
     SELECTED = 'SELECTED'
@@ -37,7 +38,6 @@ class TestRun(models.Model):
     test_case_filter = models.CharField(max_length=255, choices=TEST_CASE_FILTER_CHOICES, default=ALL)
     test_case_filter_value = models.TextField(null=True, blank=True)
     project_id = models.ForeignKey('Project', on_delete=models.CASCADE)
-    is_complete = models.BooleanField(default=False)
     is_part_of_test_plan = models.BooleanField(default=False)
 
     number_of_passed_test_cases = models.IntegerField(blank=True, default=0)
@@ -51,12 +51,14 @@ class TestRun(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_by = models.ForeignKey('MyUser', on_delete=models.CASCADE, null=True, blank=True, related_name='updated_testruns')
     updated_on = models.DateTimeField(null=True, blank=True)
+    assigned_to = models.ForeignKey('MyUser', on_delete=models.CASCADE, null=True, blank=True, related_name='assigned_testruns')
 
-    is_completed = models.BooleanField(default=False)
+
+    is_complete = models.BooleanField(default=False)
     completed_on = models.DateTimeField(null=True, blank=True)
 
     def save(self, *args, **kwargs):
-        if self.is_completed:
+        if self.is_complete:
             self.completed_on = datetime.now(timezone.utc)
             
         if self.pk is not None:

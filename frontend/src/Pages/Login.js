@@ -94,8 +94,8 @@ const Login = () => {
             />
           </div>
           <div className="button-group">
-            <button type="button" onClick={handleSignUp}>Sign Up</button>
             <button type="submit">Log In</button>
+            <button type="button" onClick={handleSignUp}>Sign Up</button>
           </div>
           <div className="form-check">
             <input type="checkbox" id="keepLoggedIn" />

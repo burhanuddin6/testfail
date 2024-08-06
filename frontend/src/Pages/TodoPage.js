@@ -29,90 +29,87 @@ const TodoPage = () => {
       ],
       borderWidth: 1,
     }],
-  }; 
+  };
 
   return (
-    <div className="todo-page">
+    <div className="todo-mainclass">
+      <div className="todo-header">
+          <h2> To-dos </h2>
+      </div>
 
-      <div className="todo-chart-container">
-        <Bar data={chartData} />
+      <div className="todo-page-details">
+          <div className="todo-chart-download">
+              <button className="download">Download CSV</button>
+              <button className="download">Download Image</button>
+          </div>
+          <div className='todo-chart'>
+            <Bar data={chartData} />
+          </div>
       </div>
 
       <div className='todo-testruns'>
         <h2>Test Runs</h2>
 
         <div className="test-runs-filter">
-          <div className="test-runs-filter-label">Group by:</div>
-          <div className="dropdown">
-            <button className="dropbtn">None</button>
-            <div className="dropdown-content">
-              <a href="#">Milestone</a>
-              <a href="#">Test Plan</a>
-              <a href="#">Day</a>
-              <a href="#">Month</a>
-            </div>
-          </div>
-          <div className="test-runs-filter-label">Filter:</div>
-          <div className="dropdown">
-            <button className="dropbtn">None</button>
-            <div className="dropdown-content">
-              <a href="#">Select All</a>
-              <a href="#">None</a>
-              <a href="#">Passed</a>
-              <a href="#">Blocked</a>
-              <a href="#">Untested</a>
-              <a href="#">Retest</a>
-              <a href="#">Failed</a>
-              <a href="#">Comments</a>
-              <a href="#">Partial</a>
-            </div>
-          </div>
-        </div>
-        
-        <ul className="test-runs-list">
-          <li className="test-runs-item">
-            <Link to="/testruns/1">
-              <div className="test-runs-item-icon">
-                <i className="fas fa-folder-open"></i>
+           <div className="test-runs-filter-label">Group by:</div>
+           <div className="dropdown">
+             <button className="dropbtn">None</button>
+             <div className="dropdown-content">
+               <a href="#">Milestone</a>
+               <a href="#">Test Plan</a>
+               <a href="#">Day</a>
+               <a href="#">Month</a>
+             </div>
+           </div>
+           <div className="test-runs-filter-label">Filter:</div>
+           <div className="dropdown">
+             <button className="dropbtn">None</button>
+             <div className="dropdown-content">
+               <a href="#">Select All</a>
+               <a href="#">None</a>
+               <a href="#">Passed</a>
+               <a href="#">Blocked</a>
+               <a href="#">Untested</a>
+               <a href="#">Retest</a>
+               <a href="#">Failed</a>
+               <a href="#">Comments</a>
+               <a href="#">Partial</a>
+             </div>
+           </div>
+         </div>
+
+         <div className='todo-testrun-listing'>
+              <div className='todo-testrun-item'>
+                <Link to="/TestRunTestsResults">
+                  {/* <div className="test-runs-item-icon">
+                    <i className="fas fa-folder-open"></i>
+                  </div> */}
+                  <div className="test-runs-item-title">DSR Functional Testplan for 0.5 (215)</div>
+                </Link>
+                <div className="todo-test-runs-status-bar">
+                  <div className="test-runs-item-progress-bar" style={{ width: '42%' }}></div>
+                </div>
+                <div className="status-testrun-progress-value">42%</div>
+                <div className="test-runs-item-unassigned">10 unassigned</div>
               </div>
-              <div className="test-runs-item-title">DSR Functional Testplan for 0.5 (215)</div>
-              <div className="test-runs-item-progress">
-                <div className="test-runs-item-progress-bar" style={{ width: '42%' }}></div>
-                <div className="test-runs-item-progress-value">42%</div>
+
+              <div className='todo-testrun-item'>
+                <Link to="/TestRunTestsResults">
+                  {/* <div className="test-runs-item-icon">
+                    <i className="fas fa-folder-open"></i>
+                  </div> */}
+                  <div className="test-runs-item-title">DSR Functional Testplan for 0.5 (215)</div>
+                </Link>
+                <div className="todo-test-runs-status-bar">
+                  <div className="test-runs-item-progress-bar" style={{ width: '80%' }}></div>
+                </div>
+                <div className="status-testrun-progress-value">80%</div>
+                <div className="test-runs-item-unassigned">10 unassigned</div>
               </div>
-              <div className="test-runs-item-unassigned">10 unassigned</div>
-            </Link>
-          </li>
-          <li className="test-runs-item">
-            <Link to="/testruns/2">
-              <div className="test-runs-item-icon">
-                <i className="fas fa-folder-open"></i>
-              </div>
-              <div className="test-runs-item-title">DSR Messaging Options (11)</div>
-              <div className="test-runs-item-progress">
-                <div className="test-runs-item-progress-bar" style={{ width: '92%' }}></div>
-                <div className="test-runs-item-progress-value">92%</div>
-              </div>
-              <div className="test-runs-item-unassigned">1 unassigned</div>
-            </Link>
-          </li>
-          <li className="test-runs-item">
-            <Link to="/testruns/3">
-              <div className="test-runs-item-icon">
-                <i className="fas fa-folder-open"></i>
-              </div>
-              <div className="test-runs-item-title">Infra US Sanity 1.115 (12)</div>
-              <div className="test-runs-item-progress">
-                <div className="test-runs-item-progress-bar" style={{ width: '67%' }}></div>
-                <div className="test-runs-item-progress-value">67%</div>
-              </div>
-              <div className="test-runs-item-unassigned">0 unassigned</div>
-            </Link>
-          </li>
-          {/* <!-- rest of the test runs --> */}
-        </ul>
+
+         </div>
       </div>
-    </div>
+     </div>
   );
 };
 

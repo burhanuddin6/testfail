@@ -15,7 +15,7 @@ const createTestCase = async (data) => {
 // function to update a test case using its id 
 const updateTestCase = async (testCaseId, testCaseData) => {
   try {
-    const response = await axiosInstance.put(`test_cases/${testCaseId}`, testCaseData);
+    const response = await axiosInstance.patch(`test_cases/${testCaseId}`, testCaseData);
     return response.data;
   } catch (error) {
     console.error('Error updating test case:', error); // debug statement, remove before production
@@ -37,7 +37,7 @@ const deleteTestCase = async (testCaseId) => {
 const fetchTestCaseDetails = async (testCaseId) => {
   try {
     const response = await axiosInstance.get(`test_cases/${testCaseId}`);
-    console.log(response); // debug statement, remove before production
+    // console.log(response); // debug statement, remove before production
     return response.data;
   } catch (error) {
     console.error('Error fetching test case details:', error); // debug statement, remove before production
@@ -49,7 +49,7 @@ const fetchTestCaseDetails = async (testCaseId) => {
 const fetchTestCaseChoices = async () => {
     try {
         const response = await axiosInstance.get('test_cases/');
-        console.log("test case choices" + response.data); // debug statement, remove before production
+        // console.log(`response: ${JSON.stringify(response.data, null, 2)}`); // debug statement, remove before production
         return response.data;
     } catch (error) {
         console.error('Error fetching test case choices:', error); // debug statement, remove before production

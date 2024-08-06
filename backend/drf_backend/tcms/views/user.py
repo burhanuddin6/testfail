@@ -83,6 +83,7 @@ class UserActionViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = UserActionSerializer
     permission_classes = [HasModelPermissions]
     
+# NEED TO FIX
 def get_qa_users(request):
     # Get 'group_name' from query parameters
     group_name = request.GET.get('group_name', 'qa-user')
@@ -91,7 +92,7 @@ def get_qa_users(request):
     group = get_object_or_404(Group, name=group_name)
 
     # Filter users by the group
-    users = MyUser.objects.filter(groups=group).values('email', 'first_name' , 'last_name')  # Note: 'username' is often used instead of 'name'
+    users = MyUser.objects.filter(is_superuser=False).values('id', 'email', 'first_name' , 'last_name')  # Note: 'username' is often used instead of 'name'
 
     # Return JSON response
     return JsonResponse({'users': list(users)})

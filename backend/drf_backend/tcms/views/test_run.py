@@ -32,24 +32,19 @@ class TestRunViewSet(viewsets.ModelViewSet):
 
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
-    
-    # def get_queryset(self):
-        
-    #     project_id = self.request.query_params.get('project_id', None)
-        
-    #     if project_id:
-    #         return TestRun.objects.filter(project_id=project_id)
 
-    #     return TestRun.objects.all()
     def get_queryset(self):
         project_id = self.request.query_params.get('project_id', None)
         suite_id = self.request.query_params.get('suite_id', None)
+        milestone_id = self.request.query_params.get('milestone_id', None)
 
         if project_id:
             if suite_id:
                 return TestRun.objects.filter(project_id=project_id, test_suite_id=suite_id)
+            if milestone_id: 
+                return TestRun.objects.filter(project_id=project_id, milestone_id = milestone_id)
             return TestRun.objects.filter(project_id=project_id)
-
+                
         return TestRun.objects.all()
 
 class TestRunFileViewSet(viewsets.ModelViewSet):

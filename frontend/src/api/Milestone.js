@@ -16,7 +16,7 @@ const createMilestone = async (milestoneData) => {
 const fetchMilestones = async (projectId) => {
   try {
     const response = await axiosInstance.get(`milestones/?project_id=${projectId}`);
-    console.log(response.data); // debug statement, remove before production
+    // console.log(response.data); // debug statement, remove before production
     return response.data;
   } catch (error) {
     console.error('Error fetching milestones:', error); // debug statement, remove before production
@@ -42,7 +42,8 @@ const fetchMilestonesIdName = async(projectId) => {
       const response = await axiosInstance.get('milestones/get_name_id/', {
           params: { project_id: projectId }
       });
-      console.log(response); // debug statement, remove before production
+      console.log(`ur milestone payload is:  ${JSON.stringify(response.data, null, 2)}`); // debug statement, remove before production
+      // console.log(response); // debug statement, remove before production
       return response.data.milestones; 
   } catch (error) {
       console.error('Error fetching name and milestone id for add milestone form', error); // debug statement, remove before production

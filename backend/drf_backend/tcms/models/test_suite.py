@@ -35,6 +35,9 @@ class TestSuite(models.Model):
                 created_by=self.created_by
             )
 
+    def __str__(self) -> str:
+        return str(self.name)
+
 class Section(models.Model):
     section_id = models.AutoField(primary_key=True)
     parent_id = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)

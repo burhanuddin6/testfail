@@ -41,9 +41,25 @@ body, html {
     margin-bottom: 20px;
   }
 
-  .add-form-group select, .add-form-group input[type="text"], .add-form-group textarea, .add-form-group input[type="date"]{
+  .add-form-group select, .add-form-group input[type="text"],  .add-form-group input[type="date"]{
     width: 100%;
     height: 30px;
+  }
+
+  .add-form-group textarea {
+    resize: vertical;
+    width: 100%;
+    height: 70px;
+  }
+
+  .add-references-add-form {
+    margin-left: auto;
+    text-decoration: underline;
+    margin-top: 0px;
+  }
+
+  .references-add-form-grp {
+    display: flex;
   }
 
   .add-form-group label {
