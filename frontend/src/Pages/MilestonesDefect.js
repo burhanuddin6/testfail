@@ -75,7 +75,7 @@ const Milestonesdefects = () => {
                         <h2>Milestone Name</h2>   
                     )}
                     <div className="defects-control-button">
-                        <button onClick={handleEditMilestone}>Edit</button>
+                        <button className="milestone-button" onClick={handleEditMilestone}>Edit</button>
                     </div>
                 </div>
             </div>
@@ -87,8 +87,8 @@ const Milestonesdefects = () => {
                 </div>
                 <div className="defects-details-chart">
                     <div className="defects-chart-download">
-                        <button className="download-csv">Download CSV</button>
-                        <button className="download-img">Download Image</button>
+                        <button className="download">Download CSV</button>
+                        <button className="download">Download Image</button>
                     </div>
                     <Graph/>
                 </div>

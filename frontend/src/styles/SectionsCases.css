@@ -171,15 +171,17 @@
     background: none;
     border: none;
     color: #f00;
+    align-items: left;
+    padding-right: 500px;
     font-weight: bold;
-    background-color: #f9f9f9;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 18px;
   }
   
+/* 
   .delete-section-button:hover {
     background-color: #f9f9f9;
-  }
+  }  */
   
   .sections-tree-view {
     flex: 1;

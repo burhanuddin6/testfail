@@ -38,6 +38,7 @@ import AddTestPlan from './Pages/AddTestPlan';
 import TestSuiteTestRuns from './Pages/TestSuiteTestRuns';
 import TestRunTestsResults from './Pages/TestRunTestsResults';
 import NotFound from './Pages/NotFound';
+import TestPlanStatus from './Pages/TestPlanStatus';
 
 const App = () => {
   const [userName, setUserName] = useState("");
@@ -239,6 +240,15 @@ const App = () => {
             <>
               <Header userName={userName} />
               <TestRunTestsResults />
+            </>
+          }
+        />
+        <Route
+          path="/TestPlanStatus"
+          element={
+            <>
+              <Header userName={userName} />
+              <TestPlanStatus />
             </>
           }
         />

@@ -77,7 +77,7 @@ const SectionsCases = () => {
             <div key={section.id} className="section">
               <div className="section-header">
                 <h3>{section.title}</h3>
-                <button className="delete-section-button">X</button>
+                <button className="delete-section-button">&times;</button>
                 <span>{section.cases.length} cases</span>
               </div>
               <div className="case-list">

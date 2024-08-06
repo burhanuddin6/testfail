@@ -70,8 +70,13 @@ const TestRuns = () => {
 
                 <div className="test-run-results-details">
                     <input type="checkbox"/>
-                    <p className="test-suite-indicator">Test Suite</p>
-                    <p><strong>Name</strong><br></br>by ... on ...<br></br>92 Passed, 0 Blocked, 0 Untested, 0 Retest, 4 Failed, 0 Comments and 0 Partial</p>
+                    <p className="test-plan-indicator">Test Plan</p>
+                    <p><strong><a
+                                href={`/TestPlanStatus`}
+                                
+                            >
+                                Name
+                            </a></strong>by ... on ...<br></br>92 Passed, 0 Blocked, 0 Untested, 0 Retest, 4 Failed, 0 Comments and 0 Partial</p>
                     <div className="test-run-results-statusbar">
                         <div className="test-run-results-progress-bar-passes" style={{ width: '42%' }}> </div>
                         <div className="test-run-results-progress-bar-untested" style={{ width: '16%' }}> </div>
@@ -105,8 +110,13 @@ const TestRuns = () => {
 
                 <div className="test-run-results-details">
                     <input type="checkbox"/>
-                    <p className="test-suite-indicator">Test Suite</p>
-                    <p><strong>Name</strong><br></br>by ... on ...<br></br>92 Passed, 0 Blocked, 0 Untested, 0 Retest, 4 Failed, 0 Comments and 0 Partial</p>
+                    <p className="test-plan-indicator">Test Plan</p>
+                    <p><strong><a
+                                href={`/TestPlanStatus`}
+                                
+                            >
+                                Name
+                            </a></strong>by ... on ...<br></br>92 Passed, 0 Blocked, 0 Untested, 0 Retest, 4 Failed, 0 Comments and 0 Partial</p>
                     <div className="test-run-results-statusbar">
                         <div className="test-run-results-progress-bar-passes" style={{ width: '42%' }}> </div>
                         <div className="test-run-results-progress-bar-untested" style={{ width: '16%' }}> </div>

@@ -110,7 +110,6 @@ const TestRunTestsResults = () => {
             defects: [],
             assignedTo: "",
           },
-          
         ];
 
         // Calculate test case statistics
