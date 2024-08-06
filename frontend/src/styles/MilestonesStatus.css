@@ -160,3 +160,35 @@ body, html {
     font-weight: bold;
     margin-top: 8px;
   }
+
+/* new mariam code */
+.status-completed-milestones, .status-completed-testruns {
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.status-completed-milestones h3, .status-completed-testruns h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.status-completed-milestones .status-milestones-details, 
+.status-completed-testruns .status-testrun-details {
+    font-size: 14px;
+    padding: 8px;
+}
+
+.status-completed-milestones .status-milestones-progress-bar-passed, 
+.status-completed-testruns .status-testrun-progress-bar-passed {
+    height: 15px; /* Adjust height for completed items */
+}
+
+.status-completed-milestones .status-milestones-progress-bar-untested,
+.status-completed-testruns .status-testrun-progress-bar-untested {
+    height: 15px; /* Adjust height for completed items */
+}
+
+.status-completed-milestones .status-milestones-progress-bar-failed,
+.status-completed-testruns .status-testrun-progress-bar-failed {
+    height: 15px; /* Adjust height for completed items */
+}

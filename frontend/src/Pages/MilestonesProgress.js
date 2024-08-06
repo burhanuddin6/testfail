@@ -218,8 +218,4 @@ const MilestonesProgress = () => {
     );
 }
 
-<<<<<<< HEAD
-export default Milestonesprogress;
-=======
 export default MilestonesProgress;
->>>>>>> origin/main
