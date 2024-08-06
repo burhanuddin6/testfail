@@ -186,7 +186,7 @@ const TestCaseDefects = () => {
                   Defects
                 </Link>
                 </h3>
-                <Link to={`/TestCaseHistory?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId={testCaseId}&testCaseName={testCaseName}`} className="sidebar-link">
+                <Link to={`/TestCaseHistory?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`} className="sidebar-link">
                   History
                 </Link>
             </div>
