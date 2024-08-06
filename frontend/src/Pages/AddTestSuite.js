@@ -3,7 +3,7 @@ import '../styles/AddTestSuite.css';
 import { useNavigate } from 'react-router-dom'; 
 import { createTestSuite } from '../api/TestSuites'; 
 import { getProjectID } from '../utilities/globals'; 
-
+import FileUpload from '../components/fileUpload';
 
 const AddTestSuite = () => {
   const [name, setName] = useState('');
@@ -40,9 +40,7 @@ const AddTestSuite = () => {
     navigate('/testsuitscases'); //URL CHANGE
   };
 
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
-  };
+  
 
   return (
     <div className="test-suite-container">
@@ -77,17 +75,7 @@ const AddTestSuite = () => {
           />
         </div>
 
-        <div className="file-upload">
-          <div className="file-upload-icon" />
-          <input
-            type="file"
-            onChange= {(e) => handleFileChange(e)}
-            className="file-upload-input"
-          />
-          <p className="file-upload-text">
-            Drop files here to attach, or click on "+" to browse
-          </p>
-        </div>
+        <FileUpload/>
 
         <div className="test-suite-buttons">
           <button type="submit" className="test-suite-button test-suite-submit">

@@ -210,3 +210,15 @@ body, html {
 .testsuite-remove:hover {
   background-color: #FAA0A0;
 }
+
+
+.add-references-add-plan-form {
+  margin-left: auto;
+  text-decoration: underline;
+  margin-top: 0px;
+}
+
+.references-add-plan-form-grp {
+  display: flex;
+  margin-bottom: 5px;
+}

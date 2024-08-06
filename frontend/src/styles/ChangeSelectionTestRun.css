@@ -130,16 +130,20 @@
     width: auto;
   }
   
-  .cancel-button {
+  .cancel-button , .remove-button{
     background: #ff5c5c;
     color: white;
     border: none;
   }
   
-  .ok-button {
+  .ok-button , .add-button{
     background: #4caf50;
     color: white;
     border: none;
+  }
+
+  .cancel-button:hover, .remove-button:hover {
+    background-color: #b44545;
   }
 
   .filter-add-dropdown {
@@ -163,7 +167,6 @@
   .add-button, .remove-button {
     width: 10px;
     height: 10px;
-    background-color: rgb(196, 196, 196);
     border-radius: 40%;
     font-size: 15px;
     display: flex;
@@ -171,7 +174,17 @@
     justify-content: center;
   }
 
-  .add-button:hover, .remove-button:hover {
-    background-color: gray;
-  }
 
+.action-button-add-filter {
+  background-color: green;
+  color: white;
+  margin-left: auto;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 40%;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}

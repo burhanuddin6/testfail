@@ -4,6 +4,9 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { createTestCase, fetchTestCaseChoices } from '../api/TestCase';
 import { getProjectID } from '../utilities/globals';
 import { fetchSectionsBySuiteId } from '../api/Section';
+import FileUpload from '../components/fileUpload';
+import TestStep from '../components/testSteps';
+import BDD from '../components/bdd';
 
 const AddTestCase = () => {
   const [section, setSection] = useState(''); 
@@ -22,6 +25,36 @@ const AddTestCase = () => {
   const [sections, setSections] = useState([]);
   const [choices, setChoices] = useState({}); 
   const [loading, setLoading] = useState(true); 
+  const [mission, setMission] = useState('');
+  const [goals, setGoals] = useState('');
+  const [stepsCases, setStepsCases] = useState([{ id: 1 }]);
+  const [bddscenerio, setbddscenerio] = useState([{ id: 1 }]);
+
+  const addStepCases = (e) => {
+    e.preventDefault();
+    setStepsCases((prevSteps) => [
+      ...prevSteps,
+      { id: prevSteps.length + 1 },
+    ]);
+  };
+
+  const removeStepCases = (id) => {
+    setStepsCases((prevSteps) => prevSteps.filter((step) => step.id !== id));
+  };
+
+  const addBDD = (e) => {
+    e.preventDefault();
+    setbddscenerio((prevbdd) => [
+      ...prevbdd,
+      { id: prevbdd.length + 1 },
+    ]);
+  };
+
+  const removeBDD = (id) => {
+    setbddscenerio((prevbdd) => prevbdd.filter((bdd) => bdd.id !== id));
+  };
+
+  
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -95,12 +128,14 @@ const AddTestCase = () => {
 
   return (
     <div className="test-case-page">
-      <div className="test-case-header">
+      {/* <div className="test-case-header">
         <h2 className="add-test-case-title">Add Test Case</h2>
-      </div>
-      <div className="test-case-container">
-        <h2 className="add-test-case-title">Add Test Case</h2>
+      </div> */}
+      {/* <div className="test-case-container"> */}
+       
         <form className="test-case-form" onSubmit={handleSubmit}>
+        <h2 className="add-test-case-title">Add Test Case</h2>
+          {/* Title Field */}
           <div className="test-case-form-group">
             <label htmlFor="title" className="test-case-label">
               Title<span className="test-case-required">*</span>
@@ -155,6 +190,10 @@ const AddTestCase = () => {
                       {value}
                     </option>
                   ))}
+                  <option value="Behavior Driven Development">Behavior Driven Development</option>
+                  <option value="Exploratory Session">Exploratory Session</option>
+                  <option value="Test Case (Steps)">Test Case (Steps)</option>
+                  <option value="Test Case (Text)">Test Case (Text)</option>
                 </select>
               </div>
 
@@ -215,9 +254,10 @@ const AddTestCase = () => {
               </div>
 
               <div className="form-column">
-                <label htmlFor="references" className="test-case-label">
-                  References
-                </label>
+                <div className='references-add-testcase-form'>
+                  <label className="test-case-label">References</label>
+                  <a href="" className='add-references-add-testcase-form'>Add</a>
+                </div>
                 <input
                   type="text"
                   id="references"
@@ -262,57 +302,146 @@ const AddTestCase = () => {
             </div>
           </div>
 
-          <div className="test-case-form-group">
-            <label htmlFor="preconditions" className="test-case-label">
-              Preconditions
-            </label>
-            <textarea
-              id="preconditions"
-              value={preconditions}
-              onChange={(e) => setPreconditions(e.target.value)}
-              className="test-case-textarea"
-              placeholder="The preconditions of this test case. Reference other test cases with [C#] (e.g., C7)."
-            />
-          </div>
+          {template == "Test Case (Text)" &&
+            <div className='test-case-template-based'>
+              <div className="test-case-form-group">
+                <label htmlFor="preconditions" className="test-case-label">
+                  Preconditions
+                </label>
+                <textarea
+                  id="preconditions"
+                  value={preconditions}
+                  onChange={(e) => setPreconditions(e.target.value)}
+                  className="test-case-textarea"
+                  placeholder="The preconditions of this test case. Reference other test cases with [C#] (e.g., C7)."
+                />
+              </div>
+
+              <div className="test-case-form-group">
+                <label htmlFor="steps" className="test-case-label">
+                  Steps
+                </label>
+                <textarea
+                  id="steps"
+                  value={steps}
+                  onChange={(e) => setSteps(e.target.value)}
+                  className="test-case-textarea"
+                  placeholder="The required steps to execute the test case."
+                />
+              </div>
+
+              <div className="test-case-form-group">
+                <label htmlFor="expectedResult" className="test-case-label">
+                  Expected Result
+                </label>
+                <textarea
+                  id="expectedResult"
+                  value={expectedResult}
+                  onChange={(e) => setExpectedResult(e.target.value)}
+                  className="test-case-textarea"
+                  placeholder="The expected result after executing the test case."
+                />
+              </div>
+            </div>
+          }
+
+          {template == "Test Case (Steps)" &&
+            <div className='test-case-template-based'>
+              <div className="test-case-form-group">
+                <label htmlFor="preconditions" className="test-case-label">
+                  Preconditions
+                </label>
+                <textarea
+                  id="preconditions"
+                  value={preconditions}
+                  onChange={(e) => setPreconditions(e.target.value)}
+                  className="test-case-textarea"
+                  placeholder="The preconditions of this test case. Reference other test cases with [C#] (e.g., C7)."
+                />
+              </div>
+
+              <div className="test-case-form-group">
+                <label htmlFor="steps" className="test-case-label">
+                  Steps
+                </label>
+                <p className='steps-description'>Enter all test steps needed to verify this test case.</p>
+                {stepsCases.map((step) => (
+                  <TestStep key={step.id} stepNumber={step.id} onRemove={() => removeStepCases(step.id)} />
+                ))}
+                <div className='action-button'>
+                  <button className="action-button-add-steps" onClick={addStepCases}>
+                    +
+                  </button>
+                </div>
+              </div> 
+            </div>
+          }
+
+          {template == "Exploratory Session" &&
+            <div className='test-case-template-based'>
+              <div className="test-case-form-group">
+                <label htmlFor="mission" className="test-case-label">
+                  Mission
+                </label>
+                <textarea
+                  id="mission"
+                  value={mission}
+                  onChange={(e) => setMission(e.target.value)}
+                  className="test-case-textarea"
+                  placeholder="A high-level overview of what to test and which areas to cover, usually just 1-2 sentences."
+                />
+              </div>
+
+              <div className="test-case-form-group">
+                <label htmlFor="goals" className="test-case-label">
+                  Goals
+                </label>
+                <textarea
+                  id="goals"
+                  value={goals}
+                  onChange={(e) => setGoals(e.target.value)}
+                  className="test-case-textarea"
+                  placeholder="A detailed list of goals to cover as part of the exploratory sessions."
+                />
+              </div>
+            </div>
+          }
+
+          {template == "Behavior Driven Development" &&
+            <div className='test-case-template-based'>
+              <div className="test-case-form-group">
+                <label htmlFor="bdd" className="test-case-label">
+                  BDD Scenerio
+                </label>
+                <p className='bdd-scenerio-description'>Enter all test scenarios needed to verify this test case.</p>
+                {bddscenerio.map((bdd) => (
+                  <BDD key={bdd.id} stepNumber={bdd.id} onRemove={() => removeBDD(bdd.id)} />
+                ))}
+                <div className='action-button'>
+                  <button className="action-button-add-steps" onClick={addBDD}>
+                    +
+                  </button>
+                </div>
+              </div>
+            </div>
+          }
+          
 
           <div className="test-case-form-group">
-            <label htmlFor="steps" className="test-case-label">
-              Steps
-            </label>
-            <textarea
-              id="steps"
-              value={steps}
-              onChange={(e) => setSteps(e.target.value)}
-              className="test-case-textarea"
-              placeholder="The required steps to execute the test case."
-            />
+                <label htmlFor="automatedCases" className="test-case-label">
+                  Automated Cases
+                </label>
+                <textarea
+                  id="automatedCases"
+                  value={automatedCases}
+                  onChange={(e) => setAutomatedCases(e.target.value)}
+                  className="test-case-textarea"
+                  placeholder="Automated Cases"
+                />
           </div>
+          
 
-          <div className="test-case-form-group">
-            <label htmlFor="expectedResult" className="test-case-label">
-              Expected Result
-            </label>
-            <textarea
-              id="expectedResult"
-              value={expectedResult}
-              onChange={(e) => setExpectedResult(e.target.value)}
-              className="test-case-textarea"
-              placeholder="The expected result after executing the test case."
-            />
-          </div>
-
-          <div className="test-case-form-group">
-            <label htmlFor="automatedCases" className="test-case-label">
-              Automated Cases
-            </label>
-            <textarea
-              id="automatedCases"
-              value={automatedCases}
-              onChange={(e) => setAutomatedCases(e.target.value)}
-              className="test-case-textarea"
-              placeholder="Automated Cases"
-            />
-          </div>
+          <FileUpload/>
 
           <div className="test-case-buttons">
             <button type="submit" className="test-case-button">
@@ -323,7 +452,7 @@ const AddTestCase = () => {
             </button>
           </div>
         </form>
-      </div>
+      {/* </div> */}
     </div>
   );
 };

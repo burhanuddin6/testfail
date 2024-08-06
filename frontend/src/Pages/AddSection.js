@@ -108,6 +108,8 @@ import React, { useState } from 'react';
 import '../styles/AddSection.css'; // Import the CSS file
 import { useNavigate, useLocation } from 'react-router-dom';
 import { createSection } from '../api/Section'; // Import the API function
+import FileUpload from '../components/fileUpload';
+
 
 const AddSection = () => {
   const [name, setName] = useState('');
@@ -186,17 +188,7 @@ const AddSection = () => {
           />
         </div>
 
-        <div className="file-upload">
-          <div className="file-upload-icon" />
-          <input
-            type="file"
-            onChange={handleFileChange}
-            className="file-upload-input"
-          />
-          <p className="file-upload-text">
-            Drop files here to attach, or click on "+" to browse
-          </p>
-        </div>
+        <FileUpload/>
 
         <div className="add-section-buttons">
           <button type="submit" className="add-section-form-button add-section-submit">

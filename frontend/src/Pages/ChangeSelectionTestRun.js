@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/ChangeSelectionTestRun.css'; // Import the CSS file for styling
+import ChangeSelectionFilters from '../components/changeSelectionFilter.js'
 
 const ChangeSelection = ({ onCancel }) => {
   const [selectedItems, setSelectedItems] = useState([]);
@@ -21,14 +22,14 @@ const ChangeSelection = ({ onCancel }) => {
   const [AutomationType, setAutomationType] = useState('');
   const [CreatedBy, setCreatedBy] = useState('');
   const [CreatedOn, setCreatedOn] = useState('');
-  const [Estimate, setEstimate] = useState('');
-  const [Forecast, setForecast] = useState('');
+  const [Estimate, setEstimate] = useState([{ id: 1 }]);
+  const [Forecast, setForecast] = useState([{ id: 1 }]);
   const [Obsolete, setObsolete] = useState('');
   const [Priority, setPriority] = useState('');
-  const [References, setReferences] = useState('');
+  const [References, setReferences] = useState([{ id: 1 }]);
   const [Section, setSection] = useState('');
   const [Template, setTemplate] = useState('');
-  const [Title, setTitle] = useState('');
+  const [Title, setTitle] = useState([{ id: 1 }]);
   const [Type, setType] = useState('');
   const [UpdatedBy, setUpdatedBy] = useState('');
   const [UpdatedOn, setUpdatedOn] = useState('');
@@ -46,6 +47,53 @@ const ChangeSelection = ({ onCancel }) => {
     );
   };
 
+  const addTitle = (e) => {
+    e.preventDefault();
+    setTitle((prevSteps) => [
+      ...prevSteps,
+      { id: prevSteps.length + 1 },
+    ]);
+  };
+
+  const removeTitle = (id) => {
+    setTitle((prevSteps) => prevSteps.filter((step) => step.id !== id));
+  };
+
+  const addEstimate = (e) => {
+    e.preventDefault();
+    setEstimate((prevSteps) => [
+      ...prevSteps,
+      { id: prevSteps.length + 1 },
+    ]);
+  };
+
+  const removeEstimate = (id) => {
+    setEstimate((prevSteps) => prevSteps.filter((step) => step.id !== id));
+  };
+
+  const addReferences = (e) => {
+    e.preventDefault();
+    setReferences((prevSteps) => [
+      ...prevSteps,
+      { id: prevSteps.length + 1 },
+    ]);
+  };
+
+  const removeReferences = (id) => {
+    setReferences((prevSteps) => prevSteps.filter((step) => step.id !== id));
+  };
+
+  const addForecast = (e) => {
+    e.preventDefault();
+    setForecast((prevSteps) => [
+      ...prevSteps,
+      { id: prevSteps.length + 1 },
+    ]);
+  };
+
+  const removeForecast = (id) => {
+    setForecast((prevSteps) => prevSteps.filter((step) => step.id !== id));
+  };
 
   return (
     <div className="ChangeSelection-overlay">
@@ -346,32 +394,14 @@ const ChangeSelection = ({ onCancel }) => {
                         <input type="radio" name="filter-title" />
                         Match any of the above
                     </label>
-                    <div className='filter-add-dropdown'>
-                            <div  className="dropdown-element">
-                                <select onChange={(e) => setSelectedOptionEstimate(e.target.value)} value={selectedOptionEstimate} className='filter-dropdown-options'>
-                                    <option value="">Select...</option>
-                                    <option value="is">Is</option>
-                                    <option value="isnot">Is Not</option>
-                                    <option value="less">Is Less</option>
-                                    <option value="more">Is More</option>
-                                </select>
-                            
-                                <input type="text" className="filter-input" />
-                                <button
-                                    className="add-button"
-                                    onClick={(e) => e.preventDefault()}
-                                    aria-label="Add"
-                                >
-                                    +
-                                </button>
-                                <button
-                                    className="remove-button"
-                                    onClick={(e) => e.preventDefault()}
-                                    aria-label="Remove"
-                                >
-                                    -
-                                </button>
-                            </div>
+                    {Estimate.map((step) => (
+                        <ChangeSelectionFilters key={step.id} stepNumber={step.id} onRemove={() => removeEstimate(step.id)} dropOptions={['Is', 'Is Not', 'Is Less', 'Is More']} />
+                    ))}
+
+                    <div className='action-button-filter'>
+                        <button className="action-button-add-filter" onClick={addEstimate}>
+                            +
+                        </button>
                     </div>
                 </div>
                }
@@ -387,32 +417,14 @@ const ChangeSelection = ({ onCancel }) => {
                         <input type="radio" name="filter-title" />
                         Match any of the above
                     </label>
-                    <div className='filter-add-dropdown'>
-                            <div  className="dropdown-element">
-                                <select onChange={(e) => setSelectedOptionForecast(e.target.value)} value={selectedOptionForecast} className='filter-dropdown-options'>
-                                    <option value="">Select...</option>
-                                    <option value="is">Is</option>
-                                    <option value="isnot">Is Not</option>
-                                    <option value="less">Is Less</option>
-                                    <option value="more">Is More</option>
-                                </select>
-                            
-                                <input type="text" className="filter-input" />
-                                <button
-                                    className="add-button"
-                                    onClick={(e) => e.preventDefault()}
-                                    aria-label="Add"
-                                >
-                                    +
-                                </button>
-                                <button
-                                    className="remove-button"
-                                    onClick={(e) => e.preventDefault()}
-                                    aria-label="Remove"
-                                >
-                                    -
-                                </button>
-                            </div>
+                    {Forecast.map((step) => (
+                        <ChangeSelectionFilters key={step.id} stepNumber={step.id} onRemove={() => removeForecast(step.id)} dropOptions={['Is', 'Is Not', 'Is Less', 'Is More']} />
+                    ))}
+
+                    <div className='action-button-filter'>
+                        <button className="action-button-add-filter" onClick={addForecast}>
+                            +
+                        </button>
                     </div>
                 </div>
                }
@@ -543,32 +555,14 @@ const ChangeSelection = ({ onCancel }) => {
                         <input type="radio" name="filter-title" />
                         Match any of the above
                     </label>
-                    <div className='filter-add-dropdown'>
-                            <div  className="dropdown-element">
-                                <select onChange={(e) => setSelectedOptionReference(e.target.value)} value={selectedOptionReference} className='filter-dropdown-options'>
-                                    <option value="">Select...</option>
-                                    <option value="is">Is</option>
-                                    <option value="isnot">Is Not</option>
-                                    <option value="contains">Contains</option>
-                                    <option value="notcontains">Doesn't Contain</option>
-                                </select>
-                            
-                                <input type="text" className="filter-input" />
-                                <button
-                                    className="add-button"
-                                    onClick={(e) => e.preventDefault()}
-                                    aria-label="Add"
-                                >
-                                    +
-                                </button>
-                                <button
-                                    className="remove-button"
-                                    onClick={(e) => e.preventDefault()}
-                                    aria-label="Remove"
-                                >
-                                    -
-                                </button>
-                            </div>
+                    {References.map((step) => (
+                        <ChangeSelectionFilters key={step.id} stepNumber={step.id} onRemove={() => removeReferences(step.id)} dropOptions={['Is', 'Is Not', 'Contains', 'Does Not Contain']} />
+                    ))}
+
+                    <div className='action-button-filter'>
+                        <button className="action-button-add-filter" onClick={addReferences}>
+                            +
+                        </button>
                     </div>
                 </div>
                }
@@ -700,33 +694,15 @@ const ChangeSelection = ({ onCancel }) => {
                         <input type="radio" name="filter-title" />
                         Match any of the above
                     </label>
-                    <div className='filter-add-dropdown'>
-                            <div  className="dropdown-element">
-                                <select onChange={(e) => setSelectedOptionTitle(e.target.value)} value={selectedOptionTitle} className='filter-dropdown-options'>
-                                    <option value="">Select...</option>
-                                    <option value="is">Is</option>
-                                    <option value="isnot">Is Not</option>
-                                    <option value="contains">Contains</option>
-                                    <option value="notcontains">Doesn't Contain</option>
-                                </select>
-                            
-                                <input type="text" className="filter-input" />
-                                <button
-                                    className="add-button"
-                                    onClick={(e) => e.preventDefault()}
-                                    aria-label="Add"
-                                >
-                                    +
-                                </button>
-                                <button
-                                    className="remove-button"
-                                    onClick={(e) => e.preventDefault()}
-                                    aria-label="Remove"
-                                >
-                                    -
-                                </button>
-                            </div>
-                    </div>
+                    {Title.map((step) => (
+                        <ChangeSelectionFilters key={step.id} stepNumber={step.id} onRemove={() => removeTitle(step.id)} dropOptions={['Is', 'Is Not', 'Contains', 'Does Not Contain']} />
+                    ))}
+
+                <div className='action-button-filter'>
+                  <button className="action-button-add-filter" onClick={addTitle}>
+                    +
+                  </button>
+                </div>
                 </div>
                }
 

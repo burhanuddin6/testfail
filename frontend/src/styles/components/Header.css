@@ -98,5 +98,10 @@
     text-decoration: underline;
     font-weight: bold;
   }
+
+  .nav-admin {
+    margin-left: auto;
+    margin-right: 30px;
+  }
  
 

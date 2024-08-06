@@ -278,6 +278,7 @@ import { fetchMilestonesIdName } from '../api/Milestone';
 import { getProjectID } from '../utilities/globals';
 import AlertBox from '../components/Alert'; 
 import FilterPopup from './ChangeSelectionTestRun.js'
+import FileUpload from '../components/fileUpload.js';
 
 const AddTestRun = ({ userID }) => {
   const [name, setName] = useState('');
@@ -429,9 +430,10 @@ const AddTestRun = ({ userID }) => {
         </div>
 
         <div className="test-run-form-group">
-          <label htmlFor="references" className="test-run-label">
-            References
-          </label>
+          <div className='references-add-run-form-grp'>
+            <label htmlFor="references">References</label>
+            <a href="" className='add-references-add-run-form'>Add</a>
+          </div>
           <input
             type="text"
             id="references"
@@ -495,33 +497,6 @@ const AddTestRun = ({ userID }) => {
             placeholder="Use this description to describe the purpose of this test run."
             className="test-run-textarea"
           />
-          <input 
-            type="file"
-            id="file-upload"
-            name="file-upload"
-            onChange={handleFileChange}
-            accept="image/*"
-            multiple
-          />
-        </div>
-
-        <div className="image-preview">
-          {images.map((image, index) => (
-            <div key={index} className="image-container">
-              <img
-                src={URL.createObjectURL(image)}
-                alt={`Selected ${index}`}
-                className="preview-image"
-              />
-              <button
-                type="button"
-                className="remove-image-button"
-                onClick={() => removeImage(index)}
-              >
-                ✗
-              </button>
-            </div>
-          ))}
         </div>
 
         <div className="test-run-case-selection">
@@ -584,6 +559,7 @@ const AddTestRun = ({ userID }) => {
           )}
         </div>
 
+          <FileUpload/>
 
         <div className="test-run-buttons">
           <button type="submit" className="test-run-button test-run-submit">
