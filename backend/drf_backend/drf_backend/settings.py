@@ -81,14 +81,14 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     },
-    TESTRAIL_DB: {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mydatabase',
-        'USER': 'root',
-        'PASSWORD': '12345678',
-        'HOST': 'localhost',
-        'PORT': '3306',
-    }
+    # TESTRAIL_DB: {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'mydatabase',
+    #     'USER': 'root',
+    #     'PASSWORD': '12345678',
+    #     'HOST': 'localhost',
+    #     'PORT': '3306',
+    # }
 }
 
 
