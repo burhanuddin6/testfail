@@ -17,6 +17,9 @@ const MilestonesProgress = () => {
     const milestoneId = searchParams.get('milestoneId') || '0'; 
   const milestoneName = searchParams.get('milestoneName') || 'Milestone'; 
 
+  const testPlanId = searchParams.get("testPlanId") || "0"; 
+  const testPlanName = searchParams.get("testPlanName") || "Test Plan";
+
     const handleEditMilestone = () => {
         navigate(`/add-milestone?milestoneId=${milestoneId}&milestoneName=${milestoneName}`, { state: { from: `/milestone-progress?milestoneId=${milestoneId}&milestoneName=${milestoneName}&source=milestone-status` , action: 'edit'} });
     };
@@ -39,7 +42,7 @@ const MilestonesProgress = () => {
                             >
                                 Activity
                             </a>
-                            <a
+                            <a className="upperbar"
                                 href={`/milestone-progress?suiteId=${suiteId}&suite=${suiteName}&testRunId=${testRunId}&testRunName=${testRunName}&source=milestone-progress`}
     
                             >
@@ -52,14 +55,41 @@ const MilestonesProgress = () => {
                                 Defects
                             </a>
                         </>
-                    ) : sourcePage === 'milestone-status'? (
+                    ) :   sourcePage === 'milestone-status' ? (
                         <>
                             <a href={`/milestone-status?milestoneId=${milestoneId}&milestoneName=${milestoneName}`}>Status</a>
                             <a href={`/milestone-activity?milestoneId=${milestoneId}&milestoneName=${milestoneName}&source=milestone-status`}>Activity</a>
                             <a className="upperbar" href={`/milestone-progress?milestoneId=${milestoneId}&milestoneName=${milestoneName}&source=milestone-status`}>Progress</a>
                             <a href={`/milestone-defect?milestoneId=${milestoneId}&milestoneName=${milestoneName}&source=milestone-status`}>Defects</a>
                         </>
-                    ) : null}
+                    ) : sourcePage === 'TestPlanStatus' ? (
+                        <>
+                        <a
+                                href={`/TestPlanStatus?testPlanId=${testPlanId}&testPlanName=${testPlanName}`}
+                                
+                            >
+                                Status
+                            </a>
+                            <a
+                                href={`/milestone-activity?testPlanId=${testPlanId}&testPlanName=${testPlanName}&source=TestPlanStatus`}
+                                
+                            >
+                                Activity
+                            </a>
+                            <a className="upperbar"
+                                href={`/milestone-progress?testPlanId=${testPlanId}&testPlanName=${testPlanName}&source=TestPlanStatus`}
+                            >
+                                Progress
+                            </a>
+                            <a
+                               href={`/milestone-defect?testPlanId=${testPlanId}&testPlanName=${testPlanName}&source=TestPlanStatus`}
+                                
+                            >
+                                Defects
+                            </a>
+                        </>
+                        
+                    ) : null }
                 </div>
                
                 <div className="progress-controls">
@@ -67,7 +97,9 @@ const MilestonesProgress = () => {
                         <h2>{`R${testRunId} - ${testRunName}`}</h2>
                     ) : sourcePage === 'milestone-status' ? (
                         <h2>{`M${milestoneId} - ${milestoneName}`}</h2>
-                    ) : null}
+                    ) : sourcePage === 'TestPlanStatus' ? (
+                        <h2>{`R${testPlanId} - ${testPlanName}`}</h2>
+                    ) : null }
                     <div className="progress-control-button">
                         <button className="milestone-button" onClick={handleEditMilestone}>Edit</button>
                     </div>

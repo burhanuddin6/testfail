@@ -18,6 +18,9 @@ const Milestonesdefects = () => {
     const milestoneId = searchParams.get('milestoneId') || '0'; 
   const milestoneName = searchParams.get('milestoneName') || 'Milestone'; 
 
+  const testPlanId = searchParams.get("testPlanId") || "0"; 
+  const testPlanName = searchParams.get("testPlanName") || "Test Plan";
+
     const handleEditMilestone = () => {
         navigate(`/add-milestone?milestoneId=${milestoneId}&milestoneName=${milestoneName}`, { state: { from: `/milestone-defect?milestoneId=${milestoneId}&milestoneName=${milestoneName}&source=milestone-status` , action: 'edit'} });
       };
@@ -46,7 +49,7 @@ const Milestonesdefects = () => {
                             >
                                 Progress
                             </a>
-                            <a
+                            <a className="upperbar"
                                 href={`/milestone-defect?suiteId=${suiteId}&suite=${suiteName}&testRunId=${testRunId}&testRunName=${testRunName}&source=milestone-defect`}
                                 
                             >
@@ -60,6 +63,33 @@ const Milestonesdefects = () => {
                             <a href={`/milestone-progress?milestoneId=${milestoneId}&milestoneName=${milestoneName}&source=milestone-status`}>Progress</a>
                             <a className="upperbar" href={`/milestone-defect?milestoneId=${milestoneId}&milestoneName=${milestoneName}&source=milestone-status`}>Defects</a>
                         </>
+                    ) : sourcePage === 'TestPlanStatus' ? (
+                        <>
+                        <a
+                                href={`/TestPlanStatus?testPlanId=${testPlanId}&testPlanName=${testPlanName}`}
+                                
+                            >
+                                Status
+                            </a>
+                            <a
+                                href={`/milestone-activity?testPlanId=${testPlanId}&testPlanName=${testPlanName}&source=TestPlanStatus`}
+                                
+                            >
+                                Activity
+                            </a>
+                            <a
+                                href={`/milestone-progress?testPlanId=${testPlanId}&testPlanName=${testPlanName}&source=TestPlanStatus`}
+                            >
+                                Progress
+                            </a>
+                            <a className="upperbar"
+                               href={`/milestone-defect?testPlanId=${testPlanId}&testPlanName=${testPlanName}&source=TestPlanStatus`}
+                                
+                            >
+                                Defects
+                            </a>
+                        </>
+                        
                     ) : null }
                 </div>
                
@@ -68,7 +98,9 @@ const Milestonesdefects = () => {
                         <h2>{`R${testRunId} - ${testRunName}`}</h2>
                     ) : sourcePage === 'milestone-status' ? (
                         <h2>{`M${milestoneId} - ${milestoneName}`}</h2>
-                    ) : null}
+                    ) : sourcePage === 'TestPlanStatus' ? (
+                        <h2>{`R${testPlanId} - ${testPlanName}`}</h2>
+                    ) : null }
                     <div className="defects-control-button">
                         <button className="milestone-button" onClick={handleEditMilestone}>Edit</button>
                     </div>
