@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/AddTestRun.css';
 import { useNavigate, useLocation } from 'react-router-dom';
+import FilterPopup from './ChangeSelectionTestRun.js'
+import FileUpload from '../components/fileUpload.js';
 
 const AddTestRun = () => {
   const [name, setName] = useState('');
@@ -20,7 +22,6 @@ const AddTestRun = () => {
   const suiteId = searchParams.get('suiteId') || '0'; // Default to '0' if no suiteId is provided
   const sourcePage = searchParams.get('source'); // Will be either 'TestSuitesCases' or 'TestRuns'
   const suiteName = searchParams.get('suite') || 'Test Suite'; // Default to 'Test Suite' if no suiteName is provided
-
 
   useEffect(() => {
     if (selectedOption) {
@@ -70,6 +71,19 @@ const AddTestRun = () => {
     setImages(images.filter((_, i) => i !== index));
   };
 
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
+
+  const handleClickableTextClick = () => {
+    setIsPopupVisible(true);
+  };
+
+  const closePopup = () => {
+    setIsPopupVisible(false);
+  };
+
+  const [isPopupVisibleFilter, setIsPopupVisibleFilter] = useState(false);
+
+
   
   return (
     <div className="test-run-container">
@@ -92,9 +106,10 @@ const AddTestRun = () => {
         </div>
 
         <div className="test-run-form-group">
-          <label htmlFor="references" className="test-run-label">
-            References
-          </label>
+          <div className='references-add-run-form-grp'>
+            <label htmlFor="references">References</label>
+            <a href="" className='add-references-add-run-form'>Add</a>
+          </div>
           <input
             type="text"
             id="references"
@@ -150,33 +165,6 @@ const AddTestRun = () => {
             placeholder="Use this description to describe the purpose of this test run."
             className="test-run-textarea"
           />
-          <input 
-            type="file"
-            id="file-upload"
-            name="file-upload"
-            onChange={handleFileChange}
-            accept="image/*"
-            multiple
-          />
-        </div>
-
-        <div className="image-preview">
-          {images.map((image, index) => (
-            <div key={index} className="image-container">
-              <img
-                src={URL.createObjectURL(image)}
-                alt={`Selected ${index}`}
-                className="preview-image"
-              />
-              <button
-                type="button"
-                className="remove-image-button"
-                onClick={() => removeImage(index)}
-              >
-                ✗
-              </button>
-            </div>
-          ))}
         </div>
 
         <div className="test-run-case-selection">
@@ -191,7 +179,7 @@ const AddTestRun = () => {
               className="test-run-radio"
             />
             <label htmlFor="include-all" className="test-run-radio-label">
-              Include all test cases
+              <strong>Include all test cases</strong><br></br>Select this option to include all test cases in this test run. If new test cases are added to the test suite, they are also automatically included in this run.
             </label>
           </div>
 
@@ -206,9 +194,16 @@ const AddTestRun = () => {
               className="test-run-radio"
             />
             <label htmlFor="select-specific" className="test-run-radio-label">
-              Select specific test cases
+              <strong>Select specific test cases</strong><br></br>You can alternatively select the test cases to include in this test run. New test cases are not automatically added to this run in this case.
             </label>
           </div>
+
+          {testCaseSelection === 'specific' && (
+            <div className='add-test-run-filter-selection'>
+              <span><strong>0</strong> test cases included </span>
+              <span> (<span className="add-test-run-filter-clickable-text" onClick={handleClickableTextClick}>Change Selection</span>)</span>
+            </div>
+          )}
 
           <div>
             <input
@@ -221,10 +216,18 @@ const AddTestRun = () => {
               className="test-run-radio"
             />
             <label htmlFor="dynamic-filtering" className="test-run-radio-label">
-              Dynamic Filtering
+              <strong>Dynamic Filtering</strong> <br></br> Automatically add test cases based on filter selection. New test cases are automatically added to the run if they match the filter (unless the run is closed).
             </label>
           </div>
+          {testCaseSelection === 'dynamic' && (
+            <div className='add-test-run-filter-selection'>
+              <span><strong>0</strong> test cases included </span>
+              <span> (<span className="add-test-run-filter-clickable-text" onClick={handleClickableTextClick}>Change Filter</span>)</span>
+            </div>
+          )}
         </div>
+
+          <FileUpload/>
 
         <div className="test-run-buttons">
           <button type="submit" className="test-run-button test-run-submit">
@@ -238,6 +241,10 @@ const AddTestRun = () => {
             ✗ Cancel
           </button>
         </div>
+
+        {isPopupVisible && 
+          <FilterPopup onCancel={() => setIsPopupVisible(false)}/>}
+        
       </form>
     </div>
   );

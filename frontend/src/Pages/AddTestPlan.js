@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../styles/AddTestPlan.css';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Popup from './selectSuite';
+import FileUpload from '../components/fileUpload';
 
 const AddTestPlan = () => {
   const [name, setName] = useState('');
@@ -78,9 +79,11 @@ const AddTestPlan = () => {
         </div>
 
         <div className="test-plan-form-group">
-          <label htmlFor="references" className="test-plan-label">
-            References
-          </label>
+          <div className='references-add-plan-form-grp'>
+            <label htmlFor="references">References</label>
+            <a href="" className='add-references-add-plan-form'>Add</a>
+          </div>
+
           <input
             type="text"
             id="references"
@@ -119,34 +122,14 @@ const AddTestPlan = () => {
             placeholder="Use this description to describe the purpose of this test run."
             className="test-plan-textarea"
           />
-          <input
+          {/* <input
             type="file"
             id="file-upload"
             name="file-upload"
             onChange={handleFileChange}
             accept="image/*"
             multiple
-          />
-        </div>
-
-       
-        <div className="image-preview">
-          {images.map((image, index) => (
-            <div key={index} className="image-container">
-              <img
-                src={URL.createObjectURL(image)}
-                alt={`Selected ${index}`}
-                className="preview-image"
-              />
-              <button
-                type="button"
-                className="remove-image-button"
-                onClick={() => removeImage(index)}
-              >
-                ✗
-              </button>
-            </div>
-          ))}
+          /> */}
         </div>
 
         <div className='form-add-test-suite'>
@@ -182,6 +165,7 @@ const AddTestPlan = () => {
             
         </div>
         
+        <FileUpload/>
         
 
         <div className="test-plan-buttons">

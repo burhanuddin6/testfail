@@ -1,6 +1,7 @@
 import React, { useState , useEffect} from 'react';
 import '../styles/AddMilestones.css'; // Import the CSS file
 import { useNavigate , useLocation} from 'react-router-dom';
+import FileUpload from '../components/fileUpload';
 
 const AddMilestone = () => {
   const [name, setName] = useState('');
@@ -64,15 +65,19 @@ const AddMilestone = () => {
             onChange={(e) => setName(e.target.value)}
             placeholder="Ex: Version 1.0, Internal Beta 2 or Sprint #4"
             required
-          /> 
+          />  
         </div>
         <div className="add-form-group">
-          <label htmlFor="references">References</label>
+          <div className='references-add-form-grp'>
+            <label htmlFor="references">References</label>
+            <a href="" className='add-references-add-form'>Add</a>
+          </div>
           <input
             type="text"
             id="references"
             value={references}
             onChange={(e) => setReferences(e.target.value)}
+            placeholder='Add reference IDs'
           />
         </div>
         <div className="add-form-group">
@@ -98,34 +103,17 @@ const AddMilestone = () => {
           >
           </textarea>
         
-          <input 
+          {/* <input 
             type="file"
             id="file-upload"
             name="file-upload"
             onChange={handleFileChange}
             accept="image/*"
             multiple
-          />
+          /> */}
         </div>
 
-        <div className="image-preview">
-          {images.map((image, index) => (
-            <div key={index} className="image-container">
-              <img
-                src={URL.createObjectURL(image)}
-                alt={`Selected ${index}`}
-                className="preview-image"
-              />
-              <button
-                type="button"
-                className="remove-image-button"
-                onClick={() => removeImage(index)}
-              >
-                ✗
-              </button>
-            </div>
-          ))}
-        </div>
+        
 
         <div className="add-form-group">
           <label htmlFor="startDate">Start Date</label>
@@ -157,6 +145,8 @@ const AddMilestone = () => {
             />
             <label htmlFor="isCompleted">This milestone is completed</label>
         </div>
+
+        <FileUpload/>
       
         <div className="form-buttons">
           <button type="submit" className='add-edit-button'> ✓ {action == "edit" ? 'Update' : 'Add'} Milestone</button>

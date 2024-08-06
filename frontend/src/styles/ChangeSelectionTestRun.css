@@ -1,0 +1,190 @@
+.ChangeSelection-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .ChangeSelection-content {
+    background: white;
+    width: 80%;
+    max-width: 1000px;
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+  }
+  
+  .ChangeSelection-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
+  
+  .ChangeSelection-header h2 {
+    margin: 0;
+  }
+  
+  .ChangeSelection-body {
+    display: flex;
+  }
+  
+  .ChangeSelection-sidebar {
+    flex: 1;
+    border-right: 1px solid #ccc;
+    padding-right: 10px;
+  }
+
+  .ChangeSelection-select {
+    display: flex;
+    gap: 0px;
+    margin-bottom: 10px;
+  }
+
+  .ChangeSelection-select-options {
+    cursor: pointer;
+    color: #007bff; /* Link color */
+    text-decoration: underline;
+  }
+
+  .categories, .case-list {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .ChangeSelection-main {
+    flex: 2;
+    padding-left: 10px;
+    border-right: 1px solid #ccc;
+  }
+   
+  .case-list {
+    max-height: 500px;
+    overflow-y: auto;
+  }
+  
+  .ChangeSelection-filter {
+    flex: 1;
+    padding-left: 10px;
+    max-height: 500px;
+    overflow-y: auto;
+  }
+  
+  .filter-options p {
+    margin: 5px 0;
+    cursor: pointer;
+    text-decoration: underline;
+    color: #007bff;
+  }
+
+  .filter-option-popup {
+    border: 1px solid #ccc;
+    max-height: 100px;
+    overflow-y: auto;
+  }
+
+  .filter-option-popup-elements {
+    margin-bottom: 3px;
+  }
+
+  .filter-option-popup-elements label {
+    margin-left: 5px;
+  }
+
+  
+  
+  .filter-selection {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+  }
+
+ 
+  .filter-options{
+    display: flex;
+    flex-direction: column;
+    
+  }
+
+  .ChangeSelection-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+  }
+  
+  .ok-button,
+  .cancel-button {
+    padding: 5px 10px;
+    margin-left: 10px;
+    cursor: pointer;
+    width: auto;
+  }
+  
+  .cancel-button , .remove-button{
+    background: #ff5c5c;
+    color: white;
+    border: none;
+  }
+  
+  .ok-button , .add-button{
+    background: #4caf50;
+    color: white;
+    border: none;
+  }
+
+  .cancel-button:hover, .remove-button:hover {
+    background-color: #b44545;
+  }
+
+  .filter-add-dropdown {
+    margin-bottom: 5px;
+    margin-left: 5px;
+  }
+
+  .filter-dropdown-options {
+    max-width: 70px;
+  }
+
+  .dropdown-element {
+    display: flex;
+    gap: 5px;
+  }
+
+  .filter-input {
+    max-width: 100px;
+  }
+
+  .add-button, .remove-button {
+    width: 10px;
+    height: 10px;
+    border-radius: 40%;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+
+.action-button-add-filter {
+  background-color: green;
+  color: white;
+  margin-left: auto;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 40%;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}

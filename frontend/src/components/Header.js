@@ -10,7 +10,7 @@ const Header = ({userName}) => {
   const [showWorkingOnMenu, setShowWorkingOnMenu] = useState(false);
   const [activeView, setActiveView] = useState('overview');
   const navigate = useNavigate();
-  console.log(activeView);
+  // console.log(activeView);
   // console.log("username in header" + userName)
 
   return (
@@ -50,8 +50,12 @@ const Header = ({userName}) => {
             <a href='/todo/:projectId' onClick={(e) => {e.preventDefault(); setActiveView('todo');navigate('/todo/:projectId');}} className={activeView === 'todo' ? 'active-button' : ''}>To-do</a>
             <a href='/milestones' onClick={(e) => {e.preventDefault(); setActiveView('milestone');navigate('/milestones');}} className={activeView === 'milestone' ? 'active-button' : ''}>Milestones</a>
             <a href='/testruns' onClick={(e) => {e.preventDefault(); setActiveView('runs');navigate('/testruns');}} className={activeView === 'runs' ? 'active-button' : ''}>Test Runs & Results</a>
-            <a href='/testsuitscases' onClick={(e) => {e.preventDefault(); setActiveView('cases');navigate('/testsuitscases');}} className={activeView === 'cases' ? 'active-button' : ''}>Test Suits & Cases</a>
+            <a href='/testsuitscases' onClick={(e) => {e.preventDefault(); setActiveView('cases');navigate('/testsuitscases');}} className={activeView === 'cases' ? 'active-button' : ''}>Test Suites & Cases</a>
             <a href='' onClick={(e) => {e.preventDefault(); setActiveView('reports');}} className={activeView === 'reports' ? 'active-button' : ''}>Reports</a>
+
+            <div className='nav-admin'>
+              <a href=''>Admin</a>
+            </div>
         </div>
         
       </header>

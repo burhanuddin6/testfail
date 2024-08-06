@@ -94,6 +94,7 @@ body, html {
   color: black;
 }
 
+
 /* Form buttons container */
 .test-run-buttons {
   display: flex;
@@ -162,4 +163,34 @@ body, html {
 
 .remove-image-button:hover {
   background-color: rgba(255, 0, 0, 1);
+}
+
+.add-test-run-filter-selection {
+  border: 1px solid #d1d1d1;
+  padding: 10px;
+  margin-top: 10px;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: rgb(235, 235, 235);
+}
+
+.add-test-run-filter-clickable-text {
+  cursor: pointer;
+  color: #007bff; /* Link color */
+  text-decoration: underline;
+}
+
+.add-test-run-filter-clickable-text:hover {
+  color: #0056b3;
+}
+
+.add-references-add-run-form {
+  margin-left: auto;
+  text-decoration: underline;
+  margin-top: 0px;
+}
+
+.references-add-run-form-grp {
+  display: flex;
+  margin-bottom: 5px;
 }
