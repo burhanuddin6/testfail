@@ -171,6 +171,22 @@
   color: white;
 }
 
+.activity-status-section {
+  background-color: rgb(68, 55, 154);
+  padding: 5px;
+  border-radius: 40px;
+  font-size: 14px;
+  color: white;
+}
+
+.activity-status-project {
+  background-color: rgb(90, 14, 14);
+  padding: 5px;
+  border-radius: 40px;
+  font-size: 14px;
+  color: white;
+}
+
 .activity-status-passed {
   background-color: green;
   padding: 5px;

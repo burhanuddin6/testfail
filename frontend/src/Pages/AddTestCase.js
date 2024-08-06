@@ -190,10 +190,6 @@ const AddTestCase = () => {
                       {value}
                     </option>
                   ))}
-                  <option value="Behavior Driven Development">Behavior Driven Development</option>
-                  <option value="Exploratory Session">Exploratory Session</option>
-                  <option value="Test Case (Steps)">Test Case (Steps)</option>
-                  <option value="Test Case (Text)">Test Case (Text)</option>
                 </select>
               </div>
 
