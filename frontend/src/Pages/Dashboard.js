@@ -21,6 +21,8 @@ const Dashboard = ({ userName }) => {
       try {
         const token = sessionStorage.getItem("token");
         const details = await getUserDetails(token);
+        console.log(`user response in dashboard : ${JSON.stringify(details, null, 2)}`); // debug statement, remove before production
+
         sessionStorage.setItem("user_name", `${details.first_name} ${details.last_name}`);
         sessionStorage.setItem("user_id", `${details.id}`);
         sessionStorage.setItem("user_email", `${details.email}`);

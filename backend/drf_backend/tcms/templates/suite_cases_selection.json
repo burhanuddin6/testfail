@@ -5,12 +5,12 @@
         "selection_type": "REGEX",
         "selection": "<regex expr>"
     },
-        { 
-            "test_suite_id": 1,
-            "test_suite_name": "Test Suite 1",
-            "selection_type": "ALL",
-            "selection": []
-        },
+    { 
+        "test_suite_id": 1,
+        "test_suite_name": "Test Suite 1",
+        "selection_type": "ALL",
+        "selection": []
+    },
     { 
         "test_suite_id": 2,
         "test_suite_name": "Test Suite 2",

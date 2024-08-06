@@ -307,13 +307,12 @@ const AddTestRun = ({ userID }) => {
   const suiteName = searchParams.get('suite') || 'Test Suite';
 
   useEffect(() => {
-    if (selectedOption) {
-      setName(selectedOption);
-    }
-
+    
     const fetchData = async () => {
       try {
         const usersData = await getQaUsers('qa-user');
+        console.log(`user response: ${JSON.stringify(usersData, null, 2)}`); // debug statement, remove before production
+
         setUsers(usersData);
 
         const milestonesData = await fetchMilestonesIdName(projectID);
@@ -334,7 +333,9 @@ const AddTestRun = ({ userID }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+    
+    const userID = sessionStorage.getItem("user_id");
+
     if (testCaseSelection === 'ALL' || testCaseSelection === 'SELECTED' || testCaseSelection === 'REGEX_ON_NAME') {
       const testRunData = {
         name,
@@ -344,7 +345,13 @@ const AddTestRun = ({ userID }) => {
         description,
         test_case_filter: testCaseSelection,
         project_id: projectID,
+        assigned_to: assignTo,
       };
+
+      console.log("assigned to" + assignTo);
+      console.log("created by" + userID);
+
+
   
       try {
         await createTestRun(testRunData);
@@ -479,7 +486,7 @@ const AddTestRun = ({ userID }) => {
           >
             <option value="">Select user</option>
             {users.map((user) => (
-              <option key={user.email} value={user.email}>
+              <option key={user.email} value={user.id}>
                 {user.first_name} {user.last_name}
               </option>
             ))}

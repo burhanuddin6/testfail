@@ -899,7 +899,7 @@ const TestRuns = () => {
   const calculatePercentage = (part, total) => total ? ((part / total) * 100).toFixed(0) : '0';
 
   return (
-    <div className="test-runs-page">
+    <div className="test-runs-results-page">
       <div className="test-runs-results-header">
         <div className='test-runs-results-main-heading'>
           <h2>Test Runs & Results</h2>
@@ -923,6 +923,7 @@ const TestRuns = () => {
         <div className='test-run-results'>
           <h3 className='test-run-results-heading'> Open</h3>
           <div className='test-run-results-scrollable'>
+            
             {Object.keys(groupedOpenTestRuns).concat(Object.keys(groupedOpenTestPlans)).filter((value, index, self) => self.indexOf(value) === index).map(milestone => (
               <div key={milestone}>
                 <h4 className="test-run-result-milestone-name">{milestone}</h4>
