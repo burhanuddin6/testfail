@@ -256,6 +256,282 @@
 
 // export default SectionsCases;
 
+// import React, { useState, useEffect } from 'react';
+// import { Link, useLocation, useNavigate } from 'react-router-dom';
+// import { fetchSectionsAndCases, deleteTestCase } from '../api/TestCase'; // Import the API function
+// import { deleteSection } from '../api/Section'; // Import the API function
+
+// import '../styles/SectionsCases.css';
+
+// const SectionsCases = () => {
+//   const [sections, setSections] = useState([]);
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState(null);
+//   const [selectedCases, setSelectedCases] = useState(new Set()); // Track selected test cases
+
+//   const location = useLocation();
+//   const searchParams = new URLSearchParams(location.search);
+//   const suiteId = searchParams.get('suiteId') || '0';
+//   const suiteName = searchParams.get('suite') || 'Test Suite';
+
+//   const navigate = useNavigate();
+
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         const data = await fetchSectionsAndCases(suiteId);
+//         setSections(data);
+//       } catch (err) {
+//         setError('Failed to fetch sections and cases');
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+
+//     fetchData();
+//   }, [suiteId]);
+
+//   const handleAddTestCase = () => {
+//     navigate(`/AddTestCase?suiteId=${suiteId}`);
+//   };
+
+//   const handleAddSection = () => {
+//     navigate(`/AddSection?suiteId=${suiteId}&suite=${suiteName}`);
+//   };
+
+//   const handleCaseClick = (testCase) => {
+//     navigate(`/TestCaseDetails?suiteId=${suiteId}&suite=${suiteName}&section=${sections.find(section => section.cases.includes(testCase)).title}&testCaseId=${testCase.id}&testCaseName=${testCase.title}`);
+//   };
+
+
+//   const handleDeleteTestCases = async () => {
+//     if (selectedCases.size === 0) {
+//       alert('No test cases selected for deletion.');
+//       return;
+//     }
+
+//     const confirm = window.confirm('Are you sure you want to delete the selected test cases? This action cannot be undone.');
+//     if (!confirm) return;
+
+//     try {
+//       for (const caseId of selectedCases) {
+//         await deleteTestCase(caseId);
+//       }
+//       alert('Selected test cases have been deleted.');
+//       // Refresh the data
+//       const data = await fetchSectionsAndCases(suiteId);
+//       setSections(data);
+//       setSelectedCases(new Set()); // Clear selection
+//     } catch (err) {
+//       alert('Failed to delete test cases.');
+//     }
+//   };
+
+//   const handleSelectCase = (caseId) => {
+//     setSelectedCases(prev => {
+//       const newSet = new Set(prev);
+//       if (newSet.has(caseId)) newSet.delete(caseId);
+//       else newSet.add(caseId);
+//       return newSet;
+//     });
+//   };
+
+//   const handleDeleteSection = async (sectionId) => {
+//     if (window.confirm('Are you sure you want to delete this section and all its test cases?')) {
+//       try {
+//         await deleteSection(sectionId);
+//         setSections(sections.filter(section => section.id !== sectionId));
+//       } catch (err) {
+//         alert('Failed to delete section');
+//       }
+//     }
+//   };
+
+
+//   const totalSections = sections.length;
+//   const totalCases = sections.reduce((sum, section) => sum + section.cases.length, 0);
+
+//   if (loading) return <div>Loading...</div>;
+//   if (error) return <div>{error}</div>;
+
+//   // return (
+//   //   <div className="sections-cases-page">
+//   //     <div className="sections-cases-header">
+//   //       <h2>{`S${suiteId} - ${suiteName}`}</h2>
+//   //       <div className="sections-cases-actions">
+//   //         <Link to={`/AddTestCase?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}`} className="add-case-button">+ Add Case</Link>
+//   //         <Link to={`/EditTestSuite?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}&source=SectionsCases`} className="edit-suite-link">Edit</Link>
+//   //         <button className="delete-button" onClick={handleDeleteTestCases}>Delete Selected Cases</button>
+//   //         <button className="columns-button">Columns</button>
+//   //       </div>
+//   //     </div>
+
+//   //     <div className="sections-cases-summary">
+//   //       <span>Contains {totalSections} sections and {totalCases} cases.</span>
+//   //     </div>
+
+//   //     <div className="sections-cases-content">
+//   //       <div className="sections-list">
+//   //         {sections.map((section) => (
+//   //           <div key={section.id} className="section">
+//   //             <div className="section-header">
+//   //               <h3>{section.title}</h3>
+//   //               <button className="delete-section-button">&times;</button>
+//   //               <span>{section.cases.length} cases</span>
+//   //               <button className="delete-section-button" onClick={() => handleDeleteSection(section.id)}>X</button>
+//   //             </div>
+//   //             <div className="case-list">
+//   //               {/* Column Headers */}
+//   //               <div className="case-header">
+//   //                 <div className="case-header-item">ID</div>
+//   //                 <div className="case-header-item">Title</div>
+//   //                 <div className="case-header-item">Automation</div>
+//   //                 <div className="case-header-item">Type</div>
+//   //               </div>
+//   //               {section.cases.map((testCase) => (
+//   //                 <div key={testCase.id} className="case-item">
+//   //                   <div className="case-id">
+//   //                     <input 
+//   //                       type="checkbox" 
+//   //                       checked={selectedCases.has(testCase.id)} 
+//   //                       onChange={() => handleSelectCase(testCase.id)} 
+//   //                     />
+//   //                     <Link to={`/TestCaseDetails/${testCase.id}`} className="case-id-link">{testCase.id}</Link>
+//   //                   </div>
+//   //                   <div className="case-automation">{testCase.automation}</div>
+//   //                   <div className="case-type">{testCase.type}</div>
+//   //                 </div>
+//   //               ))}
+//   //             </div>
+//   //           </div>
+//   //         ))}
+//   //       </div>
+
+//   //       <div className="sections-tree-view">
+//   //         <div className="sections-tree-header">
+//   //           <span>Sections & Cases</span>
+//   //           <button className="add-section-button" onClick={handleAddSection}>+ Add Section</button>
+//   //         </div>
+//   //         <ul className="sections-tree">
+//   //           {sections.map((section) => (
+//   //             <li key={section.id}>
+//   //               <div className="tree-node">
+//   //                 <span className="tree-node-title">{section.title}</span>
+//   //                 <button className="delete-section-button" onClick={() => handleDeleteSection(section.id)}>X</button>
+//   //               </div>
+//   //               <ul className="cases-subtree">
+//   //                 {section.cases.map((testCase) => (
+//   //                   <li key={testCase.id}>
+//   //                     <Link
+//   //                       to={`/TestCaseDetails?suiteId=${suiteId}&suite=${suiteName}&section=${sections.find(section => section.cases.includes(testCase)).title}&testCaseId=${testCase.id}&testCaseName=${testCase.title}`}
+//   //                       className="case-link"
+//   //                       onClick={() => handleCaseClick(testCase)}
+//   //                     >
+//   //                       {testCase.title}
+//   //                     </Link>
+//   //                   </li>
+//   //                 ))}
+//   //               </ul>
+//   //             </li>
+//   //           ))}
+//   //         </ul>
+//   //       </div>
+//   //     </div>
+//   //   </div>
+//   // );
+//   return (
+//   <div className="sections-cases-page">
+//     <div className="sections-cases-header">
+//       <h2>{`S${suiteId} - ${suiteName}`}</h2>
+//       <div className="sections-cases-actions">
+//         <Link to={`/AddTestCase?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}`} className="add-test-case-button">+ Add Test Case</Link>
+//         <Link to={`/EditTestSuite?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}&source=SectionsCases`} className="edit-test-suite-link">Edit</Link>
+//         <button className="delete-case-button" onClick={handleDeleteTestCases}>- Delete Test Case</button>
+//         <button className="columns-button">Columns</button>
+//       </div>
+//     </div>
+
+//     <div className="sections-cases-summary">
+//       <span>Contains {totalSections} sections and {totalCases} cases.</span>
+//     </div>
+
+//     <div className="sections-cases-content">
+//       <div className="sections-list">
+//         {sections.map((section) => (
+//           <div key={section.id} className="section">
+//             <div className="section-header">
+//               <h3>{section.title}</h3>
+//               <button className="delete-section-button" onClick={() => handleDeleteSection(section.id)}>&times;</button>
+//               <span>{section.cases.length} cases</span>
+//             </div>
+//             <div className="case-list">
+//               {/* Column Headers */}
+//               <div className="case-header">
+//                 <div className="case-header-item">ID</div>
+//                 <div className="case-header-item">Title</div>
+//                 <div className="case-header-item">Automation</div>
+//                 <div className="case-header-item">Type</div>
+//               </div>
+//               {section.cases.map((testCase) => (
+//                 <div key={testCase.id} className="case-item" onClick={() => handleCaseClick(testCase)}>
+//                   <div className="case-id">
+//                     <input 
+//                       type="checkbox" 
+//                       checked={selectedCases.has(testCase.id)} 
+//                       onChange={() => handleSelectCase(testCase.id)} 
+//                     />
+//                     <Link to={`/TestCaseDetails?suiteId=${suiteId}&suite=${suiteName}&section=${section.title}&testCaseId=${testCase.id}&testCaseName=${testCase.title}`} className="case-id-link">{testCase.id}</Link>
+//                   </div>
+//                   <div className="case-title">
+//                     <Link to={`/TestCaseDetails?suiteId=${suiteId}&suite=${suiteName}&section=${section.title}&testCaseId=${testCase.id}&testCaseName=${testCase.title}`} className="case-title-link">{testCase.title}</Link>
+//                   </div>
+//                   <div className="case-automation">{testCase.automation}</div>
+//                   <div className="case-type">{testCase.type}</div>
+//                 </div>
+//               ))}
+//             </div>
+//           </div>
+//         ))}
+//       </div>
+
+//       <div className="sections-tree-view">
+//         <div className="sections-tree-header">
+//           <span>Sections & Cases</span>
+//           <button className="add-section-button" onClick={handleAddSection}>+ Add Section</button>
+//         </div>
+//         <ul className="sections-tree">
+//           {sections.map((section) => (
+//             <li key={section.id}>
+//               <div className="tree-node">
+//                 <span className="tree-node-title">{section.title}</span>
+//                 <button className="delete-section-button" onClick={() => handleDeleteSection(section.id)}>&times;</button>
+//               </div>
+//               <ul className="cases-subtree">
+//                 {section.cases.map((testCase) => (
+//                   <li key={testCase.id}>
+//                     <Link
+//                       to={`/TestCaseDetails?suiteId=${suiteId}&suite=${suiteName}&section=${section.title}&testCaseId=${testCase.id}&testCaseName=${testCase.title}`}
+//                       className="case-link"
+//                       onClick={() => handleCaseClick(testCase)}
+//                     >
+//                       {testCase.title}
+//                     </Link>
+//                   </li>
+//                 ))}
+//               </ul>
+//             </li>
+//           ))}
+//         </ul>
+//       </div>
+//     </div>
+//   </div>
+// );
+
+// };
+
+// export default SectionsCases;
+
+
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { fetchSectionsAndCases, deleteTestCase } from '../api/TestCase'; // Import the API function
@@ -361,8 +637,7 @@ const SectionsCases = () => {
         <div className="sections-cases-actions">
           <Link to={`/AddTestCase?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}`} className="add-case-button">+ Add Case</Link>
           <Link to={`/EditTestSuite?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}&source=SectionsCases`} className="edit-suite-link">Edit</Link>
-          <button className="delete-button" onClick={handleDeleteTestCases}>Delete Selected Cases</button>
-          <button className="columns-button">Columns</button>
+          <button className="delete-case-button" onClick={handleDeleteTestCases}>Delete Selected Cases</button>
         </div>
       </div>
 
@@ -376,21 +651,30 @@ const SectionsCases = () => {
             <div key={section.id} className="section">
               <div className="section-header">
                 <h3>{section.title}</h3>
+                {/* <button className="delete-section-button">&times;</button> */}
+                <button className="delete-section-button" onClick={() => handleDeleteSection(section.id)}>&times;</button>
                 <span>{section.cases.length} cases</span>
-                <button className="delete-section-button" onClick={() => handleDeleteSection(section.id)}>X</button>
               </div>
               <div className="case-list">
+                <div className="case-header">
+                  <div className="case-header-item">ID</div>
+                  <div className="case-header-item">Title</div>
+                  <div className="case-header-item">Automation</div>
+                  <div className="case-header-item">Type</div>
+                </div>
                 {section.cases.map((testCase) => (
-                  <div key={testCase.id} className="case-item" onClick={() => handleCaseClick(testCase)}>
-                    <div className="case-id">
-                      <input 
+                  <div key={testCase.id} className="case-item">
+                     <input 
                         type="checkbox" 
                         checked={selectedCases.has(testCase.id)} 
                         onChange={() => handleSelectCase(testCase.id)} 
                       />
-                      <Link to={`/TestCaseDetails/${testCase.id}`} className="case-id-link">{testCase.id}</Link>
+                    <div className="case-id">
+                      <Link to={`/TestCaseDetails?suiteId=${suiteId}&suite=${suiteName}&section=${sections.find(section => section.cases.includes(testCase)).title}&testCaseId=${testCase.id}&testCaseName=${testCase.title}`} className="case-id-link">{testCase.id}</Link>
                     </div>
-                    <div className="case-title">{testCase.title}</div>
+                    <div className="case-title">
+                      <Link to={`/TestCaseDetails?suiteId=${suiteId}&suite=${suiteName}&section=${sections.find(section => section.cases.includes(testCase)).title}&testCaseId=${testCase.id}&testCaseName=${testCase.title}`} className="case-title-link">{testCase.title}</Link>
+                    </div>
                     <div className="case-automation">{testCase.automation}</div>
                     <div className="case-type">{testCase.type}</div>
                   </div>
@@ -410,12 +694,17 @@ const SectionsCases = () => {
               <li key={section.id}>
                 <div className="tree-node">
                   <span className="tree-node-title">{section.title}</span>
-                  <button className="delete-section-button" onClick={() => handleDeleteSection(section.id)}>X</button>
                 </div>
                 <ul className="cases-subtree">
                   {section.cases.map((testCase) => (
                     <li key={testCase.id}>
-                      <span className="subtree-node">{testCase.title}</span>
+                      <Link
+                        to={`/TestCaseDetails?suiteId=${suiteId}&suite=${suiteName}&section=${sections.find(section => section.cases.includes(testCase)).title}&testCaseId=${testCase.id}&testCaseName=${testCase.title}`}
+                        className="case-link"
+                        onClick={() => handleCaseClick(testCase)}
+                      >
+                        {testCase.title}
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -429,5 +718,3 @@ const SectionsCases = () => {
 };
 
 export default SectionsCases;
-
-

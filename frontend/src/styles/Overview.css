@@ -1,4 +1,3 @@
-
 .overview-graph {
   width: 1000px;
   display: flex;
@@ -71,7 +70,7 @@
   border-radius: 5px;
   padding: 20px;
   width: 94%;
-  margin-left: 30px;
+  /* margin-bottom: 30px; */
   height: 470px;
 }
 
@@ -100,7 +99,7 @@
   margin-bottom: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
-  padding-left: 20px;
+  /* padding-left: 20px; */
 }
 
 .activity-details-details {
@@ -139,68 +138,101 @@
   text-decoration: underline;
 }
 
+
 .activity-status-milestone {
   background-color: red;
-  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20px;
+  width: auto;
+  padding: 7px;
+  padding-left: 12px;
+  padding-right: 12px;
   border-radius: 40px;
+  /* margin-top: 10px; */
   font-size: 14px;
-  color: white;
+  color:#f0f0f0;
 }
 
 .activity-status-testrun {
   background-color: purple;
-  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20px;
+  width: auto;
+  padding: 7px;
+  padding-left: 12px;
+  padding-right: 12px;
   border-radius: 40px;
+  /* margin-top: 10px; */
   font-size: 14px;
-  color: white;
+  color:#f0f0f0;
 }
 
 .activity-status-testplan {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: purple;
-  padding: 5px;
+  height: 20px;
+  width: auto;
+  padding: 7px;
+  padding-left: 12px;
+  padding-right: 12px;
   border-radius: 40px;
+  /* margin-top: 10px; */
   font-size: 14px;
-  color: white;
+  color:#f0f0f0;
 }
 
 .activity-status-testsuite {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: green;
-  padding: 5px;
+  height: 20px;
+  width: auto;
+  padding: 7px;
+  padding-left: 12px;
+  padding-right: 12px;
   border-radius: 40px;
+  /* margin-top: 10px; */
   font-size: 14px;
-  color: white;
-}
-
-.activity-status-section {
-  background-color: rgb(68, 55, 154);
-  padding: 5px;
-  border-radius: 40px;
-  font-size: 14px;
-  color: white;
-}
-
-.activity-status-project {
-  background-color: rgb(90, 14, 14);
-  padding: 5px;
-  border-radius: 40px;
-  font-size: 14px;
-  color: white;
+  color:#f0f0f0;
 }
 
 .activity-status-passed {
-  background-color: green;
-  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #4CAF50;
+  height: 20px;
+  width: auto;
+  padding: 7px;
+  padding-left: 12px;
+  padding-right: 12px;
   border-radius: 40px;
+  /* margin-top: 10px; */
   font-size: 14px;
-  color: white;
+  color:#f0f0f0;
 }
 
 .activity-status-failed {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: red;
-  padding: 5px;
+  height: 20px;
+  width: auto;
+  padding: 7px;
+  padding-left: 12px;
+  padding-right: 12px;
   border-radius: 40px;
+  /* margin-top: 10px; */
   font-size: 14px;
-  color: white;
+  color:#f0f0f0;
 }
 
 .active-button {
@@ -208,3 +240,38 @@
   font-weight: bold;
 }
 
+.activity-details-details , .activity-change-by {
+  margin-top: 7px;
+}
+
+.activity-status-project {
+  background-color: rgb(176, 13, 149);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20px;
+  width: auto;
+  padding: 7px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: 40px;
+  /* margin-top: 10px; */
+  font-size: 14px;
+  color:#f0f0f0;
+}
+
+.activity-status-section {
+  background-color: rgb(79, 36, 190);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20px;
+  width: auto;
+  padding: 7px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-radius: 40px;
+  /* margin-top: 10px; */
+  font-size: 14px;
+  color:#f0f0f0;
+}

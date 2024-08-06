@@ -252,7 +252,7 @@ const Milestones = () => {
     }
   };
 
-  const handleAdd = (e) => {
+  const handleAdd = (e) => { 
     e.preventDefault();
     navigate('/add-milestone', { state: { from: '/milestones', action: 'add' } });
   };

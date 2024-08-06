@@ -74,7 +74,7 @@ const MilestonesActivity = () => {
                         <h2>Milestone Name</h2>
                     )}
                     <div className="activity-control-button">
-                        <button onClick={handleEditMilestone}>Edit</button>
+                        <button className='milestone-button' onClick={handleEditMilestone}>Edit</button>
                     </div>
                 </div>
             </div>
@@ -82,8 +82,8 @@ const MilestonesActivity = () => {
             <div className="activity-details">
                 <div className="activity-details-chart">
                     <div className="activity-chart-download">
-                        <button className="download-csv">Download CSV</button>
-                        <button className="download-img">Download Image</button>
+                        <button className="download">Download CSV</button>
+                        <button className="download">Download Image</button>
                     </div>
                     <Graph />
                 </div>

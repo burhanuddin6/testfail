@@ -7,8 +7,7 @@ import { setProjectInfo, setToken } from './utilities/globals';
 
 // components 
 import Header from './components/Header';
-// import HeaderWrapper from './components/HeaderWrapper';
-import TestRuns from './components/TestRuns';
+// import TestRuns from './components/TestRuns';
 
 // pages
 import Overview from './Pages/Overview';
@@ -41,8 +40,7 @@ import AddTestPlan from './Pages/AddTestPlan';
 import TestSuiteTestRuns from './Pages/TestSuiteTestRuns';
 import TestRunTestsResults from './Pages/TestRunTestsResults';
 import NotFound from './Pages/NotFound';
-// import ProgressBarPage from './Pages/ProgressBarPage'; // Adjust path as necessary
-
+import TestPlanStatus from './Pages/TestPlanStatus';
 
 const App = () => {
   const [userName, setUserName] = useState("");
@@ -185,6 +183,15 @@ const App = () => {
                 </>
               }
             />
+             <Route
+              path="/TestPlanStatus"
+              element={
+                <>
+                  <Header userName={userName} />
+                  <TestPlanStatus />
+                </>
+              }
+            />
             <Route
               path="/TestRunTestsResults"
               element={
@@ -322,7 +329,7 @@ const App = () => {
                 </>
               }
             />
-            <Route
+            {/* <Route
               path="/testruns/:id"
               element={
                 <>
@@ -332,7 +339,7 @@ const App = () => {
                   </div>
                 </>
               }
-            />
+            /> */}
             {/* <Route path="/progress-bar" element={<ProgressBarPage />} /> */}
 
             <Route path="*" element={<NotFound />} />

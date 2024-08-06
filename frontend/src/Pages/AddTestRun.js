@@ -518,7 +518,8 @@ const AddTestRun = ({ userID }) => {
               className="test-run-radio"
             />
             <label htmlFor="include-all" className="test-run-radio-label">
-              <strong>Include all test cases</strong><br></br>Select this option to include all test cases in this test run. If new test cases are added to the test suite, they are also automatically included in this run.
+              <strong>Include all test cases</strong>
+              <p className='test-run-radio-label-description'>Select this option to include all test cases in this test run. If new test cases are added to the test suite, they are also automatically included in this run.</p>
             </label>
           </div>
 
@@ -533,14 +534,15 @@ const AddTestRun = ({ userID }) => {
               className="test-run-radio"
             />
             <label htmlFor="select-specific" className="test-run-radio-label">
-              <strong>Select specific test cases</strong><br></br>You can alternatively select the test cases to include in this test run. New test cases are not automatically added to this run in this case.
+              <strong>Select specific test cases</strong>
+              <p className='test-run-radio-label-description'>You can alternatively select the test cases to include in this test run. New test cases are not automatically added to this run in this case.</p>
             </label>
           </div>
 
           {testCaseSelection === 'SELECTED' && (
             <div className='add-test-run-filter-selection'>
               <span><strong>0</strong> test cases included </span>
-              <span> (<span className="add-test-run-filter-clickable-text" onClick={handleClickableTextClick}>Change Selection</span>)</span>
+              <span className='add-test-run-filter-text'> (<span className="add-test-run-filter-clickable-text" onClick={handleClickableTextClick}>Change Selection</span>)</span>
             </div>
           )}
 
@@ -555,13 +557,14 @@ const AddTestRun = ({ userID }) => {
               className="test-run-radio"
             />
             <label htmlFor="dynamic-filtering" className="test-run-radio-label">
-              <strong>Dynamic Filtering</strong> <br></br> Automatically add test cases based on filter selection. New test cases are automatically added to the run if they match the filter (unless the run is closed).
+              <strong>Dynamic Filtering</strong>
+              <p className='test-run-radio-label-description'>Automatically add test cases based on filter selection. New test cases are automatically added to the run if they match the filter (unless the run is closed).</p>
             </label>
           </div>
           {testCaseSelection === 'REGEX_ON_NAME' && (
             <div className='add-test-run-filter-selection'>
               <span><strong>0</strong> test cases included </span>
-              <span> (<span className="add-test-run-filter-clickable-text" onClick={handleClickableTextClick}>Change Filter</span>)</span>
+              <span className='add-test-run-filter-text'> (<span className="add-test-run-filter-clickable-text" onClick={handleClickableTextClick}>Change Filter</span>)</span>
             </div>
           )}
         </div>

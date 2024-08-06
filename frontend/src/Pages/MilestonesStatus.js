@@ -329,8 +329,8 @@ const MilestonesStatus = () => {
             <div className="status-details">
                 <div className="status-details-chart">
                     <div className="status-chart-download">
-                        <button className="download-csv">Download CSV</button>
-                        <button className="download-img">Download Image</button>
+                        <button className="download">Download CSV</button>
+                        <button className="download">Download Image</button>
                     </div>
                     <Graph/>
                 </div>
