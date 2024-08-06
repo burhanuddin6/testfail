@@ -1,7 +1,7 @@
 export const SOFTWARE_TITLE = 'TCMS';
 
 // base url
-export const LOCAL_URL = "http://backend:8000/";
+export const LOCAL_URL = "http://35.95.129.189/";
 export const GIT_URL = "https://organic-orbit-p47g4pqqrqj36rvv-8000.app.github.dev/";
 
 
