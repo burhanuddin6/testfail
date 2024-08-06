@@ -18,7 +18,6 @@ class TestCaseAPITest(APITestCase):
         self.test_case_url = reverse('testcase-list')  # Assuming you're using a DefaultRouter
         self.test_suite = TestSuite.objects.create(name='Test Suite', created_by=self.user, project_id=self.project)
         self.section = Section.objects.create(name='Section', created_by=self.user, test_suite_id=self.test_suite)
-        self.type = TypesForTestCase.objects.create(name='Functional')
 
     def tearDown(self):
         TestCaseViewSet.permission_classes = self.old_permission_classes
@@ -187,7 +186,7 @@ class TestCaseResultAPITest(APITestCase):
         self.assertEqual(TestCaseResult.objects.count(), 0)
 
     def test_save_method_updates_updated_on(self):
-        test_case = TestCase.objects.create(title='Test Case Title', created_by=self.user, project_id=self.project, section_id=self.section, type_id=self.type, priority_id=self.priority)
+        test_case = TestCase.objects.create(title='Test Case Title', created_by=self.user, project_id=self.project, section_id=self.section, type_id=TestCase.BDD, priority_id=TestCase.PRIORITY_CHOICES[0][0])
         initial_updated_on = test_case.updated_on
         test_case.title = 'Updated Title'
         test_case.save()
