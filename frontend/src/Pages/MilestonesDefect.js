@@ -15,8 +15,11 @@ const Milestonesdefects = () => {
     const suiteId = searchParams.get('suiteId') || '0';
     const suiteName = searchParams.get('suite') || 'Suite Name';
 
+    const milestoneId = searchParams.get('milestoneId') || '0'; 
+  const milestoneName = searchParams.get('milestoneName') || 'Milestone'; 
+
     const handleEditMilestone = () => {
-        navigate(`/add-milestone`, { state: { from: '/milestone-defect' , action: 'edit'} });
+        navigate(`/add-milestone?milestoneId=${milestoneId}&milestoneName=${milestoneName}`, { state: { from: `/milestone-defect?milestoneId=${milestoneId}&milestoneName=${milestoneName}&source=milestone-status` , action: 'edit'} });
       };
 
     return (
@@ -50,30 +53,22 @@ const Milestonesdefects = () => {
                                 Defects
                             </a>
                         </>
-                    ) : (
+                    ) : sourcePage === 'milestone-status' ? (
                         <>
-                            <a href="/milestone-status" >
-                                Status
-                            </a>
-                            <a href="/milestone-activity" >
-                                Activity
-                            </a>
-                            <a href="/milestone-progress" >
-                                Progress
-                            </a>
-                            <a href="/milestone-defect" >
-                                Defects
-                            </a>
+                            <a href={`/milestone-status?milestoneId=${milestoneId}&milestoneName=${milestoneName}`}>Status</a>
+                            <a href={`/milestone-activity?milestoneId=${milestoneId}&milestoneName=${milestoneName}&source=milestone-status`}>Activity</a>
+                            <a href={`/milestone-progress?milestoneId=${milestoneId}&milestoneName=${milestoneName}&source=milestone-status`}>Progress</a>
+                            <a className="upperbar" href={`/milestone-defect?milestoneId=${milestoneId}&milestoneName=${milestoneName}&source=milestone-status`}>Defects</a>
                         </>
-                    )}
+                    ) : null }
                 </div>
                
                 <div className="defects-controls">
                 {sourcePage === 'TestRunTestsResults' || sourcePage === 'milestone-activity' || sourcePage === 'milestone-progress' || sourcePage === 'milestone-defect' ? (
                         <h2>{`R${testRunId} - ${testRunName}`}</h2>
-                    ) : (
-                        <h2>Milestone Name</h2>   
-                    )}
+                    ) : sourcePage === 'milestone-status' ? (
+                        <h2>{`M${milestoneId} - ${milestoneName}`}</h2>
+                    ) : null}
                     <div className="defects-control-button">
                         <button className="milestone-button" onClick={handleEditMilestone}>Edit</button>
                     </div>

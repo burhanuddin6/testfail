@@ -22,7 +22,9 @@ const AddMilestone = () => {
   const action = location.state?.action;
 
   const handleCancel = () => {
+
     navigate(from);
+
   };
 
   const handleSubmit = (event) => {
@@ -37,7 +39,9 @@ const AddMilestone = () => {
       endDate,
       isCompleted,
     });
+
     navigate(from);
+
   };
 
   const handleFileChange = (event) => {

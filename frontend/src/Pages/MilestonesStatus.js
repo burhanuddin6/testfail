@@ -1,26 +1,30 @@
 import Graph from "../components/OverviewGraph";
 import "../styles/MilestonesStatus.css"
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const MilestonesStatus = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const milestoneId = searchParams.get('milestoneId') || '0'; 
+  const milestoneName = searchParams.get('milestoneName') || 'Milestone'; 
     const handleEditMilestone = () => {
-        navigate(`/add-milestone`, { state: { from: '/milestone-status' , action: 'edit'} });
+        navigate(`/add-milestone?milestoneId=${milestoneId}&milestoneName=${milestoneName}`, { state: { from: `/milestone-status?milestoneId=${milestoneId}&milestoneName=${milestoneName}` , action: 'edit'} });
       };
 
     return (
         <div className="status-mainclass">
             <div className="status-header">
                 <div className="status-options">
-                    <a href="/milestone-status">Status</a>
-                    <a href="/milestone-activity">Activity</a>
-                    <a href="/milestone-progress">Progress</a>
-                    <a href="/milestone-defect">Defects</a>
+                <a className="upperbar" href={`/milestone-status?milestoneId=${milestoneId}&milestoneName=${milestoneName}` }>Status</a>
+                <a href={`/milestone-activity?milestoneId=${milestoneId}&milestoneName=${milestoneName}&source=milestone-status`}>Activity</a>
+                <a href={`/milestone-progress?milestoneId=${milestoneId}&milestoneName=${milestoneName}&source=milestone-status`}>Progress</a>
+                <a href={`/milestone-defect?milestoneId=${milestoneId}&milestoneName=${milestoneName}&source=milestone-status`}>Defects</a>
                 </div>
                
                 <div className="status-controls">
-                    <h2> Milestone Name </h2>
+                <h2>{`M${milestoneId} - ${milestoneName}`}</h2>
                     <div className="status-control-button">
                         <button className="milestone-button" >Export</button>
                         <button className="milestone-button" >Print</button>
@@ -47,7 +51,7 @@ const MilestonesStatus = () => {
             <div className="status-milestones-header">
                 <h2> Milestones </h2>
                 <div className="status-delete-milestones">
-                    <button > Delete Selected </button>
+                    <button className="milestone-delete-button" >- Delete Selected </button>
                 </div>
             </div>
 
@@ -67,7 +71,7 @@ const MilestonesStatus = () => {
             <div className="status-testruns-header">
                 <h2> Test Runs </h2>
                 <div className="status-delete-testrun">
-                    <button > Delete Selected </button>
+                    <button className="milestone-delete-button" >- Delete Selected </button>
                 </div>
             </div>
 
