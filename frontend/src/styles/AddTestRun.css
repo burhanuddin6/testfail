@@ -172,12 +172,17 @@ body, html {
   display: inline-block;
   border-radius: 4px;
   background-color: rgb(235, 235, 235);
+  font-size: 13px;
 }
 
 .add-test-run-filter-clickable-text {
   cursor: pointer;
   color: #007bff; /* Link color */
   text-decoration: underline;
+}
+
+.add-test-run-filter-text {
+  margin-left: 5px;
 }
 
 .add-test-run-filter-clickable-text:hover {
@@ -193,4 +198,10 @@ body, html {
 .references-add-run-form-grp {
   display: flex;
   margin-bottom: 5px;
+}
+
+.test-run-radio-label-description {
+  font-size: 12px;
+  margin-left: 0px;
+  color: rgb(125, 122, 122);
 }

@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const MilestonesStatus = () => {
-    const navigate = useNavigate();
+    const navigate = useNavigate(); 
     const handleEditMilestone = () => {
         navigate(`/add-milestone`, { state: { from: '/milestone-status' , action: 'edit'} });
       };

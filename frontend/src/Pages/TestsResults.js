@@ -134,20 +134,22 @@ const TestsResults = () => {
   return (
     <div className="tests-results-container">
       <div className="test-case-details-content">
-        <div className="test-case-header">
-          <div className="test-case-id">{testCaseId}</div>
-          <h1 className="test-case-name">{testCaseName}</h1>
-          <Link to={`/EditTestCase?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}&source=TestsResults`} className="edit-testsresults-link">Edit</Link>
-        </div>
-        <nav className="breadcrumb-nav">
-          <Link
-            to={`/SectionsCases?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}`}
-            className="breadcrumb-link"
-          >
-            {suiteName} &gt; {sectionName}
-          </Link>
-        </nav>
-        <div className="results-summary">
+      <div className='test-case-left-side'>
+          <div className='test-case-header-class'>
+            <div className="test-case-header">
+              <div className="test-case-id">{testCaseId}</div>
+              <h1 className="test-case-name">{testCaseName}</h1>
+              <Link to={`/EditTestCase?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}&source=TestsResults`} className="edit-case-link">Edit</Link>
+            </div>
+              <Link
+                to={`/SectionsCases?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}`}
+                className="breadcrumb-link"
+              >
+                {suiteName} &gt; {sectionName}
+              </Link> 
+          </div>
+
+          <div className="results-summary">
           <div className="results-graph">
             <canvas ref={chartRef}></canvas>
           </div>
@@ -163,6 +165,7 @@ const TestsResults = () => {
             </ul>
           </div>
         </div>
+
         <div className="test-results-list-scroll">
           <h2 className="test-results-heading">Test Runs</h2>
           <div className="test-results">
@@ -187,62 +190,47 @@ const TestsResults = () => {
                 ))}
               </div>
             ))}
+            
           </div>
         </div>
       </div>
-      <aside className="test-case-sidebar">
-        <section className="sidebar-section">
-          <ul className="sidebar-links">
-            <li>
-              <Link
-                to={`/TestCaseDetails?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`}
-                className="sidebar-link"
-              >
-                Details
-              </Link>
-            </li>
-            <h3 className="sidebar-title">
-              <Link
-                to={`/TestsResults?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`}
-                className="sidebar-link"
-              >
-                Tests & Results
-              </Link>
-            </h3>
-            <li>
-              <Link
-                to={`/TestCaseDefects?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`}
-                className="sidebar-link"
-              >
-                Defects
-              </Link>
-            </li>
-            <li>
-            <Link
-                to={`/TestCaseHistory?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`}
-                className="sidebar-link"
-              >
-                History
-              </Link>
-            </li>
-          </ul>
-        </section>
-        <section className="sidebar-section">
-          <h3 className="sidebar-title">People & Dates</h3>
-          <div className="people-dates">
-            <div className="date-item">
-              <div className="date-label">Created</div>
-              <div className="date-value">Muhammad Faizan</div>
-              <div className="date-timestamp">10/29/2020 12:22 PM</div>
+                
+        <div className="test-case-sidebar">
+          <nav className="breadcrumb-nav">
+            <div className="test-case-details-options">
+                <Link to={`/TestCaseDetails?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`} className="sidebar-link">
+                  Details
+                </Link>
+                <h3 className="sidebar-title">
+                  <Link to={`/TestsResults?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`} className="sidebar-link">
+                    Tests & Results
+                  </Link>
+                </h3>
+                <Link to={`/TestCaseDefects?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`} className="sidebar-link">
+                  Defects
+                </Link>
+                <Link to={`/TestCaseHistory?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId={testCaseId}&testCaseName={testCaseName}`} className="sidebar-link">
+                  History
+                </Link>
             </div>
-            <div className="date-item">
-              <div className="date-label">Updated</div>
-              <div className="date-value">Mohammed Maqsood</div>
-              <div className="date-timestamp">11/2/2020 12:39 PM</div>
+          </nav>
+          <div className="sidebar-section-people">
+            <h3 className="sidebar-title">People & Dates</h3>
+            <div className="people-dates">
+              <div className="date-item">
+                <div className="date-label">Created</div>
+                <div className="date-value">Muhammad Faizan</div>
+                <div className="date-timestamp">10/29/2020 12:22 PM</div>
+              </div>
+              <div className="date-item">
+                <div className="date-label">Updated</div>
+                <div className="date-value">Mohammed Maqsood</div>
+                <div className="date-timestamp">11/2/2020 12:39 PM</div>
+              </div>
             </div>
           </div>
-        </section>
-      </aside>
+        </div>
+        </div>
     </div>
   );
 };

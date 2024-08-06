@@ -1,22 +1,42 @@
 /* TestCaseDetails.css */
+body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  color: black;
+}
 
 .test-case-details-container {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    /* background-color: #f8f8f8; */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #333;
+  padding: 20px;
+  margin-top: 100px; /* Space for the header */
+  background-color: #e6f3ff;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+  overflow-y: auto; /* Enable vertical scrolling */
+  height: calc(100vh - 60px); /* Full screen height minus header */
+  width: 100%; /* Ensure full width */
   }
   
   .test-case-details-content {
     flex: 3;
     margin-right: 20px;
   }
-  
+
+  /* .test-case-details-options {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 0px;
+  } */
+
   .test-case-header {
     display: flex;
     align-items: center;
+    /* margin-bottom: 10px; */
+    /* margin-top: 10px; */
+  }
+
+  .test-case-header-class {
     margin-bottom: 20px;
   }
   
@@ -35,8 +55,14 @@
     font-weight: 500;
     color: #333;
     margin: 0;
+    margin-bottom: 0px;
   }
   
+  .test-case-detail-edit-button {
+    margin-left: auto;
+    margin-right: 5px;
+  }
+
   .edit-case-link {
     background-color: #007bff;
     color: #fff;
@@ -44,14 +70,15 @@
     border-radius: 5px;
     text-decoration: none;
     transition: background-color 0.3s ease;
-    font-size: 18px;
+    font-size: 15px;
     cursor: pointer;
-    position: absolute;
-    right: 390px;
-    top: 200px; /* Align it to the top of its container */
-    margin-top: 15px; /* Center it vertically within the header */
+    height: 20px;
     display: flex;
-    align-items: center; /* Vertically align the text with the icon */
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    margin-top: 0px;
+    margin-left: auto;
   }
 
   .edit-case-link:hover {
@@ -72,7 +99,8 @@
     text-decoration: underline;
   }
   
-  .test-case-summary {
+  .test-case-left-side {
+    width: 70%;
     background-color: #ffffff;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -106,12 +134,12 @@
   }
   
   .test-case-sidebar {
-    flex: 10;
+    width: 30%;
+    margin-left: auto;
     border: 1px solid #ddd;
     border-radius: 5px;
-    background-color: #ffffff;
+    background-color: white;
     padding-top: 50px;
-    /* padding-right: -50px; */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 
@@ -136,6 +164,7 @@
     text-decoration: none;
     display: block;
     padding: 5px 0;
+    
   }
   
   .sidebar-link:hover {
@@ -144,6 +173,7 @@
   
   .people-dates {
     margin-top: 15px;
+    margin-right: 20px;
   }
   
   .date-item {
@@ -164,4 +194,22 @@
     font-size: 12px;
     color: #999;
   }
+
+  .additional-details {
+    text-align: left;
+    color: black;
+    font-style: normal;
+  }
+
+  .test-case-detail-body {
+    display: flex;
+    gap: 5px;
+  }
+
+  .people-dates {
+    background-color: #00000024;
+  }
+
+  
+
   
