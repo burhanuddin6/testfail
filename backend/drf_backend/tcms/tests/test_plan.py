@@ -27,15 +27,12 @@ class TestPlanSaveMethodTestCase(TestCase):
             ]
         )
 
-        # Check if TestRun was created
         test_runs = TestRun.objects.filter(test_suite_id=self.test_suite)
         self.assertEqual(test_runs.count(), 1)
 
-        # Check if TestPlanTestRun association was created
         test_plan_test_runs = TestPlanTestRun.objects.filter(test_plan_id=test_plan)
         self.assertEqual(test_plan_test_runs.count(), 1)
 
-        # Check the TestRun details
         test_run = test_runs.first()
         self.assertEqual(test_run.test_suite_id, self.test_suite)
         self.assertEqual(test_run.test_case_filter, 'ALL')
@@ -66,15 +63,12 @@ class TestPlanSaveMethodTestCase(TestCase):
             ]
         )
 
-        # Check if TestRun was created
         test_runs = TestRun.objects.filter(test_suite_id=self.test_suite)
         self.assertEqual(test_runs.count(), 1)
 
-        # Check if TestPlanTestRun association was created
         test_plan_test_runs = TestPlanTestRun.objects.filter(test_plan_id=test_plan)
         self.assertEqual(test_plan_test_runs.count(), 1)
 
-        # Check the TestRun details
         test_run = test_runs.first()
         self.assertEqual(test_run.test_suite_id, self.test_suite)
         self.assertEqual(test_run.test_case_filter, 'SELECTED')
@@ -96,15 +90,12 @@ class TestPlanSaveMethodTestCase(TestCase):
             ]
         )
 
-        # Check if TestRun was created
         test_runs = TestRun.objects.filter(test_suite_id=self.test_suite)
         self.assertEqual(test_runs.count(), 1)
 
-        # Check if TestPlanTestRun association was created
         test_plan_test_runs = TestPlanTestRun.objects.filter(test_plan_id=test_plan)
         self.assertEqual(test_plan_test_runs.count(), 1)
 
-        # Check the TestRun details
         test_run = test_runs.first()
         self.assertEqual(test_run.test_suite_id, self.test_suite)
         self.assertEqual(test_run.test_case_filter, 'REGEX_ON_NAME')
@@ -128,8 +119,110 @@ class TestPlanSaveMethodTestCase(TestCase):
 
         original_updated_on = test_plan.updated_on
 
-        # Update test plan
         test_plan.name = 'Updated Test Plan 4'
         test_plan.save()
 
         self.assertNotEqual(test_plan.updated_on, original_updated_on)
+
+    def test_delete_test_plan(self):
+        test_plan = TestPlan.objects.create(
+            name='Test Plan 5',
+            milestone_id=self.milestone,
+            project_id=self.project,
+            created_by=self.user,
+            selection=[
+                {
+                    "test_suite_id": self.test_suite.pk,
+                    "test_suite_name": self.test_suite.name,
+                    "selection_type": "ALL",
+                    "selection": []
+                }
+            ]
+        )
+
+        self.assertEqual(TestRun.objects.filter(test_plan_test_runs__test_plan_id=test_plan.pk).count(), 1)
+        self.assertEqual(TestPlanTestRun.objects.filter(test_plan_id=test_plan.pk).count(), 1)
+
+        test_plan.delete()
+
+        self.assertEqual(TestRun.objects.filter(test_plan_test_runs__test_plan_id=test_plan.pk).count(), 0)
+        self.assertEqual(TestPlanTestRun.objects.filter(test_plan_id=test_plan.pk).count(), 0)
+
+    def test_create_two_test_plans(self):
+        test_plan1 = TestPlan.objects.create(
+            name='Test Plan 6',
+            milestone_id=self.milestone,
+            project_id=self.project,
+            created_by=self.user,
+            selection=[
+                {
+                    "test_suite_id": self.test_suite.pk,
+                    "test_suite_name": self.test_suite.name,
+                    "selection_type": "ALL",
+                    "selection": []
+                }
+            ]
+        )
+
+        test_plan2 = TestPlan.objects.create(
+            name='Test Plan 7',
+            milestone_id=self.milestone,
+            project_id=self.project,
+            created_by=self.user,
+            selection=[
+                {
+                    "test_suite_id": self.test_suite.pk,
+                    "test_suite_name": self.test_suite.name,
+                    "selection_type": "ALL",
+                    "selection": []
+                }
+            ]
+        )
+
+        self.assertEqual(TestPlan.objects.count(), 2)
+        self.assertEqual(TestRun.objects.filter(test_suite_id=self.test_suite).count(), 2)
+        self.assertEqual(TestPlanTestRun.objects.filter(test_plan_id=test_plan1).count(), 1)
+        self.assertEqual(TestPlanTestRun.objects.filter(test_plan_id=test_plan2).count(), 1)
+
+    def test_create_test_plan_after_deleting_another(self):
+        test_plan1 = TestPlan.objects.create(
+            name='Test Plan 8',
+            milestone_id=self.milestone,
+            project_id=self.project,
+            created_by=self.user,
+            selection=[
+                {
+                    "test_suite_id": self.test_suite.pk,
+                    "test_suite_name": self.test_suite.name,
+                    "selection_type": "ALL",
+                    "selection": []
+                }
+            ]
+        )
+
+        self.assertEqual(TestRun.objects.filter(test_plan_test_runs__test_plan_id=test_plan1.pk).count(), 1)
+        self.assertEqual(TestPlanTestRun.objects.filter(test_plan_id=test_plan1.pk).count(), 1)
+
+        test_plan1.delete()
+
+        self.assertEqual(TestRun.objects.filter(test_plan_test_runs__test_plan_id=test_plan1.pk).count(), 0)
+        self.assertEqual(TestPlanTestRun.objects.filter(test_plan_id=test_plan1.pk).count(), 0)
+
+        test_plan2 = TestPlan.objects.create(
+            name='Test Plan 9',
+            milestone_id=self.milestone,
+            project_id=self.project,
+            created_by=self.user,
+            selection=[
+                {
+                    "test_suite_id": self.test_suite.pk,
+                    "test_suite_name": self.test_suite.name,
+                    "selection_type": "ALL",
+                    "selection": []
+                }
+            ]
+        )
+
+        self.assertEqual(TestPlan.objects.count(), 1)
+        self.assertEqual(TestRun.objects.filter(test_suite_id=self.test_suite).count(), 1)
+        self.assertEqual(TestPlanTestRun.objects.filter(test_plan_id=test_plan2).count(), 1)
