@@ -5,7 +5,7 @@ import { getUserDetails } from './api/Auth';
 
 // components 
 import Header from './components/Header';
-import TestRuns from './components/TestRuns';
+// import TestRuns from './components/TestRuns';
 
 // pages
 import Overview from './Pages/Overview';
@@ -38,6 +38,7 @@ import AddTestPlan from './Pages/AddTestPlan';
 import TestSuiteTestRuns from './Pages/TestSuiteTestRuns';
 import TestRunTestsResults from './Pages/TestRunTestsResults';
 import NotFound from './Pages/NotFound';
+import TestPlanStatus from './Pages/TestPlanStatus';
 
 const App = () => {
   const [userName, setUserName] = useState("");
@@ -243,6 +244,15 @@ const App = () => {
           }
         />
         <Route
+          path="/TestPlanStatus"
+          element={
+            <>
+              <Header userName={userName} />
+              <TestPlanStatus />
+            </>
+          }
+        />
+        <Route
           path="/testsuitscases"
           element={
             <>
@@ -371,7 +381,7 @@ const App = () => {
             </>
           }
         /> */}
-        <Route
+        {/* <Route
           path="/testruns/:id"
           element={
             <>
@@ -381,7 +391,7 @@ const App = () => {
               </div>
             </>
           }
-        />
+        /> */}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

@@ -22,9 +22,9 @@ const MilestonesStatus = () => {
                 <div className="status-controls">
                     <h2> Milestone Name </h2>
                     <div className="status-control-button">
-                        <button >Export</button>
-                        <button >Print</button>
-                        <button onClick={handleEditMilestone}>Edit</button>
+                        <button className="milestone-button" >Export</button>
+                        <button className="milestone-button" >Print</button>
+                        <button className="milestone-button" onClick={handleEditMilestone}>Edit</button>
                     </div>
                 </div>
             </div>
@@ -32,8 +32,8 @@ const MilestonesStatus = () => {
             <div className="status-details">
                 <div className="status-details-chart">
                     <div className="status-chart-download">
-                        <button className="download-csv">Download CSV</button>
-                        <button className="download-img">Download Image</button>
+                        <button className="download">Download CSV</button>
+                        <button className="download">Download Image</button>
                     </div>
                     <Graph/>
                 </div>
@@ -87,6 +87,24 @@ const MilestonesStatus = () => {
                     <div className="status-testrun-progress-value">42%</div>
                 </div>
             </div>
+
+            <div className="status-testrun-details-class">
+                <div className="status-testrun-details">
+                    <input type="checkbox"/>
+                    <p><strong><a
+                                href={`/TestRunTestsResults`}
+                            >
+                                Test Run Name
+                            </a></strong>by ... on ...<br></br></p>
+                    <div className="status-testrun-statusbar">
+                        <div className="status-testrun-progress-bar-passed" style={{ width: '42%' }}> </div>
+                        <div className="status-testrun-progress-bar-untested" style={{ width: '16%' }}> </div>
+                        <div className="status-testrun-progress-bar-failed" style={{ width: '42%' }}> </div>
+                    </div>
+                    <div className="status-testrun-progress-value">42%</div>
+                </div>
+            </div>
+            
         </div>
     );
 }

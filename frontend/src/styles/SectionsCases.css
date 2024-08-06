@@ -35,28 +35,28 @@
     gap: 15px;
   }
   
-  .add-case-button,
-  .edit-suite-link,
-  .delete-button,
-  .columns-button {
+  .add-test-case-button,
+  .edit-test-suite-link, 
+  .delete-case-button {
     background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 8px 12px;
+    color: #fff;
+    padding: 10px 20px; /* Same padding for uniform size */
     border-radius: 5px;
-    cursor: pointer;
     text-decoration: none;
-    font-size: 14px;
     transition: background-color 0.3s ease;
+    font-size: 14px;
+    cursor: pointer;
+    border: none; /* Consistent border */
+    display: inline-block; /* Ensure proper sizing */
+    text-align: center; /* Center text */
   }
   
-  .add-case-button:hover,
-  .edit-suite-link:hover,
-  .delete-button:hover,
-  .columns-button:hover {
+  .add-test-case-button:hover,
+  .edit-test-suite-link:hover,
+  .delete-case-button:hover {
     background-color: #0056b3;
   }
-
+  
   .sections-cases-summary {
     margin-bottom: 20px;
     font-size: 16px;
@@ -90,6 +90,7 @@
   
   .section-header {
     padding: 15px;
+    color: #f9f9f9;
     background-color: #3498db;
     border-bottom: 1px solid #dde1e4;
     display: flex;
@@ -104,12 +105,26 @@
     max-height: 400px; /* Scroll within the case list */
   }
   
+  .case-header {
+    display: flex;
+    font-weight: bold;
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 5px;
+  }
+  
+  .case-header-item {
+    flex: 1;
+    text-align: center;
+    padding: 5px;
+  }
+  
   .case-item {
     display: flex;
     align-items: center;
     padding: 10px;
     border-bottom: 1px solid #dde1e4;
     transition: background-color 0.3s ease;
+    cursor: pointer; /* Make the entire case item clickable */
   }
   
   .case-item:hover {
@@ -117,9 +132,9 @@
   }
   
   .case-id {
-    width: 80px;
-    display: flex;
-    align-items: center;
+    flex: 1;
+    text-align: center;
+    margin-right: 10px; /* Add space between case ID and title */
   }
   
   .case-id input {
@@ -132,23 +147,41 @@
     font-weight: bold;
   }
   
-  .case-title {
-    flex: 2;
+  .case-title-link {
+    flex: 3;
     margin-right: 10px;
     color: #888;
+    text-decoration: none; /* Remove default link underline */
   }
   
   .case-automation {
-    width: 120px;
+    flex: 2;
+    text-align: center;
+    color: #888;
+    margin-right: 10px; /* Add space between automation and type */
+  }
+  
+  .case-type {
+    flex: 1;
     text-align: center;
     color: #888;
   }
   
-  .case-type {
-    width: 80px;
-    text-align: center;
-    color: #888;
+  .delete-section-button {
+    background: none;
+    border: none;
+    color: #f00;
+    align-items: left;
+    padding-right: 500px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 18px;
   }
+  
+/* 
+  .delete-section-button:hover {
+    background-color: #f9f9f9;
+  }  */
   
   .sections-tree-view {
     flex: 1;
@@ -191,7 +224,7 @@
   }
   
   .sections-tree > li {
-    margin-bottom: 10px;
+    margin-bottom: 50px;
   }
   
   .tree-node {
@@ -202,6 +235,7 @@
     padding: 5px;
     border-radius: 3px;
     transition: background-color 0.3s ease;
+    cursor: pointer; /* Make the entire tree node clickable */
   }
   
   .tree-node:hover {
@@ -220,18 +254,19 @@
     margin-top: 5px;
   }
   
-  .subtree-node {
+  .case-node {
     font-size: 14px;
     color: #777;
     margin-bottom: 5px;
     transition: color 0.3s ease;
+    cursor: pointer;
   }
   
-  .subtree-node:hover {
+  .case-node:hover {
     color: #3498db;
   }
   
-  .subtree-node::before {
+  .case-node::before {
     content: '•';
     color: #777;
     display: inline-block;

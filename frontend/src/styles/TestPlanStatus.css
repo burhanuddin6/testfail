@@ -1,0 +1,172 @@
+.test-plan-status-page {
+    padding: 20px;
+    margin-top: 80px; 
+    font-family: Arial, sans-serif;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    height: calc(100vh - 120px);
+  }
+  
+  .test-plan-status-actions {
+    /* display: flex; */
+    display: block;
+    gap: 15px;
+  }
+
+
+  .test-plan-status-header {
+    margin-bottom: 20px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #ddd;
+    background-color: #f7faff;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  .test-plan-status-header h2 {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .test-plan-status-actions {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .edit-test-plan-link {
+    background-color: #007bff;
+    border: 5px solid black;
+    /* background-color: #f7faff; */
+    display: flex !important;
+    color: black;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .edit-test-plan-link:hover {
+    /* background-color: #f7faff; */
+    background-color: #0056b3;
+  }
+  
+  .test-plan-status-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  .test-plan-status-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1;
+    padding: 10px;
+  }
+  
+  .test-plan-status-pie-chart {
+    flex: 1;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border: 1px solid #dde1e4;
+    padding: 10px;
+    width: 300px;
+    margin: auto;
+    padding-right: 500px;
+  }
+  
+  .test-plan-status-summary {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border: 1px solid #dde1e4;
+    padding: 20px;
+  }
+  
+  .test-plan-status-summary-text {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .pie-chart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .pie-chart-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: absolute;
+    right: 700px;
+    transform: translateY(10%);
+    padding: 60px;
+  }
+  
+  .test-plan-status-sidebar {
+    width: 250px;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .sidebar-section {
+    margin-bottom: 20px;
+  }
+  
+  .sidebar-header {
+    margin-bottom: 15px;
+  }
+  
+  .sidebar-header h3 {
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .sidebar li {
+    margin-bottom: 10px;
+  }
+  
+  .sidebar a {
+    display: block;
+    padding: 8px 12px;
+    border-radius: 5px;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .sidebar a:hover {
+    background-color: #ddd;
+  }
+  
+  /* Media Queries for Responsive Design */
+  @media screen and (max-width: 768px) {
+    .test-plan-status-content {
+      flex-direction: column;
+    }
+  }
