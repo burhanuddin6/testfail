@@ -318,10 +318,10 @@ const MilestonesStatus = () => {
                
                 <div className="status-controls">
                     <h2> Milestone Name </h2>
-                    <div className="status-control-button">
-                        <button>Export</button>
-                        <button>Print</button>
-                        <button onClick={handleEditMilestone}>Edit</button>
+                    <div className="status-control-button">  
+                        <button className="milestone-button" >Export</button>
+                        <button className="milestone-button" >Print</button>
+                        <button className="milestone-button" onClick={handleEditMilestone}>Edit</button>
                     </div>
                 </div>
             </div>

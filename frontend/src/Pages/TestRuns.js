@@ -202,17 +202,17 @@
 //                 ))}
 
 //                 {groupedOpenTestPlans[milestone] && groupedOpenTestPlans[milestone].length > 0 && groupedOpenTestPlans[milestone].map(plan => (
-//                   <div key={plan.test_plan_id} className="test-run-results-details">
-//                     <input type="checkbox" onChange={() => handleSelectItem(plan.test_plan_id, 'plan')} />
-//                     <p className="test-suite-indicator">Test Plan</p>
-//                     <p><strong>{plan.name}</strong><br />By {plan.created_by_info.first_name} {plan.created_by_info.last_name} on {new Date(plan.created_on).toLocaleDateString()}<br />{plan.number_of_passed_test_cases} Passed, {plan.number_of_blocked_test_cases} Blocked, {plan.number_of_untested_test_cases} Untested, {plan.number_of_partial_test_cases} Partial, {plan.number_of_failed_test_cases} Failed</p>
-//                     <div className="test-run-results-statusbar">
-//                       <div className="test-run-results-progress-bar-passes" style={{ width: `${calculatePercentage(plan.number_of_passed_test_cases, plan.number_of_test_cases)}%` }}></div>
-//                       <div className="test-run-results-progress-bar-untested" style={{ width: `${calculatePercentage(plan.number_of_untested_test_cases, plan.number_of_test_cases)}%` }}></div>
-//                       <div className="test-run-results-progress-bar-failed" style={{ width: `${calculatePercentage(plan.number_of_failed_test_cases, plan.number_of_test_cases)}%` }}></div>
-//                     </div>
-//                     <div className="test-run-results-progress-value">{calculatePercentage(plan.number_of_passed_test_cases, plan.number_of_test_cases)}%</div>
-//                   </div>
+                  // <div key={plan.test_plan_id} className="test-run-results-details">
+                  //   <input type="checkbox" onChange={() => handleSelectItem(plan.test_plan_id, 'plan')} />
+                  //   <p className="test-suite-indicator">Test Plan</p>
+                  //   <p><strong>{plan.name}</strong><br />By {plan.created_by_info.first_name} {plan.created_by_info.last_name} on {new Date(plan.created_on).toLocaleDateString()}<br />{plan.number_of_passed_test_cases} Passed, {plan.number_of_blocked_test_cases} Blocked, {plan.number_of_untested_test_cases} Untested, {plan.number_of_partial_test_cases} Partial, {plan.number_of_failed_test_cases} Failed</p>
+                  //   <div className="test-run-results-statusbar">
+                  //     <div className="test-run-results-progress-bar-passes" style={{ width: `${calculatePercentage(plan.number_of_passed_test_cases, plan.number_of_test_cases)}%` }}></div>
+                  //     <div className="test-run-results-progress-bar-untested" style={{ width: `${calculatePercentage(plan.number_of_untested_test_cases, plan.number_of_test_cases)}%` }}></div>
+                  //     <div className="test-run-results-progress-bar-failed" style={{ width: `${calculatePercentage(plan.number_of_failed_test_cases, plan.number_of_test_cases)}%` }}></div>
+                  //   </div>
+                  //   <div className="test-run-results-progress-value">{calculatePercentage(plan.number_of_passed_test_cases, plan.number_of_test_cases)}%</div>
+                  // </div>
 //                 ))}
 //               </div>
 //             ))}
@@ -503,17 +503,29 @@ const TestRuns = () => {
                 ))}
 
                 {groupedOpenTestPlans[milestone] && groupedOpenTestPlans[milestone].map(plan => (
+                  // <div key={plan.test_plan_id} className="test-run-results-details">
+                  //   <input type="checkbox" onChange={() => handleSelectItem(plan.test_plan_id, 'plan')} />
+                  //   <p className="test-plan-indicator">Test Plan</p>
+                  //   <p><strong><a href={`/TestPlanTestsResults`}>{plan.name}</a></strong><br />By {plan.created_by_info.first_name} {plan.created_by_info.last_name} on {new Date(plan.created_on).toLocaleDateString()}<br />{plan.number_of_test_cases} Total</p>
+                  //   <div className="test-plan-results-statusbar">
+                  //     <div className="test-plan-results-progress-bar-passes" style={{ width: `${calculatePercentage(plan.number_of_passed_test_cases, plan.number_of_test_cases)}%` }}></div>
+                  //     <div className="test-plan-results-progress-bar-untested" style={{ width: `${calculatePercentage(plan.number_of_untested_test_cases, plan.number_of_test_cases)}%` }}></div>
+                  //     <div className="test-plan-results-progress-bar-failed" style={{ width: `${calculatePercentage(plan.number_of_failed_test_cases, plan.number_of_test_cases)}%` }}></div>
+                  //   </div>
+                  //   <div className="test-plan-results-progress-value">{calculatePercentage(plan.number_of_passed_test_cases, plan.number_of_test_cases)}%</div>
+                  // </div>
                   <div key={plan.test_plan_id} className="test-run-results-details">
                     <input type="checkbox" onChange={() => handleSelectItem(plan.test_plan_id, 'plan')} />
-                    <p className="test-plan-indicator">Test Plan</p>
-                    <p><strong><a href={`/TestPlanTestsResults`}>{plan.name}</a></strong><br />By {plan.created_by_info.first_name} {plan.created_by_info.last_name} on {new Date(plan.created_on).toLocaleDateString()}<br />{plan.number_of_test_cases} Total</p>
-                    <div className="test-plan-results-statusbar">
-                      <div className="test-plan-results-progress-bar-passes" style={{ width: `${calculatePercentage(plan.number_of_passed_test_cases, plan.number_of_test_cases)}%` }}></div>
-                      <div className="test-plan-results-progress-bar-untested" style={{ width: `${calculatePercentage(plan.number_of_untested_test_cases, plan.number_of_test_cases)}%` }}></div>
-                      <div className="test-plan-results-progress-bar-failed" style={{ width: `${calculatePercentage(plan.number_of_failed_test_cases, plan.number_of_test_cases)}%` }}></div>
+                    <p className="test-suite-indicator">Test Plan</p>
+                    <p><strong><a href={``}>{plan.name}</a></strong><br />By {plan.created_by_info.first_name} {plan.created_by_info.last_name} on {new Date(plan.created_on).toLocaleDateString()}<br />{plan.number_of_passed_test_cases} Passed, {plan.number_of_blocked_test_cases} Blocked, {plan.number_of_untested_test_cases} Untested, {plan.number_of_partial_test_cases} Partial, {plan.number_of_failed_test_cases} Failed</p>
+                    <div className="test-run-results-statusbar">
+                      <div className="test-run-results-progress-bar-passes" style={{ width: `${calculatePercentage(plan.number_of_passed_test_cases, plan.number_of_test_cases)}%` }}></div>
+                      <div className="test-run-results-progress-bar-untested" style={{ width: `${calculatePercentage(plan.number_of_untested_test_cases, plan.number_of_test_cases)}%` }}></div>
+                      <div className="test-run-results-progress-bar-failed" style={{ width: `${calculatePercentage(plan.number_of_failed_test_cases, plan.number_of_test_cases)}%` }}></div>
                     </div>
-                    <div className="test-plan-results-progress-value">{calculatePercentage(plan.number_of_passed_test_cases, plan.number_of_test_cases)}%</div>
+                    <div className="test-run-results-progress-value">{calculatePercentage(plan.number_of_passed_test_cases, plan.number_of_test_cases)}%</div>
                   </div>
+                  
                 ))}
               </div>
             ))}
@@ -531,11 +543,11 @@ const TestRuns = () => {
                   <div key={run.test_run_id} className="test-run-results-details">
                     <input type="checkbox" onChange={() => handleSelectItem(run.test_run_id, 'run')} />
                     <p className="test-run-indicator">Test Run</p>
-                    <p><strong><a href={`/TestRunTestsResults`}>{run.name}</a></strong><br />By {run.created_by_info.first_name} {run.created_by_info.last_name} on {new Date(run.created_on).toLocaleDateString()}<br />{run.number_of_passed_test_cases} Passed, {run.number_of_blocked_test_cases} Blocked, {run.number_of_untested_test_cases} Untested, {run.number_of_partial_test_cases} Partial, {run.number_of_failed_test_cases} Failed</p>
+                    <p><strong><a href={`/TestRunTestsResults`}>{run.name}</a></strong><br />By {run.created_by_info.first_name} {run.created_by_info.last_name} on {new Date(run.completed_on).toLocaleDateString()}</p>
                     <div className="test-run-results-statusbar">
-                      <div className="test-run-results-progress-bar-passes" style={{ width: `${calculatePercentage(run.number_of_passed_test_cases, run.number_of_test_cases)}%` }}></div>
+                      {/* <div className="test-run-results-progress-bar-passes" style={{ width: `${calculatePercentage(run.number_of_passed_test_cases, run.number_of_test_cases)}%` }}></div>
                       <div className="test-run-results-progress-bar-untested" style={{ width: `${calculatePercentage(run.number_of_untested_test_cases, run.number_of_test_cases)}%` }}></div>
-                      <div className="test-run-results-progress-bar-failed" style={{ width: `${calculatePercentage(run.number_of_failed_test_cases, run.number_of_test_cases)}%` }}></div>
+                      <div className="test-run-results-progress-bar-failed" style={{ width: `${calculatePercentage(run.number_of_failed_test_cases, run.number_of_test_cases)}%` }}></div> */}
                     </div>
                     <div className="test-run-results-progress-value">{calculatePercentage(run.number_of_passed_test_cases, run.number_of_test_cases)}%</div>
                   </div>
@@ -545,11 +557,11 @@ const TestRuns = () => {
                   <div key={plan.test_plan_id} className="test-run-results-details">
                     <input type="checkbox" onChange={() => handleSelectItem(plan.test_plan_id, 'plan')} />
                     <p className="test-plan-indicator">Test Plan</p>
-                    <p><strong><a href={`/TestPlanTestsResults`}>{plan.name}</a></strong><br />By {plan.created_by_info.first_name} {plan.created_by_info.last_name} on {new Date(plan.created_on).toLocaleDateString()}<br />{plan.number_of_test_cases} Total</p>
+                    <p><strong><a href={`/TestPlanTestsResults`}>{plan.name}</a></strong><br />By {plan.created_by_info.first_name} {plan.created_by_info.last_name} on {new Date(plan.completed_on).toLocaleDateString()}</p>
                     <div className="test-plan-results-statusbar">
-                      <div className="test-plan-results-progress-bar-passes" style={{ width: `${calculatePercentage(plan.number_of_passed_test_cases, plan.number_of_test_cases)}%` }}></div>
+                      {/* <div className="test-plan-results-progress-bar-passes" style={{ width: `${calculatePercentage(plan.number_of_passed_test_cases, plan.number_of_test_cases)}%` }}></div>
                       <div className="test-plan-results-progress-bar-untested" style={{ width: `${calculatePercentage(plan.number_of_untested_test_cases, plan.number_of_test_cases)}%` }}></div>
-                      <div className="test-plan-results-progress-bar-failed" style={{ width: `${calculatePercentage(plan.number_of_failed_test_cases, plan.number_of_test_cases)}%` }}></div>
+                      <div className="test-plan-results-progress-bar-failed" style={{ width: `${calculatePercentage(plan.number_of_failed_test_cases, plan.number_of_test_cases)}%` }}></div> */}
                     </div>
                     <div className="test-plan-results-progress-value">{calculatePercentage(plan.number_of_passed_test_cases, plan.number_of_test_cases)}%</div>
                   </div>
