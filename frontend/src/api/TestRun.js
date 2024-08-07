@@ -35,5 +35,16 @@ const fetchTestRuns = async (projectId, suiteId = '', milestoneId = '') => {
       throw error;
   }
 };
+
+
+export const fetchTestRunData = async (testRunId) => {
+  try {
+    const response = await axiosInstance.get(`/test_runs/${testRunId}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching test run data:", error);
+    throw error;
+  }
+};
   
 export { createTestRun, fetchTestRuns, deleteTestRun };

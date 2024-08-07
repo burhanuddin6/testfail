@@ -10,6 +10,7 @@ class TestCaseResultChangesSerializer(serializers.ModelSerializer):
 
 class TestCaseResultSerializer(serializers.ModelSerializer):
     changes = TestCaseResultChangesSerializer(many=True, read_only=True)
+    title = serializers.SerializerMethodField()
 
     class Meta:
         model = TestCaseResult
@@ -20,3 +21,6 @@ class TestCaseResultSerializer(serializers.ModelSerializer):
         representation = super().to_representation(instance)
         representation['changes'] = TestCaseResultChangesSerializer(instance.testcaseresultchanges_set.all(), many=True).data
         return representation
+    
+    def get_title(self, obj):
+        return obj.test_case_id.title

@@ -53,3 +53,4 @@ class TestCaseResultChanges(models.Model):
     created_by = models.ForeignKey(MyUser, on_delete=models.CASCADE, related_name='created_test_case_results')
     created_on = models.DateTimeField(auto_now_add=True)
     files = models.ManyToManyField(File, related_name='test_case_results', blank=True, null=True)
+    assigned_to = models.ForeignKey(MyUser, on_delete=models.CASCADE, null=True, blank=True, related_name='assigned_test_case_results')
