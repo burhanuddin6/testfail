@@ -341,6 +341,7 @@ const Milestones = () => {
                       <input type="checkbox" checked={milestone.checked}
                        onChange={() => handleCheckboxChange(milestone.id, 'completed')} /> 
                       <a
+                        // href="#"
                         className='milestoneName'
                         onClick={() => handleMilestoneClick(milestone.id, milestone.name)}
                       >

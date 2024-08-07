@@ -17,6 +17,20 @@ const login = async (formData) => {
   }
 };
 
+// function for user login
+const logout = async (token) => {
+  try {
+    const response = await axios.get(`${LOCAL_URL}/api/accounts/logout/`, {
+      headers: {
+        Authorization: `Token ${token}`
+      }
+    });
+    return response.data; 
+  } catch (error) {
+    throw error; 
+  }
+};
+
 // function for user sign up
 const signUp = async ({ firstName, lastName, workEmail, password }) => {
   try {
@@ -77,4 +91,4 @@ const getQaUsers = async (groupName = 'qa-user') => {
   }
 };
 
-export { login, signUp, verifyEmail, getUserDetails, getQaUsers};
+export { login, logout, signUp, verifyEmail, getUserDetails, getQaUsers};

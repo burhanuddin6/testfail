@@ -3,6 +3,8 @@ import '../styles/components/Header.css';
 import logo from '../images/logo_02.png';
 import { getProjectID, getProjectName } from '../utilities/globals';
 import { useNavigate } from 'react-router-dom';
+import { logout as apiLogout } from '../api/Auth'; // Import the logout function from Auth.js
+
 
 
 const Header = ({userName }) => {
@@ -19,6 +21,22 @@ const Header = ({userName }) => {
   console.log("username in header " + projectName); //debug statement, remove before production!!
   console.log("projectid in header " + projectID); //debug statement, remove before production!!
   console.log("projectname in header " + projectID); //debug statement, remove before production!!
+
+  const handleLogout = async () => {
+    const token = sessionStorage.getItem('token'); 
+    if (!token) {
+      console.error('No token found in session storage.');
+      return;
+    }
+
+    try {
+      await apiLogout(token);
+      sessionStorage.clear();
+      navigate('/login');
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
+  };
 
   return (
     <div className="header-container">
@@ -43,6 +61,15 @@ const Header = ({userName }) => {
                 <div className="dropdown-menu">
                     <div>My Settings</div>
                     <div>Logout</div>
+                    {/* <div>
+                      <a
+                        href="#"
+                        onClick={(e) => { e.preventDefault(); handleLogout(); }}
+                        style={{ color: 'black', textDecoration: 'none' }}
+                      >
+                        Logout
+                      </a>
+                    </div> */}
                 </div>
                 )}
             </div>
@@ -71,8 +98,13 @@ const Header = ({userName }) => {
             <a href='/testsuitscases' onClick={(e) => {e.preventDefault(); setActiveView('cases');navigate('/testsuitscases');}} className={activeView === 'cases' ? 'active-button' : ''}>Test Suites & Cases</a>
             <a href='' onClick={(e) => {e.preventDefault(); setActiveView('reports');}} className={activeView === 'reports' ? 'active-button' : ''}>Reports</a>
 
-            <div className='nav-admin'>
+            {/* <div className='nav-admin'>
               <a href=''>Admin</a>
+            </div> */}
+            <div className='nav-admin'>
+                <a href='http://127.0.0.1:8000/admin' target='_blank' rel='noopener noreferrer'>
+                    Admin
+                </a>
             </div>
         </div>
         

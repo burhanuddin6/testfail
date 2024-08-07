@@ -333,50 +333,123 @@ const AddTestRun = ({ userID }) => {
     fetchData();
   }, [projectID, selectedOption]);
   // console.log(`These are the selected test cases: ${selectedTestCases}`);
+  // const handleSubmit = async (event) => {
+  //   event.preventDefault();
+    
+  //   const userID = sessionStorage.getItem("user_id");
+
+  //   if (testCaseSelection === 'ALL' || testCaseSelection === 'SELECTED' || testCaseSelection === 'REGEX_ON_NAME') {
+  //     const testRunData = {
+  //       name,
+  //       test_suite_id: selectedOption || suiteId,
+  //       created_by: userID,
+  //       milestone_id: milestone,
+  //       description,
+  //       test_case_filter: testCaseSelection,
+  //       project_id: projectID,
+  //       assigned_to: assignTo,
+  //     };
+
+  //     try {
+  //       await createTestRun(testRunData);
+  //       console.log('Test run created successfully');
+  
+  //       if (sourcePage === 'TestSuiteTestRuns') {
+  //         navigate(`/TestSuiteTestRuns?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}`);
+  //       } else if (sourcePage === 'TestRuns') {
+  //           navigate('/TestRuns')
+  //         } else {
+  //           navigate('/TestSuitsCases');
+  //       }
+  //     } catch (error) {
+  //       console.error('Failed to create Test Run:', error);
+  
+  //       if (error.response && error.response.data && error.response.data.name) {
+          
+  //         setAlert({ message: 'Test run with this name already exists.', type: 'error' });
+  //       } else if (error.response && error.response.data && error.response.data.test_case_filter) {
+  //         setAlert({ message: 'Not a valid choice. Please select a valid test case filter.', type: 'error' });
+  //       } else {
+  //         setAlert({ message: 'Failed to create Test Run. Please try again.', type: 'error' });
+  //       }
+  //     }
+  //   } else {
+  //     setAlert({ message: '"all" is not a valid choice. Please select a valid test case filter.', type: 'error' });
+  //   }
+  // };
+
+  const formatSelectedTestCases = () => {
+    if (testCaseSelection !== 'SELECTED' || selectedTestCases.length === 0) {
+      return '';
+    }
+  
+    return selectedTestCases.join(', ');
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
-    const userID = sessionStorage.getItem("user_id");
+  
 
-    if (testCaseSelection === 'ALL' || testCaseSelection === 'SELECTED' || testCaseSelection === 'REGEX_ON_NAME') {
-      const testRunData = {
-        name,
-        test_suite_id: selectedOption || suiteId,
-        created_by: userID,
-        milestone_id: milestone,
-        description,
-        test_case_filter: testCaseSelection,
-        project_id: projectID,
-        assigned_to: assignTo,
-      };
-      
-      try {
-        await createTestRun(testRunData);
-        console.log('Test run created successfully');
+    const userID = sessionStorage.getItem("user_id");
   
-        if (sourcePage === 'TestSuiteTestRuns') {
-          navigate(`/TestSuiteTestRuns?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}`);
-        } else if (sourcePage === 'TestRuns') {
-            navigate('/TestRuns')
-          } else {
-            navigate('/TestSuitsCases');
-        }
-      } catch (error) {
-        console.error('Failed to create Test Run:', error);
+    let testCaseFilter = '';
   
-        if (error.response && error.response.data && error.response.data.name) {
-          
-          setAlert({ message: 'Test run with this name already exists.', type: 'error' });
-        } else if (error.response && error.response.data && error.response.data.test_case_filter) {
-          setAlert({ message: 'Not a valid choice. Please select a valid test case filter.', type: 'error' });
-        } else {
-          setAlert({ message: 'Failed to create Test Run. Please try again.', type: 'error' });
-        }
+    if (testCaseSelection === 'ALL') {
+      testCaseFilter = '';
+    } else if (testCaseSelection === 'SELECTED') {
+      testCaseFilter = formatSelectedTestCases();
+    }
+  
+    let testRunData = {
+      name,
+      test_suite_id: selectedOption,
+      created_by: userID,
+      description,
+      test_case_filter: testCaseSelection,
+      test_case_filter_value: testCaseFilter,
+      project_id: projectID,
+    };
+
+    if(milestone !== '') testRunData = {...testRunData, milestone_id: milestone};
+    if(assignTo !== '') testRunData = {...testRunData, assigned_to: assignTo};
+
+    
+
+    console.log('Selected Test Cases:', selectedTestCases);
+    console.log('Selected Test Cases:', testCaseFilter);
+    console.log('Selected Test Cases:', testRunData);
+
+
+
+  
+    try {
+      await createTestRun(testRunData);
+      console.log('Test run created successfully');
+  
+      if (sourcePage === 'TestSuiteTestRuns') {
+        navigate(`/TestSuiteTestRuns?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}`);
+      } else if (sourcePage === 'TestRuns') {
+        navigate('/TestRuns');
+      } else {
+        navigate('/TestSuitsCases');
       }
-    } else {
-      setAlert({ message: '"all" is not a valid choice. Please select a valid test case filter.', type: 'error' });
+    } catch (error) {
+      console.error('Failed to create Test Run:', error);
+  
+      if (error.response && error.response.data && error.response.data.name) {
+        setAlert({ message: 'Test run with this name already exists.', type: 'error' });
+      } else if (error.response && error.response.data && error.response.data.test_case_filter) {
+        setAlert({ message: 'Not a valid choice. Please select a valid test case filter.', type: 'error' });
+      } else {
+        setAlert({ message: 'Failed to create Test Run. Please try again.', type: 'error' });
+      }
     }
   };
+  
+  
+
+  
+  
   
   const handleFilesChange = (uploadedFiles) => {
     setFiles(uploadedFiles);

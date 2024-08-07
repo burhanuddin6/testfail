@@ -51,5 +51,17 @@ const fetchMilestonesIdName = async(projectId) => {
   }
 }
 
+// function for fetching milestones of a given project to display 
+const childrenhMilestones = async (parentId) => {
+  try {
+    const response = await axiosInstance.get(`milestones/?parent_milestone_id=${parentId}`);
+    // console.log(response.data); // debug statement, remove before production
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching milestones:', error); // debug statement, remove before production
+    throw error;
+  }
+};
 
-export { createMilestone, fetchMilestones, deleteMilestone , fetchMilestonesIdName };
+
+export { createMilestone, fetchMilestones, deleteMilestone , fetchMilestonesIdName, childrenhMilestones };
