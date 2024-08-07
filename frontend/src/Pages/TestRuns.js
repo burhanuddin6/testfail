@@ -507,6 +507,8 @@ const TestRuns = () => {
         <div className='test-run-results'>
           <h3 className='test-run-results-heading'> Open</h3>
           <div className='test-run-results-scrollable'>
+          <div className="milestone-wise-test-run-details">
+
             {Object.keys(groupedOpenTestRuns).map(milestone => (
               <div key={milestone}>
                 <h4 className="test-run-result-milestone-name">{milestone}</h4>
@@ -557,6 +559,7 @@ const TestRuns = () => {
                 ))}
               </div>
             ))}
+            </div>
           </div>
         </div>
 

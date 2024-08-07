@@ -8,7 +8,7 @@ import FileUpload from '../components/fileUpload';
 const AddTestSuite = () => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-  const [file, setFile] = useState(null);
+  const [files, setFiles] = useState([]);
 
   const navigate = useNavigate();
   const [projectID] = useState(getProjectID()); 
@@ -24,7 +24,6 @@ const AddTestSuite = () => {
       created_by: creatorId,
       description,
       project_id: projectID,
-      file: file
     };
 
     try {
@@ -38,6 +37,10 @@ const AddTestSuite = () => {
   const handleCancel = (e) => {
     e.preventDefault();
     navigate('/testsuitscases'); //URL CHANGE
+  };
+
+  const handleFilesChange = (uploadedFiles) => {
+    setFiles(uploadedFiles);
   };
 
   
@@ -75,7 +78,7 @@ const AddTestSuite = () => {
           />
         </div>
 
-        <FileUpload/>
+        <FileUpload onFilesChange={handleFilesChange}/>
 
         <div className="test-suite-buttons">
           <button type="submit" className="test-suite-button test-suite-submit">

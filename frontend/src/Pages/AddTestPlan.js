@@ -221,6 +221,8 @@ const AddTestPlan = () => {
   const [popupVisible, setPopupVisible] = useState(false);
   const [selectedPopupOptions, setSelectedPopupOptions] = useState([]);
   const [milestones, setMilestones] = useState([]);
+  const [files, setFiles] = useState([]);
+
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -259,13 +261,9 @@ const AddTestPlan = () => {
     navigate(from);
   };
 
-  const handleFileChange = (event) => {
-    const files = Array.from(event.target.files);
-    setImages((prevImages) => [...prevImages, ...files]);
-  };
 
-  const removeImage = (index) => {
-    setImages(images.filter((_, i) => i !== index));
+  const handleFilesChange = (uploadedFiles) => {
+    setFiles(uploadedFiles);
   };
 
   const handleRemoveOption = (option) => {
@@ -413,7 +411,7 @@ const AddTestPlan = () => {
             
         </div>
         
-        <FileUpload/>
+        <FileUpload onFilesChange={handleFilesChange}/>
 
         <div className="test-plan-buttons">
           <button type="submit" className="test-plan-button test-plan-submit">

@@ -374,7 +374,7 @@ const EditTestCase = () => {
   const [steps, setSteps] = useState('');
   const [expectedResult, setExpectedResult] = useState('');
   const [automatedCases, setAutomatedCases] = useState('');
-  const [file, setFile] = useState(null);
+  const [files, setFiles] = useState([]);
   const [mission, setMission] = useState('');
   const [goals, setGoals] = useState('');
   const [stepsCases, setStepsCases] = useState([{ id: 1 }]);
@@ -517,26 +517,47 @@ const EditTestCase = () => {
     }
   };
 
-  const handleDelete = async () => {
-    try {
+  // const handleDelete = async () => {
+  //   try {
+      // await deleteTestCase(testCaseId);
+      // console.log('Test case deleted successfully');
+  //     if (sourcePage === 'TestCaseDetails') {
+  //       navigate(`/TestCaseDetails?suiteId=${suiteId}&suite=${suiteName}`);
+  //     } else if (sourcePage === 'TestsResults') {
+  //       navigate(`/TestsResults?suiteId=${suiteId}&suite=${suiteName}`);
+  //     } else if (sourcePage === 'TestCaseDefects') {
+  //       navigate(`/TestCaseDefects?suiteId=${suiteId}&suite=${suiteName}`);
+  //     } else {
+  //       navigate(`/TestCaseHistory?suiteId=${suiteId}&suite=${suiteName}`);
+  //     }
+  //   } catch (error) {
+  //     console.error('Failed to delete test case:', error);
+  //   }
+  // };
+
+  const handleDelete  = async (e) => {
+    e.preventDefault();
+    try{
       await deleteTestCase(testCaseId);
       console.log('Test case deleted successfully');
       if (sourcePage === 'TestCaseDetails') {
-        navigate(`/TestCaseDetails?suiteId=${suiteId}&suite=${suiteName}`);
+        navigate(`/TestCaseDetails?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`);
       } else if (sourcePage === 'TestsResults') {
-        navigate(`/TestsResults?suiteId=${suiteId}&suite=${suiteName}`);
+          navigate(`/TestsResults?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`);
       } else if (sourcePage === 'TestCaseDefects') {
-        navigate(`/TestCaseDefects?suiteId=${suiteId}&suite=${suiteName}`);
+          navigate(`/TestCaseDefects?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`);
       } else {
-        navigate(`/TestCaseHistory?suiteId=${suiteId}&suite=${suiteName}`);
+          navigate(`/TestCaseHistory?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`);
       }
     } catch (error) {
       console.error('Failed to delete test case:', error);
     }
+
   };
 
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
+
+  const handleFilesChange = (uploadedFiles) => {
+    setFiles(uploadedFiles);
   };
 
   return (
@@ -798,7 +819,7 @@ const EditTestCase = () => {
             />
           </div>
 
-          <FileUpload/>
+          <FileUpload onFilesChange={handleFilesChange}/>
 
           {/* Buttons */}
           <div className="edit-suite-buttons">
@@ -814,14 +835,18 @@ const EditTestCase = () => {
           </div>
         </form>
 
-        
-
         <div className="actions-section">
           {/* <p className="actions-title">Actions</p> */}
           <p className="actions-description">
           Delete a test case to remove it from its test suite. <br></br>This also deletes all related running tests.
           </p>
-          <button className="delete-suite-button" onClick={handleDelete}>✗ Delete this test case</button>
+          <button
+              type="button"
+              onClick={handleDelete}
+              className="delete-suite-button"
+            >
+              ✗ Delete this test case
+            </button>
         </div>
       </div>
     </div>

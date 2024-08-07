@@ -19,7 +19,7 @@ const EditTestSuite = () => {
   // Initialize the name state with suiteName from URL or default name
   const [name, setName] = useState(suiteName); // Correct state initialization
   const [description, setDescription] = useState(''); // Preset with existing description if any
-  const [file, setFile] = useState(null);
+  const [files, setFiles] = useState([]);
 
   const handleUpdate = async (event) => {
     event.preventDefault();
@@ -58,13 +58,29 @@ const EditTestSuite = () => {
     }
   };
 
-  const handleDelete = async () => {
+  // const handleDelete = async () => {
+    // try {
+    //   await deleteTestSuite(suiteId);
+    //   if (sourcePage === 'TestRuns') {
+    //     navigate(`/TestRuns`);
+    //   } else if (sourcePage === 'SectionsCases') {
+    //     navigate(`/SectionsCases`);
+    //   } else {
+    //     navigate('/TestSuitsCases');
+    //   }
+    // } catch (error) {
+    //   // Handle error (e.g., show a notification)
+    //   console.error("Error deleting test suite:", error);
+    // }
+  // };
+  const handleDelete = async(e) => {
+    e.preventDefault();
     try {
       await deleteTestSuite(suiteId);
-      if (sourcePage === 'TestRuns') {
-        navigate(`/TestRuns`);
+      if (sourcePage === 'TestSuiteTestRuns') {
+        navigate(`/TestSuiteTestRuns?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`); // Use updated name
       } else if (sourcePage === 'SectionsCases') {
-        navigate(`/SectionsCases`);
+        navigate(`/SectionsCases?suiteId=${suiteId}&suite=${encodeURIComponent(name)}`); // Use updated name
       } else {
         navigate('/TestSuitsCases');
       }
@@ -87,8 +103,9 @@ const EditTestSuite = () => {
     }
   };
 
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
+
+  const handleFilesChange = (uploadedFiles) => {
+    setFiles(uploadedFiles);
   };
 
   return (
@@ -129,7 +146,7 @@ const EditTestSuite = () => {
             />
           </div>
 
-          <FileUpload/>
+          <FileUpload onFilesChange={handleFilesChange}/>
 
           <div className="edit-suite-buttons">
             <button
@@ -148,13 +165,18 @@ const EditTestSuite = () => {
           </div>
         </form>
 
-    
         <div className="actions-section">
           {/* <p className="actions-title">Actions</p> */}
           <p className="actions-description">
             Delete this test suite to remove it from your project. <br></br>This also deletes all related test cases and running tests.
           </p>
-          <button className="delete-suite-button" onClick={handleDelete}>✗ Delete this test suite</button>
+          <button
+              type="button"
+              onClick={handleDelete}
+              className="delete-suite-button"
+            >
+              ✗ Delete this test suite
+            </button>
         </div>
       </div>
     </div>

@@ -90,9 +90,10 @@ def get_qa_users(request):
 
     # Retrieve the group object
     group = get_object_or_404(Group, name=group_name)
-
+    print("hello inside qa users")
     # Filter users by the group
     users = MyUser.objects.filter(is_superuser=False).values('id', 'email', 'first_name' , 'last_name')  # Note: 'username' is often used instead of 'name'
+    print(users)
 
     # Return JSON response
     return JsonResponse({'users': list(users)})

@@ -116,6 +116,8 @@ const AddSection = () => {
   const [description, setDescription] = useState('');
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null); // State to handle errors
+  const [files, setFiles] = useState([]);
+
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -132,7 +134,7 @@ const AddSection = () => {
     formData.append('name', name);
     formData.append('description', description);
     formData.append('file', file);
-    console.log("file is" + file);
+    // console.log("file is" + file);
     formData.append('test_suite_id', suiteId);
     formData.append('created_by', userId); 
     // formData.append('parent_id', null); 
@@ -149,8 +151,12 @@ const AddSection = () => {
     navigate(`/SectionsCases?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}`);
   };
 
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
+
+  const handleFilesChange = (uploadedFiles) => {
+    console.log("file issss" + uploadedFiles)
+    if (setFiles(uploadedFiles)){
+      console.log("file recieved")
+    };
   };
 
   return (
@@ -188,7 +194,7 @@ const AddSection = () => {
           />
         </div>
 
-        <FileUpload/>
+        <FileUpload onFilesChange={handleFilesChange}/>
 
         <div className="add-section-buttons">
           <button type="submit" className="add-section-form-button add-section-submit">

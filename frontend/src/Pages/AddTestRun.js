@@ -292,9 +292,11 @@ const AddTestRun = ({ userID }) => {
   const [milestones, setMilestones] = useState([]);
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const [isPopupVisibleFilter, setIsPopupVisibleFilter] = useState(false);
+  const [files, setFiles] = useState([]);
   const [alert, setAlert] = useState({ message: '', type: '' }); 
   const [projectID] = useState(getProjectID());
-
+  const [selectedTestCases, setSelectedTestCases] = useState([]);
+  const [APIres, setAPIres] = useState({});
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -330,7 +332,7 @@ const AddTestRun = ({ userID }) => {
 
     fetchData();
   }, [projectID, selectedOption]);
-
+  // console.log(`These are the selected test cases: ${selectedTestCases}`);
   const handleSubmit = async (event) => {
     event.preventDefault();
     
@@ -347,12 +349,7 @@ const AddTestRun = ({ userID }) => {
         project_id: projectID,
         assigned_to: assignTo,
       };
-
-      console.log("assigned to" + assignTo);
-      console.log("created by" + userID);
-
-
-  
+      
       try {
         await createTestRun(testRunData);
         console.log('Test run created successfully');
@@ -381,9 +378,8 @@ const AddTestRun = ({ userID }) => {
     }
   };
   
-  const handleFileChange = (event) => {
-    const files = Array.from(event.target.files);
-    setImages((prevImages) => [...prevImages, ...files]);
+  const handleFilesChange = (uploadedFiles) => {
+    setFiles(uploadedFiles);
   };
 
   const removeImage = (index) => {
@@ -569,7 +565,7 @@ const AddTestRun = ({ userID }) => {
           )}
         </div>
 
-          <FileUpload/>
+        <FileUpload onFilesChange={handleFilesChange}/>
 
         <div className="test-run-buttons">
           <button type="submit" className="test-run-button test-run-submit">
@@ -585,7 +581,7 @@ const AddTestRun = ({ userID }) => {
         </div>
 
         {isPopupVisible && 
-          <FilterPopup onCancel={() => setIsPopupVisible(false)}/>}
+          <FilterPopup setApiRes = {setAPIres} setSelectionsInChild={setSelectedTestCases} suiteId = {selectedOption} onCancel={() => setIsPopupVisible(false)}/>}
         
       </form>
     </div>
