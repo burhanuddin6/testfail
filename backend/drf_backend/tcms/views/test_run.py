@@ -42,7 +42,7 @@ class TestRunViewSet(viewsets.ModelViewSet):
             if suite_id:
                 return TestRun.objects.filter(project_id=project_id, test_suite_id=suite_id)
             if milestone_id: 
-                return TestRun.objects.filter(project_id=project_id, milestone_id = milestone_id)
+                return TestRun.objects.filter(milestone_id = milestone_id)
             return TestRun.objects.filter(project_id=project_id)
                 
         return TestRun.objects.all()

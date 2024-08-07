@@ -244,11 +244,13 @@ import Graph from "../components/OverviewGraph";
 import "../styles/MilestonesStatus.css";
 import { fetchTestRuns } from '../api/TestRun'; // Import the function
 import Alert from '../components/Alert'; // Import the Alert component
+import { childrenhMilestones } from '../api/Milestone';
 
 const MilestonesStatus = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const { children } = location.state || {}; // Get the passed data
+    // const { children } = location.state || {}; // Get the passed data
+    const [children, setChildren] = useState([]);
     const [testRuns, setTestRuns] = useState([]);
     const [completedMilestones, setCompletedMilestones] = useState([]);
     const [completedTestRuns, setCompletedTestRuns] = useState([]);
@@ -260,14 +262,28 @@ const MilestonesStatus = () => {
     const milestoneName = searchParams.get('milestoneName') || 'Milestone'; 
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchChildren = async () => {
             try {
-                if (children && children.length > 0) {
-                    const parentId = children[0].parent_id; // Use the parent_id from the first child
+                // Fetch children data using the parentId
+                const childrenData = await childrenhMilestones(milestoneId);
+                setChildren(childrenData);
+            } catch (error) {
+                console.error('Error fetching children:', error);
+                setError('Failed to fetch children. Please try again.');
+            }
+        };
+
+        fetchChildren();
+    }, [milestoneId]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            if (children.length > 0) {
+                try {
                     const projectID = children[0].project_id; // Get project_id from the first child
 
                     // Fetch test runs
-                    const response = await fetchTestRuns(projectID, '', parentId);
+                    const response = await fetchTestRuns(projectID, '', milestoneId);
                     console.log("Fetched test runs:", response); // Log fetched data
 
                     // Ensure response is an array
@@ -282,26 +298,68 @@ const MilestonesStatus = () => {
                     setOpenTestRuns(activeTestRuns); // Update state for open test runs
                     setCompletedTestRuns(completedRuns); // Update state for completed test runs
                     setError(null);
+                } catch (error) {
+                    console.error('Error fetching test runs:', error); // Log error
+                    setError('Failed to fetch test runs. Please try again.');
                 }
 
-                if (children && children.length > 0) {
-                    // Separate completed and open milestones
-                    const open = children.filter(milestone => !milestone.is_complete)
-                        .sort((a, b) => new Date(b.created_on) - new Date(a.created_on));
-                    const completed = children.filter(milestone => milestone.is_complete)
-                        .sort((a, b) => new Date(b.completed_on) - new Date(a.completed_on));
-                    
-                    setOpenMilestones(open);
-                    setCompletedMilestones(completed);
-                }
-            } catch (error) {
-                console.error('Error fetching test runs:', error); // Log error
-                setError('Failed to fetch test runs. Please try again.');
+                // Separate completed and open milestones
+                const open = children.filter(milestone => !milestone.is_complete)
+                    .sort((a, b) => new Date(b.created_on) - new Date(a.created_on));
+                const completed = children.filter(milestone => milestone.is_complete)
+                    .sort((a, b) => new Date(b.completed_on) - new Date(a.completed_on));
+                
+                setOpenMilestones(open);
+                setCompletedMilestones(completed);
             }
         };
 
         fetchData();
-    }, [children]); // Dependency on children to re-fetch data if it changes
+    }, [children, milestoneId]);
+
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             if (children && children.length > 0) {
+    //                 const parentId = children[0].parent_id; // Use the parent_id from the first child
+    //                 const projectID = children[0].project_id; // Get project_id from the first child
+
+    //                 // Fetch test runs
+    //                 const response = await fetchTestRuns(projectID, '', milestoneId);
+    //                 console.log("Fetched test runs:", response); // Log fetched data
+
+    //                 // Ensure response is an array
+    //                 const activeTestRuns = Array.isArray(response)
+    //                     ? response.filter(run => !run.is_complete) // Filter active test runs
+    //                     : [];
+                    
+    //                 const completedRuns = Array.isArray(response)
+    //                     ? response.filter(run => run.is_complete) // Filter completed test runs
+    //                     : [];
+
+    //                 setOpenTestRuns(activeTestRuns); // Update state for open test runs
+    //                 setCompletedTestRuns(completedRuns); // Update state for completed test runs
+    //                 setError(null);
+    //             }
+
+    //             if (children && children.length > 0) {
+    //                 // Separate completed and open milestones
+    //                 const open = children.filter(milestone => !milestone.is_complete)
+    //                     .sort((a, b) => new Date(b.created_on) - new Date(a.created_on));
+    //                 const completed = children.filter(milestone => milestone.is_complete)
+    //                     .sort((a, b) => new Date(b.completed_on) - new Date(a.completed_on));
+                    
+    //                 setOpenMilestones(open);
+    //                 setCompletedMilestones(completed);
+    //             }
+    //         } catch (error) {
+    //             console.error('Error fetching test runs:', error); // Log error
+    //             setError('Failed to fetch test runs. Please try again.');
+    //         }
+    //     };
+
+    //     fetchData();
+    // }, [children]); // Dependency on children to re-fetch data if it changes
 
     // const handleEditMilestone = () => {
     //     navigate(`/add-milestone`, { state: { from: '/milestone-status', action: 'edit' } });

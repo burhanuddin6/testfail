@@ -48,9 +48,13 @@ class MilestoneViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         
         project_id = self.request.query_params.get('project_id', None)
-        
+        milestone_id = self.request.query_params.get('parent_milestone_id', None)
+
         if project_id:
             return Milestone.objects.filter(project_id=project_id)
+        
+        if milestone_id:
+            return Milestone.objects.filter(parent_id= milestone_id)
 
         return Milestone.objects.all()
     
@@ -63,3 +67,4 @@ class MilestoneViewSet(viewsets.ModelViewSet):
             milestones = Milestone.objects.filter(project_id=project_id, is_complete=False).values('id', 'name')
 
         return Response({'milestones': list(milestones)})
+    

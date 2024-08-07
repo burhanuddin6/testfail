@@ -23,7 +23,7 @@ const deleteTestRun = async (testRunId) => {
 };
 
 // function for fetching a test run of a given suite
-const fetchTestRuns = async (projectId, suiteId = '', milestoneId = '') => {
+const fetchTestRuns = async (projectId='', suiteId = '', milestoneId = '') => {
   try {
       const response = await axiosInstance.get(`test_runs/?project_id=${projectId}${suiteId ? `&suite_id=${suiteId}` : ''}${milestoneId ? `&milestone_id=${milestoneId}` : ''}`); //review projectid usage
        console.log(`runs response: ${JSON.stringify(response.data, null, 2)}`); // debug statement, remove before production
