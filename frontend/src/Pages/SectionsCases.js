@@ -556,6 +556,10 @@ const SectionsCases = () => {
     const fetchData = async () => {
       try {
         const data = await fetchSectionsAndCases(suiteId);
+        console.log(`data fetched in SectionsCases page for sections and cases: ${JSON.stringify(data, null, 2)}`); // debug statement, remove before production
+
+        // console.log("data fetched in SectionsCases page for sections and cases "+ data);
+
         setSections(data);
       } catch (err) {
         setError('Failed to fetch sections and cases');
