@@ -13,10 +13,7 @@ router.register(r'priority_for_testcase', PriorityForTestCaseViewSet)
 router.register(r'test_case_files', TestCaseFileViewSet)
 router.register(r'test_case_tickets', TestCaseTicketViewSet)
 
-#test case result
-router.register(r'test_case_results', TestCaseResultViewSet)
-router.register(r'test_case_result_files', TestCaseResultFileViewSet)
-
+router.register(r'test_case_results', TestCaseResultViewSet, basename='testcaseresult')
 
 #test plan
 router.register(r'test_plans', TestPlanViewSet)
@@ -33,7 +30,6 @@ router.register(r'test_suite_files', TestSuiteFileViewSet)
 router.register(r'test_runs', TestRunViewSet)
 router.register(r'test_run_files', TestRunFileViewSet)
 router.register(r'test_run_tickets', TestRunTicketViewSet)
-router.register(r'test_run_test_case_results', TestRunTestCaseResultViewSet)
 
 
 #milestone
