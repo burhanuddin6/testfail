@@ -1,3 +1,4 @@
+from typing import Any
 from django.db import models
 from .user import MyUser
 from .milestone import Milestone
@@ -8,7 +9,7 @@ from .test_run import TestRun
 
 class TestPlan(models.Model):
     test_plan_id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=255, unique=True)
+    name = models.CharField(max_length=255) 
     milestone_id = models.ForeignKey('Milestone', on_delete=models.CASCADE, null=True, blank=True, related_name='testplans')
 
     description = models.TextField(null=True, blank=True)
@@ -40,16 +41,18 @@ class TestPlan(models.Model):
         is_new = self.pk is None
         if not is_new:
             self.updated_on = datetime.now(timezone.utc)
-        super().save(*args, **kwargs)
-        # Save the instance first
-        if is_new:
-            # Process the selection field to create TestRun instances
-            for entry in self.selection:
-                test_suite_id = entry.get('test_suite_id')
-                test_suite_name = entry.get('test_suite_name')
-                selection_type = entry.get('selection_type')
-                selection_data = entry.get('selection')
 
+        super().save(*args, **kwargs)
+        
+        # Save the instance first
+        # Process the selection field to create TestRun instances
+        for entry in self.selection:
+            test_suite_id = entry.get('test_suite_id')
+            test_suite_name = entry.get('test_suite_name')
+            selection_type = entry.get('selection_type')
+            selection_data = entry.get('selection')
+
+            if not TestPlanTestRun.objects.filter(test_plan_id=self, test_run_id__test_suite_id=test_suite_id).exists():
                 # Fetch the test suite
                 try:
                     test_suite = TestSuite.objects.get(pk=test_suite_id)
@@ -86,7 +89,13 @@ class TestPlan(models.Model):
                     test_run_id=test_run
                 )
     
-            
+    
+    def delete(self, *args, **kwargs):
+        # Delete all associated TestPlanTestRun instances
+        TestRun.objects.filter(test_plan_test_runs__test_plan_id=self).delete()
+        TestPlanTestRun.objects.filter(test_plan_id=self).delete()
+        super().delete(*args, **kwargs)
+
     def __str__(self):
         return self.name
 
@@ -103,4 +112,4 @@ class TestPlanTicket(models.Model):
 class TestPlanTestRun(models.Model):
     test_plan_test_run_id = models.AutoField(primary_key=True)
     test_plan_id = models.ForeignKey(TestPlan, on_delete=models.CASCADE, related_name='test_runs')
-    test_run_id = models.ForeignKey('TestRun', on_delete=models.CASCADE)
+    test_run_id = models.ForeignKey('TestRun', on_delete=models.CASCADE, related_name='test_plan_test_runs')

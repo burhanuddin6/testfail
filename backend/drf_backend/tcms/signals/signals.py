@@ -100,6 +100,7 @@ def update_user_actions(sender, instance, created, **kwargs):
                 test_run=TestRun.objects.get(test_case_results__test_case_result_id=instance.pk)
                 if test_run.is_part_of_test_plan:
                     test_plan=TestPlan.objects.get(test_runs__test_run_id=test_run)
+                    print("HELLO")
                     action_message=f'created "{str(instance.test_case_id)}" for Test Plan: "{str(test_plan)}"'
                 else:
                     action_message=f'created "{str(instance.test_case_id)}" for Test Run: "{str(test_run)}"'

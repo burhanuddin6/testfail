@@ -22,7 +22,7 @@ class TestRunTestCaseResult(models.Model):
         
 class TestRun(models.Model):
     test_run_id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=255, unique=True)
+    name = models.CharField(max_length=255)
     test_suite_id = models.ForeignKey('TestSuite', on_delete=models.CASCADE, related_name='testruns')
     milestone_id = models.ForeignKey('Milestone', on_delete=models.CASCADE, null=True, blank=True, related_name='testruns')
 
@@ -81,6 +81,10 @@ class TestRun(models.Model):
             testcase_result = TestCaseResult.objects.filter(test_run_test_case_results__test_run_id=self.pk).first()
             if testcase_result:
                 testcase_result.save()
+
+    def delete(self, *args, **kwargs):
+        TestCaseResult.objects.filter(test_run_test_case_results__test_run_id=self.pk).delete()
+        super().delete(*args, **kwargs)
 
     def __str__(self):
         return self.name

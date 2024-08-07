@@ -126,11 +126,7 @@ class TestRunAPITest(APITestCase):
         }
         response = self.client.post(self.test_run_url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        # import time
-        # time.sleep(10)
         testrun = TestRun.objects.first()
-        testcase_results = TestRunTestCaseResult.objects.filter(test_run_id=testrun)
-        print(testcase_results)
         self.assertEqual(testrun.number_of_test_cases, 5)
 
     def test_create_testrun_with_partial_test_case_results(self):
@@ -165,3 +161,26 @@ class TestRunAPITest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         testrun = TestRun.objects.first()
         self.assertIsNone(testrun.milestone_id)
+
+    def test_delete_testrun_cleans_up_related_data(self):
+        test_cases = self.create_test_cases(5)
+        data = {
+            'name': 'Test Run 9',
+            'test_suite_id': self.test_suite.pk,
+            'milestone_id': self.milestone.pk,
+            'project_id': self.project.pk,
+            'created_by': self.user.pk,
+            'test_case_filter': TestRun.ALL
+        }
+        response = self.client.post(self.test_run_url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        testrun = TestRun.objects.first()
+        self.assertEqual(TestRunTestCaseResult.objects.count(), 5)
+        self.assertEqual(TestCaseResult.objects.filter(test_run_test_case_results__test_run_id=testrun).count(), 5)
+
+        delete_url = reverse('testrun-detail', kwargs={'pk': testrun.pk})
+        response = self.client.delete(delete_url)
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+        self.assertEqual(TestRun.objects.count(), 0)
+        self.assertEqual(TestRunTestCaseResult.objects.count(), 0)
+        self.assertEqual(TestCaseResult.objects.filter(test_run_test_case_results__test_run_id=testrun).count(), 0)
