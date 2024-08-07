@@ -48,7 +48,7 @@ class TestPlan(models.Model):
         # Process the selection field to create TestRun instances
         for entry in self.selection:
             test_suite_id = entry.get('test_suite_id')
-            test_suite_name = entry.get('test_suite_name')
+            test_suite_name = TestSuite.objects.get(pk=test_suite_id).name
             selection_type = entry.get('selection_type')
             selection_data = entry.get('selection')
 

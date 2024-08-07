@@ -1,0 +1,17 @@
+<!-- your_project/templates/admin/base_site.html -->
+{% extends "admin/base.html" %}
+{% load static %}
+
+
+{% block title %}Securiti AI TCMS{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">
+    Securiti AI TCMS Administration
+</a></h1>
+{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% static 'admin/css/custom.css' %}">
+{% endblock %}

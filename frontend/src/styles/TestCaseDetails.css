@@ -212,4 +212,36 @@ body, html {
 
   
 
-  
+  /* TestCaseDetails.css */
+
+.test-case-result-changes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.test-case-result-change {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  width: calc(33.333% - 16px); /* Three columns */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.test-case-result-change h4 {
+  margin-top: 0;
+  font-size: 1.2em;
+  color: #333;
+}
+
+.test-case-result-change p {
+  margin: 8px 0;
+  font-size: 0.9em;
+  color: #555;
+}
+
+.test-case-result-change p strong {
+  color: #333;
+}

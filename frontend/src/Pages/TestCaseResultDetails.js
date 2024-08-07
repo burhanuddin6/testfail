@@ -1,44 +1,39 @@
-
-// TestCaseDetails.js
 import React, { useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
-import { fetchTestCaseDetails } from '../api/TestCase';
+import { fetchTestCaseDetails, fetchTestCaseResult } from '../api/TestCase';
 import '../styles/TestCaseDetails.css'; // Ensure this path is correct
 
-const TestCaseDetails = () => {
+const TestCaseResultDetails = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-  const testCaseId = searchParams.get('testCaseId') || 'C18969'; // Default to 'C18969' if no testCaseId is provided
-  const testCaseName = searchParams.get('testCaseName') || 'Opening and navigating on Chrome'; // Default to the provided name
-  const suiteName = searchParams.get('suite') || 'General UI Testcases'; // Fetch the suite name from the query params
-  const suiteId = searchParams.get('suiteId') || '0'; // Default to '0' if no suiteId is provided
-  const sectionName = searchParams.get('section') || 'General Cases'; // Fetch the section name from the query params
+  const testCaseResultId = searchParams.get('testCaseResultId'); // Get testCaseResultId from query params
 
   const [testCaseDetails, setTestCaseDetails] = useState(null);
+  const [testCaseResult, setTestCaseResult] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetchTestCaseDetails(testCaseId);
-        console.log("Case details are: "+ data);
-        setTestCaseDetails(data);
+        const resultData = await fetchTestCaseResult(testCaseResultId);
+        setTestCaseResult(resultData);
+        const detailsData = await fetchTestCaseDetails(resultData.test_case_id);
+        setTestCaseDetails(detailsData);
       } catch (err) {
-        setError('Failed to fetch test case details');
+        setError('Failed to fetch test case result details');
       } finally {
         setLoading(false);
       }
     };
 
     fetchData();
-  }, [testCaseId]);
-
-  console.log(testCaseDetails);
+  }, [testCaseResultId]);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
-  if (!testCaseDetails) return <p>No test case details available</p>;
+  if (!testCaseDetails || !testCaseResult) return <p>No test case result details available</p>;
+
   return (
     <div className="test-case-details-container">
       <div className="test-case-detail-body">
@@ -47,11 +42,11 @@ const TestCaseDetails = () => {
             <div className="test-case-header">
               <div className="test-case-id">{testCaseDetails.test_case_id}</div>
               <h1 className="test-case-name">{testCaseDetails.title}</h1>
-              <Link to={`/EditTestCase?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}&source=TestCaseDetails`} className="edit-case-link">Edit</Link>
+              {/* <Link to={`/EditTestCase?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}&source=TestCaseDetails`} className="edit-case-link">Edit</Link> */}
             </div>
-            <Link to={`/SectionsCases?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}`} className="breadcrumb-link">
+            {/* <Link to={`/SectionsCases?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}`} className="breadcrumb-link">
               {suiteName} &gt; {sectionName}
-            </Link>
+            </Link> */}
           </div>
           
           <div className="test-case-summary">
@@ -123,18 +118,12 @@ const TestCaseDetails = () => {
           <nav className="breadcrumb-nav">
             <div className="test-case-details-options">
               <h3 className="sidebar-title">
-                <Link to={`/TestCaseDetails?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`} className="sidebar-link">
+                <Link to={`/TestCaseDetails?&testCaseId=${testCaseDetails.test_case_id}`} className="sidebar-link">
                   Details
                 </Link>
               </h3>
-              <Link to={`/TestsResults?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`} className="sidebar-link">
-                Tests & Results
-              </Link>
-              <Link to={`/TestCaseDefects?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`} className="sidebar-link">
+              <Link to={`/TestCaseDefects?testCaseId=${testCaseDetails.test_case_id}`} className="sidebar-link">
                 Defects
-              </Link>
-              <Link to={`/TestCaseHistory?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`} className="sidebar-link">
-                History
               </Link>
             </div>
           </nav>
@@ -165,10 +154,25 @@ const TestCaseDetails = () => {
           </div>
         </div>
       </div>
+
+      <div className="test-case-result-changes">
+        {testCaseResult.changes.map(change => (
+          <div key={change.test_case_result_changes_id} className="test-case-result-change">
+            <h4>Change #{change.test_case_result_changes_id}</h4>
+            <p><strong>Status:</strong> {change.status}</p>
+            <p><strong>Version:</strong> {change.version}</p>
+            <p><strong>Comment:</strong> {change.comment}</p>
+            <p><strong>Result Time:</strong> {change.result_time}</p>
+            <p><strong>Defect:</strong> {change.defect || 'None'}</p>
+            <p><strong>Elapsed Time:</strong> {change.elapsed_time_in_seconds ? `${change.elapsed_time_in_seconds} seconds` : 'N/A'}</p>
+            <p><strong>Created On:</strong> {new Date(change.created_on).toLocaleString()}</p>
+            <p><strong>Created By:</strong> {change.created_by}</p>
+            <p><strong>Assigned To:</strong> {change.assigned_to || 'N/A'}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
-  
 };
 
-export default TestCaseDetails;
-
+export default TestCaseResultDetails;

@@ -32,13 +32,7 @@ const TestRunTestsResults = () => {
 
   const handleTestCaseClick = (testCase) => {
     navigate(
-      `/TestCaseDetails?suiteId=${suiteId}&suite=${encodeURIComponent(
-        suiteName
-      )}&testRunId=${testRunId}&testRunName=${encodeURIComponent(
-        testRunName
-      )}&testCaseId=${testCase.id}&testCaseName=${encodeURIComponent(
-        testCase.title
-      )}`
+      `/TestCaseResultDetails?testCaseResultId=${testCase.id}`
     );
   };
 
@@ -174,13 +168,7 @@ const TestRunTestsResults = () => {
                       <td>{testCase.id}</td>
                       <td>
                         <Link
-                          to={`/TestCaseDetails?suiteId=${suiteId}&suite=${encodeURIComponent(
-                            suiteName
-                          )}&testRunId=${testRunId}&testRunName=${encodeURIComponent(
-                            testRunName
-                          )}&testCaseId=${testCase.id}&testCaseName=${encodeURIComponent(
-                            testCase.title
-                          )}`}
+                          to={`/TestCaseResultDetails?testCaseResultId=${testCase.id}`}
                           className="test-case-title"
                           onClick={() => handleTestCaseClick(testCase)}
                         >

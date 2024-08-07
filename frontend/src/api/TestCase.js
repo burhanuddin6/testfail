@@ -70,4 +70,10 @@ const fetchSectionsAndCases = async (suiteId) => {
   }
 };
 
+
+export const fetchTestCaseResult = async (testCaseResultId) => {
+  const response = await axiosInstance.get(`/test_case_results/${testCaseResultId}/`);
+  return response.data;
+};
+
 export { fetchTestCaseChoices, createTestCase, fetchSectionsAndCases, deleteTestCase, fetchTestCaseDetails, updateTestCase};
