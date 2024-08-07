@@ -47,14 +47,20 @@
   font-size: 14px;
   cursor: pointer;
   border: none; /* Consistent border */
-  display: inline-block; /* Ensure proper sizing */
-  text-align: center; /* Center text */
+  display: flex; /* Ensure proper sizing */
+  justify-content: center; /* Center text */
+  align-items: center;
 }
 
 .add-test-case-button:hover,
 .edit-test-suite-link:hover,
 .delete-case-button:hover {
   background-color: #0056b3;
+  display:flex;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+  align-content: center;
 }
 
 .sections-cases-summary {
@@ -172,12 +178,14 @@
   border: none;
   color: #f00;
   align-items: left;
-  padding-right: 500px;
   font-weight: bold;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 22px;
+  margin-right: 10px;
 }
-
+.section-name-button-container{
+  display: flex;
+}
 /* 
 .delete-section-button:hover {
   background-color: #f9f9f9;

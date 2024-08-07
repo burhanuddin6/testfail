@@ -35,16 +35,18 @@ body {
     align-items: center;
     margin-left: auto;
     margin-right: 50px;
+    /* color: white; */
   }
 
   .milestone-main-heading button {
-    color: black;
+    color: white;
     width: auto;
     height: auto;
   }
 
   .milestone-add-button {
-    background-color:  #4CAF50;
+    /* color: white; */
+    background-color: #4CAF50;
   }
 
   .milestone-delete-button {

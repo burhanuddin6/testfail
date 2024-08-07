@@ -29,6 +29,8 @@ const AddTestCase = () => {
   const [goals, setGoals] = useState('');
   const [stepsCases, setStepsCases] = useState([{ id: 1 }]);
   const [bddscenerio, setbddscenerio] = useState([{ id: 1 }]);
+  const [files, setFiles] = useState([]);
+
 
   const addStepCases = (e) => {
     e.preventDefault();
@@ -122,6 +124,11 @@ const AddTestCase = () => {
   const handleCancel = (e) => {
     e.preventDefault();
     navigate(`/SectionsCases?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}`);
+  };
+
+
+  const handleFilesChange = (uploadedFiles) => {
+    setFiles(uploadedFiles);
   };
 
   if (loading) return <div>Loading...</div>;
@@ -437,7 +444,7 @@ const AddTestCase = () => {
           </div>
           
 
-          <FileUpload/>
+          <FileUpload onFilesChange={handleFilesChange}/>
 
           <div className="test-case-buttons">
             <button type="submit" className="test-case-button">

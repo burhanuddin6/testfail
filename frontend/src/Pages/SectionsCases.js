@@ -556,6 +556,10 @@ const SectionsCases = () => {
     const fetchData = async () => {
       try {
         const data = await fetchSectionsAndCases(suiteId);
+        console.log(`data fetched in SectionsCases page for sections and cases: ${JSON.stringify(data, null, 2)}`); // debug statement, remove before production
+
+        // console.log("data fetched in SectionsCases page for sections and cases "+ data);
+
         setSections(data);
       } catch (err) {
         setError('Failed to fetch sections and cases');
@@ -635,8 +639,8 @@ const SectionsCases = () => {
       <div className="sections-cases-header">
         <h2>{`S${suiteId} - ${suiteName}`}</h2>
         <div className="sections-cases-actions">
-          <Link to={`/AddTestCase?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}`} className="add-case-button">+ Add Case</Link>
-          <Link to={`/EditTestSuite?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}&source=SectionsCases`} className="edit-suite-link">Edit</Link>
+          <button className="add-test-case-button" onClick={()=> window.location.assign(`/AddTestCase?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}`)}>+ Add Case</button>
+          <button className="edit-test-suite-link" onClick={()=> window.location.assign(`/EditTestSuite?suiteId=${suiteId}&suite=${encodeURIComponent(suiteName)}&source=SectionsCases`)}>Edit</button>
           <button className="delete-case-button" onClick={handleDeleteTestCases}>Delete Selected Cases</button>
         </div>
       </div>
@@ -650,9 +654,12 @@ const SectionsCases = () => {
           {sections.map((section) => (
             <div key={section.id} className="section">
               <div className="section-header">
-                <h3>{section.title}</h3>
+                <div className = "section-name-button-container">
+                  <button className="delete-section-button" onClick={() => handleDeleteSection(section.id)}>&times;</button>
+                  <h3>{section.title}</h3>
+                </div>
                 {/* <button className="delete-section-button">&times;</button> */}
-                <button className="delete-section-button" onClick={() => handleDeleteSection(section.id)}>&times;</button>
+                
                 <span>{section.cases.length} cases</span>
               </div>
               <div className="case-list">

@@ -130,6 +130,7 @@ const TestCaseDetails = () => {
     const fetchData = async () => {
       try {
         const data = await fetchTestCaseDetails(testCaseId);
+        console.log("Case details are: "+ data);
         setTestCaseDetails(data);
       } catch (err) {
         setError('Failed to fetch test case details');
@@ -376,13 +377,23 @@ const TestCaseDetails = () => {
             <div className="people-dates">
               <div className="date-item">
                 <div className="date-label">Created</div>
-                <div className="date-value">{testCaseDetails.created_by.username}</div>
+                <div className="date-value">{testCaseDetails.created_by_info.first_name + testCaseDetails.created_by_info.last_name}</div>
                 <div className="date-timestamp">{new Date(testCaseDetails.created_on).toLocaleString()}</div>
               </div>
               <div className="date-item">
                 <div className="date-label">Updated</div>
-                <div className="date-value">{testCaseDetails.updated_by ? testCaseDetails.updated_by.username : 'N/A'}</div>
-                <div className="date-timestamp">{testCaseDetails.updated_on ? new Date(testCaseDetails.updated_on).toLocaleString() : 'N/A'}</div>
+                <div className="date-value">
+                  {testCaseDetails.updated_by
+                    ? testCaseDetails.updated_by.username
+                    : testCaseDetails.created_by_info.first_name + testCaseDetails.created_by_info.last_name}
+                </div>
+                <div className="date-timestamp">
+                  {testCaseDetails.updated_on
+                    ? new Date(testCaseDetails.updated_on).toLocaleString()
+                    : testCaseDetails.created_on
+                      ? new Date(testCaseDetails.created_on).toLocaleString()
+                      : 'N/A'}
+                </div>
               </div>
             </div>
           </div>

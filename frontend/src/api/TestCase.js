@@ -15,7 +15,7 @@ const createTestCase = async (data) => {
 // function to update a test case using its id 
 const updateTestCase = async (testCaseId, testCaseData) => {
   try {
-    const response = await axiosInstance.patch(`test_cases/${testCaseId}`, testCaseData);
+    const response = await axiosInstance.patch(`test_cases/${testCaseId}/`, testCaseData);
     return response.data;
   } catch (error) {
     console.error('Error updating test case:', error); // debug statement, remove before production

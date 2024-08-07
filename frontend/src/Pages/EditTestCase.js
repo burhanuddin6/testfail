@@ -344,7 +344,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { fetchTestCaseDetails, updateTestCase, fetchTestCaseChoices } from '../api/TestCase'; // Import the API functions
+import { fetchTestCaseDetails, updateTestCase, fetchTestCaseChoices , deleteTestCase} from '../api/TestCase'; // Import the API functions
 import FileUpload from '../components/fileUpload';
 import TestStep from '../components/testSteps';
 import BDD from '../components/bdd';
@@ -374,7 +374,7 @@ const EditTestCase = () => {
   const [steps, setSteps] = useState('');
   const [expectedResult, setExpectedResult] = useState('');
   const [automatedCases, setAutomatedCases] = useState('');
-  const [file, setFile] = useState(null);
+  const [files, setFiles] = useState([]);
   const [mission, setMission] = useState('');
   const [goals, setGoals] = useState('');
   const [stepsCases, setStepsCases] = useState([{ id: 1 }]);
@@ -445,22 +445,46 @@ const EditTestCase = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const updatedTestCase = {
-      section_id: section,
-      template_type: template,
-      type_id: type,
-      priority_id: priority,
-      estimate: estimate,
-      title: title,
-      references: references,
-      automation_type: automationType,
-      obsolete: obsolete,
-      preconditions: preconditions,
-      steps: steps,
-      expected_result: expectedResult,
-      automated_cases: automatedCases,
-      // Add any other fields you need
-    };
+    // const updatedTestCase = {
+    //   section_id: section,
+    //   template_type: template,
+    //   type_id: type,
+    //   priority_id: priority,
+    //   estimate: estimate,
+    //   title: title,
+    //   references: references,
+    //   automation_type: automationType,
+    //   obsolete: obsolete,
+    //   preconditions: preconditions,
+    //   steps: steps,
+    //   expected_result: expectedResult,
+    //   automated_cases: automatedCases,
+    //   // Add any other fields you need
+    // };
+    // console.log("estimate is" + estimate)
+    const fields = [
+      { key: 'section_id', value: section },
+      { key: 'template_type', value: template },
+      { key: 'type_id', value: type },
+      { key: 'priority_id', value: priority },
+      { key: 'estimate', value: estimate ? parseInt(estimate, 10) : null },
+      { key: 'title', value: title },
+      { key: 'references', value: references },
+      { key: 'automation_type', value: automationType !== '' ? automationType : null },
+      { key: 'obsolete', value: obsolete },
+      { key: 'preconditions', value: preconditions },
+      { key: 'steps', value: steps },
+      { key: 'expected_result', value: expectedResult },
+      { key: 'automated_cases', value: automatedCases },
+    ];
+    
+    let updatedTestCase = {};
+    
+    fields.forEach(({ key, value }) => {
+      if (value || value === 0) {  // Include value even if it is 0 or false
+        updatedTestCase[key] = value;
+      }
+    });
 
     try {
       await updateTestCase(testCaseId, updatedTestCase);
@@ -493,8 +517,47 @@ const EditTestCase = () => {
     }
   };
 
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
+  // const handleDelete = async () => {
+  //   try {
+      // await deleteTestCase(testCaseId);
+      // console.log('Test case deleted successfully');
+  //     if (sourcePage === 'TestCaseDetails') {
+  //       navigate(`/TestCaseDetails?suiteId=${suiteId}&suite=${suiteName}`);
+  //     } else if (sourcePage === 'TestsResults') {
+  //       navigate(`/TestsResults?suiteId=${suiteId}&suite=${suiteName}`);
+  //     } else if (sourcePage === 'TestCaseDefects') {
+  //       navigate(`/TestCaseDefects?suiteId=${suiteId}&suite=${suiteName}`);
+  //     } else {
+  //       navigate(`/TestCaseHistory?suiteId=${suiteId}&suite=${suiteName}`);
+  //     }
+  //   } catch (error) {
+  //     console.error('Failed to delete test case:', error);
+  //   }
+  // };
+
+  const handleDelete  = async (e) => {
+    e.preventDefault();
+    try{
+      await deleteTestCase(testCaseId);
+      console.log('Test case deleted successfully');
+      if (sourcePage === 'TestCaseDetails') {
+        navigate(`/TestCaseDetails?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`);
+      } else if (sourcePage === 'TestsResults') {
+          navigate(`/TestsResults?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`);
+      } else if (sourcePage === 'TestCaseDefects') {
+          navigate(`/TestCaseDefects?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`);
+      } else {
+          navigate(`/TestCaseHistory?suiteId=${suiteId}&suite=${suiteName}&section=${sectionName}&testCaseId=${testCaseId}&testCaseName=${testCaseName}`);
+      }
+    } catch (error) {
+      console.error('Failed to delete test case:', error);
+    }
+
+  };
+
+
+  const handleFilesChange = (uploadedFiles) => {
+    setFiles(uploadedFiles);
   };
 
   return (
@@ -756,7 +819,7 @@ const EditTestCase = () => {
             />
           </div>
 
-          <FileUpload/>
+          <FileUpload onFilesChange={handleFilesChange}/>
 
           {/* Buttons */}
           <div className="edit-suite-buttons">
@@ -772,14 +835,18 @@ const EditTestCase = () => {
           </div>
         </form>
 
-        
-
         <div className="actions-section">
           {/* <p className="actions-title">Actions</p> */}
           <p className="actions-description">
           Delete a test case to remove it from its test suite. <br></br>This also deletes all related running tests.
           </p>
-          <button className="delete-suite-button">✗ Delete this test case</button>
+          <button
+              type="button"
+              onClick={handleDelete}
+              className="delete-suite-button"
+            >
+              ✗ Delete this test case
+            </button>
         </div>
       </div>
     </div>

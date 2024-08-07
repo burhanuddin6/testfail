@@ -14,8 +14,14 @@ const MilestonesProgress = () => {
     const suiteId = searchParams.get('suiteId') || '0';
     const suiteName = searchParams.get('suite') || 'Suite Name';
 
+    const milestoneId = searchParams.get('milestoneId') || '0'; 
+  const milestoneName = searchParams.get('milestoneName') || 'Milestone'; 
+
+  const testPlanId = searchParams.get("testPlanId") || "0"; 
+  const testPlanName = searchParams.get("testPlanName") || "Test Plan";
+
     const handleEditMilestone = () => {
-        navigate(`/add-milestone`, { state: { from: '/milestone-progress' , action: 'edit'} });
+        navigate(`/add-milestone?milestoneId=${milestoneId}&milestoneName=${milestoneName}`, { state: { from: `/milestone-progress?milestoneId=${milestoneId}&milestoneName=${milestoneName}&source=milestone-status` , action: 'edit'} });
     };
 
     return (
@@ -36,7 +42,7 @@ const MilestonesProgress = () => {
                             >
                                 Activity
                             </a>
-                            <a
+                            <a className="upperbar"
                                 href={`/milestone-progress?suiteId=${suiteId}&suite=${suiteName}&testRunId=${testRunId}&testRunName=${testRunName}&source=milestone-progress`}
     
                             >
@@ -49,30 +55,51 @@ const MilestonesProgress = () => {
                                 Defects
                             </a>
                         </>
-                    ) : (
+                    ) :   sourcePage === 'milestone-status' ? (
                         <>
-                            <a href="/milestone-status" >
+                            <a href={`/milestone-status?milestoneId=${milestoneId}&milestoneName=${milestoneName}`}>Status</a>
+                            <a href={`/milestone-activity?milestoneId=${milestoneId}&milestoneName=${milestoneName}&source=milestone-status`}>Activity</a>
+                            <a className="upperbar" href={`/milestone-progress?milestoneId=${milestoneId}&milestoneName=${milestoneName}&source=milestone-status`}>Progress</a>
+                            <a href={`/milestone-defect?milestoneId=${milestoneId}&milestoneName=${milestoneName}&source=milestone-status`}>Defects</a>
+                        </>
+                    ) : sourcePage === 'TestPlanStatus' ? (
+                        <>
+                        <a
+                                href={`/TestPlanStatus?testPlanId=${testPlanId}&testPlanName=${testPlanName}`}
+                                
+                            >
                                 Status
                             </a>
-                            <a href="/milestone-activity" >
+                            <a
+                                href={`/milestone-activity?testPlanId=${testPlanId}&testPlanName=${testPlanName}&source=TestPlanStatus`}
+                                
+                            >
                                 Activity
                             </a>
-                            <a href="/milestone-progress" >
+                            <a className="upperbar"
+                                href={`/milestone-progress?testPlanId=${testPlanId}&testPlanName=${testPlanName}&source=TestPlanStatus`}
+                            >
                                 Progress
                             </a>
-                            <a href="/milestone-defect" >
+                            <a
+                               href={`/milestone-defect?testPlanId=${testPlanId}&testPlanName=${testPlanName}&source=TestPlanStatus`}
+                                
+                            >
                                 Defects
                             </a>
                         </>
-                    )}
+                        
+                    ) : null }
                 </div>
                
                 <div className="progress-controls">
                     {sourcePage === 'TestRunTestsResults' || sourcePage === 'milestone-activity' || sourcePage === 'milestone-progress' || sourcePage === 'milestone-defect' ? (
                         <h2>{`R${testRunId} - ${testRunName}`}</h2>
-                    ) : (
-                        <h2>Milestone Name</h2>   
-                    )}
+                    ) : sourcePage === 'milestone-status' ? (
+                        <h2>{`M${milestoneId} - ${milestoneName}`}</h2>
+                    ) : sourcePage === 'TestPlanStatus' ? (
+                        <h2>{`R${testPlanId} - ${testPlanName}`}</h2>
+                    ) : null }
                     <div className="progress-control-button">
                         <button className="milestone-button" onClick={handleEditMilestone}>Edit</button>
                     </div>
