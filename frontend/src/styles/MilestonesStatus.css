@@ -42,6 +42,10 @@ body, html {
     color: black;
 }
 
+.upperbar {
+    font-weight: bold;
+}
+
 
 .status-control-button button{
     width: 100px;
@@ -61,11 +65,11 @@ body, html {
 }
 
 .milestone-button {
-    background-color: #1E7E34;
+    background-color: #007bff;
 }
 
  .milestone-button:hover {
-    background-color: #155724;
+    background-color: #0056b3;
   }
 
 .status-details {
@@ -92,11 +96,11 @@ body, html {
 }
 
 .download {
-    background-color: #1E7E34;
+   background-color: #007bff;
 }
 
 .download:hover {
-    background-color: #155724;
+    background-color: #0056b3;
 }
 
 .status-passed-percent {

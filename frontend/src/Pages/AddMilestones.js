@@ -17,6 +17,7 @@ const AddMilestone = ({ userID }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [newText, setNewText] = useState('');
   const [images, setImages] = useState([]);
+  const [files, setFiles] = useState([]);
   const [projectID] = useState(getProjectID());
   const [parentMilestones, setParentMilestones] = useState([]);
 
@@ -72,9 +73,8 @@ const AddMilestone = ({ userID }) => {
     navigate(from); //batoolchange
   };
 
-  const handleFileChange = (event) => {
-    const files = Array.from(event.target.files);
-    setImages((prevImages) => [...prevImages, ...files]);
+  const handleFilesChange = (uploadedFiles) => {
+    setFiles(uploadedFiles);
   };
 
   const removeImage = (index) => {
@@ -176,7 +176,7 @@ const AddMilestone = ({ userID }) => {
           <label htmlFor="isCompleted">This milestone is completed</label>
         </div>
 
-        <FileUpload/>
+        <FileUpload onFilesChange={handleFilesChange}/>
       
         <div className="form-buttons">
           <button type="submit" className='add-edit-button'> ✓ {action == "edit" ? 'Update' : 'Add'} Milestone</button>

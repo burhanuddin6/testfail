@@ -239,7 +239,7 @@
 // export default MilestonesStatus;
 
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import Graph from "../components/OverviewGraph";
 import "../styles/MilestonesStatus.css";
 import { fetchTestRuns } from '../api/TestRun'; // Import the function
@@ -255,6 +255,9 @@ const MilestonesStatus = () => {
     const [openMilestones, setOpenMilestones] = useState([]);
     const [openTestRuns, setOpenTestRuns] = useState([]);
     const [error, setError] = useState(null);
+    const searchParams = new URLSearchParams(location.search);
+    const milestoneId = searchParams.get('milestoneId') || '0'; 
+    const milestoneName = searchParams.get('milestoneName') || 'Milestone'; 
 
     useEffect(() => {
         const fetchData = async () => {
@@ -300,9 +303,13 @@ const MilestonesStatus = () => {
         fetchData();
     }, [children]); // Dependency on children to re-fetch data if it changes
 
+    // const handleEditMilestone = () => {
+    //     navigate(`/add-milestone`, { state: { from: '/milestone-status', action: 'edit' } });
+    // };
+
     const handleEditMilestone = () => {
-        navigate(`/add-milestone`, { state: { from: '/milestone-status', action: 'edit' } });
-    };
+        navigate(`/add-milestone?milestoneId=${milestoneId}&milestoneName=${milestoneName}`, { state: { from: `/milestone-status?milestoneId=${milestoneId}&milestoneName=${milestoneName}` , action: 'edit'} });
+      };
 
     return (
         <div className="status-mainclass">
@@ -310,15 +317,15 @@ const MilestonesStatus = () => {
             
             <div className="status-header">
                 <div className="status-options">
-                    <a href="/milestone-status">Status</a>
-                    <a href="/milestone-activity">Activity</a>
-                    <a href="/milestone-progress">Progress</a>
-                    <a href="/milestone-defect">Defects</a>
+                <a className="upperbar" href={`/milestone-status?milestoneId=${milestoneId}&milestoneName=${milestoneName}` }>Status</a>
+                <a href={`/milestone-activity?milestoneId=${milestoneId}&milestoneName=${milestoneName}&source=milestone-status`}>Activity</a>
+                <a href={`/milestone-progress?milestoneId=${milestoneId}&milestoneName=${milestoneName}&source=milestone-status`}>Progress</a>
+                <a href={`/milestone-defect?milestoneId=${milestoneId}&milestoneName=${milestoneName}&source=milestone-status`}>Defects</a>
                 </div>
                
                 <div className="status-controls">
-                    <h2> Milestone Name </h2>
-                    <div className="status-control-button">  
+                <h2>{`M${milestoneId} - ${milestoneName}`}</h2>
+                    <div className="status-control-button">
                         <button className="milestone-button" >Export</button>
                         <button className="milestone-button" >Print</button>
                         <button className="milestone-button" onClick={handleEditMilestone}>Edit</button>
@@ -346,7 +353,7 @@ const MilestonesStatus = () => {
                     <div className="status-milestones-header">
                         <h2> Milestones </h2>
                         <div className="status-delete-milestones">
-                            <button> Delete Selected </button>
+                        <button className="milestone-delete-button" >- Delete Selected </button>
                         </div>
                     </div>
 
@@ -402,7 +409,7 @@ const MilestonesStatus = () => {
             <div className="status-testruns-header">
                 <h2> Test Runs </h2>
                 <div className="status-delete-testrun">
-                    <button> Delete Selected </button>
+                <button className="milestone-delete-button" >- Delete Selected </button>
                 </div>
             </div>
 

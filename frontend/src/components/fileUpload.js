@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/components/FileUpload.css'; // Import the CSS file
 
-const FileUpload = () => {
+const FileUpload = ({ onFilesChange }) => {
   const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    onFilesChange(images);
+  }, [images, onFilesChange]);
 
   const handleFileChange = (event) => {
     const files = Array.from(event.target.files);
@@ -50,5 +54,3 @@ const FileUpload = () => {
 };
 
 export default FileUpload;
-
-

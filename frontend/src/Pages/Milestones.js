@@ -267,11 +267,13 @@ const Milestones = () => {
 
   };
 
-  const handleMilestoneClick = (milestone) => {
-    const children = getChildMilestones(milestone.id);
-    console.log("Passing children to MilestoneStatus:", children); // Log children being passed
-    navigate('/milestone-status', { state: { from: '/milestones', children } });
-  };
+  // const handleMilestoneClick = (milestone) => {
+  //   const children = getChildMilestones(milestone.id);
+  //   console.log("Passing children to MilestoneStatus:", children); // Log children being passed
+  //   navigate('/milestone-status', { state: { from: '/milestones', children } });
+  // };
+
+  
 
   // Group completed milestones by date
   const groupByCompletionDate = (milestones) => {
@@ -286,15 +288,18 @@ const Milestones = () => {
   };
 
   const groupedCompletedMilestones = groupByCompletionDate(completedMilestones);
+  // Handle click on a milestone to navigate to milestone-status page
+  const handleMilestoneClick = (milestoneId, milestoneName) => {
+    navigate(`/milestone-status?milestoneId=${milestoneId}&milestoneName=${encodeURIComponent(milestoneName)}`);
+  };
 
   return (
     <div className="Milestones-container">
-        <div className='milestone-main-heading'>
-            <h2>Milestones</h2>
-            <div className='button-class'>
-                <button className="milestone-add-button" onClick={handleAdd}> + Add Milestone</button>
-                <button className="milestone-delete-button" onClick={handleDelete}> - Delete Milestone</button>
-            </div>
+      <div className='milestone-main-heading'>
+        <h2>Milestones</h2>
+        <div className='button-class'>
+          <button className="milestone-add-button" onClick={handleAdd}> + Add Milestone</button>
+          <button className="milestone-delete-button" onClick={handleDelete}> - Delete Milestone</button>
         </div>
 
         <div className='milestone-listing'>
@@ -308,7 +313,10 @@ const Milestones = () => {
                       checked={milestone.checked || false}
                       onChange={() => handleCheckboxChange(milestone.id, 'open')}
                     />
-                    <a href='/milestone-status' className='milestoneName' onClick={() => handleMilestoneClick(milestone)}>
+                    <a
+                      className='milestoneName'
+                      onClick={() => handleMilestoneClick(milestone.id, milestone.name)}
+                    >
                       {milestone.name}
                     </a>
                     <div className="status-bar">
@@ -332,7 +340,10 @@ const Milestones = () => {
                     <div className='details' key={milestone.id}>
                       <input type="checkbox" checked={milestone.checked}
                        onChange={() => handleCheckboxChange(milestone.id, 'completed')} /> 
-                      <a href='/milestone-status' className='milestoneName' onClick={() => handleMilestoneClick(milestone)}>
+                      <a
+                        className='milestoneName'
+                        onClick={() => handleMilestoneClick(milestone.id, milestone.name)}
+                      >
                         {milestone.name}
                       </a>
                     </div>
@@ -342,6 +353,7 @@ const Milestones = () => {
            </div>
           </div>
         </div>
+      </div>
     </div>
   );
 };
