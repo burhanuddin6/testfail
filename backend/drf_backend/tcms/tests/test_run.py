@@ -2,7 +2,7 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 from django.contrib.auth import get_user_model
-from ..models import TestRun, TestSuite, Project, TestCase, Section, TestCaseResult, TestRunTestCaseResult, Milestone, MyUser, TypesForTestCase, PriorityForTestCase
+from ..models import TestRun, TestSuite, Project, TestCase, Section, TestCaseResult, Milestone, MyUser, TypesForTestCase, PriorityForTestCase
 
 class TestRunAPITest(APITestCase):
 
@@ -22,7 +22,6 @@ class TestRunAPITest(APITestCase):
             test_case = TestCase.objects.create(
                 title=f'Test Case {i}',
                 template_type=TestCase.TEXT,
-                template_frame='Test Case',
                 section_id=self.section,
                 created_by=self.user,
                 project_id=self.project,
@@ -45,7 +44,6 @@ class TestRunAPITest(APITestCase):
         response = self.client.post(self.test_run_url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(TestRun.objects.count(), 1)
-        self.assertEqual(TestRunTestCaseResult.objects.count(), 5)
         testrun = TestRun.objects.first()
         self.assertEqual(testrun.test_case_results.count(), 5)
 
@@ -64,7 +62,6 @@ class TestRunAPITest(APITestCase):
         response = self.client.post(self.test_run_url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(TestRun.objects.count(), 1)
-        self.assertEqual(TestRunTestCaseResult.objects.count(), 2)
         testrun = TestRun.objects.first()
         self.assertEqual(testrun.test_case_results.count(), 2)
 
@@ -82,7 +79,6 @@ class TestRunAPITest(APITestCase):
         response = self.client.post(self.test_run_url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(TestRun.objects.count(), 1)
-        self.assertEqual(TestRunTestCaseResult.objects.count(), 3)
         testrun = TestRun.objects.first()
         self.assertEqual(testrun.test_case_results.count(), 3)
 
@@ -110,9 +106,6 @@ class TestRunAPITest(APITestCase):
             created_by=self.user,
             test_case_filter=TestRun.ALL
         )
-        self.assertEqual(TestRunTestCaseResult.objects.count(), 5)
-        for trtcr in TestRunTestCaseResult.objects.all():
-            self.assertEqual(trtcr.test_run_id, testrun)
 
     def test_create_testrun_increases_test_case_count(self):
         self.create_test_cases(5)
@@ -143,7 +136,6 @@ class TestRunAPITest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         testrun = TestRun.objects.first()
         test_case_results = TestCaseResult.objects.filter(test_case_id__section_id__test_suite_id__testruns=testrun).first()
-        test_case_results.status = TestCaseResult.PASS
         test_case_results.save()
         testrun.refresh_from_db()
         self.assertEqual(testrun.number_of_passed_test_cases, 1)
@@ -175,12 +167,10 @@ class TestRunAPITest(APITestCase):
         response = self.client.post(self.test_run_url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         testrun = TestRun.objects.first()
-        self.assertEqual(TestRunTestCaseResult.objects.count(), 5)
-        self.assertEqual(TestCaseResult.objects.filter(test_run_test_case_results__test_run_id=testrun).count(), 5)
+        self.assertEqual(TestCaseResult.objects.filter(test_run_id=testrun).count(), 5)
 
         delete_url = reverse('testrun-detail', kwargs={'pk': testrun.pk})
         response = self.client.delete(delete_url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(TestRun.objects.count(), 0)
-        self.assertEqual(TestRunTestCaseResult.objects.count(), 0)
-        self.assertEqual(TestCaseResult.objects.filter(test_run_test_case_results__test_run_id=testrun).count(), 0)
+        self.assertEqual(TestCaseResult.objects.filter(test_run_id=testrun).count(), 0)

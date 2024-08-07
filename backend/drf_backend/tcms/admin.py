@@ -36,8 +36,7 @@ admin.site.register(TestCaseFile)
 admin.site.register(TestCaseTicket)
 
 admin.site.register(TestCaseResult)
-admin.site.register(TestCaseResultFile)
-admin.site.register(BugTrackerTicket)
+admin.site.register(TestCaseResultChanges)
 
 admin.site.register(TestPlan)
 admin.site.register(TestPlanFile)
@@ -47,7 +46,6 @@ admin.site.register(TestPlanTestRun)
 admin.site.register(TestRun)
 admin.site.register(TestRunFile)
 admin.site.register(TestRunTicket)
-admin.site.register(TestRunTestCaseResult)
 
 admin.site.register(TestSuite)
 admin.site.register(TestSuiteFile)

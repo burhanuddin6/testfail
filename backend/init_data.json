@@ -1,0 +1,110 @@
+[
+    {
+      "model": "tcms.project",
+      "pk": 1,
+      "fields": {
+        "name": "Project Alpha",
+        "description": "Description for Project Alpha",
+        "show_description": true,
+        "enable_testcase_approval": true,
+        "created_by": 1,
+        "created_on": "2024-07-30T12:00:00Z"
+      }
+    },
+    {
+      "model": "tcms.milestone",
+      "pk": 1,
+      "fields": {
+        "name": "Milestone 1",
+        "parent_id": null,
+        "description": "Description for Milestone 1",
+        "start_date": "2024-08-01",
+        "end_date": "2024-08-31",
+        "project_id": 1,
+        "number_of_passed_test_cases": 10,
+        "number_of_failed_test_cases": 2,
+        "number_of_blocked_test_cases": 1,
+        "number_of_untested_test_cases": 5,
+        "number_of_partial_test_cases": 1,
+        "number_of_test_cases": 19,
+        "created_by": 1,
+        "created_on": "2024-07-30T12:00:00Z",
+        "updated_by": null,
+        "updated_on": null,
+        "is_complete": false,
+        "completed_on": null
+      }
+    },
+    {
+      "model": "tcms.testsuite",
+      "pk": 1,
+      "fields": {
+        "name": "Test Suite A",
+        "description": "Description for Test Suite A",
+        "project_id": 1,
+        "number_of_sections": 1,
+        "number_of_test_cases": 5,
+        "number_of_passed_test_cases": 3,
+        "number_of_failed_test_cases": 1,
+        "number_of_blocked_test_cases": 1,
+        "number_of_untested_test_cases": 0,
+        "number_of_partial_test_cases": 0,
+        "testcase_latest_result_comments_count": 0,
+        "created_by": 1,
+        "created_on": "2024-07-30T12:00:00Z",
+        "updated_by": null,
+        "updated_on": null
+      }
+    },
+    {
+      "model": "tcms.section",
+      "pk": 1,
+      "fields": {
+        "name": "General Cases",
+        "parent_id": null,
+        "test_suite_id": 1,
+        "created_by": 1,
+        "created_on": "2024-07-30T12:00:00Z"
+      }
+    },
+    {
+      "model": "tcms.testcase",
+      "pk": 1,
+      "fields": {
+        "title": "Test Case 1",
+        "project_id": 1,
+        "section_id": 1,
+        "template_type": "Test Case (Text)",
+        "type_id": "Functional",
+        "priority_id": "High",
+        "estimate": 30,
+        "automation_type": "UI",
+        "obsolete": false,
+        "custom_preconds": "Preconditions for Test Case 1",
+        "custom_steps": "Steps for Test Case 1",
+        "custom_expected": "Expected result for Test Case 1",
+        "custom_steps_separated": "Steps separated for Test Case 1",
+        "custom_mission": "Mission for Test Case 1",
+        "custom_goals": "Goals for Test Case 1",
+        "assigned_to": 1,
+        "created_by": 1,
+        "created_on": "2024-07-30T12:00:00Z",
+        "updated_by": null,
+        "updated_on": null
+      }
+    },
+    {
+      "model": "tcms.myuser",
+      "pk": 1,
+      "fields": {
+        "email": "user@example.com",
+        "password": "pbkdf2_sha256$216000$...",
+        "is_active": true,
+        "is_staff": true,
+        "is_superuser": true,
+        "date_joined": "2024-07-30T12:00:00Z",
+        "last_login": "2024-07-30T12:00:00Z"
+      }
+    }
+  ]
+  

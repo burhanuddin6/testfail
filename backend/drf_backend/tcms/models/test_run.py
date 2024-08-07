@@ -15,10 +15,6 @@ class TestRunTicket(models.Model):
     ticket = models.CharField(max_length=255, unique=True)
     test_run_id = models.ForeignKey("TestRun", on_delete=models.CASCADE)
 
-class TestRunTestCaseResult(models.Model):
-    test_run_id = models.ForeignKey('TestRun', on_delete=models.CASCADE, related_name='test_case_results')
-    test_case_id = models.ForeignKey('TestCase', on_delete=models.CASCADE)
-    test_case_result_id = models.ForeignKey('TestCaseResult', on_delete=models.CASCADE, related_name='test_run_test_case_results')
         
 class TestRun(models.Model):
     test_run_id = models.AutoField(primary_key=True)
@@ -76,14 +72,19 @@ class TestRun(models.Model):
                 testcases = TestCase.objects.filter(section_id__test_suite_id=self.test_suite_id, title__regex=self.test_case_filter_value).all()
             
             for tc in testcases:
-                testcase_result = TestCaseResult.objects.create(test_case_id=tc, created_by=self.created_by, status=TestCaseResult.UNTESTED)
-                TestRunTestCaseResult.objects.create(test_run_id=self, test_case_id=tc, test_case_result_id=testcase_result)
-            testcase_result = TestCaseResult.objects.filter(test_run_test_case_results__test_run_id=self.pk).first()
+                TestCaseResult.create_with_initial_change(
+                    test_case=tc,
+                    test_run=self,
+                    status=TestCaseResult.UNTESTED,
+                    created_by=self.created_by
+                )
+
+            testcase_result = TestCaseResult.objects.filter(test_run_id=self.pk).first()
             if testcase_result:
                 testcase_result.save()
 
     def delete(self, *args, **kwargs):
-        TestCaseResult.objects.filter(test_run_test_case_results__test_run_id=self.pk).delete()
+        TestCaseResult.objects.filter(test_run_id=self.pk).delete()
         super().delete(*args, **kwargs)
 
     def __str__(self):

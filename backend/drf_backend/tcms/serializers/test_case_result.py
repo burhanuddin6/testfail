@@ -1,24 +1,26 @@
 from rest_framework import serializers
-from ..models import TestCaseResultFile, BugTrackerTicket, TestCaseResult
-from .user import UserSerializer
+from ..models import TestCaseResult, TestCaseResultChanges, File
 
-class TestCaseResultFileSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = TestCaseResultFile
-        fields = '__all__'
+class TestCaseResultChangesSerializer(serializers.ModelSerializer):
+    files = serializers.PrimaryKeyRelatedField(many=True, queryset=File.objects.all(), required=False)
 
-class BugTrackerTicketSerializer(serializers.ModelSerializer):
     class Meta:
-        model = BugTrackerTicket
+        model = TestCaseResultChanges
         fields = '__all__'
 
 class TestCaseResultSerializer(serializers.ModelSerializer):
-    files = TestCaseResultFileSerializer(many=True, read_only=True)
-    tickets = BugTrackerTicketSerializer(many=True, read_only=True)
-    created_by_info = UserSerializer(read_only=True, source='created_by')
+    changes = TestCaseResultChangesSerializer(many=True, read_only=True)
+    title = serializers.SerializerMethodField()
 
     class Meta:
         model = TestCaseResult
         fields = '__all__'
+        extra_fields = ['changes']
 
-
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation['changes'] = TestCaseResultChangesSerializer(instance.testcaseresultchanges_set.all(), many=True).data
+        return representation
+    
+    def get_title(self, obj):
+        return obj.test_case_id.title

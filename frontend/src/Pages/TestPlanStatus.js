@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, Link, useNavigate } from "react-router-dom";
+import axiosInstance from "../api/AxiosInstance";
 import "../styles/TestPlanStatus.css";
 
 const TestPlanStatus = () => {
@@ -7,38 +8,60 @@ const TestPlanStatus = () => {
   const navigate = useNavigate();
   const searchParams = new URLSearchParams(location.search);
   const testPlanId = searchParams.get("testPlanId") || "0"; // Default to '0' if no testRunId is provided
-  const testPlanName = searchParams.get("testPlanName") || "Test Plan"; // Default to 'Test Run' if no testRunName is provided
+  const testPlanName = searchParams.get("testPlanName") || "Test Plan"; // Default to 'Test Plan' if no testPlanName is provided
 
   // State to hold test case data
   const [testCaseData, setTestCaseData] = useState({
-    passed: 92,
+    passed: 0,
     blocked: 0,
     retest: 0,
-    failed: 4,
+    failed: 0,
     untested: 0,
   });
 
-  // Mock data for test runs
-  const testRuns = [
-    {
-      id: 101,
-      name: "Sprint 1 Regression",
-      progress: { passed: 42, blocked: 0, untested: 16, retest: 0, failed: 42 },
-    },
-    {
-      id: 102,
-      name: "Feature X Testing",
-      progress: { passed: 38, blocked: 1, untested: 12, retest: 0, failed: 49 },
-    },
-    {
-      id: 103,
-      name: "Performance Testing",
-      progress: { passed: 25, blocked: 0, untested: 20, retest: 0, failed: 55 },
-    },
-  ];
+  // State to hold test runs data
+  const [testRuns, setTestRuns] = useState([]);
 
   // Example data for pie chart
   const [pieChartData, setPieChartData] = useState([]);
+
+  useEffect(() => {
+    // Fetch data from API
+    const fetchData = async () => {
+      try {
+        const response = await axiosInstance.get(`test_plans/${testPlanId}/`);
+        const data = response.data;
+        console.log(data)
+        // Update test case data
+        setTestCaseData({
+          passed: data.number_of_passed_test_cases,
+          blocked: data.number_of_blocked_test_cases,
+          retest: 0, // Assuming retest is not available in the API response
+          failed: data.number_of_failed_test_cases,
+          untested: data.number_of_untested_test_cases,
+        });
+
+        // Update test runs data
+        const updatedTestRuns = data.test_plan_test_runs.map((testRun) => ({
+          id: testRun.test_run_info.test_run_id,
+          name: testRun.test_run_info.test_run_name,
+          progress: {
+            passed: testRun.test_run_info.number_of_passed_test_cases,
+            blocked: testRun.test_run_info.number_of_blocked_test_cases,
+            untested: testRun.test_run_info.number_of_untested_test_cases,
+            retest: 0, // Assuming retest is not available in the API response
+            failed: testRun.test_run_info.number_of_failed_test_cases,
+          },
+        }));
+
+        setTestRuns(updatedTestRuns);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, [testPlanId]);
 
   useEffect(() => {
     // Calculate percentages for pie chart
@@ -72,10 +95,15 @@ const TestPlanStatus = () => {
       progress.untested +
       progress.retest +
       progress.failed;
-    const passedPercentage = (progress.passed / total) * 100;
-    const untestedPercentage = (progress.untested / total) * 100;
-    const failedPercentage = (progress.failed / total) * 100;
-
+    console.log()
+    const passedPercentage = 0;
+    const untestedPercentage = 0;
+    const failedPercentage = 0;
+    if (total != 0) {
+      passedPercentage = (progress.passed / total) * 100;
+      untestedPercentage = (progress.untested / total) * 100;
+      failedPercentage = (progress.failed / total) * 100;
+    }
     return (
       <div className="status-testrun-statusbar">
         <div
@@ -161,7 +189,7 @@ const TestPlanStatus = () => {
                         }, 70%, 50%)`,
                       }}
                     ></span>
-                    {data.name}: {data.percentage}%
+                    {data.name}: {20}%
                   </div>
                 ))}
               </div>
@@ -193,16 +221,12 @@ const TestPlanStatus = () => {
                   </strong>
                   {run.progress.passed} Passed, {run.progress.blocked} Blocked,{" "}
                   {run.progress.untested} Untested, {run.progress.retest} Retest,{" "}
-                  {run.progress.failed} Failed, 0 Comments, 0 Partial
+                  {run.progress.failed} Failed
                   <br />
                 </p>
                 {renderTestRunProgressBar(run.progress)}
                 <div className="status-testrun-progress-value">
-                  {(
-                    (run.progress.passed / (run.progress.passed + run.progress.failed)) *
-                    100
-                  ).toFixed(2)}
-                  %
+                  {((( (run.progress.passed + run.progress.failed) === 0) ? 0 : (run.progress.passed / (run.progress.passed + run.progress.failed))) * 100).toFixed(1)} %
                 </div>
               </div>
             ))}
