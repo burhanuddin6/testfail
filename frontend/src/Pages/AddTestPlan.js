@@ -285,8 +285,11 @@ const AddTestPlan = () => {
       references,
       milestone,
       description,
-      images
+      // images
     };
+
+    console.log('Selected Test Cases:', testPlanData);
+
 
     try {
       // Replace with your actual API call
