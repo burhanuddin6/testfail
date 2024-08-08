@@ -1,7 +1,7 @@
 export const SOFTWARE_TITLE = 'TCMS';
 
 // base url
-export const LOCAL_URL = "http://localhost:8000/";
+export const LOCAL_URL = "http://35.95.129.189/";
 
 
 // base verification url

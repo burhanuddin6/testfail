@@ -46,7 +46,7 @@ const AddMilestone = ({ userID }) => {
     // console.log("userID in AddMilestone page " + userID); //debug statement, remove before deployment
     const milestoneData = {
       name,
-      created_by: userID,
+      created_by: "1",
       parent_id: parent || null,
       description,
       start_date: startDate || null,
